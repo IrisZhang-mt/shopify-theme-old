@@ -1,0 +1,250 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "index_banner_A3ptPx": {
+      "type": "index-banner",
+      "name": "Theme Banner",
+      "settings": {
+        "img": "shopify://shop_images/banner_pc_5ccc0048-aa21-43fa-803a-e0028ed410c7.jpg",
+        "img_mobile": "shopify://shop_images/banner_mb_b0efc638-0b8b-4539-92cb-e12b42d07e9d.jpg",
+        "title": "",
+        "text": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "black_five_activity_page5_mUyqQT": {
+      "type": "blackFive_activityPage5",
+      "blocks": {
+        "item_6tfXLz": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Jackets_0df216bb-d43e-4a39-b84c-1a0f1b29b8b6.jpg",
+            "text": "<p>Jackets</p>",
+            "link": "shopify://collections/jackets-coats"
+          }
+        },
+        "item_Y7QHj4": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Leggings_1b591a35-230d-4651-9d02-3226704bf8e4.jpg",
+            "text": "<p>Leggings</p>",
+            "link": "shopify://collections/leggings-1"
+          }
+        },
+        "item_bj4agJ": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Tees_c4a55cd2-7883-49b1-890b-37e410007f0a.jpg",
+            "text": "<p>Tees</p>",
+            "link": "shopify://collections/tops-tees"
+          }
+        },
+        "item_PjKLki": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Shoes_d3d82d70-5735-4de3-81b6-e3caeb169794.jpg",
+            "text": "<p>Shoes</p>",
+            "link": "shopify://collections/shoes"
+          }
+        },
+        "item_T8iXnW": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/FOR_BOYS.jpg",
+            "text": "<p>FOR BOYS</p>",
+            "link": "shopify://collections/boys"
+          }
+        },
+        "item_Rn4LcQ": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/FOR_GIRLS.jpg",
+            "text": "<p>FOR GIRLS</p>",
+            "link": "shopify://collections/girls"
+          }
+        }
+      },
+      "block_order": [
+        "item_6tfXLz",
+        "item_Y7QHj4",
+        "item_bj4agJ",
+        "item_PjKLki",
+        "item_T8iXnW",
+        "item_Rn4LcQ"
+      ],
+      "name": "Black Five Activity Page5",
+      "settings": {
+        "title": "<p><strong>Holiday Gifts</strong> That Can Never Go Wrong</p>",
+        "bottom_title": "",
+        "bottom_text": "",
+        "bottom_link": "shopify://pages/moodytiger-miles-club",
+        "active_color": "#c10424",
+        "text_color": "#ffffff",
+        "bottom_bg_color": "#ec9752",
+        "bottom_color": "#ffffff",
+        "Desktop_top": 98,
+        "Mobile_top": 46,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 50,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "collection_list_iW6AmW": {
+      "type": "collection-list",
+      "disabled": true,
+      "name": "Collection list",
+      "settings": {
+        "heading": "Shop by Category",
+        "heading_left": false,
+        "description": "<p>Add a short description for your collections</p>",
+        "full_width": true,
+        "collection_list": [],
+        "image_ratio": "portrait",
+        "layout": "grid",
+        "style": "style1",
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "show_progress_bar": true,
+        "mobile_swipe": true,
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    },
+    "black_five_activity_page3_7VYF8G": {
+      "type": "blackFive_activityPage3",
+      "name": "Black Five Activity Page3",
+      "settings": {
+        "title": "<p>Celebrate the <strong>Season of Gifting</strong></p>",
+        "active_color": "#c10424",
+        "top_color": "#ffffff",
+        "top_border_color": "#7a0317",
+        "top_bg_color": "#c10424",
+        "top": true,
+        "top_text": "TOP",
+        "collection": "tops-picks-on-sale",
+        "product_limit": 8,
+        "mobile_swiper": true,
+        "pc_hide_color": true,
+        "mobile_hide_color": true,
+        "Desktop_top": 88,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "black_five_activity_page4_7XUGAM": {
+      "type": "blackFive_activityPage4",
+      "name": "Black Five Activity Page4",
+      "settings": {
+        "img": "shopify://shop_images/end.jpg",
+        "img_mobile": "shopify://shop_images/end.jpg",
+        "text": "",
+        "text_color": "#ffffff",
+        "link": "shopify://collections/black-friday-up-to-50-off",
+        "collection": "2025-gift-guide",
+        "product_limit": 6,
+        "pc_hide_color": true,
+        "mobile_hide_color": true,
+        "Desktop_top": 60,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 80,
+        "Mobile_paddingBottom": 80
+      }
+    },
+    "black_five_activity_page2_nCx9NG": {
+      "type": "blackFive_activityPage2",
+      "blocks": {
+        "item_eNU4GY": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/1.svg",
+            "text": "<p>Free shipping on orders over USD$79</p>"
+          }
+        },
+        "item_RwPHMc": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/2.svg",
+            "text": "<p>Free Exchanges & Easy Returns</p>"
+          }
+        },
+        "item_4iT8ti": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/3.svg",
+            "text": "<p>Bluesign, highest safety standards</p>"
+          }
+        },
+        "item_NJ37LD": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/4.svg",
+            "text": "<p>Earn 2x points on <br/>every purchase you make</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_eNU4GY",
+        "item_RwPHMc",
+        "item_4iT8ti",
+        "item_NJ37LD"
+      ],
+      "disabled": true,
+      "name": "Black Five Activity Page2",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "",
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 94,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 94,
+        "Mobile_paddingBottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "index_banner_A3ptPx",
+    "black_five_activity_page5_mUyqQT",
+    "collection_list_iW6AmW",
+    "black_five_activity_page3_7VYF8G",
+    "black_five_activity_page4_7XUGAM",
+    "black_five_activity_page2_nCx9NG"
+  ]
+}

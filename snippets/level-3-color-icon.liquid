@@ -1,0 +1,18 @@
+{%- liquid
+  assign color_value = value | downcase | escape
+-%}
+{%- case color_value -%}
+  {%- when 'multicolor' -%}
+    <img width="24" height="24" src="{{ 'c-multicolor.png' | asset_url }}" alt="{{ color_value }}" loading="lazy">
+  {%- when 'pattern' -%}
+    <img width="24" height="24" src="{{ 'c-pattern.png' | asset_url }}" alt="{{ color_value }}" loading="lazy">
+  {%- else -%}
+    {%- assign src_value = 'c-' | append: color_value | append: '.png' | asset_url -%}
+    <img
+      width="24"
+      height="24"
+      src="{{ src_value }}"
+      alt="{{ color_value }}"
+      loading="lazy"
+    >
+{%- endcase -%}

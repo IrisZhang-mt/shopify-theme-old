@@ -1,0 +1,460 @@
+{{ 'cust-creator-look.css' | asset_url | stylesheet_tag }}
+
+<div class="cust-creator-look" id="CreatorLook-{{ section.id }}" style="--ccl-ratio: {{ section.settings.media_ratio_pc | default: 105 | divided_by: 100.0 }}; --ccl-ratio-m: {{ section.settings.media_ratio_mobile | default: '4/5' | replace: ':', '/' }}; --ccl-btn-fs: {{ section.settings.shopall_font | default: 15 }}px; --ccl-btn-pad: {{ section.settings.shopall_pad | default: 18 }}px;">
+  <span id="{{ section.settings.anchor_id | default: 'back-to-school-looks' }}" class="ccl-anchor" aria-hidden="true"></span>
+  <div class="cust-creator-look__inner">
+    {%- render 'section-header', section_heading: section.settings.heading, section_description: section.settings.subheading -%}
+    {%- assign ccl_sw_names = '' -%}
+    {%- assign ccl_sw_files = '' -%}
+    {%- assign ccl_rows = settings.color_swatches | newline_to_br | split: '<br />' -%}
+    {%- for ccl_r in ccl_rows -%}
+      {%- assign ccl_k = ccl_r | split: ':' | first | rstrip | downcase -%}
+      {%- assign ccl_v = ccl_r | split: ':' | last | lstrip -%}
+      {%- if ccl_k != blank -%}
+        {%- assign ccl_sw_names = ccl_sw_names | append: '~~' | append: ccl_k -%}
+        {%- assign ccl_sw_files = ccl_sw_files | append: '~~' | append: ccl_v -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign ccl_sw_names = ccl_sw_names | remove_first: '~~' | split: '~~' -%}
+    {%- assign ccl_sw_files = ccl_sw_files | remove_first: '~~' | split: '~~' -%}
+    <div class="cust-creator-look__rail">
+      {%- for block in section.blocks -%}
+        {%- assign poster = block.settings.poster -%}
+        {%- if poster == blank and block.settings.product_1 != blank -%}{%- assign poster = block.settings.product_1.featured_image -%}{%- endif -%}
+        {%- assign vlink = block.settings.video_link -%}
+        {%- if vlink == blank and block.settings.product_1 != blank -%}{%- assign vlink = block.settings.product_1.url -%}{%- endif -%}
+        <article class="cust-creator-look__card" {{ block.shopify_attributes }}>
+          <div class="cust-creator-look__stage">
+          <a class="cust-creator-look__media" data-ccl-media href="{{ vlink | default: '#' }}">
+            {%- if block.settings.video != blank -%}
+              {{ block.settings.video | video_tag: muted: true, loop: true, playsinline: true, controls: false, preload: 'metadata', class: 'ccl-v ccl-v-desk', image_size: '0x0' }}
+            {%- endif -%}
+            {%- if block.settings.video_mobile != blank -%}
+              {{ block.settings.video_mobile | video_tag: muted: true, loop: true, playsinline: true, controls: false, preload: 'metadata', class: 'ccl-v ccl-v-mob', image_size: '0x0' }}
+            {%- endif -%}
+            {%- if poster != blank -%}
+              {{ poster | image_url: width: 1000 | image_tag: class: 'ccl-poster', loading: 'lazy', widths: '400,600,900,1200' }}
+            {%- endif -%}
+            {%- if block.settings.kol != blank -%}<span class="cust-creator-look__kol">{{ block.settings.kol }}</span>{%- endif -%}
+          </a>
+          {%- if block.settings.shopall_label != blank -%}
+            <button type="button" class="cust-creator-look__shopall" data-ccl-open="Bundle-{{ section.id }}-{{ block.id }}"><span>{{ block.settings.shopall_label }}</span></button>
+          {%- endif -%}
+          </div>
+          <div class="cust-creator-look__prods">
+            {%- for i in (1..3) -%}
+              {%- assign pkey = 'product_' | append: i -%}
+              {%- assign prod = block.settings[pkey] -%}
+              {%- if prod != blank -%}
+                {%- assign tkey = 'thumb_' | append: i -%}
+                {%- assign thumb = block.settings[tkey] | default: prod.featured_image -%}
+                <a class="cust-creator-look__prod" href="{{ prod.url }}">
+                  <span class="cust-creator-look__prod-imgwrap">
+                    {%- if thumb != blank -%}{{ thumb | image_url: width: 500 | image_tag: loading: 'lazy', class: 'cust-creator-look__prod-img', widths: '250,400,500' }}{%- endif -%}
+                  </span>
+                  {%- if section.settings.show_prod_meta -%}
+                    <span class="cust-creator-look__pname">{{ prod.title }}</span>
+                    <span class="cust-creator-look__price"><strong>{{ prod.price | money }}</strong>{%- if prod.compare_at_price > prod.price %} <s>{{ prod.compare_at_price | money }}</s>{%- endif -%}</span>
+                  {%- endif -%}
+                </a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          {%- if block.settings.shopall_label != blank -%}
+            <div class="ccl-bundle" id="Bundle-{{ section.id }}-{{ block.id }}" data-ccl-bundle data-savings="{{ block.settings.savings_label | escape }}" data-savings-amt="{{ block.settings.savings_amount }}" hidden>
+              <div class="ccl-bundle__scrim" data-ccl-close></div>
+              <div class="ccl-bundle__panel" role="dialog" aria-modal="true" aria-label="{{ block.settings.shopall_label | escape }}">
+                <button type="button" class="ccl-bundle__x" data-ccl-close aria-label="Close">&times;</button>
+                <div class="ccl-bundle__rows">
+                  {%- for i in (1..3) -%}
+                    {%- assign pkey = 'product_' | append: i -%}
+                    {%- assign prod = block.settings[pkey] -%}
+                    {%- if prod != blank -%}
+                      {%- assign tkey = 'thumb_' | append: i -%}
+                      {%- assign thumb = block.settings[tkey] | default: prod.featured_image -%}
+                      {%- assign color_pos = 0 -%}
+                      {%- assign size_pos = 0 -%}
+                      {%- for opt in prod.options_with_values -%}
+                        {%- assign onm = opt.name | downcase -%}
+                        {%- if onm contains 'color' or onm contains 'colour' or onm contains 'clr' -%}{%- assign color_pos = forloop.index -%}{%- endif -%}
+                        {%- if onm contains 'size' -%}{%- assign size_pos = forloop.index -%}{%- endif -%}
+                      {%- endfor -%}
+                      {%- if size_pos == 0 -%}{%- if color_pos == 1 -%}{%- assign size_pos = 2 -%}{%- else -%}{%- assign size_pos = 1 -%}{%- endif -%}{%- endif -%}
+                      {%- if color_pos == 0 -%}{%- if size_pos == 1 -%}{%- assign color_pos = 2 -%}{%- else -%}{%- assign color_pos = 1 -%}{%- endif -%}{%- endif -%}
+                      {%- assign color_idx = color_pos | minus: 1 -%}
+                      {%- assign size_idx = size_pos | minus: 1 -%}
+                      {%- assign ckey = 'color_' | append: i -%}
+                      {%- assign default_color = block.settings[ckey] -%}
+                      {%- if default_color == blank -%}{%- assign default_color = prod.selected_or_first_available_variant.options[color_idx] -%}{%- endif -%}
+                      {%- assign color_option = prod.options_with_values[color_idx] -%}
+                      {%- assign size_option = prod.options_with_values[size_idx] -%}
+                      <div class="ccl-bundle__row" data-ccl-row data-default-color="{{ default_color | escape }}">
+                        <span class="ccl-bundle__thumb">{%- if thumb != blank -%}{{ thumb | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100,150,200' }}{%- endif -%}</span>
+                        <div class="ccl-bundle__info">
+                          <span class="ccl-bundle__name">{{ prod.title }}</span>
+                          {%- if color_option.values.size > 1 -%}
+                            <div class="ccl-bundle__opt">
+                              <span class="ccl-bundle__opt-label">Color</span>
+                              <div class="ccl-bundle__swatches">
+                                {%- for cv in color_option.values -%}
+                                  {%- assign cname = cv.name | downcase -%}
+                                  {%- assign sw_style = '' -%}
+                                  {%- assign sw_fi = 0 -%}
+                                  {%- assign sw_found = false -%}
+                                  {%- for n in ccl_sw_names -%}
+                                    {%- if n == cname -%}{%- assign sw_fi = forloop.index0 -%}{%- assign sw_found = true -%}{%- break -%}{%- endif -%}
+                                  {%- endfor -%}
+                                  {%- if sw_found -%}
+                                    {%- assign sw_file = ccl_sw_files[sw_fi] -%}
+                                    {%- if sw_file contains '.' -%}
+                                      {%- assign sw_url = sw_file | file_url -%}
+                                      {%- assign sw_style = 'background-image:url(' | append: sw_url | append: ')' -%}
+                                    {%- else -%}
+                                      {%- assign sw_style = 'background-color:' | append: sw_file -%}
+                                    {%- endif -%}
+                                  {%- elsif cv.swatch.image != blank -%}
+                                    {%- assign sw_img = cv.swatch.image | image_url: width: 100 -%}
+                                    {%- assign sw_style = 'background-image:url(' | append: sw_img | append: ')' -%}
+                                  {%- elsif cv.swatch.color != blank -%}
+                                    {%- assign sw_style = 'background-color:' | append: cv.swatch.color -%}
+                                  {%- endif -%}
+                                  {%- if sw_style == blank -%}
+                                    {%- assign fb = '#c9c4be' -%}
+                                    {%- if cname contains 'black' -%}{%- assign fb = '#2b2b2b' -%}
+                                    {%- elsif cname contains 'white' or cname contains 'blanc' or cname contains 'ivory' or cname contains 'cloud' or cname contains 'egret' -%}{%- assign fb = '#ece9e4' -%}
+                                    {%- elsif cname contains 'pink' or cname contains 'coral' or cname contains 'rose' or cname contains 'peach' or cname contains 'quartz' -%}{%- assign fb = '#f2b8c6' -%}
+                                    {%- elsif cname contains 'purple' or cname contains 'violet' or cname contains 'lavender' or cname contains 'lilac' or cname contains 'iris' or cname contains 'wistaria' or cname contains 'grape' or cname contains 'plum' or cname contains 'taro' -%}{%- assign fb = '#9b8bc4' -%}
+                                    {%- elsif cname contains 'blue' or cname contains 'azure' or cname contains 'navy' or cname contains 'atlantic' or cname contains 'cyan' or cname contains 'teal' or cname contains 'cirrus' or cname contains 'marina' or cname contains 'dusk' -%}{%- assign fb = '#5b7fb0' -%}
+                                    {%- elsif cname contains 'green' or cname contains 'mint' or cname contains 'sage' or cname contains 'lime' or cname contains 'wasabi' or cname contains 'bud' or cname contains 'everglade' -%}{%- assign fb = '#84a888' -%}
+                                    {%- elsif cname contains 'yellow' or cname contains 'lemon' or cname contains 'gold' -%}{%- assign fb = '#e6cf6a' -%}
+                                    {%- elsif cname contains 'orange' or cname contains 'sunset' or cname contains 'oriole' or cname contains 'calendula' -%}{%- assign fb = '#e39b5c' -%}
+                                    {%- elsif cname contains 'red' or cname contains 'carmine' or cname contains 'cherry' or cname contains 'wine' or cname contains 'srimp' or cname contains 'shrimp' -%}{%- assign fb = '#c0504d' -%}
+                                    {%- elsif cname contains 'grey' or cname contains 'gray' or cname contains 'charcoal' or cname contains 'quiet' or cname contains 'lunar' or cname contains 'birch' or cname contains 'moon' or cname contains 'glacier' or cname contains 'stormy' -%}{%- assign fb = '#9a9691' -%}
+                                    {%- elsif cname contains 'brown' or cname contains 'mocha' or cname contains 'beeswax' or cname contains 'nut' or cname contains 'cappuccino' -%}{%- assign fb = '#a98a6b' -%}
+                                    {%- elsif cname contains 'midnight' or cname contains 'painted dream' -%}{%- assign fb = '#3a4a63' -%}
+                                    {%- endif -%}
+                                    {%- assign sw_style = 'background-color:' | append: fb -%}
+                                  {%- endif -%}
+                                  <button type="button" class="ccl-bundle__sw" data-color="{{ cv.name | escape }}" style="{{ sw_style }}" title="{{ cv.name | escape }}" aria-label="{{ cv.name | escape }}"></button>
+                                {%- endfor -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          <div class="ccl-bundle__opt">
+                            <span class="ccl-bundle__opt-label">Size</span>
+                            <div class="ccl-bundle__sizes">
+                              {%- for sv in size_option.values -%}
+                                <button type="button" class="ccl-bundle__size" data-size="{{ sv.name | escape }}">{{ sv.name }}</button>
+                              {%- endfor -%}
+                            </div>
+                            <div class="ccl-bundle__selwrap">
+                              <select class="ccl-bundle__sizesel" data-ccl-sizesel aria-label="Size">
+                                <option value="">Select size</option>
+                                {%- for sv in size_option.values -%}
+                                  <option value="{{ sv.name | escape }}">{{ sv.name }}</option>
+                                {%- endfor -%}
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <script type="application/json" data-ccl-variants>[{%- for v in prod.variants -%}{%- capture vimg -%}{%- if v.image != blank -%}{{ v.image | image_url: width: 400 }}{%- endif -%}{%- endcapture -%}{"c":{{ v.options[color_idx] | json }},"s":{{ v.options[size_idx] | json }},"id":{{ v.id }},"price":{{ v.price }},"cp":{{ v.compare_at_price | default: 0 }},"avail":{{ v.available }},"img":{{ vimg | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]</script>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+                <div class="ccl-bundle__foot">
+                  <div class="ccl-bundle__summ">
+                    <span class="ccl-bundle__summ-count" data-ccl-count></span>
+                    <span class="ccl-bundle__summ-price"><span data-ccl-subtotal></span><span class="ccl-bundle__save" data-ccl-save></span></span>
+                  </div>
+                  <button type="button" class="ccl-bundle__add" data-ccl-add disabled><span data-ccl-addtext>Add the set</span></button>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  #CreatorLook-{{ section.id }} .ccl-v-mob{display:none}
+  @media only screen and (max-width:767px){
+    #CreatorLook-{{ section.id }} .ccl-has-mob .ccl-v-desk{display:none}
+    #CreatorLook-{{ section.id }} .ccl-has-mob .ccl-v-mob{display:block}
+  }
+</style>
+
+<script>
+(function () {
+  var root = document.getElementById('CreatorLook-{{ section.id }}');
+  if (!root || root.dataset.init) return;
+  root.dataset.init = '1';
+  var canHover = window.matchMedia('(hover: hover)').matches;
+  var moneyFormat = {{ shop.money_format | json }};
+
+  function formatMoney(cents) {
+    var f = (moneyFormat || '').replace(/<[^>]*>/g, '');
+    var noDec = /no_decimals/.test(f);
+    var v = noDec ? String(Math.round(cents / 100)) : (cents / 100).toFixed(2);
+    if (!f || !/\{\{/.test(f)) { return '$' + v; }
+    return f.replace(/\{\{\s*\w+[^}]*\}\}/, v);
+  }
+
+  var mediaList = [];
+  function stopOthers(except) {
+    mediaList.forEach(function (m) { if (m.media !== except) m.toPoster(); });
+  }
+
+  root.querySelectorAll('[data-ccl-media]').forEach(function (media) {
+    if (media.querySelector('.ccl-v-mob')) media.classList.add('ccl-has-mob');
+    var pickVideo = function () {
+      var vids = media.querySelectorAll('video');
+      for (var i = 0; i < vids.length; i++) { if (vids[i].offsetParent !== null) return vids[i]; }
+      return vids[0] || null;
+    };
+    var revertTimer = null;
+    var toPoster = function () {
+      if (revertTimer) { clearTimeout(revertTimer); revertTimer = null; }
+      media.classList.remove('is-playing');
+      var v = pickVideo();
+      if (v) { v.pause(); try { v.currentTime = 0; } catch (e) {} }
+    };
+    var toVideo = function () {
+      var v = pickVideo();
+      if (!v) return;
+      stopOthers(media); // only one video plays at a time
+      media.classList.add('is-playing');
+      v.muted = true;
+      if (v.readyState < 2) { try { v.load(); } catch (e) {} } // nudge preload=metadata to buffer
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    mediaList.push({ media: media, toPoster: toPoster });
+    if (canHover) {
+      media.addEventListener('mouseenter', function () { if (revertTimer) { clearTimeout(revertTimer); revertTimer = null; } toVideo(); });
+      media.addEventListener('mouseleave', function () { if (revertTimer) clearTimeout(revertTimer); revertTimer = setTimeout(toPoster, 5000); });
+    } else if ('IntersectionObserver' in window) {
+      var playTimer = null;
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+            // show the cover for 2s, then auto-play
+            if (playTimer) clearTimeout(playTimer);
+            playTimer = setTimeout(function () { toVideo(); }, 2000);
+          } else {
+            // scrolled to the next look / next section: stop and revert to cover
+            if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+            toPoster();
+          }
+        });
+      }, { threshold: [0, 0.6] }).observe(media);
+    }
+  });
+
+  function setupRow(row) {
+    var data;
+    try { data = JSON.parse(row.querySelector('[data-ccl-variants]').textContent); } catch (e) { data = []; }
+    var state = { color: null, size: null };
+    var swBtns = row.querySelectorAll('.ccl-bundle__sw');
+    var szBtns = row.querySelectorAll('.ccl-bundle__size');
+    var sel = row.querySelector('[data-ccl-sizesel]');
+    var thumbImg = row.querySelector('.ccl-bundle__thumb img');
+    var colorImg = {};
+    data.forEach(function (d) { if (d.img && !colorImg[d.c]) colorImg[d.c] = d.img; });
+    var sizeOrder = [];
+    data.forEach(function (d) { if (sizeOrder.indexOf(d.s) < 0) sizeOrder.push(d.s); });
+
+    function variantFor(color, size) {
+      for (var i = 0; i < data.length; i++) { if (data[i].c === color && data[i].s === size) return data[i]; }
+      return null;
+    }
+    function markSize(sz) {
+      state.size = sz || null;
+      szBtns.forEach(function (b) { b.classList.toggle('is-selected', sz && b.getAttribute('data-size') === sz); });
+      if (sel) sel.value = sz || '';
+    }
+    function refreshSizes() {
+      // pills: only in-stock stay enabled (CSS hides the disabled ones)
+      szBtns.forEach(function (b) {
+        var v = variantFor(state.color, b.getAttribute('data-size'));
+        var ok = v && v.avail;
+        b.disabled = !ok;
+        b.classList.toggle('is-dis', !ok);
+        if (!ok) b.classList.remove('is-selected');
+      });
+      // select: rebuild with in-stock sizes only
+      if (sel) {
+        var prev = state.size;
+        sel.innerHTML = '';
+        var ph = document.createElement('option');
+        ph.value = ''; ph.textContent = 'Select size';
+        sel.appendChild(ph);
+        sizeOrder.forEach(function (sz) {
+          var v = variantFor(state.color, sz);
+          if (v && v.avail) { var o = document.createElement('option'); o.value = sz; o.textContent = sz; sel.appendChild(o); }
+        });
+        sel.value = prev || '';
+      }
+      if (state.size) {
+        var cur = variantFor(state.color, state.size);
+        if (!cur || !cur.avail) markSize(null);
+      }
+    }
+    function pickColor(color) {
+      state.color = color;
+      swBtns.forEach(function (b) { b.classList.toggle('is-selected', b.getAttribute('data-color') === color); });
+      if (thumbImg && colorImg[color]) { thumbImg.removeAttribute('srcset'); thumbImg.removeAttribute('sizes'); thumbImg.src = colorImg[color]; }
+      refreshSizes();
+    }
+
+    swBtns.forEach(function (b) {
+      b.addEventListener('click', function () { pickColor(b.getAttribute('data-color')); update(); });
+    });
+    szBtns.forEach(function (b) {
+      b.addEventListener('click', function () { if (b.disabled) return; markSize(b.getAttribute('data-size')); update(); });
+    });
+    if (sel) sel.addEventListener('change', function () { markSize(sel.value); update(); });
+
+    // preselect default color (creator's color) or single color
+    var def = row.getAttribute('data-default-color');
+    if (swBtns.length === 0) { state.color = def; refreshSizes(); }
+    else { pickColor(def || swBtns[0].getAttribute('data-color')); }
+    // preselect if only one in-stock size
+    var avail = [];
+    sizeOrder.forEach(function (sz) { var v = variantFor(state.color, sz); if (v && v.avail) avail.push(sz); });
+    if (avail.length === 1) markSize(avail[0]);
+
+    row._cclGet = function () {
+      if (state.color === null || state.size === null) return null;
+      return variantFor(state.color, state.size);
+    };
+    var update; // assigned by modal
+    row._cclBind = function (fn) { update = fn; };
+    return row;
+  }
+
+  function setupModal(modal) {
+    var rows = [].slice.call(modal.querySelectorAll('[data-ccl-row]'));
+    var addBtn = modal.querySelector('[data-ccl-add]');
+    var addText = modal.querySelector('[data-ccl-addtext]');
+    var countEl = modal.querySelector('[data-ccl-count]');
+    var subEl = modal.querySelector('[data-ccl-subtotal]');
+    var saveEl = modal.querySelector('[data-ccl-save]');
+    var savings = modal.getAttribute('data-savings') || '';
+    var savingsAmt = parseFloat(modal.getAttribute('data-savings-amt') || '');
+    var hasAmt = savingsAmt > 0;
+    var saveCents = hasAmt ? Math.round(savingsAmt * 100) : 0;
+
+    function update() {
+      var all = [], subtotal = 0, ready = rows.length > 0;
+      rows.forEach(function (r) {
+        var v = r._cclGet ? r._cclGet() : null;
+        if (v) { all.push(v.id); subtotal += v.price; } else { ready = false; }
+      });
+      addBtn.disabled = !ready;
+      addBtn.setAttribute('data-ids', all.join(','));
+      var net = subtotal - saveCents;
+      if (net < 0) net = 0;
+      if (countEl) countEl.textContent = rows.length + (rows.length === 1 ? ' item' : ' items');
+      if (subEl) {
+        if (ready && hasAmt) { subEl.innerHTML = '<s>' + formatMoney(subtotal) + '</s> ' + formatMoney(net); }
+        else { subEl.textContent = subtotal > 0 ? formatMoney(subtotal) : ''; }
+      }
+      if (saveEl) {
+        var st = hasAmt ? ('Save ' + formatMoney(saveCents)) : (savings || '');
+        saveEl.textContent = (ready && st) ? ' · ' + st : '';
+      }
+      var tail = ready ? (hasAmt ? formatMoney(net) : (subtotal > 0 ? formatMoney(subtotal) : '')) : '';
+      addText.textContent = 'Add the set' + (tail ? ' · ' + tail : '');
+    }
+
+    rows.forEach(function (r) { setupRow(r); r._cclBind(update); });
+    update();
+
+    modal.querySelectorAll('[data-ccl-close]').forEach(function (c) {
+      c.addEventListener('click', function () { closeModal(modal); });
+    });
+    modal.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(modal); });
+
+    addBtn.addEventListener('click', function () {
+      if (addBtn.disabled) return;
+      var ids = (addBtn.getAttribute('data-ids') || '').split(',').filter(Boolean);
+      if (!ids.length) return;
+      var orig = addText.textContent;
+      addBtn.disabled = true; addText.textContent = 'Adding…';
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: ids.map(function (id) { return { id: parseInt(id, 10), quantity: 1 }; }) }) })
+        .then(function (r) { if (!r.ok) throw new Error('add failed'); window.location.href = '/cart'; })
+        .catch(function () { addBtn.disabled = false; addText.textContent = orig; });
+    });
+  }
+
+  function openModal(modal) {
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function () { modal.classList.add('is-open'); });
+  }
+  function closeModal(modal) {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    setTimeout(function () { modal.hidden = true; }, 240);
+  }
+
+  root.querySelectorAll('[data-ccl-bundle]').forEach(setupModal);
+  root.querySelectorAll('[data-ccl-open]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var m = document.getElementById(btn.getAttribute('data-ccl-open'));
+      if (m) openModal(m);
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Cust Creator Look",
+  "class": "section-cust-creator-look",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Back to School Looks" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Shop the whole look, bundle and save" },
+    { "type": "range", "id": "media_ratio_pc", "min": 65, "max": 150, "step": 5, "unit": "%", "label": "Desktop video shape", "default": 105, "info": "Width ÷ height. Lower = taller. 80 = 4:5, 100 = square, 150 = 3:2. Default 105 sits between 4:5 and 3:2." },
+    { "type": "select", "id": "media_ratio_mobile", "label": "Mobile video aspect", "options": [ { "value": "1/1", "label": "Square 1:1" }, { "value": "4/5", "label": "Portrait 4:5" }, { "value": "9/16", "label": "Portrait 9:16 (recommended)" } ], "default": "4/5" },
+    { "type": "checkbox", "id": "show_prod_meta", "label": "Show product name & price on card", "default": false, "info": "关闭后产品卡只显示图片(点击仍可进产品页)。" },
+    { "type": "text", "id": "anchor_id", "label": "Anchor id (for email/deep links)", "default": "back-to-school-looks", "info": "邮件里链接跳到本模块用:首页URL 后面加 #你填的值,如 https://moodytiger.com/#back-to-school-looks。只用小写字母和连字符。" },
+    { "type": "header", "content": "Shop All button" },
+    { "type": "range", "id": "shopall_font", "min": 12, "max": 22, "step": 1, "unit": "px", "label": "Shop All text size", "default": 15 },
+    { "type": "range", "id": "shopall_pad", "min": 10, "max": 30, "step": 2, "unit": "px", "label": "Shop All button height", "default": 18 }
+  ],
+  "blocks": [
+    {
+      "type": "look",
+      "name": "Creator look",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Creator video — Desktop" },
+        { "type": "video", "id": "video_mobile", "label": "Creator video — Mobile (optional)", "info": "Leave empty to reuse the desktop video." },
+        { "type": "image_picker", "id": "poster", "label": "Cover image", "info": "Shown before hover. Falls back to Product 1 image if empty." },
+        { "type": "text", "id": "kol", "label": "Creator handle", "info": "e.g. @ creator.name" },
+        { "type": "url", "id": "video_link", "label": "Video click link", "info": "点击视频跳转的链接(如上衣产品页)。留空则默认跳到 Product 1。" },
+        { "type": "text", "id": "shopall_label", "label": "Shop all button label", "default": "Shop All" },
+        { "type": "number", "id": "savings_amount", "label": "Bundle savings amount ($)", "info": "整套省多少,纯数字(如 45)。填了会在弹窗显示划线原价→折后价 + Save $45,与你在 Shopify 后台设的固定折扣金额保持一致。" },
+        { "type": "text", "id": "savings_label", "label": "Bundle savings label (optional)", "info": "若不想用上面的数字,可自定义文案(如 Save $45)。上面数字优先。" },
+        { "type": "header", "content": "Product 1" },
+        { "type": "product", "id": "product_1", "label": "Product 1" },
+        { "type": "text", "id": "color_1", "label": "Product 1 color (optional)", "info": "Exact color name the creator wears, e.g. Painted Dream Blue. Pre-selected in the popup. Leave empty to use the first in-stock color." },
+        { "type": "image_picker", "id": "thumb_1", "label": "Product 1 thumbnail (optional)", "info": "Optional flat packshot. Falls back to product image (not cropped)." },
+        { "type": "header", "content": "Product 2" },
+        { "type": "product", "id": "product_2", "label": "Product 2" },
+        { "type": "text", "id": "color_2", "label": "Product 2 color (optional)" },
+        { "type": "image_picker", "id": "thumb_2", "label": "Product 2 thumbnail (optional)" },
+        { "type": "header", "content": "Product 3" },
+        { "type": "product", "id": "product_3", "label": "Product 3" },
+        { "type": "text", "id": "color_3", "label": "Product 3 color (optional)" },
+        { "type": "image_picker", "id": "thumb_3", "label": "Product 3 thumbnail (optional)" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Cust Creator Look", "blocks": [ { "type": "look" }, { "type": "look" }, { "type": "look" } ] } ]
+}
+{% endschema %}

@@ -1,0 +1,302 @@
+<!doctype html>
+{%- capture dir -%}
+	{%- case request.locale.iso_code -%}
+	  {%- when 'ae' or 'ar' or 'arc' or 'bcc' or 'bqi' or 'ckb' or 'dv' or 'fa' or 'glk' or 'ha' or 'he' or 'kwh' or 'ks' or 'ku' or 'mzn' or 'nqo' or 'pnb' or 'ps' or 'sd' or 'ug' or 'ur' or 'yi' -%}
+	    rtl
+	  {%- else -%}
+	    ltr
+	{%- endcase -%}
+{%- endcapture -%}
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ dir }}">
+
+  <head>
+{% render 'visually_io_sdk' %}
+
+{% include 'limespot' %}
+  
+	{% if settings.favicon != blank -%}
+		<link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+	{%- endif %}
+
+
+	 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+	<meta name="theme-color" content="{{ settings.color_body_bg }}">
+	<link rel="canonical" href="{{ canonical_url }}">
+	<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+	{% comment %} 2026/0618 GDF需求调整 {% endcomment %}
+	{% comment %} <link rel="stylesheet" href="{{ '' | asset_url }}"> {% endcomment %}
+	{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {% comment %} 性能：swiper 由 script_tag（同步、渲染阻塞）改为 defer，移出关键渲染路径。
+       安全性：所有 new Swiper() 均在各 section 的 DOMContentLoaded 回调内调用，
+       defer 脚本一定在 DOMContentLoaded 之前执行完，Swiper 仍可用，不会报未定义。 {% endcomment %}
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+	{% comment %} 2026/0618 GDF需求调整end {% endcomment %}
+	{% comment %} moodytiger 埋点：运行期配置（暴露 window.MT_ANALYTICS.config）。
+	   必须在 head 内联输出，先于 body 末尾 defer 的 mt-analytics.js 执行。 {% endcomment %}
+	{% render 'mt-analytics-config' %}
+	{% render 'header-tracking' %}
+
+	<style>
+		#tidio-chat-iframe { margin-bottom: 5em !important; }
+		@media only screen and (max-width: 980px) {
+		 #tidio-chat-iframe { bottom: 60px !important;
+		 margin-bottom: 0em !important; }
+		}
+		.transcy-switcher-dropdown .transcy-switcher-location .transcy-btn-change-country{
+			color: black !important;
+		}
+		@media only screen and (min-width:769px){
+			.hidden-desktop{
+				display:none !important;
+			}
+		}
+		@media only screen and (max-width:768px){
+			.hidden-mobile{
+				display:none !important;
+			}
+		}
+
+		</style>
+
+
+	<title>
+	{{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+	</title>
+
+	{% if page_description %}
+	<meta name="description" content="{{ page_description | escape }}">
+	{% endif %}
+
+	{%- unless settings.heading_font.system? and settings.body_font.system? -%}
+		<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+	{%- endunless -%}
+
+	{% render 'social-meta-tags' %}
+
+		{{ 'app.css' | asset_url | stylesheet_tag }}
+		{%- if template == 'page.about-moodytiger' -%}
+			{{ 'about-moodytiger.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
+		{%- if template | downcase == 'page.our-certification' -%}
+			{{ 'our-certification.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
+		{%- if template == 'page.judgeme_reviews' -%}
+			{{ 'review-page.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
+		{%- if template == 'page.smile-landing-page' -%}
+			{{ 'moodytiger-miles-club.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
+		{%- if template == 'page.ambassador' -%}
+			{{ 'ambassador.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
+		<link  rel="preload"  as="style" href="{{ 'global.css' | asset_url }}" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="{{ 'global.css' | asset_url }}"></noscript>
+	{% render 'head-variables' %}
+
+     <script type="text/javascript">
+    // Clarity 延迟到 load 后的浏览器空闲时再加载：clarity() 队列 API 立即可用，
+    // 早期调用会被缓存并在脚本就绪后回放，仅把脚本下载/执行移出首屏关键路径以降低 TBT。
+    // 行为分析（热图/录屏）会少录开头几秒，对数据价值影响可忽略。
+    (function(c,l,a,r,i){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        function loadClarity(){
+            var t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            var y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        }
+        window.addEventListener('load', function(){
+            if('requestIdleCallback' in window){
+                requestIdleCallback(loadClarity, {timeout:5000});
+            } else {
+                setTimeout(loadClarity, 3000);
+            }
+        });
+    })(window, document, "clarity", "script", "nje1e0f1tq");
+</script>
+<!-- 性能优化：移除 GTM 容器 GTM-WDJLXJCJ 的 script 块（线上v7的3个标签全部暂停、仅指向已废弃GA4 G-B7KLEHTVH3，空转）及前台冗余 Google Ads 基础标签 AW-16644920955（购买转化在checkout由Shopify插件注入，不依赖此前台标签）。noscript 在body后另行移除。发布后用 Tag Assistant 走结账验证购买转化照常。 -->
+	
+ 
+
+	<script>
+		window.theme = window.theme || {};
+		theme = {
+			settings: {
+				money_with_currency_format: {{- shop.money_format | json -}},
+				cart_drawer: {{- settings.cart_drawer -}},
+				product_id: {% if product %}{{ product.id }}{% else %}false{% endif %},
+			},
+			routes: {
+				root_url: '{{ routes.root_url }}',
+				cart_url: '{{ routes.cart_url }}',
+				cart_add_url: '{{ routes.cart_add_url }}',
+				search_url: '{{ routes.search_url }}',
+				cart_change_url: '{{ routes.cart_change_url }}',
+				cart_update_url: '{{ routes.cart_update_url }}',
+				predictive_search_url: '{{ routes.predictive_search_url }}',
+			},
+			variantStrings: {
+        addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+        soldOut: `{{ 'products.product.sold_out' | t }}`,
+        unavailable: `{{ 'products.product.unavailable' | t }}`,
+        preOrder: `{{ 'products.product.pre_order' | t }}`,
+      },
+			strings: {
+				requiresTerms: `{{ 'sections.cart.terms_confirm' | t }}`,
+				shippingEstimatorNoResults: `{{ 'sections.cart.shipping_estimator.no_results' | t }}`,
+				shippingEstimatorOneResult: `{{ 'sections.cart.shipping_estimator.one_result' | t }}`,
+				shippingEstimatorMultipleResults: `{{ 'sections.cart.shipping_estimator.multiple_results' | t }}`,
+				shippingEstimatorError: `{{ 'sections.cart.shipping_estimator.error' | t }}`
+			}
+		};
+	</script>
+	{{ content_for_header }} <!-- Header hook for plugins -->
+
+	<script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+{% include 'stack-discounts-script' %}
+  {% render 'vendor-google-search-console' %}
+
+<!-- 性能优化/数据修复：移除"获取路线"转化事件。原代码放在全站通用 theme.liquid，导致每打开任意页面都误报一次 $30 购买转化，污染 Google Ads 数据；业务已确认该转化停用。 -->
+<!-- Contentsquare -->
+<script src="https://t.contentsquare.net/uxa/bdd174e6867f5.js" defer></script>
+
+</head>
+<body class="animations-{{ settings.animations }} button-uppercase-{{ settings.button_uppercase }} navigation-uppercase-{{ settings.navigation_uppercase }} product-title-uppercase-{{ settings.product_title_uppercase }}{% if customer %} customer-logged-in{% endif %} template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} template-{{ template | replace: '.', '-' | handle }}">
+	
+  <a class="screen-reader-shortcut" href="#main-content">{{ 'accessibility.skip_to_text' | t }}</a>
+	<div id="wrapper">
+		{% sections 'header-group' %}
+		<div role="main" id="main-content">
+			{{ content_for_layout }}
+<limespot></limespot>
+		</div>
+		{% sections 'footer-group' %}
+		{% render 'cart-drawer' %}
+		{% render 'product-drawer' %}
+		{% render 'search-drawer' %}
+		{% render 'smile-initializer' %}
+		<div class="click-capture"></div>
+	</div>
+
+	<script src="{{ 'vendor.min.js' | asset_url }}" defer></script>
+	{% if settings.animations %}
+		<script src="{{ 'animations.min.js' | asset_url }}" defer></script>
+		<script>
+			// 性能优化：脚本改为 defer 异步加载，移出渲染阻塞路径。
+			// animations.min.js 改 defer 后，等 DOMContentLoaded（此时 GSAP 已加载完）再配置，
+			// 避免 "gsap is not defined"。原内联代码 gsap.defaults 缺少闭合括号(语法错误)，已一并修正。
+			window.addEventListener('DOMContentLoaded', function () {
+				gsap.defaults({ ease: Power4.easeOut });
+				gsap.config({ nullTargetWarn: false });
+				gsap.registerPlugin(ScrollTrigger);
+			});
+		</script>
+	{% endif %}
+	{%- comment -%} 性能：去重。product.js 原本在这里（quick_view 条件块）和下方各加载一次，
+	   共 2 次。product.js 定义 PDP 必需的自定义元素（variant-selects/product-form 等），
+	   产品页无论是否开启 quick_view/quick_add 都需要，故统一保留下方的无条件加载，删除此条件块。 {%- endcomment -%}
+	<script src="{{ 'app.js' | asset_url }}" defer></script>
+	<script src="{{ 'slideshow.js' | asset_url }}" defer></script>
+	<script type="module" src="{{ 'scroll-shadow.js' | asset_url }}" defer="defer"></script>
+	<script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+	{%- if request.design_mode -%}
+		{{ 'theme-editor.js' | asset_url | script_tag }}
+	{%- endif -%}
+
+  	{%- comment -%} product.js 全站唯一加载处（已去重，见上方 app.js 前的说明）。 {%- endcomment -%}
+  	<script src="{{ 'product.js' | asset_url }}" defer></script>
+	{%- if settings.cart_recommendations -%}
+	<script src="{{ 'product-recommendations.js' | asset_url }}" defer="defer"></script>
+	{%- endif -%}
+	{% render 'back-to-top' %}
+	{%- render 'custom-cursor' -%}
+
+	<script>
+		// 延迟加载 Tidio 在线客服：首次用户交互或页面空闲时再加载，
+		// 把它约 500KB 的体积移出首屏关键路径（不影响客服功能可用性）。
+		(function () {
+			var loaded = false;
+			var events = ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'];
+			function loadTidio() {
+				if (loaded) return;
+				loaded = true;
+				events.forEach(function (e) { window.removeEventListener(e, loadTidio); });
+				var s = document.createElement('script');
+				s.src = '//code.tidio.co/hseljmlfdl0lhccwh9hoak9c1sntq1gj.js';
+				s.async = true;
+				document.body.appendChild(s);
+			}
+			events.forEach(function (e) { window.addEventListener(e, loadTidio, { passive: true }); });
+			// 兜底：即使用户没有交互，也在 load 之后趁浏览器空闲时加载
+			window.addEventListener('load', function () {
+				if ('requestIdleCallback' in window) {
+					requestIdleCallback(loadTidio, { timeout: 5000 });
+				} else {
+					setTimeout(loadTidio, 4000);
+				}
+			});
+		})();
+	</script>
+	<script src="{{ 'custom.js' | asset_url }}" defer></script>
+	{%- comment -%} 基础漏斗埋点（主题侧 DOM 交互）：商品曝光/点击、加购、Buy Now、Checkout 点击。
+	   依赖 head 的 mt-analytics-config 提供的 window.MT_ANALYTICS.config。 {%- endcomment -%}
+	<script src="{{ 'mt-analytics.js' | asset_url }}" defer></script>
+	{%- render 'bluesign-logo-inserter' -%}
+{%- comment -%} {% render 'spin-popup' %} {%- endcomment -%} 
+</body>
+  {%- comment -%} GTM-WDJLXJCJ noscript 已随容器一并移除（见 head 内说明）。 {%- endcomment -%}
+
+{% if template contains "product" %}
+	<script>
+		var jsonldScript = document.createElement('script');
+		jsonldScript.setAttribute('type', 'application/ld+json');
+		var structuredData = {
+			"@context": "https://schema.org/",
+			"@type": "Product",
+			"@id": {{ canonical_url | append: '#product' | json }},
+			"review": []
+		};
+
+		var widget = document.createElement("div");
+		widget.innerHTML = `{{ product.metafields.judgeme.widget }}`;
+		widget.querySelectorAll(".jdgm-rev").forEach(review => {
+			var date = review.querySelector(".jdgm-rev__timestamp").getAttribute("data-content");
+			var body = review.querySelector(".jdgm-rev__body").innerHTML.replace(/\n|<.*?>/g,'');
+			var rating = review.querySelector(".jdgm-rev__rating").getAttribute("data-score");
+			var authorName = review.querySelector(".jdgm-rev__author").innerText;
+			var title = review.querySelector(".jdgm-rev__title").innerText;
+		
+			structuredData.review.push({
+				"@type": "Review",
+				"datePublished": date,
+				"name": title,
+				"reviewBody": body,
+				"reviewRating": {
+					"@type": "Rating",
+					"ratingValue": rating,
+					"bestRating": "5",
+					"worstRating": "1"
+				}, 
+				"author": {
+					"@type": "Person",
+					"name": authorName
+				}
+			});
+		});
+
+		jsonldScript.textContent = JSON.stringify(structuredData);
+		document.head.appendChild(jsonldScript);
+	</script>
+
+
+
+
+
+{% endif %}
+ {{ "//cdn.shopify.com/s/files/1/0475/6920/7457/files/footer.js?v=1726136410" | script_tag }}
+
+</html>

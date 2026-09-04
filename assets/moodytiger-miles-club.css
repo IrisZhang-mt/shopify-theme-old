@@ -1,0 +1,1791 @@
+body.template-page-smile-landing-page {
+  --miles-text: #140f0f;
+  --miles-hero-gutter: clamp(32px, 2.778vw, 40px);
+}
+
+@media only screen and (min-width: 1000px) {
+  body.template-page-smile-landing-page #shopify-section-template--21672448033014__1740368771b46db7b0,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 > div,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section {
+    width: 100% !important;
+    min-width: 100%;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section {
+    position: relative;
+    aspect-ratio: 1440 / 418;
+    min-height: 0 !important;
+    padding: 0 !important;
+    background-position: center !important;
+    background-size: cover !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div {
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div {
+    width: min(45.75vw, 658.8px) !important;
+    max-width: calc(100% - (var(--miles-hero-gutter) * 2)) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    align-items: center !important;
+    color: #fff !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center !important;
+    color: inherit !important;
+    text-align: inherit !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(1),
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(2) {
+    display: block !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1),
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1) + div {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 h1 {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(48px, 4vw, 57.6px) !important;
+    font-weight: 400 !important;
+    line-height: 0.9167 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1) + div,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1) + div span,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(2),
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(2) span {
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(17px, 1.333vw, 19.2px) !important;
+    font-weight: 500 !important;
+    line-height: 1.7344 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(2) {
+    width: 100% !important;
+    margin: clamp(20px, 1.667vw, 24px) 0 0 !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1) + div {
+    margin-top: clamp(20px, 1.667vw, 24px) !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> button) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 9.6px !important;
+    width: min(19vw, 273.6px) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> div > button) {
+    width: 100% !important;
+    margin-top: clamp(20px, 1.667vw, 24px) !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(3) {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 9.6px !important;
+    width: min(19vw, 273.6px) !important;
+    margin: clamp(20px, 1.667vw, 24px) auto 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 button {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: clamp(116px, 9.167vw, 132px) !important;
+    min-width: 0 !important;
+    height: clamp(30px, 2.333vw, 33.6px) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(13px, 1vw, 14.4px) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    text-transform: none !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 button span {
+    color: inherit !important;
+    font: inherit !important;
+    letter-spacing: inherit !important;
+    line-height: inherit !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 button:first-child {
+    order: 2;
+    background: rgba(20, 15, 15, 0.8) !important;
+    color: #fff !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 button:last-child {
+    order: 1;
+    background: rgba(239, 238, 236, 0.8) !important;
+    color: var(--miles-text) !important;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsWord {
+    width: 100%;
+    margin: clamp(42px, 3.333vw, 48px) 0 0 !important;
+    padding: 0 !important;
+    background: #fff;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_all {
+    margin: 0 !important;
+    padding: clamp(28px, 2.222vw, 32px) 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_all .my_container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 clamp(32px, 2.813vw, 40.5px);
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_box {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_boxLeftBoxTitle {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottom {
+    display: grid !important;
+    grid-template-columns: minmax(0, 431fr) minmax(0, 314fr) minmax(0, 492fr);
+    align-items: start;
+    justify-content: center;
+    gap: clamp(40px, 4.236vw, 61px) !important;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > svg,
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > img,
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > .icon {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox_title {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(32px, 2.778vw, 40px) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox_text {
+    margin: clamp(24px, 2.222vw, 32px) 0 0 !important;
+    color: #312e2e !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(17px, 1.389vw, 20px) !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsVip {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #f4f4f3;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all {
+    margin: 0 !important;
+    padding: clamp(48px, 3.889vw, 56px) 0 clamp(40px, 2.778vw, 48px) !important;
+    background: #f4f4f3 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .my_container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 clamp(32px, 2.743vw, 48px);
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_box,
+  body.template-page-smile-landing-page .RewardsVip_bottom,
+  body.template-page-smile-landing-page .RewardsVipSwiper {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_boxLeftBoxTitle {
+    margin: 0 0 clamp(34px, 2.778vw, 40px) !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(36px, 2.778vw, 40px) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper,
+  body.template-page-smile-landing-page .RewardsVipSwiper .swiper-wrapper {
+    overflow: visible !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .swiper-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(14px, 1.042vw, 18px);
+    align-items: stretch;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .swiper-slide {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .pad_mobile,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-pagination {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: clamp(600px, 44.028vw, 700px);
+    margin: 0 !important;
+    overflow: hidden;
+    background: #fff !important;
+    border: 1px solid #d0cfcf;
+    box-shadow: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(56px, 4.514vw, 72px);
+    align-items: center;
+    column-gap: clamp(16px, 1.111vw, 24px);
+    min-height: clamp(112px, 8.333vw, 132px);
+    padding: clamp(24px, 1.944vw, 32px) clamp(22px, 1.667vw, 28px) !important;
+    color: var(--miles-text) !important;
+    text-align: left;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top > svg,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top > .icon {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 56%;
+    z-index: 0;
+    pointer-events: none;
+    clip-path: polygon(42% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--general .RewardsVip_bottomBox_top {
+    background: linear-gradient(105deg, #f8c09b 0%, #ffd9bd 62%, #f3b989 100%) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--general .RewardsVip_bottomBox_top::after {
+    background: rgba(241, 196, 164, 0.26);
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--silver .RewardsVip_bottomBox_top {
+    background: linear-gradient(105deg, #f2f2f2 0%, #ffffff 60%, #e3e3e3 100%) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--silver .RewardsVip_bottomBox_top::after {
+    background: rgba(235, 235, 235, 0.7);
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--gold .RewardsVip_bottomBox_top {
+    background: linear-gradient(105deg, #f4d28d 0%, #ffe4ad 62%, #efc06a 100%) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--gold .RewardsVip_bottomBox_top::after {
+    background: #fff3df;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--platinum .RewardsVip_bottomBox_top {
+    background: linear-gradient(135deg, #191919 0%, #2d2d2d 58%, #111 100%) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--platinum .RewardsVip_bottomBox_top::after {
+    background: rgba(20, 15, 15, 0.35);
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_tierIcon {
+    z-index: 1;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-self: end;
+    width: clamp(56px, 4.514vw, 72px);
+    height: clamp(48px, 3.889vw, 62px);
+    color: var(--rewards-vip-tier-color, currentColor);
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_tierIcon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_title {
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 !important;
+    color: inherit !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(28px, 2.222vw, 34px) !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+    text-align: left !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_text {
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 2;
+    margin: clamp(4px, 0.278vw, 6px) 0 0 !important;
+    color: inherit !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(15px, 1.111vw, 18px) !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-align: left !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--general .RewardsVip_bottomBox_top {
+    color: #89400d !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--silver .RewardsVip_bottomBox_top {
+    color: #4a4a4a !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--gold .RewardsVip_bottomBox_top {
+    color: #784200 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--platinum .RewardsVip_bottomBox_top {
+    color: #e9ac12 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_bottom {
+    flex: 1 1 auto;
+    padding: clamp(32px, 2.222vw, 40px) clamp(24px, 2.222vw, 36px) 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ol,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ul {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ol,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ul {
+    display: grid !important;
+    gap: clamp(18px, 1.389vw, 24px) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_bottom li {
+    position: relative;
+    min-height: 24px;
+    padding-left: 32px;
+    color: var(--miles-text);
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(15px, 1.111vw, 17px) !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    list-style: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_bottom li::before {
+    content: "";
+    position: absolute;
+    top: 0.48em;
+    left: 0;
+    width: 10px;
+    height: 6px;
+    margin: 0 !important;
+    background: none !important;
+    border-left: 1.5px solid var(--miles-text);
+    border-bottom: 1.5px solid var(--miles-text);
+    transform: rotate(-45deg);
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsEarn {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_all {
+    margin: 0 !important;
+    background: #fff !important;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsPoints {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #f4f4f3;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_all {
+    margin: 0 !important;
+    background: #f4f4f3 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_all {
+    padding: clamp(40px, 2.778vw, 48px) 0 clamp(48px, 3.333vw, 56px) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_all {
+    padding: clamp(48px, 3.333vw, 56px) 0 clamp(64px, 4.444vw, 72px) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_all .my_container,
+  body.template-page-smile-landing-page .RewardsPoints_all .my_container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 clamp(32px, 2.778vw, 48px);
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_boxLeftBoxTitle,
+  body.template-page-smile-landing-page .RewardsPoints_boxTitle {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(34px, 2.778vw, 40px) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottom {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: clamp(12px, 0.903vw, 16px) !important;
+    width: 100%;
+    margin: clamp(40px, 3.333vw, 48px) 0 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: clamp(148px, 11.944vw, 172px);
+    height: clamp(148px, 11.944vw, 172px);
+    padding: clamp(20px, 1.389vw, 24px) clamp(18px, 2.778vw, 40px) !important;
+    border: 1px solid #c7c7c7 !important;
+    background: #fff !important;
+    color: var(--miles-text);
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox svg {
+    display: block;
+    width: 28px !important;
+    height: 28px !important;
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox_title {
+    margin: clamp(12px, 0.972vw, 14px) 0 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(18px, 1.389vw, 20px) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox_text {
+    margin: clamp(6px, 0.556vw, 8px) 0 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(13px, 0.972vw, 14px) !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: normal;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_boxSub {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 0.833vw, 12px);
+    margin: clamp(12px, 1.111vw, 16px) 0 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(15px, 1.111vw, 16px) !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_boxSub svg circle {
+    fill: #ed8f2d !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_boxText {
+    max-width: min(100%, 720px);
+    margin: clamp(8px, 0.833vw, 12px) auto 0 !important;
+    color: #312e2e !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(14px, 1.111vw, 16px) !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottom {
+    width: 100%;
+    margin: clamp(40px, 3.333vw, 48px) 0 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottom .pad_mobile,
+  body.template-page-smile-landing-page .RewardsPoints_all .swiper-button-next,
+  body.template-page-smile-landing-page .RewardsPoints_all .swiper-button-prev,
+  body.template-page-smile-landing-page .RewardsPoints_all .swiper-pagination {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottom .pad_pc {
+    display: block !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPointsSwiper_box {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(28px, 2.083vw, 30px) clamp(20px, 2.083vw, 30px) !important;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPointsSwiper_box .swiper-slide {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottomBox {
+    box-sizing: border-box;
+    display: flex;
+    min-height: clamp(112px, 8.75vw, 126px);
+    height: clamp(112px, 8.75vw, 126px) !important;
+    margin: 0 !important;
+    padding: clamp(20px, 1.389vw, 24px) clamp(24px, 4.514vw, 65px) !important;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(4px, 0.417vw, 6px);
+    justify-content: center;
+    border: 1px solid #d0cfcf !important;
+    background: #fff !important;
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottomBox_title {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(20px, 1.667vw, 24px) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottomBox_text {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(16px, 1.389vw, 20px) !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_button {
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 0 !important;
+    width: max-content !important;
+    height: clamp(40px, 2.778vw, 48px) !important;
+    margin: clamp(32px, 2.222vw, 40px) auto 0 !important;
+    padding: 0 clamp(24px, 1.806vw, 28px) !important;
+    border: 1px solid var(--miles-text) !important;
+    border-radius: 999px !important;
+    background: var(--miles-text) !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(14px, 1.111vw, 16px) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsBottom {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #140f0f;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_all {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: clamp(560px, 47.222vw, 680px);
+    margin: 0 !important;
+    margin-top: 0 !important;
+    padding: clamp(96px, 10.972vw, 158px) 0 !important;
+    overflow: hidden;
+    background-color: #140f0f;
+    background-image: var(--rewards-bottom-bg-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_all::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_all .my_container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 clamp(48px, 9.444vw, 136px);
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_box {
+    width: min(100%, 1168px);
+    max-width: none !important;
+    margin: 0 auto !important;
+    color: #fff;
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_sub {
+    margin: 0 0 16px !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 48px !important;
+    font-weight: 500 !important;
+    line-height: 58px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_Title {
+    max-width: min(100%, 1098px);
+    margin: 0 auto !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 48px !important;
+    font-weight: 600 !important;
+    line-height: 58px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_text {
+    width: min(100%, calc(100vw - 96px));
+    max-width: none;
+    margin: 28px auto 0 !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 56px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 220px !important;
+    min-width: 0 !important;
+    height: 48px !important;
+    margin: 80px auto 0 !important;
+    padding: 0 !important;
+    border: 1px solid #fff !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(20px, 1.667vw, 24px) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+  }
+
+}
+
+@media only screen and (max-width: 999px) {
+  body.template-page-smile-landing-page {
+    --miles-mobile-gutter: clamp(20px, 5.128vw, 24px);
+    --miles-mobile-content: calc(100vw - (var(--miles-mobile-gutter) * 2));
+  }
+
+  body.template-page-smile-landing-page #shopify-section-template--21672448033014__1740368771b46db7b0,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 > div,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section {
+    width: 100% !important;
+    min-width: 100%;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section {
+    min-height: clamp(560px, 153.846vw, 620px) !important;
+    padding: 0 !important;
+    background-position: center !important;
+    background-size: cover !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div {
+    min-height: clamp(560px, 153.846vw, 620px) !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div {
+    width: min(354px, var(--miles-mobile-content)) !important;
+    max-width: var(--miles-mobile-content) !important;
+    margin: 0 auto !important;
+    padding: clamp(132px, 35.897vw, 148px) 0 0 !important;
+    color: #fff !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    color: inherit !important;
+    text-align: inherit !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 h1 {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(42px, 11.282vw, 44px) !important;
+    font-weight: 500 !important;
+    line-height: 1.205 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1) + div,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1) + div span,
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(2),
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(2) span {
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 28px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(2),
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> h1) + div {
+    margin-top: clamp(42px, 12.821vw, 50px) !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section > div > div > div:nth-child(3),
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 section div:has(> button) {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+    width: 240px !important;
+    max-width: 100% !important;
+    margin: clamp(58px, 17.949vw, 70px) auto 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 button {
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 240px !important;
+    min-width: 240px !important;
+    max-width: 100% !important;
+    height: 48px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 13.714px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    text-transform: none !important;
+    white-space: nowrap !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 button:first-child {
+    order: 2;
+    background: rgba(20, 15, 15, 0.8) !important;
+    color: #fff !important;
+  }
+
+  body.template-page-smile-landing-page #shopify-block-AQjFtaFVndGxkT2VCY__smile_io_smile_landing_page_header_8kmfU3 button:last-child {
+    order: 1;
+    background: rgba(239, 238, 236, 0.8) !important;
+    color: var(--miles-text) !important;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsWord {
+    width: 100%;
+    margin: clamp(52px, 15.385vw, 64px) 0 0 !important;
+    padding: 0 !important;
+    background: #fff;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_all {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_all .my_container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--miles-mobile-gutter);
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_boxLeftBoxTitle {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottom {
+    box-sizing: border-box;
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 32px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox {
+    position: relative;
+    min-height: 40px;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: var(--miles-text);
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox:nth-child(2) {
+    min-height: 44px;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox:nth-child(3) {
+    min-height: 48px;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > svg,
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > img,
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > .icon {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > svg path,
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > svg circle,
+  body.template-page-smile-landing-page .RewardsWord_bottomBox > svg rect {
+    fill: #fff !important;
+    stroke: #fff !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox_title {
+    position: relative;
+    z-index: 1;
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 19px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsWord_bottomBox_text {
+    position: relative;
+    z-index: 1;
+    margin: 4px 0 0 !important;
+    color: #312e2e !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 17px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: normal;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsVip {
+    width: 100%;
+    margin: clamp(52px, 15.385vw, 60px) 0 0 !important;
+    padding: 0 !important;
+    background: #f4f4f3;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all {
+    margin: 0 !important;
+    padding: 20px 0 33px !important;
+    background: #f4f4f3 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .my_container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_boxLeftBoxTitle {
+    display: block !important;
+    margin: 0 0 -5px !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 64px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottom,
+  body.template-page-smile-landing-page .RewardsVipSwiper {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .swiper-wrapper {
+    display: flex !important;
+    align-items: center;
+    gap: 0;
+    width: 100% !important;
+    height: 580px !important;
+    padding: 0;
+    margin-left: clamp(32px, 8.205vw, 35px);
+    overflow: visible !important;
+    scroll-snap-type: none;
+    scrollbar-width: none;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .swiper-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .swiper-slide {
+    flex: 0 0 min(320px, calc(100vw - 70px));
+    width: min(320px, calc(100vw - 70px)) !important;
+    height: auto !important;
+    margin: 0 !important;
+    order: initial !important;
+    scroll-snap-align: none;
+    transform: scale(0.86);
+    transform-origin: center center;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+    opacity: 0.78;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .swiper-slide-active {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .pad_mobile {
+    display: block !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-pagination {
+    position: static !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100% !important;
+    height: 8px;
+    margin: 30px 0 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    color: #fff;
+    border: 0;
+    border-radius: 50%;
+    background: #d0d0d0;
+    box-shadow: none;
+    transform: translateY(-50%);
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    appearance: none;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev {
+    left: 13px;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next {
+    right: 13px;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next::after,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev::after {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next svg,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev svg {
+    display: block;
+    width: 6px;
+    height: 12px;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next svg path,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev svg path {
+    stroke: #fff !important;
+    stroke-width: 2px !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next:focus,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev:focus,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next:focus-visible,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev:focus-visible,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-next:active,
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-button-prev:active {
+    outline: none !important;
+    background: #d0d0d0 !important;
+    box-shadow: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    background: #d0cfcf !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_all .swiper-pagination-bullet-active {
+    background: var(--miles-text) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none !important;
+    min-height: 580px;
+    height: 580px;
+    margin: 0 !important;
+    overflow: hidden;
+    background: #fff !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 68px;
+    align-items: center;
+    column-gap: 12px;
+    height: 128px;
+    min-height: 128px;
+    padding: 30px 17px !important;
+    color: var(--miles-text) !important;
+    text-align: left;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top > svg,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top > .icon {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_top::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 60%;
+    z-index: 0;
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+    pointer-events: none;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--general .RewardsVip_bottomBox_top {
+    background: linear-gradient(105deg, #f8c09b 0%, #ffd9bd 62%, #f3b989 100%) !important;
+    color: #89400d !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--general .RewardsVip_bottomBox_top::after {
+    background: rgba(241, 196, 164, 0.26);
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--silver .RewardsVip_bottomBox_top {
+    background: linear-gradient(105deg, #f2f2f2 0%, #ffffff 60%, #e3e3e3 100%) !important;
+    color: #4a4a4a !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--silver .RewardsVip_bottomBox_top::after {
+    background: rgba(235, 235, 235, 0.7);
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--gold .RewardsVip_bottomBox_top {
+    background: linear-gradient(105deg, #f4d28d 0%, #ffe4ad 62%, #efc06a 100%) !important;
+    color: #784200 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--gold .RewardsVip_bottomBox_top::after {
+    background: #fff3df;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--platinum .RewardsVip_bottomBox_top {
+    background: linear-gradient(135deg, #191919 0%, #2d2d2d 58%, #111 100%) !important;
+    color: #e9ac12 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVipSwiper .RewardsVip_slide--platinum .RewardsVip_bottomBox_top::after {
+    background: rgba(20, 15, 15, 0.35);
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_tierIcon {
+    z-index: 1;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-self: end;
+    width: 68px;
+    height: 68px;
+    color: var(--rewards-vip-tier-color, currentColor);
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_tierIcon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_title {
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 !important;
+    color: inherit !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: clamp(28px, 8.718vw, 34px) !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+    text-align: left !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_text {
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 2;
+    margin: 2px 0 0 !important;
+    color: inherit !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 22px !important;
+    letter-spacing: 0 !important;
+    text-align: left !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_bottom {
+    flex: 1 1 auto;
+    padding: 34px 34px 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ol,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ul {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ol,
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_listText ul {
+    display: grid !important;
+    gap: 20px !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_bottom li {
+    position: relative;
+    min-height: 17px;
+    padding-left: 24px;
+    color: var(--miles-text);
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 17px !important;
+    letter-spacing: 0 !important;
+    list-style: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsVip_bottomBox_bottom li::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 10px;
+    height: 6px;
+    margin: 0 !important;
+    background: none !important;
+    border-left: 1.5px solid var(--miles-text);
+    border-bottom: 1.5px solid var(--miles-text);
+    transform: rotate(-45deg);
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsEarn {
+    width: 100%;
+    margin: clamp(56px, 15.385vw, 66px) 0 0 !important;
+    padding: 0 !important;
+    background: #fff;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_all {
+    margin: 0 !important;
+    padding: 0 0 clamp(52px, 15.385vw, 60px) !important;
+    background: #fff !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_all .my_container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--miles-mobile-gutter);
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_boxLeftBoxTitle {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 64px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottom {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(6px, 1.795vw, 8px) 7px !important;
+    width: var(--miles-mobile-content) !important;
+    margin: 4px auto 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: clamp(86px, 23.077vw, 100px);
+    height: clamp(86px, 23.077vw, 100px) !important;
+    margin: 0 !important;
+    padding: clamp(14px, 4.103vw, 18px) clamp(6px, 1.538vw, 8px) !important;
+    border: 1px solid #c7c7c7 !important;
+    background: #fff !important;
+    color: var(--miles-text);
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(n + 4) {
+    min-height: clamp(118px, 33.333vw, 142px);
+    height: clamp(118px, 33.333vw, 142px) !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox svg {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox::before {
+    content: "";
+    display: block;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(1)::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='5' r='2.7' stroke='%23140F0F' stroke-width='1.5'/%3E%3Cpath d='M2.5 14.5C3.2 11.4 5.3 9.3 8 9.3s4.8 2.1 5.5 5.2' stroke='%23140F0F' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(2)::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2.2' y='4.2' width='11.8' height='8.6' rx='1.5' stroke='%23140F0F' stroke-width='1.5'/%3E%3Cpath d='M3.2 4.4 10.4 2.5c1-.2 1.8.4 1.8 1.4v.4' stroke='%23140F0F' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='11.4' cy='8.5' r='1' fill='%23140F0F'/%3E%3C/svg%3E");
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(3)::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.4 13.2H4.2a1.2 1.2 0 0 1-1.2-1.2V7.5a1.2 1.2 0 0 1 1.2-1.2h2.2m0 6.9h5.3c.7 0 1.2-.4 1.4-1.1l1-3.4c.2-.8-.4-1.6-1.2-1.6H9.7l.4-2.2c.2-.9-.5-1.7-1.4-1.7h-.2L6.4 6.5v6.7Z' stroke='%23140F0F' stroke-width='1.45' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(4)::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.8 2.8 8.8 14l-1.7-5.1L2 7.2l11.8-4.4Z' stroke='%23140F0F' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M7.1 8.9 10 6' stroke='%23140F0F' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(5)::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2.3' y='2.3' width='11.4' height='11.4' rx='3.2' stroke='%23140F0F' stroke-width='1.5'/%3E%3Ccircle cx='8' cy='8' r='2.6' stroke='%23140F0F' stroke-width='1.5'/%3E%3Ccircle cx='11.3' cy='4.7' r='0.8' fill='%23140F0F'/%3E%3C/svg%3E");
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(6)::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m8 2.1 1.7 3.4 3.8.6-2.8 2.7.7 3.8L8 10.8l-3.4 1.8.7-3.8-2.8-2.7 3.8-.6L8 2.1Z' stroke='%23140F0F' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox_title {
+    margin: 2px 0 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 21px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: normal;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox_text {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 18px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsEarn_bottomBox:nth-child(-n + 3) .RewardsEarn_bottomBox_text {
+    white-space: nowrap;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsPoints {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #f4f4f3;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_all {
+    margin: 0 !important;
+    padding: 20px 0 40px !important;
+    background: #f4f4f3 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_all .my_container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--miles-mobile-gutter);
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_boxTitle {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 64px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_boxSub,
+  body.template-page-smile-landing-page .RewardsPoints_boxText,
+  body.template-page-smile-landing-page .RewardsPoints_button,
+  body.template-page-smile-landing-page .RewardsPoints_bottom .pad_mobile,
+  body.template-page-smile-landing-page .RewardsPoints_all .swiper-button-next,
+  body.template-page-smile-landing-page .RewardsPoints_all .swiper-button-prev,
+  body.template-page-smile-landing-page .RewardsPoints_all .swiper-pagination {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottom {
+    width: 100%;
+    margin: 30px 0 0 !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottom .pad_pc {
+    display: block !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPointsSwiper_box {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 12px !important;
+    width: var(--miles-mobile-content) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPointsSwiper_box .swiper-slide {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPointsSwiper_box .swiper-slide:nth-child(n + 5) {
+    display: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_all.is-expanded .RewardsPointsSwiper_box .swiper-slide:nth-child(n + 5) {
+    display: block !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--miles-mobile-content) - clamp(44px, 11.282vw, 52px));
+    height: 24px;
+    margin: 12px auto 0;
+    padding: 0;
+    color: var(--miles-text);
+    background: transparent;
+    border: 0;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_toggle svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_all.is-expanded .RewardsPoints_toggle svg {
+    transform: rotate(180deg);
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottomBox {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - clamp(44px, 11.282vw, 52px)) !important;
+    max-width: none !important;
+    min-height: 64px;
+    height: 64px !important;
+    margin: 0 auto !important;
+    padding: 8px clamp(56px, 16.667vw, 72px) !important;
+    border: 1px solid #d0cfcf !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottomBox::after {
+    content: none !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottomBox_title {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 21px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap;
+  }
+
+  body.template-page-smile-landing-page .RewardsPoints_bottomBox_text {
+    margin: 0 !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 21px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap;
+  }
+
+  body.template-page-smile-landing-page .shopify-section.RewardsBottom {
+    width: 100%;
+    padding: 0 !important;
+    background: #140f0f;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_all {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    min-height: clamp(430px, 115.128vw, 470px);
+    margin: 0 !important;
+    padding: 100px 0 0 !important;
+    overflow: hidden;
+    background-color: #140f0f;
+    background-image: var(--rewards-bottom-bg-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_all::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_all .my_container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--miles-mobile-gutter);
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_box {
+    width: min(350px, 100%);
+    max-width: none !important;
+    margin: 0 auto !important;
+    color: #fff;
+    text-align: center;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_sub {
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 19px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_Title {
+    margin: 8px auto 0 !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    line-height: 21px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_text {
+    width: min(339px, 100%) !important;
+    margin: 28px auto 0 !important;
+    color: #fff !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 20px !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+  }
+
+  body.template-page-smile-landing-page .RewardsBottom_button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: min(240px, 100%) !important;
+    min-width: 0 !important;
+    height: 48px !important;
+    margin: 70px auto 0 !important;
+    padding: 0 !important;
+    border: 1px solid #efeeec !important;
+    border-radius: 999px !important;
+    background: rgba(239, 238, 236, 0.8) !important;
+    color: var(--miles-text) !important;
+    font-family: Inter, var(--body-font-family), sans-serif !important;
+    font-size: 13.714px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+  }
+}

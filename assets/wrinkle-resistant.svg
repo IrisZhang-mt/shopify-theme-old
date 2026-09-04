@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FF8300;stroke-width:1.2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#FF8300;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#FF8300;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+	.st4{fill:none;stroke:#FF8300;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3.0879,3.0879;}
+	
+		.st5{clip-path:url(#SVGID_00000034080912896449291280000000935868623855395751_);fill:none;stroke:#FF8300;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st6{fill:none;stroke:#FF8300;stroke-width:1.2;stroke-miterlimit:10;}
+</style>
+<g>
+	<g>
+		<line class="st1" x1="2.79" y1="2" x2="27.21" y2="2"/>
+		<path class="st1" d="M2.79,7.02c2.36-1.96,22.07-1.96,24.43,0"/>
+		<path class="st1" d="M2.79,12.04c4.72-3.92,19.71-3.92,24.43,0"/>
+		<path class="st1" d="M2.79,17.06c7.08-5.89,17.35-5.89,24.43,0"/>
+	</g>
+	<circle class="st1" cx="15" cy="18.46" r="2.91"/>
+	<circle class="st1" cx="10.86" cy="25.09" r="2.91"/>
+	<circle class="st1" cx="18.88" cy="25.09" r="2.91"/>
+</g>
+</svg>

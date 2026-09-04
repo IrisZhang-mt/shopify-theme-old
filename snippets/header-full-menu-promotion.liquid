@@ -1,0 +1,32 @@
+<div class="mega-menu-promotion mega-menu-promotion--card GDF">
+  {%- if promotion_link != blank -%}<a href="{{ promotion_link }}" class="mega-menu-promotion__image-link">{%- endif -%}
+  {%- render 'responsive-image', image: promotion_image, sizes: '720x0', priority: 'low' -%}
+  {%- if promotion_link != blank -%}</a>{%- endif -%}
+  {%- assign has_promotion_content = false -%}
+  {%- if promotion_heading != blank or promotion_description != blank -%}
+    {%- assign has_promotion_content = true -%}
+  {%- endif -%}
+  {%- if promotion_link != blank and promotion_link_label != blank -%}
+    {%- assign has_promotion_content = true -%}
+  {%- endif -%}
+  {%- if has_promotion_content -%}
+  <div class="mega-menu-promotion__content">
+    {%- if promotion_heading != blank -%}
+      <p class="mega-menu-promotion__heading">{{ promotion_heading }}</p>
+    {%- endif -%}
+    {%- if promotion_description != blank -%}
+      <div class="mega-menu-promotion__description">{{ promotion_description | escape | newline_to_br }}</div>
+    {%- endif -%}
+    {%- if promotion_link != blank and promotion_link_label != blank -%}
+      <a href="{{ promotion_link }}" class="mega-menu-promotion__button">
+        <span>{{ promotion_link_label }}</span>
+        <span class="mega-menu-promotion__button-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false" role="presentation">
+            <path d="M9.5 6L15.5 12L9.5 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+</div>

@@ -1,0 +1,797 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "index_banner_fUy7WJ": {
+      "type": "index-banner",
+      "settings": {
+        "img": "shopify://shop_images/bannerpc.jpg",
+        "img_mobile": "shopify://shop_images/bannermb.jpg",
+        "title": "The Kids' Leggings Guide",
+        "text": "Leader in the kids leggings category, with 1M+ pieces sold globally",
+        "text_color": "#ffffff"
+      }
+    },
+    "scrolling_text_fK7HH3": {
+      "type": "scrolling-text",
+      "blocks": {
+        "text_L6anzX": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/EPDA.png",
+            "text": "2023 European Product Design Award",
+            "link": "",
+            "outline_text": false
+          }
+        },
+        "text_4xdrnU": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/reddot.png",
+            "text": "2023 Red Dot Design Award",
+            "link": "",
+            "outline_text": false
+          }
+        },
+        "text_nYFckW": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/bluesign.png",
+            "text": "2024 bluesign® Approved Product",
+            "link": "",
+            "outline_text": false
+          }
+        },
+        "text_MM33an": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/LUX.png",
+            "text": "2020 Lux Life Magazine Awards   ",
+            "link": "",
+            "outline_text": false
+          }
+        }
+      },
+      "block_order": [
+        "text_L6anzX",
+        "text_4xdrnU",
+        "text_nYFckW",
+        "text_MM33an"
+      ],
+      "settings": {
+        "height": "height-auto",
+        "full_width": true,
+        "direction": "left",
+        "speed": "30s",
+        "text_size": 16,
+        "text_uppercase": false,
+        "image_size": "medium",
+        "color_bg": "#f8f8f8",
+        "color_text": "#151515",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "index_product_introduction_tab_AgLhFX": {
+      "type": "index-ProductIntroductionTab",
+      "blocks": {
+        "text_dpjnKb": {
+          "type": "text",
+          "settings": {
+            "text": "All Season"
+          }
+        },
+        "text_yFpbXT": {
+          "type": "text",
+          "settings": {
+            "text": "Spring / Summer"
+          }
+        },
+        "text_LGtpR9": {
+          "type": "text",
+          "settings": {
+            "text": "Fall / Winter"
+          }
+        }
+      },
+      "block_order": [
+        "text_dpjnKb",
+        "text_yFpbXT",
+        "text_LGtpR9"
+      ],
+      "settings": {
+        "title": "How to choose the perfect leggings for your little ones?",
+        "text": "Whether your little ones need playful leggings for a day at the park, comfy styles for dance class, or durable options for outdoor adventures, explore our kids' leggings guide to find the perfect fit for their active lifestyle.",
+        "Desktop_top": 80,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_product_introduction_FiWxQd": {
+      "type": "index-ProductIntroduction",
+      "blocks": {
+        "text_zgaP4i": {
+          "type": "text",
+          "settings": {
+            "text": "Tennis"
+          }
+        },
+        "text_9EBmXK": {
+          "type": "text",
+          "settings": {
+            "text": "Golf"
+          }
+        },
+        "text_qjqFDU": {
+          "type": "text",
+          "settings": {
+            "text": "Yoga"
+          }
+        },
+        "text_g9gKxq": {
+          "type": "text",
+          "settings": {
+            "text": "Running"
+          }
+        },
+        "text_4iHY68": {
+          "type": "text",
+          "settings": {
+            "text": "Ball games"
+          }
+        },
+        "text_A7EE4J": {
+          "type": "text",
+          "settings": {
+            "text": "Dance"
+          }
+        },
+        "text_JpGtX3": {
+          "type": "text",
+          "settings": {
+            "text": "Workout"
+          }
+        },
+        "text_3Rd3gw": {
+          "type": "text",
+          "settings": {
+            "text": "Cycling"
+          }
+        },
+        "bottom_img_U7RxLV": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/All_Season-1.jpg",
+            "img_mobile": "shopify://shop_images/All_Season-1.jpg",
+            "svg": "shopify://shop_images/icon-01.svg",
+            "title": "Ultra-Soft, Skin-Friendly",
+            "text": "Cloud-like comfort for gentle skin care"
+          }
+        },
+        "bottom_img_MbJU9K": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/All_Season-2.jpg",
+            "img_mobile": "shopify://shop_images/All_Season-2.jpg",
+            "svg": "shopify://shop_images/icon-02.svg",
+            "title": "Exceptional Stretch",
+            "text": "A snug fit without restriction"
+          }
+        },
+        "bottom_img_TzDEhm": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/All_Season-3.jpg",
+            "img_mobile": "shopify://shop_images/All_Season-3.jpg",
+            "svg": "shopify://shop_images/icon-03.svg",
+            "title": "THREADPERFECT® Technology",
+            "text": "Smooth seams for irritation-free comfort."
+          }
+        }
+      },
+      "block_order": [
+        "text_zgaP4i",
+        "text_9EBmXK",
+        "text_qjqFDU",
+        "text_g9gKxq",
+        "text_4iHY68",
+        "text_A7EE4J",
+        "text_JpGtX3",
+        "text_3Rd3gw",
+        "bottom_img_U7RxLV",
+        "bottom_img_MbJU9K",
+        "bottom_img_TzDEhm"
+      ],
+      "settings": {
+        "tab_id": "All Season",
+        "label": "Cloudie essential series: Soft as a cloud",
+        "title": "All Season",
+        "text": "Let your little ones experience cloud-like softness that hugs their skin! Our Queenie leggings are made with Brizi® Mist fabric for incredible flexibility, perfect for all their playful adventures. Plus, the THREADPERFECT® technology gives extra stretch along the side seams, ensuring comfort without irritation—so they can jump, run, and explore to their heart's content!",
+        "perfect_for": "Perfect for:",
+        "feel": "Feel:",
+        "feel_img": "shopify://shop_images/coolwarm1.png",
+        "img": "shopify://shop_images/All_Season.jpg",
+        "img_mobile": "shopify://shop_images/All_Season.jpg",
+        "button": "Shop Cloudie essential",
+        "link": "shopify://collections/queenie-leggings",
+        "bg_img": "shopify://shop_images/de26d8bf8c120599b404eafb0ed3e341.png",
+        "Desktop_top": 80,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_product_introduction_adMbNY": {
+      "type": "index-ProductIntroduction",
+      "blocks": {
+        "text_pk7yYM": {
+          "type": "text",
+          "settings": {
+            "text": "Tennis"
+          }
+        },
+        "text_dtbtjV": {
+          "type": "text",
+          "settings": {
+            "text": "Cycling"
+          }
+        },
+        "text_abQR8N": {
+          "type": "text",
+          "settings": {
+            "text": "Yoga"
+          }
+        },
+        "text_FA6iKx": {
+          "type": "text",
+          "settings": {
+            "text": "Running"
+          }
+        },
+        "text_Mk48Uq": {
+          "type": "text",
+          "settings": {
+            "text": "Outdoor"
+          }
+        },
+        "text_AUrkAB": {
+          "type": "text",
+          "settings": {
+            "text": "Dance"
+          }
+        },
+        "text_3zzqfj": {
+          "type": "text",
+          "settings": {
+            "text": "Workout"
+          }
+        },
+        "text_yWeP4C": {
+          "type": "text",
+          "settings": {
+            "text": "Skateboarding"
+          }
+        },
+        "bottom_img_TGfAcB": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/Spring___Summer-1.jpg",
+            "img_mobile": "shopify://shop_images/Spring___Summer-1.jpg",
+            "svg": "shopify://shop_images/icon-04.svg",
+            "title": "Lightweight & Resilient",
+            "text": "Feels like a cozy hug that lets them move freely and easily!"
+          }
+        },
+        "bottom_img_3XDQnE": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/Spring___Summer-2.jpg",
+            "img_mobile": "shopify://shop_images/Spring___Summer-2.jpg",
+            "svg": "shopify://shop_images/icon-05.svg",
+            "title": "Cool-feeling",
+            "text": "Brizi® material provides a refreshing feel on hot days."
+          }
+        },
+        "bottom_img_pf8fwc": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/Spring___Summer-3.jpg",
+            "img_mobile": "shopify://shop_images/Spring___Summer-3.jpg",
+            "svg": "shopify://shop_images/icon-06.svg",
+            "title": "Ultra-Soft, Skin-Friendly",
+            "text": "Feels like a second skin for ultimate freedom."
+          }
+        }
+      },
+      "block_order": [
+        "text_pk7yYM",
+        "text_dtbtjV",
+        "text_abQR8N",
+        "text_FA6iKx",
+        "text_Mk48Uq",
+        "text_AUrkAB",
+        "text_3zzqfj",
+        "text_yWeP4C",
+        "bottom_img_TGfAcB",
+        "bottom_img_3XDQnE",
+        "bottom_img_pf8fwc"
+      ],
+      "settings": {
+        "tab_id": "Spring / Summer",
+        "label": "Cloudie air series: Stay cool all summer long",
+        "title": "Spring / Summer",
+        "text": "Stay cool and active all summer with Brizi® fabric! This magical material keeps little ones fresh and comfy, even under the blazing sun. It's ultra-light, super stretchy, and dries sweat in no time—perfect for all their adventures. Say goodbye to sweaty distractions and hello to endless fun!",
+        "perfect_for": "Perfect for:",
+        "feel": "Feel:",
+        "feel_img": "shopify://shop_images/coolwarm2.png",
+        "img": "shopify://shop_images/Spring___Summer.jpg",
+        "img_mobile": "shopify://shop_images/Spring___Summer.jpg",
+        "button": "Shop Cloudie air",
+        "link": "shopify://collections/breezy-leggings",
+        "bg_img": "shopify://shop_images/de26d8bf8c120599b404eafb0ed3e341.png",
+        "Desktop_top": 80,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_product_introduction_wgw8Bz": {
+      "type": "index-ProductIntroduction",
+      "blocks": {
+        "text_PMNbKD": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Tennis"
+          }
+        },
+        "text_cGQJFm": {
+          "type": "text",
+          "settings": {
+            "text": "Golf"
+          }
+        },
+        "text_aLekAL": {
+          "type": "text",
+          "settings": {
+            "text": "Skiing"
+          }
+        },
+        "text_Tbfy87": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Running"
+          }
+        },
+        "text_gBJiYc": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Ball games"
+          }
+        },
+        "text_PYfdAX": {
+          "type": "text",
+          "settings": {
+            "text": "Dance"
+          }
+        },
+        "text_wRiU6D": {
+          "type": "text",
+          "settings": {
+            "text": "Skating"
+          }
+        },
+        "text_ktkXfk": {
+          "type": "text",
+          "settings": {
+            "text": "Outdoor"
+          }
+        },
+        "bottom_img_GBc7Qj": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/Fall___Winter-1.jpg",
+            "img_mobile": "shopify://shop_images/Fall___Winter-1.jpg",
+            "svg": "shopify://shop_images/icon-07.svg",
+            "title": "Superior Temperature Control",
+            "text": "Maintains warmth with excellent elasticity."
+          }
+        },
+        "bottom_img_bCgwk3": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/Fall___Winter-2.jpg",
+            "img_mobile": "shopify://shop_images/Fall___Winter-2.jpg",
+            "svg": "shopify://shop_images/icon-08.svg",
+            "title": "Ultra Four-Way Stretch",
+            "text": "Fits all body shapes seamlessly"
+          }
+        },
+        "bottom_img_98mdYT": {
+          "type": "bottom_img",
+          "settings": {
+            "img": "shopify://shop_images/Fall___Winter-3.jpg",
+            "img_mobile": "shopify://shop_images/Fall___Winter-3.jpg",
+            "svg": "shopify://shop_images/icon-09.svg",
+            "title": "Soft, Creamy Feel",
+            "text": "Luxurious touch for an enhanced experience."
+          }
+        }
+      },
+      "block_order": [
+        "text_PMNbKD",
+        "text_cGQJFm",
+        "text_aLekAL",
+        "text_Tbfy87",
+        "text_gBJiYc",
+        "text_PYfdAX",
+        "text_wRiU6D",
+        "text_ktkXfk",
+        "bottom_img_GBc7Qj",
+        "bottom_img_bCgwk3",
+        "bottom_img_98mdYT"
+      ],
+      "settings": {
+        "tab_id": "Fall / Winter",
+        "label": "Cloudie solar series: Cozy, comfy, and ready for winter fun",
+        "title": "Fall / Winter",
+        "text": "Is your little one ready for winter fun? Our Brizi® Fleece fabric wraps them in a warm, snug embrace that moves with every twist and turn—no more fidgeting! Whether they're building snowmen or zooming down hills, they'll stay cozy and comfy for all their winter adventures. Let the fun begin!",
+        "perfect_for": "Perfect for:",
+        "feel": "Feel:",
+        "feel_img": "shopify://shop_images/coolwarm3.png",
+        "img": "shopify://shop_images/Fall___Winter.jpg",
+        "img_mobile": "shopify://shop_images/Fall___Winter.jpg",
+        "button": "Shop Cloudie solar",
+        "link": "shopify://collections/solar-leggings",
+        "bg_img": "shopify://shop_images/de26d8bf8c120599b404eafb0ed3e341.png",
+        "Desktop_top": 80,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_scenario_description_MJ6Vhg": {
+      "type": "index-ScenarioDescription",
+      "blocks": {
+        "text_Th6QPM": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/Occasion.jpg",
+            "img_mobile": "shopify://shop_images/Occasion.jpg",
+            "title": "Casual Sports",
+            "text": "Weightless with a sleek, cool feel next to skin without any distractions.",
+            "button": "Shop Now",
+            "link": "shopify://collections/casual-sports",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_7TpQak": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "text": "",
+            "button": "",
+            "link": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_BLxnbg": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/Occasion-1.jpg",
+            "img_mobile": "shopify://shop_images/Occasion-1.jpg",
+            "title": "Training",
+            "text": "Soft, smooth, and sweat-wicking fabric hugs and supports them!",
+            "button": "Shop Now",
+            "link": "shopify://collections/traning",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_3HAr44": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/Occasion-2.jpg",
+            "img_mobile": "shopify://shop_images/Occasion-2.jpg",
+            "title": "All Day Comfort",
+            "text": "Soft, stretchy, and fun designs to switch up daily outfits!",
+            "button": "Shop Now",
+            "link": "shopify://collections/all-day-comfort",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_7xBhMw": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/Occasion-3.jpg",
+            "img_mobile": "shopify://shop_images/Occasion-3.jpg",
+            "title": "Skating",
+            "text": "Breathable, flexible, and keep kids warm for moving freely on the ice!",
+            "button": "Shop Now",
+            "link": "shopify://collections/skating-outfits",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_Th6QPM",
+        "text_7TpQak",
+        "text_BLxnbg",
+        "text_3HAr44",
+        "text_7xBhMw"
+      ],
+      "settings": {
+        "title": "How to pick the perfect leggings for your little ones' activity?",
+        "Desktop_top": 80,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_why_choose_7CxGPh": {
+      "type": "index-WhyChoose",
+      "blocks": {
+        "text_BGJQQP": {
+          "type": "text",
+          "settings": {
+            "exchange_positions": false,
+            "img": "shopify://shop_images/Whypc.jpg",
+            "img_mobile": "shopify://shop_images/Whymb.jpg",
+            "link": "shopify://pages/bluesign-system-partner",
+            "title": "Bluesign, highest safety standards",
+            "text": "Our products are made with the highest standards of environmental protection and safety, ensuring a better future for both you and the planet. Enjoy quality and sustainability in every piece!",
+            "text_color": "",
+            "bg_color": "#f8f8f8"
+          }
+        },
+        "text_DU69BH": {
+          "type": "text",
+          "settings": {
+            "exchange_positions": true,
+            "img": "shopify://shop_images/Whypc-1.jpg",
+            "img_mobile": "shopify://shop_images/Whymb-1.jpg",
+            "link": "shopify://collections/queenie-leggings",
+            "title": "Design features for kids’ personality",
+            "text": "With fun, unique prints inspired by nature, we offer a wide variety of design features to match every child’s individual style!",
+            "text_color": "",
+            "bg_color": "#f8f8f8"
+          }
+        },
+        "text_dtL36r": {
+          "type": "text",
+          "settings": {
+            "exchange_positions": false,
+            "img": "shopify://shop_images/Whypc-2.jpg",
+            "img_mobile": "shopify://shop_images/Whymb-2.jpg",
+            "link": "shopify://collections/breezy-leggings",
+            "title": "Zero constraints, tailored to kids' heeds",
+            "text": "Our leggings, crafted from high-performance fabric with Infinity Stretch technology, offer unbeatable softness and flexibility—ideal for little ones' active play. Get ready for endless fun!",
+            "text_color": "",
+            "bg_color": "#f8f8f8"
+          }
+        }
+      },
+      "block_order": [
+        "text_BGJQQP",
+        "text_DU69BH",
+        "text_dtL36r"
+      ],
+      "settings": {
+        "title": "Why moodytiger Leggings?",
+        "Desktop_top": 80,
+        "Mobile_top": 40,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 80,
+        "Mobile_bottom": 40,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_shop_feed_XxPVna": {
+      "type": "index-shopFeed",
+      "blocks": {
+        "text_mbfbAV": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1_e582de4c-09a7-4e10-bce2-6477c80a7520.jpg",
+            "text": "@elka.growth.journey",
+            "hide_text": "Shop Now",
+            "link": "shopify://products/breezy-leggings-409",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_ytD4wF": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/2_dce5d07e-bfa6-410d-8998-c48e9aa40304.jpg",
+            "text": "@candygirlsadventures",
+            "hide_text": "Shop Now",
+            "link": "shopify://products/dancer-bootcut-fleece-leggings",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_MNY36J": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/3_cfdc961f-5189-4de7-bd5f-bfbd90a99ff4.jpg",
+            "text": "@___._ruo_.___",
+            "hide_text": "Shop Now",
+            "link": "shopify://products/breathable-kids-leggings-breezy",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_7RHmMK": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/4_18a1326f-684e-4449-aec1-326d5c638e4b.jpg",
+            "text": "@lourdes.haun",
+            "hide_text": "Shop Now",
+            "link": "shopify://products/queenie-leggings-5",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_XGgJ3X": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "",
+            "hide_text": "",
+            "link": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_mbfbAV",
+        "text_ytD4wF",
+        "text_MNY36J",
+        "text_7RHmMK",
+        "text_XGgJ3X"
+      ],
+      "settings": {
+        "full_width": false,
+        "title": "Get Inspired",
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 40,
+        "Desktop_paddingBottom": 82,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "multicolumn_YD7YRe": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_7BXKLX": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/images.png",
+            "image_full_width": false,
+            "retina": true,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_BeCMdG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/images_1.png",
+            "image_full_width": false,
+            "retina": true,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gCWPHF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/images_2.png",
+            "image_full_width": false,
+            "retina": true,
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_zFCDrh": {
+          "type": "column",
+          "settings": {
+            "image_full_width": false,
+            "retina": true,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_7BXKLX",
+        "column_BeCMdG",
+        "column_gCWPHF",
+        "column_zFCDrh"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_id": "",
+        "heading": "Multicolumn",
+        "heading_left": false,
+        "description": "<p>Add a short description for this section</p>",
+        "full_width": true,
+        "display_type": "grid",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "text_alignment": "left",
+        "heading_size": "h5",
+        "mobile_swipe": false,
+        "show_progress_bar": true,
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "index_banner_fUy7WJ",
+    "scrolling_text_fK7HH3",
+    "index_product_introduction_tab_AgLhFX",
+    "index_product_introduction_FiWxQd",
+    "index_product_introduction_adMbNY",
+    "index_product_introduction_wgw8Bz",
+    "index_scenario_description_MJ6Vhg",
+    "index_why_choose_7CxGPh",
+    "index_shop_feed_XxPVna",
+    "multicolumn_YD7YRe"
+  ]
+}

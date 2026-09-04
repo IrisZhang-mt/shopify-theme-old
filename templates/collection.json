@@ -1,0 +1,265 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection_top_E6HDME": {
+      "type": "collection-top",
+      "blocks": {
+        "text_KmFDTe": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/pc_16b37345-a314-4e89-85c6-b151af685bf1.jpg",
+            "img_mobile": "shopify://shop_images/mb_6f393ac4-a3d5-4248-8ef3-e31600dcd3bb.jpg",
+            "link": "",
+            "text": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_rHVTD6": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/pc-1_fff9ddb1-29f5-45cd-a3ae-953320165965.jpg",
+            "img_mobile": "shopify://shop_images/mb-1.jpg",
+            "link": "",
+            "text": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_YMzqYf": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/pc-2.jpg",
+            "img_mobile": "shopify://shop_images/mb-2.jpg",
+            "link": "",
+            "text": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_KmFDTe",
+        "text_rHVTD6",
+        "text_YMzqYf"
+      ],
+      "disabled": true,
+      "name": "Collection Top",
+      "settings": {
+        "mobile_text": true,
+        "grid_number": "3",
+        "Desktop_top": 20,
+        "Mobile_top": 30,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 40,
+        "Mobile_bottom": 20,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_collection_ghNyyM": {
+      "type": "index-collection",
+      "blocks": {
+        "text_z6TGNi": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "30% Off 5 Pieces",
+            "link": "shopify://collections/new-arrival",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_DkKP4C": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "20% Off Every Piece",
+            "link": "shopify://collections/season-send-off-sale",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_xQADi4": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "Free Gifts $299+",
+            "link": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_wb6YDG": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "Leggings",
+            "link": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_z6TGNi",
+        "text_DkKP4C",
+        "text_xQADi4",
+        "text_wb6YDG"
+      ],
+      "disabled": true,
+      "settings": {
+        "img": "shopify://shop_images/peach-whip.png",
+        "img_mobile": "shopify://shop_images/peach-whip.png",
+        "title": "BLACK FRIDAY DEALS",
+        "text": "Up to 50% Off.",
+        "button": "Details",
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 50,
+        "Mobile_bottom": 40,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "text_color": "#000000"
+      }
+    },
+    "cust_collection_banner_fqVV4a": {
+      "type": "cust-collection-banner",
+      "name": "Cust Collection banner",
+      "settings": {
+        "heading": "",
+        "description": "",
+        "desktop_ratio_width": 1440,
+        "desktop_ratio_height": 265,
+        "mobile_ratio_width": 390,
+        "mobile_ratio_height": 280,
+        "background_color": "#ffffff",
+        "text_color": "#140f0f",
+        "top_spacing": 0,
+        "bottom_spacing": 0
+      }
+    },
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_image": false,
+        "show_collection_description": false,
+        "show_subcollections": false,
+        "make_heading_uppercase": false,
+        "heading_size": "h2",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "2eb8e6da-98ad-442c-b31e-fcc9bc0532b9": {
+          "type": "promotion",
+          "disabled": true,
+          "settings": {
+            "render_on_first_page": true,
+            "promotion_collection": "",
+            "promotion_position": 1,
+            "promotion_width": "1",
+            "image": "shopify://shop_images/leggings-set.jpg",
+            "title": "New Year Bundle",
+            "text": "",
+            "link_label": "Shop Now",
+            "link": "",
+            "use_text_button": true,
+            "block_link": "shopify://products/breezy-leggings-designed-in-la-473",
+            "overlay_color": "#000000",
+            "overlay_opacity": 5
+          }
+        },
+        "cust_promotion_94ziBw": {
+          "type": "cust_promotion",
+          "disabled": true,
+          "settings": {
+            "render_on_first_page": true,
+            "content_position": "bottom-left",
+            "promotion_collection": "",
+            "promotion_position": 1,
+            "promotion_width": "2",
+            "promotion_width_mobile": "2",
+            "title": "Back to School Sale",
+            "text": "Step into the new school year with style and comfort!",
+            "link_label": "Explore",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 21
+          }
+        },
+        "cust_promotion_cWLtiW": {
+          "type": "cust_promotion",
+          "disabled": true,
+          "settings": {
+            "render_on_first_page": false,
+            "content_position": "middle-center",
+            "promotion_collection": "",
+            "promotion_position": 5,
+            "promotion_width": "1",
+            "promotion_width_mobile": "1",
+            "image": "shopify://shop_images/moodytiger-banner-horizontal-07_31be1ce9-e2ea-48df-a222-f5d9f7624d90.png",
+            "title": "Promotion",
+            "text": "Advertise a promotion or a sale",
+            "link_label": "Explore",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 70
+          }
+        }
+      },
+      "block_order": [
+        "2eb8e6da-98ad-442c-b31e-fcc9bc0532b9",
+        "cust_promotion_94ziBw",
+        "cust_promotion_cWLtiW"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "products_per_page": 40,
+        "columns_desktop": 4,
+        "pagination_type": "paginated",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_counts": false,
+        "filter_color_swatches": true,
+        "facets_desktop": "sidebar"
+      }
+    },
+    "cust_main_collection_product_grid_Nbkjf3": {
+      "type": "cust-main-collection-product-grid",
+      "name": "Cust Product grid",
+      "settings": {
+        "full_width": true,
+        "products_per_page": 40,
+        "columns_desktop": 4,
+        "pagination_type": "paginated",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_counts": false,
+        "filter_color_swatches": true,
+        "facets_desktop": "sidebar"
+      }
+    }
+  },
+  "order": [
+    "collection_top_E6HDME",
+    "index_collection_ghNyyM",
+    "cust_collection_banner_fqVV4a",
+    "main-collection-banner",
+    "product-grid",
+    "cust_main_collection_product_grid_Nbkjf3"
+  ]
+}

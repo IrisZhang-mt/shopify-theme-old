@@ -1,0 +1,45 @@
+<img
+  src="{{ 'bluesign_logo.jpg' | asset_url }}"
+  alt="blue sign technology"
+  style="display: none;"
+  id="bluesign-logo"
+>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var logo = document.getElementById('bluesign-logo');
+    if (!logo) return;
+
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    var nodesToReplace = [];
+
+    while ((node = walker.nextNode())) {
+      if (node.nodeValue.includes('@bluesign')) {
+        nodesToReplace.push(node);
+      }
+    }
+
+    nodesToReplace.forEach(function (node) {
+      var fragment = document.createDocumentFragment();
+      var parts = node.nodeValue.split('@bluesign');
+
+      parts.forEach(function (part, index) {
+        if (index > 0) {
+          var image = document.createElement('img');
+          image.src = logo.src;
+          image.alt = 'blue sign technology';
+          image.style.verticalAlign = 'middle';
+          image.style.height = '1em';
+          fragment.appendChild(image);
+        }
+
+        if (part) {
+          fragment.appendChild(document.createTextNode(part));
+        }
+      });
+
+      node.parentNode.replaceChild(fragment, node);
+    });
+  });
+</script>

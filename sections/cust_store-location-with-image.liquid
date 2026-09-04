@@ -1,0 +1,214 @@
+{% comment %} {{- 'collapsible-content.css' | asset_url | stylesheet_tag -}} {% endcomment %}
+<style>
+  .cust-store-location-img {
+    object-fit: cover;
+    height: 100%;
+  }
+  @media (max-width: 767px) {
+    .cust-store-location-toggle-button {
+      margin: 0 auto;
+      display: flex;
+    }
+  }
+  .cust-store-location-content {
+    padding: 25px;
+  }
+  .cust-store-location,
+  .cust-store-location .hidden-without-show-all,
+  .cust-store-location--show-all .hidden-with-show-all {
+    display: none;
+  }
+  .cust-store-location--active,
+  .cust-store-location--show-all .hidden-without-show-all {
+    display: block;
+  }
+  @media (min-width: 768px) {
+    .cust-store-location--active {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .cust-store-location--show-all {
+      display: block;
+    }
+    .cust-store-location--show-all .cust-store-location-img {
+      display: none;
+    }
+    .cust-store-location-content {
+      padding: 64px;
+    }
+    .cust-store-location {
+      margin-bottom: 64px;
+    }
+  }
+  .cust-store-location-list--desktop {
+    display: none;
+  }
+  @media (min-width: 1200px) {
+    .cust-store-location-list--mobile {
+      display: none;
+    }
+    .cust-store-location-list--desktop {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 30px;
+    }
+    .cust-store-location--show-all .cust-store-location-list--desktop {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>
+<div
+  class="cust-store-location cust-store-location-{{ section.id }}"
+  data-belong-to-location="{{ section.settings.belong_to | escape }}"
+  style="border-bottom: 1px solid var(--color-border);"
+>
+  {%- if section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'cust-store-location-img' }}
+  {%- else -%}
+    {% comment %} placeholder: {% endcomment %}
+    {{ 'product-1' | placeholder_svg_tag }}
+  {%- endif -%}
+
+  <div class="cust-store-location-content">
+    {%- if section.settings.title != blank -%}
+      <h4 class="h4">{{ section.settings.title }}</h4>
+    {%- endif -%}
+
+    <div class="cust-store-location-list--mobile">
+      {%- for block in section.blocks -%}
+        {%- if forloop.index > 4 -%}
+          {%- render 'cust-store-location-item',
+            section: section,
+            block: block,
+            open: forloop.first,
+            hidden_without_show_all: true
+          -%}
+        {%- else -%}
+          {%- render 'cust-store-location-item', section: section, block: block, open: forloop.first -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="cust-store-location-list--desktop">
+      <div>
+        {%- for block in section.blocks limit: 2 -%}
+          {%- render 'cust-store-location-item', section: section, block: block, open: true -%}
+        {%- endfor -%}
+      </div>
+      <div>
+        {%- for block in section.blocks offset: 2 limit: 2 -%}
+          {%- render 'cust-store-location-item', section: section, block: block, open: true -%}
+        {%- endfor -%}
+      </div>
+      <div class="hidden-without-show-all">
+        {%- for block in section.blocks offset: 4 limit: 2 -%}
+          {%- render 'cust-store-location-item', section: section, block: block, open: true -%}
+        {%- endfor -%}
+      </div>
+      <div class="hidden-without-show-all">
+        {%- for block in section.blocks offset: 6 limit: 2 -%}
+          {%- render 'cust-store-location-item', section: section, block: block, open: true -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- if section.blocks.size > 4 -%}
+      <button
+        class="button outline cust-store-location-toggle-button"
+        data-cust-store-location-toggle
+        type="button"
+        style="width: fit-content;"
+      >
+        <span
+          class="hidden-with-show-all"
+        >
+          View All {{ section.settings.title }} ({{ section.blocks.size }})
+        </span>
+        <span
+          class="hidden-without-show-all"
+        >
+          Hide
+        </span>
+      </button>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    function init() {
+      const section = document.querySelector('.cust-store-location-{{ section.id }}');
+      const btn = section.querySelector('[data-cust-store-location-toggle]');
+      btn.addEventListener('click', () => {
+        section.classList.toggle('cust-store-location--show-all');
+      });
+    }
+    init();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cust Store Location",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shanghai"
+    },
+    {
+      "type": "text",
+      "id": "belong_to",
+      "label": "Belong To Location",
+      "default": "China",
+      "info": "Match this with the location tab title, this section will be shown when the tab is active."
+    }
+  ],
+  "blocks": [
+    {
+      "name": "store",
+      "type": "store",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Festival Walk"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cust Store Location",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "store"
+        },
+        {
+          "type": "store"
+        },
+        {
+          "type": "store"
+        },
+        {
+          "type": "store"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

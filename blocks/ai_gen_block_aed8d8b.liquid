@@ -1,0 +1,762 @@
+{% doc %}
+  @prompt
+    I need a form for customers to fill the personal information,include first name, last name, email address, Instagram account, address, why and  what, need a horizontal version to fit the page size.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-customer-form-{{ ai_gen_id }} {
+    max-width: 100%;
+    width: 100%;
+    padding: {{ block.settings.form_padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    border: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-customer-form__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .ai-customer-form__title-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.title_size }}px;
+    margin: 0 0 10px;
+    font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    font-weight: {{ settings.heading_font.weight }};
+  }
+
+  .ai-customer-form__description-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .ai-customer-form__content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .ai-customer-form__section-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .ai-customer-form__field-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-customer-form__field--span-2-{{ ai_gen_id }} {
+    grid-column: span 2;
+  }
+
+  .ai-customer-form__field--span-3-{{ ai_gen_id }} {
+    grid-column: span 3;
+  }
+
+  .ai-customer-form__field--span-4-{{ ai_gen_id }} {
+    grid-column: span 4;
+  }
+
+  .ai-customer-form__field--full-{{ ai_gen_id }} {
+    grid-column: 1 / -1;
+  }
+
+  .ai-customer-form__label-{{ ai_gen_id }} {
+    color: {{ block.settings.label_color }};
+    font-size: {{ block.settings.label_size }}px;
+    font-weight: 500;
+    font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+  }
+
+  .ai-customer-form__input-{{ ai_gen_id }},
+  .ai-customer-form__textarea-{{ ai_gen_id }},
+  .ai-customer-form__select-{{ ai_gen_id }} {
+    padding: 12px 16px;
+    border: 2px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    background-color: {{ block.settings.input_background_color }};
+    color: {{ block.settings.input_text_color }};
+    font-size: {{ block.settings.input_text_size }}px;
+    font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-customer-form__input-{{ ai_gen_id }}:focus,
+  .ai-customer-form__textarea-{{ ai_gen_id }}:focus,
+  .ai-customer-form__select-{{ ai_gen_id }}:focus {
+    outline: none;
+    border-color: {{ block.settings.input_focus_border_color }};
+    box-shadow: 0 0 0 3px {{ block.settings.input_focus_border_color | color_modify: 'alpha', 0.2 }};
+  }
+
+  .ai-customer-form__textarea-{{ ai_gen_id }} {
+    min-height: {{ block.settings.textarea_height }}px;
+    resize: vertical;
+  }
+
+  .ai-customer-form__button-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: {{ block.settings.button_alignment }};
+    margin-top: 10px;
+  }
+
+  .ai-customer-form__button-{{ ai_gen_id }} {
+    padding: 15px 40px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    text-transform: {% if settings.button_uppercase %}uppercase{% else %}none{% endif %};
+    letter-spacing: {{ settings.button_letter_spacing | divided_by: 100.0 }}em;
+    min-width: 200px;
+  }
+
+  .ai-customer-form__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-customer-form__success-{{ ai_gen_id }} {
+    color: {{ block.settings.success_color }};
+    background-color: {{ block.settings.success_color | color_modify: 'alpha', 0.1 }};
+    padding: 15px;
+    border-radius: {{ block.settings.input_border_radius }}px;
+    border: 1px solid {{ block.settings.success_color | color_modify: 'alpha', 0.3 }};
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  .ai-customer-form__error-{{ ai_gen_id }} {
+    color: {{ block.settings.error_color }};
+    background-color: {{ block.settings.error_color | color_modify: 'alpha', 0.1 }};
+    padding: 15px;
+    border-radius: {{ block.settings.input_border_radius }}px;
+    border: 1px solid {{ block.settings.error_color | color_modify: 'alpha', 0.3 }};
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  .ai-customer-form__required-{{ ai_gen_id }} {
+    color: {{ block.settings.error_color }};
+  }
+
+  @media screen and (max-width: 990px) {
+    .ai-customer-form__section-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-customer-form-{{ ai_gen_id }} {
+      padding: {{ block.settings.form_padding | times: 0.7 }}px;
+    }
+
+    .ai-customer-form__section-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: 15px;
+    }
+
+    .ai-customer-form__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-customer-form__field--span-2-{{ ai_gen_id }},
+    .ai-customer-form__field--span-3-{{ ai_gen_id }},
+    .ai-customer-form__field--span-4-{{ ai_gen_id }} {
+      grid-column: span 1;
+    }
+
+    .ai-customer-form__button-{{ ai_gen_id }} {
+      width: 100%;
+      min-width: auto;
+    }
+
+    .ai-customer-form__button-wrapper-{{ ai_gen_id }} {
+      justify-content: stretch;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="ai-customer-form-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {%- form 'contact' -%}
+    <div class="ai-customer-form__header-{{ ai_gen_id }}">
+      {%- if block.settings.form_title != blank -%}
+        <h2 class="ai-customer-form__title-{{ ai_gen_id }}">{{ block.settings.form_title }}</h2>
+      {%- endif -%}
+      {%- if block.settings.form_description != blank -%}
+        <div class="ai-customer-form__description-{{ ai_gen_id }}">{{ block.settings.form_description }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="ai-customer-form__content-{{ ai_gen_id }}">
+      <div class="ai-customer-form__section-{{ ai_gen_id }}">
+        <div class="ai-customer-form__field-{{ ai_gen_id }}">
+          <label for="ai-first-name-{{ ai_gen_id }}" class="ai-customer-form__label-{{ ai_gen_id }}">
+            {{ block.settings.first_name_label }}
+            <span class="ai-customer-form__required-{{ ai_gen_id }}">*</span>
+          </label>
+          <input
+            type="text"
+            id="ai-first-name-{{ ai_gen_id }}"
+            name="contact[first_name]"
+            class="ai-customer-form__input-{{ ai_gen_id }}"
+            value="{{ form.first_name }}"
+            placeholder="{{ block.settings.first_name_placeholder }}"
+            required
+            aria-required="true"
+          >
+        </div>
+
+        <div class="ai-customer-form__field-{{ ai_gen_id }}">
+          <label for="ai-last-name-{{ ai_gen_id }}" class="ai-customer-form__label-{{ ai_gen_id }}">
+            {{ block.settings.last_name_label }}
+            <span class="ai-customer-form__required-{{ ai_gen_id }}">*</span>
+          </label>
+          <input
+            type="text"
+            id="ai-last-name-{{ ai_gen_id }}"
+            name="contact[last_name]"
+            class="ai-customer-form__input-{{ ai_gen_id }}"
+            value="{{ form.last_name }}"
+            placeholder="{{ block.settings.last_name_placeholder }}"
+            required
+            aria-required="true"
+          >
+        </div>
+
+        <div class="ai-customer-form__field-{{ ai_gen_id }}">
+          <label for="ai-email-{{ ai_gen_id }}" class="ai-customer-form__label-{{ ai_gen_id }}">
+            {{ block.settings.email_label }}
+            <span class="ai-customer-form__required-{{ ai_gen_id }}">*</span>
+          </label>
+          <input
+            type="email"
+            id="ai-email-{{ ai_gen_id }}"
+            name="contact[email]"
+            class="ai-customer-form__input-{{ ai_gen_id }}"
+            value="{{ form.email }}"
+            placeholder="{{ block.settings.email_placeholder }}"
+            required
+            aria-required="true"
+            autocomplete="email"
+            {% if form.errors %}
+              aria-invalid="true"
+              aria-describedby="ai-customer-form-error-{{ ai_gen_id }}"
+            {% endif %}
+          >
+        </div>
+
+        <div class="ai-customer-form__field-{{ ai_gen_id }}">
+          <label for="ai-instagram-{{ ai_gen_id }}" class="ai-customer-form__label-{{ ai_gen_id }}">
+            {{ block.settings.instagram_label }}
+          </label>
+          <input
+            type="text"
+            id="ai-instagram-{{ ai_gen_id }}"
+            name="contact[instagram_account]"
+            class="ai-customer-form__input-{{ ai_gen_id }}"
+            value="{{ form.instagram_account }}"
+            placeholder="{{ block.settings.instagram_placeholder }}"
+          >
+        </div>
+      </div>
+
+      <div class="ai-customer-form__section-{{ ai_gen_id }}">
+        <div class="ai-customer-form__field-{{ ai_gen_id }} ai-customer-form__field--span-2-{{ ai_gen_id }}">
+          <label for="ai-address-{{ ai_gen_id }}" class="ai-customer-form__label-{{ ai_gen_id }}">
+            {{ block.settings.address_label }}
+            {% if block.settings.address_required %}
+              <span class="ai-customer-form__required-{{ ai_gen_id }}">*</span>
+            {% endif %}
+          </label>
+          <textarea
+            id="ai-address-{{ ai_gen_id }}"
+            name="contact[address]"
+            class="ai-customer-form__textarea-{{ ai_gen_id }}"
+            placeholder="{{ block.settings.address_placeholder }}"
+            {% if block.settings.address_required %}required aria-required="true"{% endif %}
+          >{{ form.address }}</textarea>
+        </div>
+
+        <div class="ai-customer-form__field-{{ ai_gen_id }}">
+          <label for="ai-why-{{ ai_gen_id }}" class="ai-customer-form__label-{{ ai_gen_id }}">
+            {{ block.settings.why_label }}
+            {% if block.settings.why_required %}
+              <span class="ai-customer-form__required-{{ ai_gen_id }}">*</span>
+            {% endif %}
+          </label>
+          <textarea
+            id="ai-why-{{ ai_gen_id }}"
+            name="contact[why_question]"
+            class="ai-customer-form__textarea-{{ ai_gen_id }}"
+            placeholder="{{ block.settings.why_placeholder }}"
+            {% if block.settings.why_required %}required aria-required="true"{% endif %}
+          >{{ form.why_question }}</textarea>
+        </div>
+
+        <div class="ai-customer-form__field-{{ ai_gen_id }}">
+          <label for="ai-what-{{ ai_gen_id }}" class="ai-customer-form__label-{{ ai_gen_id }}">
+            {{ block.settings.what_label }}
+            {% if block.settings.what_required %}
+              <span class="ai-customer-form__required-{{ ai_gen_id }}">*</span>
+            {% endif %}
+          </label>
+          <textarea
+            id="ai-what-{{ ai_gen_id }}"
+            name="contact[what_question]"
+            class="ai-customer-form__textarea-{{ ai_gen_id }}"
+            placeholder="{{ block.settings.what_placeholder }}"
+            {% if block.settings.what_required %}required aria-required="true"{% endif %}
+          >{{ form.what_question }}</textarea>
+        </div>
+      </div>
+
+      <div class="ai-customer-form__button-wrapper-{{ ai_gen_id }}">
+        <button
+          type="submit"
+          class="ai-customer-form__button-{{ ai_gen_id }}"
+        >
+          {{ block.settings.submit_button_text }}
+        </button>
+      </div>
+
+      {%- if form.errors -%}
+        <div
+          id="ai-customer-form-error-{{ ai_gen_id }}"
+          class="ai-customer-form__error-{{ ai_gen_id }}"
+        >
+          <strong>{{ block.settings.error_message }}</strong>
+          <ul style="margin: 10px 0 0; padding-left: 20px;">
+            {%- for field in form.errors -%}
+              <li>{{ form.errors.messages[field] }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if form.posted_successfully? -%}
+        <div class="ai-customer-form__success-{{ ai_gen_id }}">
+          <strong>{{ block.settings.success_message }}</strong>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endform -%}
+</div>
+
+{% schema %}
+{
+  "name": "Customer information form",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "label": "Columns on tablet",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "button_alignment",
+      "label": "Button alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Form content"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form title",
+      "default": "Customer Information"
+    },
+    {
+      "type": "textarea",
+      "id": "form_description",
+      "label": "Form description",
+      "default": "Please fill out the form below with your personal information."
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit button text",
+      "default": "Submit Information"
+    },
+    {
+      "type": "header",
+      "content": "Field labels"
+    },
+    {
+      "type": "text",
+      "id": "first_name_label",
+      "label": "First name label",
+      "default": "First Name"
+    },
+    {
+      "type": "text",
+      "id": "first_name_placeholder",
+      "label": "First name placeholder",
+      "default": "Enter your first name"
+    },
+    {
+      "type": "text",
+      "id": "last_name_label",
+      "label": "Last name label",
+      "default": "Last Name"
+    },
+    {
+      "type": "text",
+      "id": "last_name_placeholder",
+      "label": "Last name placeholder",
+      "default": "Enter your last name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email Address"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "instagram_label",
+      "label": "Instagram label",
+      "default": "Instagram Account"
+    },
+    {
+      "type": "text",
+      "id": "instagram_placeholder",
+      "label": "Instagram placeholder",
+      "default": "@your_instagram_handle"
+    },
+    {
+      "type": "text",
+      "id": "address_label",
+      "label": "Address label",
+      "default": "Address"
+    },
+    {
+      "type": "text",
+      "id": "address_placeholder",
+      "label": "Address placeholder",
+      "default": "Enter your full address"
+    },
+    {
+      "type": "checkbox",
+      "id": "address_required",
+      "label": "Make address required",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "why_label",
+      "label": "Why question label",
+      "default": "Why are you interested?"
+    },
+    {
+      "type": "text",
+      "id": "why_placeholder",
+      "label": "Why question placeholder",
+      "default": "Tell us why you're interested in our products/services"
+    },
+    {
+      "type": "checkbox",
+      "id": "why_required",
+      "label": "Make why question required",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "what_label",
+      "label": "What question label",
+      "default": "What are you looking for?"
+    },
+    {
+      "type": "text",
+      "id": "what_placeholder",
+      "label": "What question placeholder",
+      "default": "Describe what you're looking for"
+    },
+    {
+      "type": "checkbox",
+      "id": "what_required",
+      "label": "Make what question required",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Messages"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you! Your information has been submitted successfully."
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error message",
+      "default": "Please correct the following errors:"
+    },
+    {
+      "type": "header",
+      "content": "Form styling"
+    },
+    {
+      "type": "range",
+      "id": "form_padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Form padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "textarea_height",
+      "min": 80,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "label": "Textarea height",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fdf6ee"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#eaeaea"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Label size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Input fields"
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "min": 0,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "label": "Input border radius",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "input_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Input text size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Input background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Input text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border color",
+      "default": "#eaeaea"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_border_color",
+      "label": "Input focus border color",
+      "default": "#ff8300"
+    },
+    {
+      "type": "header",
+      "content": "Submit button"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#ff8300"
+    },
+    {
+      "type": "header",
+      "content": "Status messages"
+    },
+    {
+      "type": "color",
+      "id": "success_color",
+      "label": "Success color",
+      "default": "#c0c2aa"
+    },
+    {
+      "type": "color",
+      "id": "error_color",
+      "label": "Error color",
+      "default": "#d82c0d"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer information form"
+    }
+  ]
+}
+{% endschema %}

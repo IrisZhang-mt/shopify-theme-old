@@ -1,0 +1,313 @@
+{% doc %}
+  Renders the PDP product buy form.
+
+This keeps the current theme markup classes so existing CSS, variant selectors,
+payment terms, pickup availability, and sticky add-to-cart integrations working
+while the submit behavior is handled by an isolated custom element.
+
+  @param {product} product - Product object.
+  @param {object} section - Section object.
+  @param {object} block - Buy buttons block.
+  @param {string} product_form_id - Product form id shared with variant pickers.
+  @param {boolean} [pickup] - Whether to render pickup availability.
+
+  @example
+  {% render 'product-buy-form', product: product, section: section, block: block, product_form_id: product_form_id, pickup: true %}
+{% enddoc %}
+
+<div {{ block.shopify_attributes }}>
+  {%- if product != blank -%}
+    {%- liquid
+      assign gift_card_recipient_feature_active = false
+      if block.settings.show_gift_card_recipient and product.gift_card?
+        assign gift_card_recipient_feature_active = true
+      endif
+
+      assign show_dynamic_checkout = false
+      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
+        assign show_dynamic_checkout = true
+      endif
+
+      assign product_template = product.template_suffix
+      if product.metafields.theme.preorder and product.available
+        assign product_template = 'pre-order'
+      endif
+
+      assign selected_variant = product.selected_or_first_available_variant
+    -%}
+
+    <product-buy-form
+      class="product-form"
+      data-section="{{ section.id }}"
+      data-hide-errors="{{ gift_card_recipient_feature_active }}"
+      template="{{ product_template }}"
+    >
+      <div class="product-form__error-message-wrapper form-notification error" role="alert" hidden>
+        {% render 'svg-icons' with 'thb-error' %}
+        <span class="product-form__error-message"></span>
+      </div>
+
+      {%- form 'product',
+        product,
+        id: product_form_id,
+        class: 'form',
+        novalidate: 'novalidate',
+        data-type: 'add-to-cart-form'
+      -%}
+        <input type="hidden" name="id" value="{{ selected_variant.id }}">
+
+        {%- if gift_card_recipient_feature_active -%}
+          {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+        {%- endif -%}
+
+        <div class="product-add-to-cart-container">
+          <div class="form-notification error" style="display:none;"></div>
+          <div class="add_to_cart_holder">
+            {%- if block.settings.show_quantity_selector -%}
+              <div id="quantity-{{ section.id }}" {{ block.shopify_attributes }}>
+                <quantity-selector class="quantity">
+                  <button
+                    class="minus"
+                    type="button"
+                    aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}"
+                  >
+                    {% render 'svg-icons' with 'minus' %}
+                  </button>
+                  <input
+                    type="number"
+                    id="Quantity-{{ section.id }}"
+                    name="quantity"
+                    class="qty"
+                    value="{{ selected_variant.quantity_rule.min }}"
+                    min="{{ selected_variant.quantity_rule.min }}"
+                    {% if selected_variant.quantity_rule.max != null %}
+                      max="{{ selected_variant.quantity_rule.max }}"
+                    {% endif %}
+                    step="{{ selected_variant.quantity_rule.increment }}"
+                    form="{{ product_form_id }}"
+                    aria-label="{{ 'products.product.quantity.input_label' | t: product: product.title | escape }}"
+                  >
+                  <button
+                    class="plus"
+                    type="button"
+                    aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | escape }}"
+                  >
+                    {% render 'svg-icons' with 'plus' %}
+                  </button>
+                </quantity-selector>
+              </div>
+            {%- endif -%}
+
+            <button
+              type="submit"
+              name="add"
+              id="AddToCart"
+              class="single-add-to-cart-button button{% unless selected_variant.available %} sold-out{% endunless %}"
+              {% unless selected_variant.available %}
+                disabled
+              {% endunless %}
+            >
+              <span class="single-add-to-cart-button--text">
+                {%- liquid
+                  if selected_variant.available == false
+                    assign button_content = 'products.product.sold_out' | t
+                  else
+                    if product_template == 'pre-order'
+                      assign button_content = 'products.product.pre_order' | t
+                    else
+                      assign button_content = 'products.product.add_to_cart' | t
+                    endif
+                  endif
+                -%}
+                {{- button_content -}}
+              </span>
+              <span class="loading-overlay">
+                {% render 'svg-icons' with 'thb-loading' %}
+              </span>
+            </button>
+
+            {%- if show_dynamic_checkout -%}
+              {{ form | payment_button }}
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endform -%}
+    </product-buy-form>
+  {%- else -%}
+    <div class="product-form">
+      <div class="product-form__buttons form">
+        <button type="submit" name="add" class="single_add_to_cart_button button sold-out" disabled>
+          <span class="single-add-to-cart-button--text">{{ 'products.product.sold_out' | t }}</span>
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if product != blank -%}
+    {%- form 'product', product, id: 'product-form-installment', class: 'installment' -%}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {{ form | payment_terms }}
+    {%- endform -%}
+  {%- endif -%}
+</div>
+
+{%- if pickup -%}
+  {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
+    | where: 'pick_up_enabled', true
+  -%}
+  <pickup-availability
+    class="pickup-availability-wrapper"
+    {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}
+      available
+    {% endif %}
+    data-root-url="{{ routes.root_url }}"
+    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+    data-has-only-default-variant="{{ product.has_only_default_variant }}"
+  >
+    {%- if pick_up_availabilities.size > 0 -%}
+      {% render 'product-pickup-availability', pick_up_availabilities: pick_up_availabilities %}
+    {%- endif -%}
+  </pickup-availability>
+  <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% javascript %}
+  if (!customElements.get('product-buy-form')) {
+    customElements.define(
+      'product-buy-form',
+      class ProductBuyForm extends HTMLElement {
+        connectedCallback() {
+          this.sectionId = this.dataset.section;
+          this.hideErrors = this.dataset.hideErrors === 'true';
+          this.form = document.getElementById(`product-form-${this.sectionId}`);
+          this.form?.addEventListener('submit', this.onSubmit.bind(this));
+        }
+
+        onSubmit(event) {
+          event.preventDefault();
+          if (!this.form || !this.form.reportValidity()) return;
+
+          const formData = new FormData(this.form);
+          formData.append(
+            'sections',
+            this.getSectionsToRender()
+              .filter((section) => document.getElementById(section.id))
+              .map((section) => section.section)
+          );
+          formData.append('sections_url', window.location.pathname);
+
+          this.setLoading(true);
+          this.clearError();
+          this.openCartDrawerOptimistically();
+
+          fetch(window.theme.routes.cart_add_url, {
+            method: 'POST',
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              Accept: 'application/javascript',
+            },
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((state) => {
+              if (state.status) {
+                this.showError(state.description);
+                this.rollbackCartDrawer();
+                return;
+              }
+
+              this.renderCartSections(state);
+              document.dispatchEvent(
+                new CustomEvent('cart:item-added', {
+                  detail: {
+                    product: Object.prototype.hasOwnProperty.call(state, 'items') ? state.items[0] : state,
+                  },
+                })
+              );
+            })
+            .catch((error) => {
+              console.error(error);
+              this.rollbackCartDrawer();
+            })
+            .finally(() => {
+              document.getElementById('Cart-Drawer')?.classList.remove('is-updating', 'is-updating--cover');
+              this.setLoading(false);
+            });
+        }
+
+        getSectionsToRender() {
+          return [
+            { id: 'Cart', section: 'main-cart', selector: '.thb-cart-form' },
+            { id: 'Cart-Drawer', section: 'cart-drawer', selector: '.cart-drawer' },
+            { id: 'cart-drawer-toggle', section: 'cart-bubble', selector: '.thb-item-count' },
+          ];
+        }
+
+        renderCartSections(state) {
+          this.getSectionsToRender().forEach((section) => {
+            const root = document.getElementById(section.id);
+            const sectionHtml = state.sections?.[section.section];
+            if (!root || !sectionHtml) return;
+
+            const source = new DOMParser().parseFromString(sectionHtml, 'text/html').querySelector(section.selector);
+            const destination = root.querySelector(section.selector) || root;
+            if (source && destination) destination.innerHTML = source.innerHTML;
+          });
+
+          if (typeof CartDrawer !== 'undefined') new CartDrawer();
+          if (typeof Cart !== 'undefined') new Cart().renderContents(state);
+
+          const drawer = document.getElementById('Cart-Drawer');
+          if (drawer) {
+            document.body.classList.add('open-cc', 'open-cart');
+            drawer.classList.add('active');
+            document.dispatchEvent(new CustomEvent('cart-drawer:open'));
+          } else {
+            document.body.classList.remove('open-cc');
+          }
+        }
+
+        openCartDrawerOptimistically() {
+          const drawer = document.getElementById('Cart-Drawer');
+          const productDrawer = document.getElementById('Product-Drawer');
+          if (!drawer || productDrawer?.contains(this)) return;
+
+          document.body.classList.add('open-cc', 'open-cart');
+          drawer.classList.add('active', 'is-updating');
+          if (drawer.querySelector('.cart-drawer__empty-cart')) drawer.classList.add('is-updating--cover');
+          document.dispatchEvent(new CustomEvent('cart-drawer:open'));
+          this.optimisticOpen = true;
+        }
+
+        rollbackCartDrawer() {
+          if (!this.optimisticOpen) return;
+          const drawer = document.getElementById('Cart-Drawer');
+          drawer?.classList.remove('active', 'is-updating', 'is-updating--cover');
+          document.body.classList.remove('open-cart', 'open-cc');
+          this.optimisticOpen = false;
+        }
+
+        setLoading(isLoading) {
+          document.querySelectorAll('.single-add-to-cart-button').forEach((button) => {
+            button.classList.toggle('loading', isLoading);
+            button.toggleAttribute('aria-disabled', isLoading);
+          });
+        }
+
+        clearError() {
+          this.showError(false);
+        }
+
+        showError(message) {
+          if (this.hideErrors) return;
+          const wrapper = this.querySelector('.product-form__error-message-wrapper');
+          const messageElement = wrapper?.querySelector('.product-form__error-message');
+          if (!wrapper || !messageElement) return;
+
+          wrapper.toggleAttribute('hidden', !message);
+          if (message) messageElement.textContent = message;
+        }
+      }
+    );
+  }
+{% endjavascript %}

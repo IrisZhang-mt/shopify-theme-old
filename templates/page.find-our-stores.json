@@ -1,0 +1,826 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "16618629918566dc27": {
+      "type": "rich-text",
+      "blocks": {
+        "1661862991ee6f499c-1": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "text": "Discover Our Retail Stores",
+            "size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "1661862991ee6f499c-1"
+      ],
+      "settings": {
+        "section_width": "grid",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "color_bg": "rgba(0,0,0,0)",
+        "color_text": "#151515",
+        "color_links": "#151515",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "cust_store_tabs_PBNCpK": {
+      "type": "cust_store-tabs",
+      "blocks": {
+        "location_NyehHk": {
+          "type": "location",
+          "disabled": true,
+          "settings": {
+            "title": "China"
+          }
+        },
+        "location_RkKWKi": {
+          "type": "location",
+          "settings": {
+            "title": "Hong Kong"
+          }
+        },
+        "location_wexApg": {
+          "type": "location",
+          "settings": {
+            "title": "Macau"
+          }
+        },
+        "location_T3AWU7": {
+          "type": "location",
+          "settings": {
+            "title": "Malaysia"
+          }
+        },
+        "location_QPiWLN": {
+          "type": "location",
+          "settings": {
+            "title": "Singapore"
+          }
+        },
+        "location_XyNFhm": {
+          "type": "location",
+          "settings": {
+            "title": "The United States"
+          }
+        },
+        "location_aWRMY8": {
+          "type": "location",
+          "settings": {
+            "title": "The United Arab Emirates"
+          }
+        }
+      },
+      "block_order": [
+        "location_NyehHk",
+        "location_RkKWKi",
+        "location_wexApg",
+        "location_T3AWU7",
+        "location_QPiWLN",
+        "location_XyNFhm",
+        "location_aWRMY8"
+      ],
+      "settings": {
+        "title": "Discover Our Retail Stores"
+      }
+    },
+    "cust_store_location_with_image_43qFNX": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_rzi7QD": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_nhwxqy": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_LFPafG": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_NL8Lqy": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_64WNnL": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_EjKwdz": {
+          "type": "store",
+          "settings": {
+            "title": "ifc mall",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_PkfQz9": {
+          "type": "store",
+          "settings": {
+            "title": "SOGO",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_WD7WNz": {
+          "type": "store",
+          "settings": {
+            "title": "Harbour City",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_rzi7QD",
+        "store_nhwxqy",
+        "store_LFPafG",
+        "store_NL8Lqy",
+        "store_64WNnL",
+        "store_EjKwdz",
+        "store_PkfQz9",
+        "store_WD7WNz"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/5f74fd12e3c5607f971407508f9e042b.png",
+        "title": "Shanghai",
+        "belong_to": "China"
+      }
+    },
+    "cust_store_location_with_image_WbVaGY": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_qhDUFw": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_p9rNbD": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_aW69iU": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_RyytWj": {
+          "type": "store",
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_qhDUFw",
+        "store_p9rNbD",
+        "store_aW69iU",
+        "store_RyytWj"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/5f74fd12e3c5607f971407508f9e042b.png",
+        "title": "Beijing",
+        "belong_to": "China"
+      }
+    },
+    "cust_store_location_with_image_mHgqbn": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_rYNEeA": {
+          "type": "store",
+          "settings": {
+            "title": "Harbour City",
+            "description": "<p>Shop OTG32, G/F, Ocean Terminal, Harbour City, Tsim Sha Tsui, Kowloon</p><p><strong>Contact Number: </strong><br/>91591025</p><p><strong>Operation Hour: </strong><br/>11am - 9pm</p><p><strong>Email: </strong><br/>hkg003@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_xmVTCh": {
+          "type": "store",
+          "settings": {
+            "title": "ifc mall",
+            "description": "<p>Shop 3092B, Podium Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>51883831</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>hkg001@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_JaCMVx": {
+          "type": "store",
+          "settings": {
+            "title": "Lee Garden Two",
+            "description": "<p>Shop No. 224 on the 2/F , Lee Garden Two, Causeway Bay</p><p><strong>Contact Number: </strong><br/>51883785</p><p><strong>Operation Hour: </strong><br/>11AM-8PM</p><p><strong>Email: </strong><br/>hkg006@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_8kDbpE": {
+          "type": "store",
+          "settings": {
+            "title": "SOGO",
+            "description": "<p>Shop 7-24, 7/F, SOGO Department Store, 555 Hennessy Road, Causeway Bay</p><p><strong>Contact Number: </strong><br/>91536165</p><p><strong>Operation Hour: </strong><br/>10am - 10pm</p><p><strong>Email: </strong><br/>hkg002@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_4WA74t": {
+          "type": "store",
+          "settings": {
+            "title": "K11 Musea",
+            "description": "<p>Shop B231B, Level 2, K11 Musea Victoria Dockside 18 Salisbury Road, Tsim Sha Tsui, Kowloon</p><p><strong>Contact Number: </strong><br/>51882684</p><p><strong>Operation Hour: </strong><br/>11am - 8pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_7Bq8qt": {
+          "type": "store",
+          "settings": {
+            "title": "Cityplaza",
+            "description": "<p>Shop 116 , City Plaza, 18 Taikoo Shing Road, Taikoo Shing, Hong Kong</p><p><strong>Contact Number: </strong><br/>64766148</p><p><strong>Operation Hour: </strong><br/>11:00AM-8:00PM</p><p><strong>Email: </strong><br/><a href=\"http://hkg009store@moodytiger.com\" target=\"_blank\">hkg009store@moodytiger.com</a></p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_VtJz9i": {
+          "type": "store",
+          "settings": {
+            "title": "Citygate Outlets",
+            "description": "<p>Shop 304, 3/F, Citygate Outlet, 20 Tat Tung Road, Lantau Island, New Territories</p><p><strong>Contact Number: </strong><br/>91525317</p><p><strong>Operation Hour: </strong><br/>Mon-Thur 11:30AM-8:30PM</p><p>Fri-Sun 11:30AM-9PM</p><p><strong>Email: </strong><br/>hkg005@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_YMcBrU": {
+          "type": "store",
+          "settings": {
+            "title": "New Town Plaza",
+            "description": "<p>Shop A204, Level 2, New Town Plaza, Shatin, New Territories, Hong Kong</p><p><strong>Contact Number: </strong><br/>51882852</p><p><strong>Operation Hour: </strong><br/>11:30AM-8:30PM</p><p><strong>Email: </strong><br/>hkg007@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_rYNEeA",
+        "store_xmVTCh",
+        "store_JaCMVx",
+        "store_8kDbpE",
+        "store_4WA74t",
+        "store_7Bq8qt",
+        "store_VtJz9i",
+        "store_YMcBrU"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Hong_Kong_e1b15626-a3c1-43cf-8f8c-17ab84748de0.jpg",
+        "title": "Hong Kong",
+        "belong_to": "Hong Kong"
+      }
+    },
+    "cust_store_location_with_image_VQn63W": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_aYpb8w": {
+          "type": "store",
+          "settings": {
+            "title": "Singapore",
+            "description": "<p>#B1-61 The SHOPPES AT MARINA BAY SANDS, SINGAPORE</p><p><strong>Contact Number: </strong></p><p>+65-91335530</p><p><strong>Operation Hour: </strong><br/>10am - 10pm</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_gGWqpk": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_L8RRNc": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk 2",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_ewVDLm": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_aYpb8w",
+        "store_gGWqpk",
+        "store_L8RRNc",
+        "store_ewVDLm"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Singapore.jpg",
+        "title": "Singapore",
+        "belong_to": "Singapore"
+      }
+    },
+    "cust_store_location_with_image_gdLr3g": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_CWjaJA": {
+          "type": "store",
+          "settings": {
+            "title": "Mirdif",
+            "description": "<p>G056 Mirdif City Centre, Sheikh Mohammed Bin Zayed Rd - Mirdif - Dubai</p>"
+          }
+        },
+        "store_A6WnDJ": {
+          "type": "store",
+          "settings": {
+            "title": "Dubai Mall",
+            "description": "<p>TDM-SF-137, Second Floor, Dubai Mall</p><p></p>"
+          }
+        },
+        "store_Cw7UpQ": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk 2",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_Fr3yJi": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_CWjaJA",
+        "store_A6WnDJ",
+        "store_Cw7UpQ",
+        "store_Fr3yJi"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/dubai_8715a3a3-e23e-49ad-996d-fc23ae3232c6.jpg",
+        "title": "Dubai",
+        "belong_to": "The United Arab Emirates"
+      }
+    },
+    "cust_store_location_with_image_ztUV8t": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_4xKDhk": {
+          "type": "store",
+          "settings": {
+            "title": "Westfield Valley Fair",
+            "description": "<p>Space 1335, 2855 Stevens Creek Blvd. San Jose, CA 95050</p>"
+          }
+        },
+        "store_C6wGEw": {
+          "type": "store",
+          "settings": {
+            "title": "Westfield Century City",
+            "description": "<p>Space 2915, 10250 Santa Monica Blvd, Los Angeles, CA 90067</p><p></p>"
+          }
+        },
+        "store_JcPpEw": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk 2",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_4aJG6m": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_4xKDhk",
+        "store_C6wGEw",
+        "store_JcPpEw",
+        "store_4aJG6m"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/US_11c38098-72d8-4ad7-b2a2-25a736bf3f84.jpg",
+        "title": "California",
+        "belong_to": "The United States"
+      }
+    },
+    "cust_store_location_with_image_MTTQn3": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_fELagx": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_3YdGxj": {
+          "type": "store",
+          "settings": {
+            "title": "New Yaohan",
+            "description": "<p>Shop 5-17, Level 5, New Yaohan, Av. Doutor Mário Soares n˚90, Macau</p><p><strong>Operation Hour: </strong><br/>10am - 10pm</p><p><strong>Contact:</strong></p><p>87918730</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_TWaCeK": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_AJYApg": {
+          "type": "store",
+          "settings": {
+            "title": "Macau Londoner",
+            "description": "<p>Macau, Cotai Link Road, Londoner Macao, 2nd Floor, Shop 2117.</p><p><strong>Operation Hour: </strong><br/>12:00 PM to 9:00 PM</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_mkzzh9": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_fELagx",
+        "store_3YdGxj",
+        "store_TWaCeK",
+        "store_AJYApg",
+        "store_mkzzh9"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Macau-1.jpg",
+        "title": "Macau",
+        "belong_to": "Macau"
+      }
+    },
+    "cust_store_location_with_image_kQWpqh": {
+      "type": "cust_store-location-with-image",
+      "blocks": {
+        "store_4gCN8x": {
+          "type": "store",
+          "settings": {
+            "title": "The Exchange TRX",
+            "description": "<p>L2.18.0 LEVEL 2, THE EXCHANGE TRX, PERSIARAN TRX, TUN RAZAK EXCHANGE, 55188 KUALA LUMPUR, KUALA LUMPUR (WP)</p><p><strong>Contact Number: </strong><br/>147851954</p><p><strong>Operation Hour: </strong><br/>10am - 10pm</p><p><strong>Email: </strong><br/>kul002@moodytiger.com</p><p></p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_HNXTaA": {
+          "type": "store",
+          "settings": {
+            "title": "Suria KLCC",
+            "description": "<p>Lot 223C, 2/F, Suria KLCC, 241, Petronas Twin Tower, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</p><p><strong>Contact Number: </strong><br/>186150851</p><p><strong>Operation Hour: </strong><br/>10AM-10PM</p><p><strong>Email: </strong><br/>kul001@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_mJGryU": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk 2",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br/>59167933</p><p><strong>Operation Hour: </strong><br/>10am - 9pm</p><p><strong>Email: </strong><br/>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        },
+        "store_GcGALq": {
+          "type": "store",
+          "disabled": true,
+          "settings": {
+            "title": "Festival Walk",
+            "description": "<p>Shop 3092B, Level 3, ifc mall, 8 Finance Street, Central</p><p><strong>Contact Number: </strong><br>59167933</p><p><strong>Operation Hour: </strong><br>10am - 9pm</p><p><strong>Email: </strong><br>K11@moodytiger.com</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Get Direction</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "store_4gCN8x",
+        "store_HNXTaA",
+        "store_mJGryU",
+        "store_GcGALq"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Malaysia.jpg",
+        "title": "Malaysia",
+        "belong_to": "Malaysia"
+      }
+    },
+    "spacer_xkNteY": {
+      "type": "spacer",
+      "disabled": true,
+      "settings": {
+        "spacer_mobile": 50,
+        "spacer_desktop": 100,
+        "border_separator": true,
+        "border_separator_full": true
+      }
+    },
+    "166186303682d7c655": {
+      "type": "spacer",
+      "disabled": true,
+      "settings": {
+        "spacer_mobile": 40,
+        "spacer_desktop": 80,
+        "border_separator": true,
+        "border_separator_full": true
+      }
+    },
+    "multicolumn_DEwhQM": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_7QwWVN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "Festival Walk",
+            "text": "<p>Shop B231B, Level 2, K11 Musea Victoria Dockside 18 Salisbury Road, Tsim Sha Tsui, Kowloon, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>59167933</p><p><strong>Business Hour: </strong><br/>11AM-8PM</p><p><strong>Email:</strong><br/><a href=\"mailto:K11@moodytiger.com\" target=\"_blank\" title=\"mailto:K11@moodytiger.com\">K11@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_QFeide": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "ifc mall",
+            "text": "<p>Shop 3092B, Podium Level 3, ifc mall, 8 Finance Street, Central, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>67169187</p><p><strong>Business Hour: </strong><br/>10AM-9PM</p><p><strong>Email:</strong><br/><a href=\"mailto:hkg001@moodytiger.com\" target=\"_blank\" title=\"mailto:hkg001@moodytiger.com\">hkg001@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_VNERAr": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "SOGO",
+            "text": "<p>Shop 7-24, 7/F, SOGO Department Store, 555 Hennessy Road, Causeway Bay, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>98591672</p><p><strong>Business Hour: </strong><br/>10AM-10PM<br/>depends on mall business hours</p><p><strong>Email:</strong><br/><a href=\"mailto:hkg002@moodytiger.com\" target=\"_blank\" title=\"mailto:hkg002@moodytiger.com\">hkg002@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_mj9pQW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "Harbour City",
+            "text": "<p>Shop OTG32, G/F, Ocean Terminal, Harbour City, Tsim Sha Tsui, Kowloon, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>93797089</p><p><strong>Business Hour: </strong><br/>11AM-9PM</p><p><strong>Email:</strong><br/><a href=\"mailto:hkg003@moodytiger.com\" target=\"_blank\" title=\"mailto:hkg003@moodytiger.com\">hkg003@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_JhdJyr": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "Festival Walk",
+            "text": "<p>Shop L1-35, 1/F, Festival Walk, 80 Tat Chee Avenue, Kowloon Tong, Kowloon, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>57206918</p><p><strong>Business Hour: </strong><br/>11:30AM-8:30PM</p><p><strong>Email:</strong><br/><a href=\"mailto:hkg004@moodytiger.com\" target=\"_blank\" title=\"mailto:hkg004@moodytiger.com\">hkg004@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_iiUhmC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "Citygate Outlets",
+            "text": "<p>Shop 304, 3/F, Citygate Outlet, 20 Tat Tung Road, Lantau Island, New Territories, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>57230382</p><p><strong>Business Hour: </strong><br/>Mon-Thur 11:30AM-8:30PM<br/>Fri-Sun 11:30AM-9PM</p><p><strong>Email:</strong><br/><a href=\"mailto:hkg005@moodytiger.com\" target=\"_blank\" title=\"mailto:hkg005@moodytiger.com\">hkg005@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_Htx7wm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "Lee Garden Two",
+            "text": "<p>Shop No. 224 on the 2/F , Lee Garden Two, Causeway Bay, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>97040864</p><p><strong>Business Hour: </strong><br/>11AM-8PM</p><p><strong>Email:</strong><br/><a href=\"mailto:hkg006@moodytiger.com\" target=\"_blank\" title=\"mailto:hkg006@moodytiger.com\">hkg006@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_fzzBbX": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "New Town Plaza",
+            "text": "<p>Shop A204, Level 2, New Town Plaza, Shatin, New Territories, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>54603305</p><p><strong>Business Hour: </strong><br/>11:30AM-8:30PM</p><p><strong>Email:</strong><br/><a href=\"mailto:hkg007@moodytiger.com\" target=\"_blank\" title=\"mailto:hkg007@moodytiger.com\">hkg007@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "column_7QwWVN",
+        "column_QFeide",
+        "column_VNERAr",
+        "column_mj9pQW",
+        "column_JhdJyr",
+        "column_iiUhmC",
+        "column_Htx7wm",
+        "column_fzzBbX"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_id": "",
+        "heading": "Hong Kong",
+        "heading_left": false,
+        "description": "",
+        "full_width": true,
+        "display_type": "grid",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "text_alignment": "left",
+        "heading_size": "h5",
+        "mobile_swipe": false,
+        "show_progress_bar": true,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "multicolumn_VL9KxP": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_YbiNMG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "New Yaohan",
+            "text": "<p>Shop 5-17, Level 5, New Yaohan, Av. Doutor Mário Soares n˚90, Macau<br/><br/><strong>Contact Number:</strong><br/>87918730</p><p><strong>Business Hour: </strong><br/>Consignment<br/>depends on mall business hours</p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "column_YbiNMG"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_id": "",
+        "heading": "Macau",
+        "heading_left": false,
+        "description": "",
+        "full_width": true,
+        "display_type": "grid",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "text_alignment": "left",
+        "heading_size": "h5",
+        "mobile_swipe": false,
+        "show_progress_bar": true,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "multicolumn_bELdKN": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_gaQbXD": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "Suria KLCC",
+            "text": "<p>Lot 223C, 2/F, Suria KLCC, 241, Petronas Twin Tower, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur<br/><br/><strong>Contact Number:</strong><br/>186150851</p><p><strong>Business Hour: </strong><br/>10AM-10PM</p><p><strong>Email:</strong><br/><a href=\"mailto:kul001@moodytiger.com\" target=\"_blank\" title=\"mailto:kul001@moodytiger.com\">kul001@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        },
+        "column_LcViiX": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "The Exchange TRX",
+            "text": "<p>Shop No. 224 on the 2/F , Lee Garden Two, Causeway Bay, Hong Kong<br/><br/><strong>Contact Number:</strong><br/>147851954</p><p><strong>Business Hour: </strong><br/>10AM-10PM</p><p><strong>Email:</strong><br/><a href=\"mailto:kul002@moodytiger.com\" target=\"_blank\" title=\"mailto:kul002@moodytiger.com\">kul002@moodytiger.com</a></p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "column_gaQbXD",
+        "column_LcViiX"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_id": "",
+        "heading": "Malaysia",
+        "heading_left": false,
+        "description": "",
+        "full_width": true,
+        "display_type": "grid",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "text_alignment": "left",
+        "heading_size": "h5",
+        "mobile_swipe": false,
+        "show_progress_bar": true,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "multicolumn_cqGNUU": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_TJ8er8": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2bde1027e8a6521489361a322aca23ff.jpg",
+            "image_full_width": false,
+            "retina": true,
+            "title": "Marine Bay Sands",
+            "text": "<p>#B1-61 The Shoppes At Marina Bay Sands, Singapore</p>",
+            "link_label": "Get direction",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "column_TJ8er8"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_id": "",
+        "heading": "Singapore",
+        "heading_left": false,
+        "description": "",
+        "full_width": true,
+        "display_type": "grid",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "text_alignment": "left",
+        "heading_size": "h5",
+        "mobile_swipe": false,
+        "show_progress_bar": true,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "16618629918566dc27",
+    "cust_store_tabs_PBNCpK",
+    "cust_store_location_with_image_43qFNX",
+    "cust_store_location_with_image_WbVaGY",
+    "cust_store_location_with_image_mHgqbn",
+    "cust_store_location_with_image_VQn63W",
+    "cust_store_location_with_image_gdLr3g",
+    "cust_store_location_with_image_ztUV8t",
+    "cust_store_location_with_image_MTTQn3",
+    "cust_store_location_with_image_kQWpqh",
+    "spacer_xkNteY",
+    "166186303682d7c655",
+    "multicolumn_DEwhQM",
+    "multicolumn_VL9KxP",
+    "multicolumn_bELdKN",
+    "multicolumn_cqGNUU"
+  ]
+}

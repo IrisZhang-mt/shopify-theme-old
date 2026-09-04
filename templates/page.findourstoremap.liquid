@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Our Retail Stores</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    
+    body {
+      color: #333;
+      height: 100vh;
+      overflow: hidden;
+      background: white;
+    }
+    
+    .store-locator-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      font-family: Montserrat, sans-serif;
+    }
+    
+    .page-header {
+      background: white;
+      color: #333;
+      text-align: center;
+      padding: 70px 20px 20px 20px;  /* 上70px 右20px 下20px 左20px */
+      {% comment %} border-bottom: 1px solid #eee; {% endcomment %}
+    }
+    
+    .page-header h1 {
+      font-size: 38px;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .controls-section {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      {% comment %} border-bottom: 1px solid #eee; {% endcomment %}
+    }
+    
+    .left-controls {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .finder-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .view-toggle {
+      display: flex;
+      gap: 0;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .view-toggle button,
+      .filter-button {
+        -webkit-appearance: none !important;
+        -webkit-text-fill-color: #333 !important;
+      }
+
+      .view-toggle button.active,
+      .filter-button.active {
+        -webkit-text-fill-color: white !important;
+      }
+    
+    .view-toggle button {
+      padding: 8px 20px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+      font-size:16px;
+    }
+    
+    .view-toggle button.active {
+      background: #333;
+      color: white;
+    }
+    
+    .view-toggle button:not(.active):hover {
+      background: #f5f5f5;
+      color: #333 !important;;
+    }
+    
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .search-section {
+      padding: 15px 20px;
+      background: white;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+    
+    .search-section.map-mode {
+      max-width: none;
+      margin: 0;
+      text-align: left;
+      padding: 15px 20px;
+      padding-top:0;
+    }
+    
+    .search-section.list-mode {
+      max-width: none;
+      margin: 0;
+      text-align: center;
+      padding: 15px 20px;
+    }
+
+    .search-input-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      max-width: 600px;
+      align-items: stretch; /* 确保垂直居中对齐 */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .search-section.map-mode .search-input-wrapper {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    
+    {% comment %} .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+      {% comment %} height: 44px; /* 明确设置高度 */
+      line-height: normal; /* 重置行高 */ {% endcomment %}
+      margin:0;
+    } {% endcomment %}
+
+
+
+/* 原来的搜索输入框样式，替换为： */
+.search-input {
+  flex: 1;
+  height: 44px !important; /* 强制设置高度 */
+  padding: 0 16px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  line-height: normal !important;
+  box-sizing: border-box !important;
+  vertical-align: top !important;
+  margin: 0 !important;
+  outline: none;
+  background: white !important;
+}
+
+.search-input:focus {
+  border-color: #667eea !important;
+}
+
+/* 原来的搜索按钮样式，替换为： */
+.search-button {
+  width: 44px !important;
+  height: 44px !important; /* 强制设置与输入框相同高度 */
+  min-height: 44px !important;
+  max-height: 44px !important;
+  background: #333 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  vertical-align: top !important;
+  flex-shrink: 0 !important;
+  transition: background 0.3s;
+}
+
+.search-button:hover {
+  background: #555 !important;
+}
+
+.search-button svg {
+  flex-shrink: 0;
+}
+    
+    .search-input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    
+    {% comment %} .search-button {
+      {% comment %} padding: 12px; {% endcomment %}
+      width: 44px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+      height: auto; /* 与搜索框相同高度 */
+      flex-shrink: 0; /* 防止按钮被压缩 */
+      margin:0;
+    } {% endcomment %}
+    
+    .search-button:hover {
+      background: #555;
+    }
+    
+    .stores-count {
+      color: #666;
+      font-size: 14px;
+      margin: 0;
+    }
+    
+    /* Map View Styles */
+    .map-view {
+      display: none;
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    .map-view.active {
+      display: flex;
+    }
+    
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      background: white;
+      border-right: 1px solid #eee;
+    }
+    
+    .store-list-sidebar {
+      flex: 1;
+      overflow-y: auto;
+      background: white;
+    }
+    
+    .store-item {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .store-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .store-item.active {
+      background: #e8f4f8;
+      border-left: 4px solid #667eea;
+    }
+    
+    .store-name {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    
+    .store-address {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    
+    .store-contact {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .store-contact div {
+      margin-bottom: 4px;
+    }
+    
+    .store-email {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .store-distance {
+      font-size: 12px;
+      color: #999;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 10px 0;
+    }
+    
+    .map-container {
+      flex: 1;
+      position: relative;
+      background: #f5f5f5;
+    }
+    
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gm-style-iw-d {
+      overflow: hidden !important;
+    }
+
+    .gm-style-iw-chr {
+      display: none !important; /* 隐藏右上角默认关闭按钮 */
+    }
+
+    .gm-style-iw {
+      padding: 0 !important;
+      overflow: visible !important;
+      max-width: none !important;
+    }
+    
+    .store-info-window {
+      max-width: 300px;
+      padding:20px;
+    }
+    
+    .store-info-window img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+    
+    .store-info-window h3 {
+      margin: 10px 0;
+       font-size: 16px !important; /* 明确设置字体大小 */
+    }
+    
+    .store-info-window p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    
+    .directions-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #667eea;
+      text-decoration: none;
+      font-size: 14px;
+      margin-top: 10px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .directions-link:hover {
+      color: #5a67d8;
+    }
+    
+    /* List View Styles */
+    .list-view {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      {% comment %} overflow: hidden; {% endcomment %}
+      overflow-y: auto; 
+    }
+    
+    .list-view.active {
+      display: flex;
+    }
+    
+    .filter-section {
+      padding: 15px 20px;
+      background: white;
+      {% comment %} border-bottom: 1px solid #eee; {% endcomment %}
+      text-align: center;
+    }
+    
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .filter-button {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.3s;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .filter-button.active {
+      background: #333;
+      color: white;
+      border-color: #333;
+    }
+    
+    .filter-button:hover:not(.active) {
+      background: #f5f5f5;
+    }
+    
+    .store-grid-container {
+      flex: 1;
+      {% comment %} overflow-y: auto;  {% endcomment %}
+      overflow: visible; 
+      padding: 20px;
+      background:white;
+    }
+    
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: none;
+      margin: 0;
+    }
+    
+    .store-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+      background: white;
+    }
+    
+    .store-card:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* 图片统一尺寸：容器固定 3/2 宽高比，图片 100% 填充 + object-fit:cover 居中裁剪。
+       之前用 height:auto + object-fit:contain（保持完整比例）导致每张图按原始比例、高度参差不齐。 */
+    .store-card-image-wrap {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+    }
+
+    .store-card-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .store-card-content {
+      padding: 20px;
+      position: relative;
+    }
+    
+    .store-card-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    
+    .store-card-info {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    
+    .store-card-contact {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .store-card-contact div {
+      margin-bottom: 4px;
+    }
+    
+    .store-card-email {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .store-card-distance {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #999;
+      margin: 10px 0;
+    }
+    
+    .location-icon {
+      color: #999;
+    }
+    
+    .badge-icon {
+      {% comment %} color: #cc7a00;
+      position: absolute;
+      top: 15px;
+      right: 15px; {% endcomment %}
+      display: none !important;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .store-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+
+      .map-view {
+        height: 100vh; /* 确保map-view占满屏幕高度 */
+      }
+      
+      .map-view.active {
+        flex-direction: column;
+        height: 100vh; /* 确保激活状态也有高度 */
+      }
+
+      .finder-title {
+        font-size: 18px; /* 比Discover Our Retail Stores的24px小 */
+      }
+
+      .store-locator-container {
+        padding: 0 10px;
+      }
+      
+      .page-header h1 {
+        font-size: 24px;
+      }
+
+      {% comment %} .left-column {
+        display: none; /* 隐藏左侧列表 */
+      } {% endcomment %}
+
+      .left-column {
+        display: flex;
+        width: 100%;
+        height: auto; /* 只保留这个，删除后面的 height: 40vh; */
+        flex-shrink: 0;
+      }
+
+      .store-list-sidebar {
+        display: none; /* 只隐藏门店列表部分 */
+      }
+
+      .search-section.map-mode {
+        display: block; /* 确保搜索栏显示 */
+      }
+
+
+      .map-container {
+        flex:1;
+        min-height: 0; /* 确保flex子元素能正确缩放 */
+      } 
+      
+      .controls-section {
+        flex-direction: row; /* 改为水平排列 */
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .left-controls {
+        {% comment %} width: 100%;
+        justify-content: space-between; {% endcomment %}
+        flex: 1; 
+      }
+      
+      .view-toggle {
+        {% comment %} transform: scale(0.7);  {% endcomment %}
+        {% comment %} min-width: 150px; /* 给整个切换按钮组足够空间 */ {% endcomment %}
+        {% comment %} align-self: flex-end; {% endcomment %}
+      }
+
+      .view-toggle button {
+        padding: 4px 10px; /* 移动端更小的内边距 */
+        font-size: 14px; /* 同时可以减小字体 */
+      }
+      
+    
+      
+      .store-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+      
+      .store-grid-container {
+        padding: 15px;
+      }
+      
+      .filter-buttons {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 5px;
+      }
+      .filter-button {
+        flex-shrink: 0; /* 防止按钮缩小 */
+      }
+      .filter-button:hover:not(.active) {
+        color:white !important;;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .store-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .search-input-wrapper {
+        max-width: none;
+      }
+      
+      .page-header {
+        padding: 30px 15px 15px 15px; 
+      }
+      
+      .page-header h1 {
+        font-size: 20px;
+      }
+      
+      .left-column {
+        {% comment %} height: 35vh; {% endcomment %}
+      }
+      
+      .map-container {
+        height: 65vh;
+      }
+    }
+
+    /* Fallback image styles */
+    .store-image-fallback {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Custom scrollbar */
+    .store-list-sidebar::-webkit-scrollbar,
+    .store-grid-container::-webkit-scrollbar,
+    .list-view::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .store-list-sidebar::-webkit-scrollbar-track,
+    .store-grid-container::-webkit-scrollbar-track {
+      background:   /* #f1f1f1;*/ 
+    }
+    
+    .store-list-sidebar::-webkit-scrollbar-thumb,
+    .store-grid-container::-webkit-scrollbar-thumb {
+      background: black /* #c1c1c1*/; 
+      border-radius: 3px;
+    }
+    
+    .store-list-sidebar::-webkit-scrollbar-thumb:hover,
+    .store-grid-container::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8; 
+    }
+  </style>
+</head>
+<body>
+  <div class="store-locator-container">
+    <div class="page-header">
+      <h1>Discover Our Retail Stores</h1>
+    </div>
+    
+    <div class="controls-section">
+      <div class="left-controls">
+        <h2 class="finder-title">Find a store</h2>
+      </div>
+      <div class="view-toggle">
+        <button class="toggle-map active" onclick="toggleView('map')">Map</button>
+        <button class="toggle-list" onclick="toggleView('list')">List</button>
+      </div>
+    </div>
+    
+    <div class="content-area">
+      <div class="map-view active" id="mapView">
+        <div class="left-column">
+          <!-- Search Section for Map View -->
+          <div class="search-section map-mode" id="searchSection">
+            <div class="search-input-wrapper">
+              <input type="text" class="search-input" placeholder="Search zip code or location" id="locationSearch">
+              <button class="search-button" onclick="searchLocation()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+              </button>
+            </div>
+            <p class="stores-count" id="storesCount">0 stores near your location, within 50 miles.</p>
+          </div>
+          
+          <div class="store-list-sidebar" id="storeListSidebar">
+            <!-- Store items will be dynamically added here -->
+          </div>
+        </div>
+        <div class="map-container">
+          <div id="map"></div>
+        </div>
+      </div>
+      
+      <!-- List View -->
+      <div class="list-view" id="listView">
+        <!-- Search Section for List View -->
+        <div class="search-section list-mode" id="listSearchSection">
+          <div class="search-input-wrapper">
+            <input type="text" class="search-input" placeholder="Search zip code or location" id="listLocationSearch">
+            <button class="search-button" onclick="searchListLocation()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </div>
+          <p class="stores-count" id="listStoresCount">0 stores near your location, within 50 miles.</p>
+        </div>
+        
+        <div class="filter-section">
+          <div class="filter-buttons">
+            <button class="filter-button active" onclick="filterStores('all')">All</button>
+            <button class="filter-button" onclick="filterStores('hongkong')">Hong Kong</button>
+            <button class="filter-button" onclick="filterStores('macau')">Macau</button>
+            <button class="filter-button" onclick="filterStores('malaysia')">Malaysia</button>
+            <button class="filter-button" onclick="filterStores('singapore')">Singapore</button>
+            <button class="filter-button" onclick="filterStores('usa')">The United States</button>
+            <button class="filter-button" onclick="filterStores('uae')">The United Arab Emirates</button>
+            <button class="filter-button" onclick="filterStores('shanghai')">Shanghai</button>
+            <button class="filter-button" onclick="filterStores('beijing')">Beijing</button>
+            <button class="filter-button" onclick="filterStores('shenzhen')">Shenzhen</button>
+            <button class="filter-button" onclick="filterStores('guangzhou')">Guangzhou</button>
+          </div>
+        </div>
+        
+        <div class="store-grid-container">
+          <div class="store-grid" id="storeGrid">
+            <!-- Store cards will be dynamically added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Maps API -->
+  <script async defer 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnhrA31cRuvHPcVtiggjoNtX05Tw1GG3U&callback=initMap&libraries=places">
+  </script>
+
+  <script>
+    let map;
+    let userLocation = { lat: 22.3193, lng: 114.1694 }; // Default to Hong Kong
+    let userMarker = null; // 添加用户位置标记的引用
+    let stores = [];
+    let markers = [];
+    let activeInfoWindow = null;
+    let currentView = 'map';
+    let currentFilter = 'all';
+    let mapInitialized = false;
+
+    // 从 Shopify Settings 获取图片 URL
+    const storeImages = {
+      'default': {% if settings.store_default_image %}'{{ settings.store_default_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'k11-musea': {% if settings.store_k11_image %}'{{ settings.store_k11_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'macau-store': {% if settings.store_macau_image %}'{{ settings.store_macau_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'malaysia-store': {% if settings.store_malaysia_image %}'{{ settings.store_malaysia_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'singapore-store': {% if settings.store_singapore_image %}'{{ settings.store_singapore_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'usa-store': {% if settings.store_usa_image %}'{{ settings.store_usa_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'uae-store': {% if settings.store_uae_image %}'{{ settings.store_uae_image | img_url: "300x200" }}'{% else %}null{% endif %}
+    };
+
+    console.log('storeImages:', storeImages);
+
+    // 隐藏门店名单：在 Shopify 后台「主题设置 → Store Locator Settings → Hidden stores」维护，
+    // 每行一个门店英文名。此处转成小写去空格数组，fetchStores() 里据此过滤，不显示这些门店。
+    // 好处：运营可自助配置、保存即时生效，无需改代码/后端，也不动门店主档表。
+    const HIDDEN_STORE_NAMES = [
+      {%- assign hidden_lines = settings.store_locator_hidden | strip | newline_to_br | split: '<br />' -%}
+      {%- for hidden_line in hidden_lines -%}
+        {%- assign hidden_name = hidden_line | strip -%}
+        {%- if hidden_name != blank -%}{{ hidden_name | downcase | json }},{%- endif -%}
+      {%- endfor -%}
+    ];
+
+    // 获取店铺图片的函数
+    function getStoreImage(storeId, storeName) {
+      {% comment %} let imageKey = 'default';
+      
+      if (storeName && storeName.toLowerCase().includes('k11')) {
+        imageKey = 'k11-musea';
+      } else if (city) {
+        const cityLower = city.toLowerCase();
+        if (cityLower.includes('macau')) {
+          imageKey = 'macau-store';
+        } else if (cityLower.includes('malaysia') || cityLower.includes('kuala lumpur')) {
+          imageKey = 'malaysia-store';
+        } else if (cityLower.includes('singapore')) {
+          imageKey = 'singapore-store';
+        } else if (cityLower.includes('usa') || cityLower.includes('united states')) {
+          imageKey = 'usa-store';
+        } else if (cityLower.includes('uae') || cityLower.includes('dubai') || cityLower.includes('emirates')) {
+          imageKey = 'uae-store';
+        }
+      }
+      
+      return storeImages[imageKey] || storeImages['default'] || createFallbackImage(storeName); {% endcomment %}
+        if (storeId) {
+          // 使用Shopify的file_url filter来获取文件
+          // 注意：这需要在Liquid模板中预处理，不能在纯JavaScript中直接使用
+          return `https://cdn.shopify.com/s/files/1/0475/6920/7457/files/${storeId}.jpg`;
+        }
+        return storeImages['default'] || createFallbackImage(storeName);
+
+    }
+
+    // 创建备用图片
+    function createFallbackImage(storeName) {
+      return `data:image/svg+xml,${encodeURIComponent(`
+        <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <rect width="300" height="200" fill="url(#gradient)"/>
+          <text x="150" y="100" font-size="16" fill="white" text-anchor="middle" dominant-baseline="middle">${storeName || 'Store'}</text>
+        </svg>
+      `)}`;
+    }
+
+    function handleImageError(img, storeName) {
+      img.onerror = null;
+      img.src = `https://cdn.shopify.com/s/files/1/0475/6920/7457/files/US0001.jpg`;
+      
+      // 如果US0001.jpg也加载失败，则用生成图片
+      img.onerror = function() {
+        img.onerror = null;
+        img.src = createFallbackImage(storeName);
+      };
+    }
+
+    // Search location in list view
+    function searchListLocation() {
+      const searchInput = document.getElementById('listLocationSearch').value;
+      
+      if (!searchInput) return;
+      
+      const geocoder = new google.maps.Geocoder();
+      
+      geocoder.geocode({ address: searchInput }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+          const location = results[0].geometry.location;
+          userLocation = {
+            lat: location.lat(),
+            lng: location.lng()
+          };
+          
+          calculateDistances();
+          updateStoresCount();
+          displayListView();
+          document.getElementById('listStoresCount').textContent = document.getElementById('storesCount').textContent;
+        } else {
+          alert('Location not found. Please try a different search.');
+        }
+      }); 
+    }
+
+    // Initialize Google Map
+    function initMap() {
+      console.log('initMap called');
+      
+      if (mapInitialized) {
+        console.log('Map already initialized');
+        return;
+      }
+
+      try {
+        const mapElement = document.getElementById('map');
+        if (!mapElement) {
+          console.error('Map element not found');
+          setTimeout(initMap, 100);
+          return;
+        }
+
+        map = new google.maps.Map(mapElement, {
+          center: userLocation,
+          zoom: 12,
+          minZoom: 2, // 设置最小缩放级别，防止缩得太小
+          styles: [
+            {
+              featureType: "poi",
+              elementType: "labels",
+              stylers: [{ visibility: "off" }]
+            }
+          ],
+          disableDefaultUI: true,
+          gestureHandling: 'greedy',
+          scrollwheel: true,
+          draggable: true,
+          disableDoubleClickZoom: false,
+        });
+
+        // Add user location marker
+        userMarker = new google.maps.Marker({
+          position: userLocation,
+          map: map,
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10,
+            fillColor: '#4285F4',
+            fillOpacity: 1,
+            strokeColor: '#fff',
+            strokeWeight: 2
+          },
+          title: 'Your Location'
+        });
+
+        mapInitialized = true;
+        console.log('Map initialized successfully');
+        
+        initializeApp();
+        updateMap();
+      } catch (error) {
+        console.error('Error initializing map:', error);
+        setTimeout(initMap, 1000);
+      }
+    }
+
+    window.initMap = initMap;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded');
+      
+      if (window.google && window.google.maps) {
+        console.log('Google Maps API already loaded');
+        initMap();
+      } else {
+        console.log('Loading Google Maps API');
+        loadGoogleMapsAPI();
+      }
+    });
+
+    function loadGoogleMapsAPI() {
+      if (document.querySelector('script[src*="maps.googleapis.com"]')) {
+        console.log('Google Maps script already exists');
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAnhrA31cRuvHPcVtiggjoNtX05Tw1GG3U&callback=initMap&libraries=places&language=en&region=US';
+      script.async = true;
+      script.defer = true;
+      
+      script.onerror = function() {
+        console.error('Failed to load Google Maps API');
+        setTimeout(loadGoogleMapsAPI, 2000);
+      };
+      
+      document.head.appendChild(script);
+    }
+
+    function initializeApp() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            if (map) {
+              updateMap();
+            }
+          },
+          (error) => {
+            console.log('Error getting location:', error);
+          }
+        );
+      }
+      
+      fetchStores();
+    }
+
+    // Fetch stores from API
+    async function fetchStores() {
+      try {
+        
+        const response = await fetch('https://java.moodytiger.work:9001/api/stores/list');
+        const result = await response.json();
+
+        if (result.code !== "200") {
+          throw new Error(`API Error: ${result.message || 'Unknown error'}`);
+        }
+
+        const storesData = result.data || [];
+
+        stores = storesData.map(store => ({
+          id: store.id,
+          name: (store.store_name_en || '').replace(/[\r\n]+/g, ' ').trim(),
+          address: (store.store_address || '').replace(/[\r\n]+/g, ' ').trim(),
+          city: store.city_en,
+          province: store.province_or_state_en,
+          lat: parseFloat(store.latitude),
+          lng: parseFloat(store.longitude),
+          phone: store.contact_number || '',
+          hours: store.operation_hours || '',
+          email: store.email || '',
+          image: getStoreImage(store.store_id, store.store_name_en)
+        }))
+          .filter(s => s.name && s.address)   // 没名字或没地址的脏记录不显示
+          .filter(s => !HIDDEN_STORE_NAMES.includes((s.name || '').toLowerCase().trim()));   // 排除后台配置的隐藏门店
+
+
+
+        // 演示数据
+        {% comment %} stores = [
+          {
+            id: 1,
+            name: 'K11 Musea Hong Kong',
+            address: 'Shop B231B, Level 2, K11 Musea Victoria Dockside 18 Salisbury Road, Tsim Sha Tsui, Kowloon',
+            city: 'Hong Kong',
+            province: 'Hong Kong',
+            lat: 22.2936,
+            lng: 114.1747,
+            phone: '51882684',
+            hours: '11am - 8pm',
+            email: 'K11@moodytiger.com',
+            image: getStoreImage('K11 Musea', 'Hong Kong')
+          },
+          {
+            id: 2,
+            name: 'Macau Central Store',
+            address: 'Avenida da Praia Grande, Macau Peninsula',
+            city: 'Macau',
+            province: 'Macau',
+            lat: 22.1936,
+            lng: 113.5447,
+            phone: '62345678',
+            hours: '10am - 9pm',
+            email: 'macau@moodytiger.com',
+            image: getStoreImage('', 'Macau')
+          },
+          {
+            id: 3,
+            name: 'Malaysia Kuala Lumpur',
+            address: 'Pavilion Kuala Lumpur, Bukit Bintang',
+            city: 'Kuala Lumpur',
+            province: 'Malaysia',
+            lat: 3.1492,
+            lng: 101.7102,
+            phone: '601234567',
+            hours: '10am - 10pm',
+            email: 'malaysia@moodytiger.com',
+            image: getStoreImage('', 'Malaysia')
+          },
+          {
+            id: 4,
+            name: 'Singapore Orchard',
+            address: 'ION Orchard, Orchard Road',
+            city: 'Singapore',
+            province: 'Singapore',
+            lat: 1.3039,
+            lng: 103.8317,
+            phone: '6512345678',
+            hours: '10am - 10pm',
+            email: 'singapore@moodytiger.com',
+            image: getStoreImage('', 'Singapore')
+          },
+          {
+            id: 5,
+            name: 'USA New York',
+            address: '5th Avenue, Manhattan, New York',
+            city: 'New York',
+            province: 'New York',
+            lat: 40.7589,
+            lng: -73.9851,
+            phone: '12125551234',
+            hours: '9am - 9pm',
+            email: 'usa@moodytiger.com',
+            image: getStoreImage('', 'USA')
+          },
+          {
+            id: 6,
+            name: 'UAE Dubai Mall',
+            address: 'Dubai Mall, Downtown Dubai',
+            city: 'Dubai',
+            province: 'UAE',
+            lat: 25.1972,
+            lng: 55.2796,
+            phone: '971501234567',
+            hours: '10am - 12am',
+            email: 'uae@moodytiger.com',
+            image: getStoreImage('', 'Dubai')
+          }
+        ]; {% endcomment %}
+
+        calculateDistances();
+        updateStoresCount();
+        
+        if (currentView === 'map') {
+          displayMapView();
+        } else {
+          displayListView();
+        }
+      } catch (error) {
+        console.error('Error fetching stores:', error);
+      }
+    }
+
+    function calculateDistances() {
+      stores.forEach(store => {
+        store.distance = calculateDistance(
+          userLocation.lat,
+          userLocation.lng,
+          store.lat,
+          store.lng
+        );
+      });
+      
+      stores.sort((a, b) => a.distance - b.distance);
+    }
+
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 3959;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a = 
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    function toRad(deg) {
+      return deg * (Math.PI/180);
+    }
+
+    function updateStoresCount() {
+      const nearbyStores = stores.filter(store => store.distance <= 50).length;
+      document.getElementById('storesCount').textContent = 
+        `${nearbyStores} stores near your location, within 50 miles.`;
+    }
+
+    function toggleView(view) {
+      currentView = view;
+      
+      document.querySelectorAll('.view-toggle button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`.toggle-${view}`).classList.add('active');
+      
+      document.getElementById('mapView').classList.toggle('active', view === 'map');
+      document.getElementById('listView').classList.toggle('active', view === 'list');
+      
+      if (view === 'map') {
+        displayMapView();
+        setTimeout(() => {
+          google.maps.event.trigger(map, 'resize');
+          map.setCenter(userLocation);
+        }, 100);
+      } else {
+        displayListView();
+        document.getElementById('listStoresCount').textContent = document.getElementById('storesCount').textContent;
+      }
+    }
+
+    function displayMapView() {
+      markers.forEach(marker => marker.setMap(null));
+      markers = [];
+      
+      const sidebar = document.getElementById('storeListSidebar');
+      sidebar.innerHTML = '';
+      
+      stores.forEach((store, index) => {
+        const storeItem = document.createElement('div');
+        storeItem.className = 'store-item';
+
+        let contactInfo = '';
+        if (store.phone && store.phone.trim() !== '') {
+          contactInfo += `<div><strong>Contact Number:</strong> ${store.phone}</div>`;
+        }
+        if (store.hours && store.hours.trim() !== '') {
+          contactInfo += `<div><strong>Operation Hour:</strong> ${store.hours}</div>`;
+        }
+        
+        let emailInfo = '';
+        if (store.email && store.email.trim() !== '') {
+          emailInfo = `<div class="store-email"><strong>Email:</strong> ${store.email}</div>`;
+        }
+
+        storeItem.innerHTML = `
+          <div class="store-name">${store.name}</div>
+          <div class="store-address">${store.address}</div>
+          ${contactInfo ? `<div class="store-contact">${contactInfo}</div>` : ''}
+          ${emailInfo}
+          <div class="store-distance">
+            <svg class="location-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            ${store.distance.toFixed(1)} miles from your location
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${store.lat},${store.lng}" 
+            target="_blank" class="directions-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"></path>
+              <path d="M8 2v16"></path>
+              <path d="M16 6v16"></path>
+            </svg>
+            Get Directions
+          </a>
+        `;
+
+        storeItem.onclick = () => selectStore(index,false);
+        sidebar.appendChild(storeItem);
+        
+        const marker = new google.maps.Marker({
+          position: { lat: store.lat, lng: store.lng },
+          map: map,
+          title: store.name,
+          icon: {
+            url: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+          }
+        });
+        
+        const infoWindow = new google.maps.InfoWindow({
+          content: createInfoWindowContent(store)
+        });
+        
+        marker.addListener('click', () => {
+          if (activeInfoWindow) {
+            activeInfoWindow.close();
+          }
+          infoWindow.open(map, marker);
+          activeInfoWindow = infoWindow;
+          selectStore(index,true);
+        });
+        
+        markers.push(marker);
+      });
+      
+      updateMap();
+    }
+
+    function createInfoWindowContent(store) {
+      return `
+        <div class="store-info-window">
+          <img src="${store.image}" alt="${store.name}" onerror="handleImageError(this, '${store.name}')">
+          <h3><strong>${store.name}</strong></h3>
+          <p>${store.address}</p>
+          ${store.phone ? `<p><strong>Phone:</strong> ${store.phone}</p>` : ''}
+          ${store.hours ? `<p><strong>Hours:</strong> ${store.hours}</p>` : ''}
+          ${store.email ? `<p><strong>Email:</strong> ${store.email}</p>` : ''}
+          <a href="https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${store.lat},${store.lng}" 
+             target="_blank" class="directions-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"></path>
+              <path d="M8 2v16"></path>
+              <path d="M16 6v16"></path>
+            </svg>
+            Get Directions
+          </a>
+        </div>
+      `;
+    }
+
+    function selectStore(index, fromMarker = false) {
+      document.querySelectorAll('.store-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+      
+      if (!fromMarker && markers[index]) {
+        if (activeInfoWindow) {
+          activeInfoWindow.close();
+        }
+        
+        const store = stores[index];
+        const infoWindow = new google.maps.InfoWindow({
+          content: createInfoWindowContent(store)
+        });
+        infoWindow.open(map, markers[index]);
+        activeInfoWindow = infoWindow;
+      }
+      
+      const store = stores[index];
+      map.setCenter({ lat: store.lat, lng: store.lng });
+      map.setZoom(15);
+    }
+
+    function displayListView() {
+      const grid = document.getElementById('storeGrid');
+      grid.innerHTML = '';
+      
+      const filteredStores = currentFilter === 'all' 
+        ? stores 
+        : stores.filter(store => {
+            const city = (store.city || '').toLowerCase();
+            const province = (store.province || '').toLowerCase();
+            const name = (store.name || '').toLowerCase();
+            const address = (store.address || '').toLowerCase();
+
+            switch(currentFilter) {
+              case 'hongkong':
+                return city.includes('hong kong') || 
+                       province.includes('hong kong') || 
+                       name.includes('hong kong') || 
+                       address.includes('hong kong');
+              
+              case 'macau':
+                return city.includes('macau') || 
+                       province.includes('macau') || 
+                       name.includes('macau') || 
+                       address.includes('macau');
+              
+              case 'malaysia':
+                return city.includes('kuala lumpur') || 
+                       city.includes('malaysia') ||
+                       province.includes('malaysia') || 
+                       name.includes('malaysia') || 
+                       address.includes('malaysia') ||
+                       address.includes('kuala lumpur');
+              
+              case 'singapore':
+                return city.includes('singapore') || 
+                       province.includes('singapore') || 
+                       name.includes('singapore') || 
+                       address.includes('singapore');
+              
+              case 'usa':
+                return city.includes('usa') || 
+                       city.includes('united states') ||
+                       province.includes('usa') || 
+                       province.includes('united states') ||
+                       name.includes('usa') || 
+                       name.includes('united states') ||
+                       address.includes('usa') ||
+                       address.includes('united states');
+              
+              case 'uae':
+                return city.includes('dubai') || 
+                       city.includes('uae') ||
+                       city.includes('emirates') ||
+                       city.includes('abu dhabi') ||
+                       province.includes('uae') || 
+                       province.includes('emirates') ||
+                       name.includes('uae') || 
+                       name.includes('emirates') ||
+                       name.includes('dubai') ||
+                       address.includes('uae') ||
+                       address.includes('emirates') ||
+                       address.includes('dubai');
+              case 'shanghai':
+                return city.includes('shanghai') ||
+                      province.includes('shanghai') ||
+                      name.includes('shanghai') ||
+                      address.includes('上海');
+
+              case 'beijing':
+                return city.includes('beijing') ||
+                      province.includes('beijing') ||
+                      name.includes('beijing') ||
+                      address.includes('北京');
+
+              case 'shenzhen':
+                return city.includes('shenzhen') ||
+                      province.includes('shenzhen') ||
+                      name.includes('shenzhen') ||
+                      address.includes('深圳');
+
+              case 'guangzhou':
+                return city.includes('guangzhou') ||
+                      province.includes('guangzhou') ||
+                      name.includes('guangzhou') ||
+                      address.includes('广州');
+              
+              default:
+                return city.includes(currentFilter) || province.includes(currentFilter);
+            }
+          });
+      
+      filteredStores.forEach(store => {
+        const card = document.createElement('div');
+        card.className = 'store-card';
+
+        let contactInfo = '';
+        if (store.phone && store.phone.trim() !== '') {
+          contactInfo += `<div>Contact Number: ${store.phone}</div>`;
+        }
+        if (store.hours && store.hours.trim() !== '') {
+          contactInfo += `<div>Operation Hour: ${store.hours}</div>`;
+        }
+
+        card.innerHTML = `
+          <div class="store-card-image-wrap">
+          <img src="${store.image}" alt="${store.name}" class="store-card-image" onerror="handleImageError(this, '${store.name}')">
+          </div>
+          <div class="store-card-content">
+            <div class="store-card-title">${store.name}</div>
+            <div class="store-card-info">${store.address}</div>
+            ${contactInfo ? `<div class="store-card-contact">${contactInfo}</div>` : ''}
+            ${store.email && store.email.trim() !== '' ? `<div class="store-card-email">Email: ${store.email}</div>` : ''}
+            <div class="store-card-distance">
+              <svg class="location-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              ${store.distance.toFixed(1)} miles from your location
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${store.lat},${store.lng}" 
+               target="_blank" class="directions-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"></path>
+                <path d="M8 2v16"></path>
+                <path d="M16 6v16"></path>
+              </svg>
+              Get Directions
+            </a>
+            <svg class="badge-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterStores(filter) {
+      currentFilter = filter;
+      
+      document.querySelectorAll('.filter-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      displayListView();
+    }
+
+    function searchLocation() {
+      const searchInput = document.getElementById('locationSearch').value;
+      
+      if (!searchInput) return;
+      
+      const geocoder = new google.maps.Geocoder();
+      
+      geocoder.geocode({ address: searchInput }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+          const location = results[0].geometry.location;
+          userLocation = {
+            lat: location.lat(),
+            lng: location.lng()
+          };
+          
+          calculateDistances();
+          updateStoresCount();
+          
+          {% comment %} if (currentView === 'map') {
+            displayMapView();
+            map.setCenter(userLocation);
+          } else {
+            displayListView();
+          } {% endcomment %}
+          
+          displayMapView();
+      
+          // 直接设置地图中心和缩放，而不是调用 updateMap()
+          map.setCenter(userLocation);
+          map.setZoom(12);
+          
+          // 更新用户位置标记
+          if (userMarker) {
+            userMarker.setPosition(userLocation);
+          }
+        } else {
+          alert('Location not found. Please try a different search.');
+        }
+      });
+    }
+
+    function updateMap() {
+      if (!map || stores.length === 0) return;
+      
+      const bounds = new google.maps.LatLngBounds();
+      bounds.extend(userLocation);
+      
+      stores.forEach(store => {
+        bounds.extend({ lat: store.lat, lng: store.lng });
+      });
+      
+      map.fitBounds(bounds);
+      
+      map.setCenter(userLocation);
+      map.setZoom(2); 
+      
+      const listener = google.maps.event.addListener(map, 'idle', function() {
+        if (map.getZoom() > 15) map.setZoom(15);
+        if (map.getZoom() < 2) map.setZoom(2);
+
+        google.maps.event.removeListener(listener);
+      }); 
+    }
+  </script>
+</body>
+</html>

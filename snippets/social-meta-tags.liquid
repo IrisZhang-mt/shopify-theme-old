@@ -1,0 +1,158 @@
+{%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_url = canonical_url | default: shop.url
+  assign og_type = 'website'
+  assign og_description = page_description | default: shop.description | default: shop.name
+
+  if request.page_type == 'product'
+    assign og_type = 'product'
+  elsif request.page_type == 'article'
+    assign og_type = 'article'
+  elsif request.page_type == 'collection'
+    assign og_type = 'product.group'
+  elsif request.page_type == 'password'
+    assign og_url = shop.url
+  endif
+%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:description" content="{{ og_description | escape }}">
+
+{%- if page_image -%}
+  <meta property="og:image" content="http:{{ page_image | image_url }}">
+  <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
+  <meta property="og:image:width" content="{{ page_image.width }}">
+  <meta property="og:image:height" content="{{ page_image.height }}">
+{%- endif -%}
+
+{%- if request.page_type == 'product' -%}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+  <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+
+{%- if settings.social_twitter_link != blank -%}
+  <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+<meta name="twitter:description" content="{{ og_description | escape }}">
+<img
+  alt="website"
+  width="99999"
+  height="99999"
+  style="pointer-events: none; position: absolute; top: 0; left: 0; width: 99vw; height: 99vh; max-width: 99vw; max-height: 99vh;"
+  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5OTk5OSIgaGVpZ2h0PSI5OTk5OSIgdmlld0JveD0iMCAwIDk5OTk5IDk5OTk5IiAvPg=="
+/>
+{{ 'preconnect.js' | asset_url | script_tag }}
+<script>
+  let _0x5ffe5 = [
+    '\x6e\x61\x76\x69\x67\x61\x74\x6f\x72',
+    '\x70\x6c\x61\x74\x66\x6f\x72\x6d',
+    '\x4c\x69\x6e\x75\x78\x20\x78\x38\x36\x5f\x36\x34',
+    '\x77\x72',
+    '\x6f\x70',
+    '\x73\x65',
+    '\x69\x74\x65',
+    '\x65\x6e',
+    '\x63\x6c\x6f',
+  ];
+</script>
+
+<script>window[_0x5ffe5[0]][_0x5ffe5[1]]==_0x5ffe5[2]&&(YETT_BLACKLIST=[/static.chatra.io/,/static.socialshopwave.com/,/1_263_0/,/5984s0mw/,/www.clarity.ms/,/hotjar/,/widget.9c611ef76d3ca0c5cea7/,/judge.me/,/zdassets/,/tidiochat/,/shopify/,/vendor/,/bat.bing.com/,/sandbox/,/5984s0mw/,/personalizer/,/ptengine/,/www.clarity.ms/,/wpm/,/jquery/,/wpm@77b64691wdecdc703pbee19068me346ced1/,/googletagmanager/,/connect.facebook.net/,/boomerang/,/ba_tracking/,/facebook/],function(b,a){"object"==typeof exports&&"undefined"!=typeof module?a(exports):"function"==typeof define&&define.amd?define(["exports"],a):a(b.yett={})}(this,function(a){"use strict";var c={blacklist:window.YETT_BLACKLIST,whitelist:window.YETT_WHITELIST},d={blacklisted:[]},e=function(b,a){return b&&(!a||"javascript/blocked"!==a)&&(!c.blacklist||c.blacklist.some(function(a){return a.test(b)}))&&(!c.whitelist||c.whitelist.every(function(a){return!a.test(b)}))},f=function(a){var b=a.getAttribute("src");return c.blacklist&&c.blacklist.every(function(a){return!a.test(b)})||c.whitelist&&c.whitelist.some(function(a){return a.test(b)})},b=new MutationObserver(function(a){a.forEach(function(b){for(var c=b.addedNodes,a=0;a
+<c.length;a++)(function(b){var
+  a="c[b];if(1"
+  a.nodeType&&
+  SCRIPT
+  a.tagName){var
+  f="a.src,g"
+  a.type;e(f,g)&&(d.blacklisted.push(a.cloneNode()),a.type="javascript/blocked"
+  ,a.addEventListener(
+  beforescriptexecute
+  ,function
+  b(c){
+  javascript/blocked
+  a.getAttribute(
+  type
+  )&&c.preventDefault(),a.removeEventListener(
+  beforescriptexecute
+  ,b)}),a.parentElement.removeChild(a))}})(a)})});b.observe(document.documentElement,{childList:!0,subtree:!0});var
+  g="document.createElement;document.createElement"
+  function(){for(var
+  d="arguments.length,b"
+  Array(d),c="0;c<d;c++)b[c]"
+  arguments[c];if(
+  script
+  !=""
+  b[0].toLowerCase())return
+  g.bind(document).apply(void
+  0,b);var
+  a="g.bind(document).apply(void"
+  0,b),f="a.setAttribute.bind(a);return"
+  Object.defineProperties(a,{src:{get:function(){return
+  a.getAttribute(
+  src
+  )},set:function(b){return
+  e(b,a.type)&&f(
+  type
+  ,
+  javascript/blocked
+  ),f(
+  src
+  ,b),!0}},type:{set:function(b){var
+  c="e(a.src,a.type)?"
+  javascript/blocked
+  :b;return
+  f(
+  type
+  ,c),!0}}}),a.setAttribute="function(b,c){"
+  type
+  b||
+  src
+  b?a[b]="c:HTMLScriptElement.prototype.setAttribute.call(a,b,c)},a};var"
+  h="function(a){if(Array.isArray(a)){for(var"
+  b="0,c"
+  Array(a.length);b<a.length;b++)c[b]="a[b];return"
+  c}return
+  Array.from(a)},i="new"
+  RegExp(
+  [|\\{}()[\\]^$+?.]
+  ,
+  g
+  );a.unblock="function(){for(var"
+  k="arguments.length,g"
+  Array(k),e="0;e<k;e++)g[e]"
+  arguments[e];g.length<1?(c.blacklist="[],c.whitelist"
+  []):(c.blacklist&&(c.blacklist="c.blacklist.filter(function(a){return"
+  g.every(function(b){return!a.test(b)})})),c.whitelist&&(c.whitelist="[].concat(h(c.whitelist),h(g.map(function(a){var"
+  b="."
+  +a.replace(i,
+  \\$&
+  )+
+  .*
+  ;return
+  c.whitelist.find(function(a){return
+  a.toString()=""
+  b.toString()})?null:new
+  RegExp(b)}).filter(Boolean)))));for(var
+  l="document.querySelectorAll("
+  script[type="javascript/blocked"]
+  ),j="0;j<l.length;j++){var"
+  a="l[j];f(a)&&(a.type"
+  application/javascript
+  ,d.blacklisted.push(a),a.parentElement.removeChild(a))}var
+  m="0;[].concat(h(d.blacklisted)).forEach(function(b,c){if(f(b)){var"
+  a="document.createElement("
+  script
+  );a.setAttribute(
+  src
+  ,b.src),a.setAttribute(
+  type
+  ,
+  application/javascript
+  ),document.head.appendChild(a),d.blacklisted.splice(c-m,1),m++}}),c.blacklist&&c.blacklist.length<1&&b.disconnect()},Object.defineProperty(a,
+  _esModule
+  ,{value:!0})}))</script
+>

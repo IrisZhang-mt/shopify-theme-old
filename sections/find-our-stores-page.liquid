@@ -1,0 +1,1521 @@
+{%- style -%}
+  .find-stores-page {
+    --find-stores-map-height: clamp(620px, calc(100vh - 180px), 760px);
+    color: #140f0f;
+    font-family: Inter, Montserrat, sans-serif;
+    overflow-x: clip;
+  }
+
+  .find-stores-page * {
+    box-sizing: border-box;
+  }
+
+  .find-stores-page__title {
+    align-items: flex-end;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    padding: 97px 48px 46px;
+    text-align: left;
+  }
+
+  .find-stores-page__title h1 {
+    color: #140f0f;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .find-stores-page__hero {
+    aspect-ratio: 1440 / 448;
+    height: auto;
+    margin-bottom: 48px;
+    margin-top: 32px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .find-stores-page__hero picture,
+  .find-stores-page__hero img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .find-stores-page__hero img {
+    object-fit: cover;
+  }
+
+  .find-stores-page.is-map-view .find-stores-page__hero {
+    display: none;
+  }
+
+  .find-stores-page .view-toggle {
+    align-items: stretch;
+    display: inline-flex !important;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+  }
+
+  .find-stores-page .content-area {
+    display: block;
+    overflow: visible;
+  }
+
+  .find-stores-page .map-view {
+    display: none;
+  }
+
+  .find-stores-page .list-view {
+    display: none;
+    overflow: visible;
+  }
+
+  .find-stores-page .map-view.active {
+    display: grid;
+    grid-template-columns: minmax(320px, 34vw) minmax(0, 1fr);
+    height: var(--find-stores-map-height);
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .find-stores-page .list-view.active {
+    display: block;
+  }
+
+  .find-stores-page .left-column {
+    border-right: 1px solid rgba(20, 15, 15, 0.12);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .find-stores-page .map-container,
+  .find-stores-page #map {
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .find-stores-page .search-section.map-mode {
+    border-bottom: 1px solid rgba(20, 15, 15, 0.12);
+    flex: 0 0 auto;
+    padding: 0px 40px 20px 40px;
+  }
+
+  .find-stores-page .search-section.map-mode .search-input-wrapper {
+    margin: 0 0 24px;
+    max-width: none;
+    padding: 0 28px;
+    width: 100%;
+  }
+
+  .find-stores-page .store-list-sidebar {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0 40px 40px;
+  }
+
+  .find-stores-page .store-item {
+    border-bottom: 1px solid rgba(20, 15, 15, 0.12);
+    color: #312e2e;
+    cursor: pointer;
+    padding: 40px 0;
+  }
+
+  .find-stores-page .store-item.active {
+    background: transparent;
+  }
+
+  .find-stores-page .store-name {
+    color: #140f0f;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    margin-bottom: 24px;
+  }
+
+  .find-stores-page .store-address,
+  .find-stores-page .store-contact,
+  .find-stores-page .store-email,
+  .find-stores-page .store-distance,
+  .find-stores-page .store-item .directions-link {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  .find-stores-page .store-contact div,
+  .find-stores-page .store-address,
+  .find-stores-page .store-email,
+  .find-stores-page .store-distance {
+    margin-bottom: 12px;
+  }
+
+  .find-stores-page .store-distance {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+  }
+
+  .find-stores-page .view-toggle .toggle-btn {
+    -webkit-appearance: none !important;
+    background: #ffffff;
+    border: 1px solid rgba(20, 15, 15, 0.12);
+    border-radius: 0;
+    color: #140f0f;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    height: 44px;
+    line-height: 1;
+    min-width: 88px;
+    padding: 0 24px;
+  }
+
+  .find-stores-page .view-toggle .toggle-btn.active {
+    background: #140f0f;
+    border-color: #140f0f;
+    color: #ffffff;
+  }
+
+  .find-stores-page .search-section.list-mode {
+    border-bottom: 0;
+    margin: 0;
+    padding: 0 48px 0 0;
+    text-align: right;
+  }
+
+  .find-stores-page .search-input-wrapper {
+    align-items: stretch;
+    border: 1px solid #140f0f;
+    border-radius: 4px;
+    display: flex;
+    gap: 0;
+    height: 44px;
+    margin: 0 0 12px auto;
+    max-width: 350px;
+    padding: 0 20px;
+    width: 350px;
+  }
+
+  .find-stores-page .search-input {
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #140f0f;
+    flex: 1;
+    font-size: 16px !important;
+    height: 42px !important;
+    line-height: normal !important;
+    margin: 0 !important;
+    outline: none;
+    padding: 0 !important;
+  }
+
+  .find-stores-page .search-input:focus {
+    border-color: transparent !important;
+  }
+
+  .find-stores-page .search-button {
+    align-items: center !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #140f0f !important;
+    cursor: pointer;
+    display: flex !important;
+    flex: 0 0 20px;
+    height: 20px !important;
+    justify-content: center !important;
+    margin: 11px 0 0 !important;
+    min-height: 20px !important;
+    padding: 0 !important;
+    width: 20px !important;
+  }
+
+  .find-stores-page .search-button svg {
+    height: 20px;
+    width: 20px;
+  }
+
+  .find-stores-page .stores-count {
+    color: rgba(104, 103, 103, 0.8);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin: 0;
+    text-align: right;
+  }
+
+  .find-stores-page .filter-section {
+    margin: 32px 0 0;
+    padding: 20px 48px 48px;
+    text-align: left;
+  }
+
+  .find-stores-page .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 44px;
+    justify-content: flex-start;
+    row-gap: 12px;
+    width: calc(100vw - 96px);
+  }
+
+  .find-stores-page .filter-button {
+    -webkit-appearance: none !important;
+    -webkit-text-fill-color: #686767 !important;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: #686767;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 29px;
+    min-height: 49px;
+    padding: 10px;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .find-stores-page .filter-button::after {
+    background: currentColor;
+    bottom: 8px;
+    content: "";
+    height: 1px;
+    left: 10px;
+    position: absolute;
+    right: 10px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 220ms ease;
+  }
+
+  .find-stores-page .filter-button.active {
+    -webkit-text-fill-color: #140f0f !important;
+    background: transparent;
+    color: #140f0f;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .find-stores-page .filter-button:hover::after,
+  .find-stores-page .filter-button:focus-visible::after,
+  .find-stores-page .filter-button.active::after {
+    transform: scaleX(1);
+  }
+
+  .find-stores-page .filter-button:first-child {
+    padding-left: 0;
+  }
+
+  .find-stores-page .filter-button:first-child::after {
+    left: 0;
+  }
+
+  .find-stores-page .store-grid-container {
+    overflow: visible;
+    padding: 0 47px clamp(72px, 6.94vw, 100px);
+  }
+
+  .find-stores-page .store-grid {
+    display: grid;
+    column-gap: 22px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-content: start;
+    margin: 0;
+    row-gap: 22px;
+    width: calc(100vw - 94px);
+  }
+
+  .find-stores-page .store-card {
+    background: #ffffff;
+    border: 1px solid rgba(104, 103, 103, 0.2);
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 578px;
+    overflow: visible;
+  }
+
+  .find-stores-page .store-card-image {
+    aspect-ratio: 320 / 224;
+    display: block;
+    height: auto;
+    margin: -1px -1px 0;
+    max-width: none;
+    object-fit: cover;
+    width: calc(100% + 2px);
+  }
+
+  .find-stores-page .store-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 12px 20px 32px;
+    position: relative;
+  }
+
+  .find-stores-page .store-card-title {
+    color: #140f0f;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 34.37px;
+    margin: 0 0 20px;
+  }
+
+  .find-stores-page .store-card-info,
+  .find-stores-page .store-card-contact,
+  .find-stores-page .store-card-email,
+  .find-stores-page .store-card-distance {
+    color: #312e2e;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 17px;
+    margin: 0 0 8px;
+  }
+
+  .find-stores-page .store-card-contact div {
+    margin-bottom: 8px;
+  }
+
+  .find-stores-page .store-card-distance {
+    align-items: center;
+    color: #312e2e;
+    display: flex;
+    font-size: 14px;
+    gap: 12px;
+    line-height: 24px;
+    margin: auto 0 12px;
+    padding-top: 32px;
+  }
+
+  .find-stores-page .store-card-distance svg,
+  .find-stores-page .directions-link svg {
+    flex: 0 0 20px;
+    height: 20px;
+    width: 20px;
+  }
+
+  .find-stores-page .directions-link {
+    align-items: center;
+    color: #0088ff;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 400;
+    gap: 12px;
+    line-height: 24px;
+    margin-top: 0;
+    text-decoration: underline;
+    width: fit-content;
+  }
+
+  .find-stores-page .badge-icon {
+    display: none !important;
+  }
+
+  @media (max-width: 1200px) {
+    .find-stores-page .store-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .find-stores-page__title {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px 20px 23px;
+    }
+
+    .find-stores-page__title h1 {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 29px;
+    }
+
+    .find-stores-page__hero {
+      aspect-ratio: 390 / 300;
+      margin-bottom: 40px;
+      margin-top: 0;
+    }
+
+    .find-stores-page .view-toggle {
+      justify-content: flex-start;
+    }
+
+    .find-stores-page .view-toggle .toggle-btn {
+      font-size: 14px;
+      height: 36px;
+      min-width: 72px;
+      padding: 0 18px;
+    }
+
+    .find-stores-page .map-view.active {
+      display: block;
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+    }
+
+    .find-stores-page .left-column {
+      border-right: 0;
+      height: auto;
+      min-height: 0;
+    }
+
+    .find-stores-page .map-container,
+    .find-stores-page #map {
+      min-height: 420px;
+    }
+
+    .find-stores-page .search-section.map-mode {
+      padding: 0 20px 20px;
+    }
+
+    .find-stores-page .search-section.map-mode .search-input-wrapper {
+      height: 40px;
+      margin: 0 0 8px;
+      padding: 0 20px;
+    }
+
+    .find-stores-page .store-list-sidebar {
+      max-height: none;
+      overflow: visible;
+      padding: 0 20px 40px;
+    }
+
+    .find-stores-page .store-item {
+      padding: 24px 0;
+    }
+
+    .find-stores-page .store-name {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 12px;
+    }
+
+    .find-stores-page .store-address,
+    .find-stores-page .store-contact,
+    .find-stores-page .store-email,
+    .find-stores-page .store-distance,
+    .find-stores-page .store-item .directions-link {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .find-stores-page .search-section.list-mode {
+      padding: 0 20px;
+      text-align: left;
+    }
+
+    .find-stores-page .search-input-wrapper {
+      height: 40px;
+      margin: 0 0 8px;
+      max-width: none;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .find-stores-page .search-input {
+      font-size: 14px !important;
+      height: 38px !important;
+    }
+
+    .find-stores-page .search-button {
+      flex: 0 0 20px;
+      height: 20px !important;
+      margin-top: 9px !important;
+      min-height: 20px !important;
+      width: 20px !important;
+    }
+
+    .find-stores-page .stores-count {
+      line-height: 24px;
+      text-align: center;
+    }
+
+    .find-stores-page .filter-section {
+      margin-top: 16px;
+      overflow: hidden;
+      padding: 13px 20px;
+    }
+
+    .find-stores-page .filter-buttons {
+      column-gap: 21px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      row-gap: 0;
+      scrollbar-width: none;
+      width: 100%;
+    }
+
+    .find-stores-page .filter-buttons::-webkit-scrollbar {
+      display: none;
+    }
+
+    .find-stores-page .filter-button {
+      flex: 0 0 auto;
+      font-size: 14px;
+      line-height: 17px;
+      min-height: 22px;
+      padding: 3px;
+      white-space: nowrap;
+    }
+
+    .find-stores-page .filter-button::after {
+      bottom: 0;
+      left: 3px;
+      right: 3px;
+      transition: none;
+    }
+
+    .find-stores-page .filter-button:first-child {
+      padding-left: 0;
+      padding-right: 3px;
+    }
+
+    .find-stores-page .filter-button:first-child::after {
+      left: 0;
+    }
+
+    .find-stores-page .store-grid-container {
+      padding: 8px 20px 135px;
+    }
+
+    .find-stores-page .store-grid {
+      column-gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 16px;
+      width: 100%;
+    }
+
+    .find-stores-page .store-card {
+      min-height: 431px;
+    }
+
+    .find-stores-page .store-card-image {
+      aspect-ratio: 169 / 120;
+      margin: -1px -1px 0;
+      width: calc(100% + 2px);
+    }
+
+    .find-stores-page .store-card-content {
+      padding: 8px 12px 16px;
+    }
+
+    .find-stores-page .store-card-title {
+      font-size: 14px;
+      line-height: 17px;
+      margin-bottom: 20px;
+    }
+
+    .find-stores-page .store-card-info,
+    .find-stores-page .store-card-contact,
+    .find-stores-page .store-card-email,
+    .find-stores-page .store-card-distance,
+    .find-stores-page .directions-link {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    .find-stores-page .store-card-info,
+    .find-stores-page .store-card-contact,
+    .find-stores-page .store-card-email {
+      margin-bottom: 8px;
+    }
+
+    .find-stores-page .store-card-contact div {
+      margin-bottom: 8px;
+    }
+
+    .find-stores-page .store-card-distance {
+      align-items: flex-start;
+      gap: 5px;
+      margin: auto 0 8px;
+      padding-top: 16px;
+    }
+
+    .find-stores-page .store-card-distance svg {
+      flex: 0 0 16px;
+      height: 16px;
+      margin-top: 8px;
+      width: 16px;
+    }
+
+    .find-stores-page .directions-link {
+      gap: 6px;
+    }
+
+    .find-stores-page .directions-link svg {
+      flex: 0 0 13px;
+      height: 13px;
+      width: 13px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="find-stores-page is-list-view" data-section-id="{{ section.id }}">
+  <div class="find-stores-page__title">
+    <h1>Find Our Retail Stores</h1>
+    <div class="view-toggle" aria-label="Store view">
+      <button type="button" class="toggle-btn toggle-map" onclick="toggleView('map')">Map</button>
+      <button type="button" class="toggle-btn toggle-list active" onclick="toggleView('list')">List</button>
+    </div>
+  </div>
+
+  {%- assign hero_image = section.settings.hero_image -%}
+  {%- assign mobile_hero_image = section.settings.mobile_hero_image | default: hero_image -%}
+  {%- if hero_image != blank or mobile_hero_image != blank -%}
+    <div class="find-stores-page__hero">
+      <picture>
+        {%- if mobile_hero_image != blank -%}
+          <source
+            media="(max-width: 767px)"
+            srcset="
+              {{ mobile_hero_image | image_url: width: 390 }} 390w,
+              {{ mobile_hero_image | image_url: width: 780 }} 780w
+            "
+            sizes="100vw"
+          >
+        {%- endif -%}
+        {{
+          hero_image
+          | default: mobile_hero_image
+          | image_url: width: 2880
+          | image_tag: loading: 'lazy', sizes: '100vw', widths: '390,720,780,1080,1440,2160,2880', alt: 'Find Our Stores'
+        }}
+      </picture>
+    </div>
+  {%- endif -%}
+
+  <div class="content-area">
+    <div class="map-view" id="mapView" aria-hidden="true">
+      <div class="left-column">
+        <div class="search-section map-mode" id="searchSection">
+          <div class="search-input-wrapper">
+            <input type="text" class="search-input" placeholder="Search zip code or location" id="locationSearch">
+            <button class="search-button" onclick="searchLocation()" aria-label="Search location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </div>
+          <p class="stores-count" id="storesCount">0 stores near your location, within 50 miles.</p>
+        </div>
+
+        <div class="store-list-sidebar" id="storeListSidebar"></div>
+      </div>
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <div class="list-view active" id="listView">
+      <div class="search-section list-mode" id="listSearchSection">
+        <div class="search-input-wrapper">
+          <input type="text" class="search-input" placeholder="Search zip code or location" id="listLocationSearch">
+          <button class="search-button" onclick="searchListLocation()" aria-label="Search stores">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+        </div>
+        <p class="stores-count" id="listStoresCount">0 stores near your location, within 50 miles.</p>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-buttons">
+          <button class="filter-button active" onclick="filterStores('all')">All</button>
+          <button class="filter-button" onclick="filterStores('hongkong')">Hong Kong</button>
+          <button class="filter-button" onclick="filterStores('macau')">Macau</button>
+          <button class="filter-button" onclick="filterStores('malaysia')">Malaysia</button>
+          <button class="filter-button" onclick="filterStores('singapore')">Singapore</button>
+          <button class="filter-button" onclick="filterStores('usa')">The United States</button>
+          <button class="filter-button" onclick="filterStores('uae')">The United Arab Emirates</button>
+        </div>
+      </div>
+
+      <div class="store-grid-container">
+        <div class="store-grid" id="storeGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Google Maps API -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnhrA31cRuvHPcVtiggjoNtX05Tw1GG3U&callback=initMap&libraries=places">
+  </script>
+
+  <script>
+    let map;
+    let userLocation = { lat: 22.3193, lng: 114.1694 }; // Default to Hong Kong
+    let userMarker = null; // 添加用户位置标记的引用
+    let stores = [];
+    let markers = [];
+    let activeInfoWindow = null;
+    let currentView = 'list';
+    let currentFilter = 'all';
+    let mapInitialized = false;
+    let appInitialized = false;
+
+    // 从 Shopify Settings 获取图片 URL
+    const storeImages = {
+      'default': {% if settings.store_default_image %}'{{ settings.store_default_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'k11-musea': {% if settings.store_k11_image %}'{{ settings.store_k11_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'macau-store': {% if settings.store_macau_image %}'{{ settings.store_macau_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'malaysia-store': {% if settings.store_malaysia_image %}'{{ settings.store_malaysia_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'singapore-store': {% if settings.store_singapore_image %}'{{ settings.store_singapore_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'usa-store': {% if settings.store_usa_image %}'{{ settings.store_usa_image | img_url: "300x200" }}'{% else %}null{% endif %},
+      'uae-store': {% if settings.store_uae_image %}'{{ settings.store_uae_image | img_url: "300x200" }}'{% else %}null{% endif %}
+    };
+
+    // 获取店铺图片的函数
+    function getStoreImage(storeId, storeName) {
+      {% comment %} let imageKey = 'default';
+
+      if (storeName && storeName.toLowerCase().includes('k11')) {
+        imageKey = 'k11-musea';
+      } else if (city) {
+        const cityLower = city.toLowerCase();
+        if (cityLower.includes('macau')) {
+          imageKey = 'macau-store';
+        } else if (cityLower.includes('malaysia') || cityLower.includes('kuala lumpur')) {
+          imageKey = 'malaysia-store';
+        } else if (cityLower.includes('singapore')) {
+          imageKey = 'singapore-store';
+        } else if (cityLower.includes('usa') || cityLower.includes('united states')) {
+          imageKey = 'usa-store';
+        } else if (cityLower.includes('uae') || cityLower.includes('dubai') || cityLower.includes('emirates')) {
+          imageKey = 'uae-store';
+        }
+      }
+
+      return storeImages[imageKey] || storeImages['default'] || createFallbackImage(storeName); {% endcomment %}
+        if (storeId) {
+          // 使用Shopify的file_url filter来获取文件
+          // 注意：这需要在Liquid模板中预处理，不能在纯JavaScript中直接使用
+          return `https://cdn.shopify.com/s/files/1/0475/6920/7457/files/${storeId}.jpg`;
+        }
+        return storeImages['default'] || createFallbackImage(storeName);
+
+    }
+
+    // 创建备用图片
+    function createFallbackImage(storeName) {
+      return `data:image/svg+xml,${encodeURIComponent(`
+        <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <rect width="300" height="200" fill="url(#gradient)"/>
+          <text x="150" y="100" font-size="16" fill="white" text-anchor="middle" dominant-baseline="middle">${storeName || 'Store'}</text>
+        </svg>
+      `)}`;
+    }
+
+    function handleImageError(img, storeName) {
+      img.onerror = null;
+      img.src = `https://cdn.shopify.com/s/files/1/0475/6920/7457/files/US0001.jpg`;
+
+      // 如果US0001.jpg也加载失败，则用生成图片
+      img.onerror = function() {
+        img.onerror = null;
+        img.src = createFallbackImage(storeName);
+      };
+    }
+
+    // Search location in list view
+    function searchListLocation() {
+      const searchInput = document.getElementById('listLocationSearch').value;
+
+      if (!searchInput) return;
+
+      const geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode({ address: searchInput }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+          const location = results[0].geometry.location;
+          userLocation = {
+            lat: location.lat(),
+            lng: location.lng()
+          };
+
+          calculateDistances();
+          updateStoresCount();
+          displayListView();
+          document.getElementById('listStoresCount').textContent = document.getElementById('storesCount').textContent;
+        } else {
+          alert('Location not found. Please try a different search.');
+        }
+      });
+    }
+
+    // Initialize Google Map
+    function initMap() {
+      console.log('initMap called');
+
+      if (mapInitialized) {
+        console.log('Map already initialized');
+        return;
+      }
+
+      try {
+        const mapElement = document.getElementById('map');
+        if (!mapElement) {
+          console.error('Map element not found');
+          setTimeout(initMap, 100);
+          return;
+        }
+
+        map = new google.maps.Map(mapElement, {
+          center: userLocation,
+          zoom: 12,
+          minZoom: 2, // 设置最小缩放级别，防止缩得太小
+          styles: [
+            {
+              featureType: "poi",
+              elementType: "labels",
+              stylers: [{ visibility: "off" }]
+            }
+          ],
+          disableDefaultUI: true,
+          gestureHandling: 'greedy',
+          scrollwheel: true,
+          draggable: true,
+          disableDoubleClickZoom: false,
+        });
+
+        // Add user location marker
+        userMarker = new google.maps.Marker({
+          position: userLocation,
+          map: map,
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10,
+            fillColor: '#4285F4',
+            fillOpacity: 1,
+            strokeColor: '#fff',
+            strokeWeight: 2
+          },
+          title: 'Your Location'
+        });
+
+        mapInitialized = true;
+        console.log('Map initialized successfully');
+
+        initializeApp();
+        updateMap();
+      } catch (error) {
+        console.error('Error initializing map:', error);
+        setTimeout(initMap, 1000);
+      }
+    }
+
+    window.initMap = initMap;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded');
+
+      if (currentView === 'list') {
+        initializeApp();
+        return;
+      }
+
+      if (window.google && window.google.maps) {
+        console.log('Google Maps API already loaded');
+        initMap();
+      } else {
+        console.log('Loading Google Maps API');
+        loadGoogleMapsAPI();
+      }
+    });
+
+    function loadGoogleMapsAPI() {
+      if (document.querySelector('script[src*="maps.googleapis.com"]')) {
+        console.log('Google Maps script already exists');
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAnhrA31cRuvHPcVtiggjoNtX05Tw1GG3U&callback=initMap&libraries=places&language=en&region=US';
+      script.async = true;
+      script.defer = true;
+
+      script.onerror = function() {
+        console.error('Failed to load Google Maps API');
+        setTimeout(loadGoogleMapsAPI, 2000);
+      };
+
+      document.head.appendChild(script);
+    }
+
+    function initializeApp() {
+      if (appInitialized) return;
+      appInitialized = true;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            if (map) {
+              updateMap();
+            }
+          },
+          (error) => {
+            console.log('Error getting location:', error);
+          }
+        );
+      }
+
+      fetchStores();
+    }
+
+    // Fetch stores from API
+    async function fetchStores() {
+      try {
+
+        const response = await fetch('https://java.moodytiger.work:9001/api/stores/list');
+        const result = await response.json();
+
+        if (result.code !== "200") {
+          throw new Error(`API Error: ${result.message || 'Unknown error'}`);
+        }
+
+        const storesData = result.data || [];
+
+        stores = storesData.map(store => ({
+          id: store.id,
+          name: store.store_name_en,
+          address: store.store_address,
+          city: store.city_en,
+          province: store.province_or_state_en,
+          lat: parseFloat(store.latitude),
+          lng: parseFloat(store.longitude),
+          phone: store.contact_number || '',
+          hours: store.operation_hours || '',
+          email: store.email || '',
+          image: getStoreImage(store.store_id, store.store_name_en) //store.image_url || 'https://via.placeholder.com/300x200'
+        }));
+
+
+        // 演示数据
+        {% comment %} stores = [
+          {
+            id: 1,
+            name: 'K11 Musea Hong Kong',
+            address: 'Shop B231B, Level 2, K11 Musea Victoria Dockside 18 Salisbury Road, Tsim Sha Tsui, Kowloon',
+            city: 'Hong Kong',
+            province: 'Hong Kong',
+            lat: 22.2936,
+            lng: 114.1747,
+            phone: '51882684',
+            hours: '11am - 8pm',
+            email: 'K11@moodytiger.com',
+            image: getStoreImage('K11 Musea', 'Hong Kong')
+          },
+          {
+            id: 2,
+            name: 'Macau Central Store',
+            address: 'Avenida da Praia Grande, Macau Peninsula',
+            city: 'Macau',
+            province: 'Macau',
+            lat: 22.1936,
+            lng: 113.5447,
+            phone: '62345678',
+            hours: '10am - 9pm',
+            email: 'macau@moodytiger.com',
+            image: getStoreImage('', 'Macau')
+          },
+          {
+            id: 3,
+            name: 'Malaysia Kuala Lumpur',
+            address: 'Pavilion Kuala Lumpur, Bukit Bintang',
+            city: 'Kuala Lumpur',
+            province: 'Malaysia',
+            lat: 3.1492,
+            lng: 101.7102,
+            phone: '601234567',
+            hours: '10am - 10pm',
+            email: 'malaysia@moodytiger.com',
+            image: getStoreImage('', 'Malaysia')
+          },
+          {
+            id: 4,
+            name: 'Singapore Orchard',
+            address: 'ION Orchard, Orchard Road',
+            city: 'Singapore',
+            province: 'Singapore',
+            lat: 1.3039,
+            lng: 103.8317,
+            phone: '6512345678',
+            hours: '10am - 10pm',
+            email: 'singapore@moodytiger.com',
+            image: getStoreImage('', 'Singapore')
+          },
+          {
+            id: 5,
+            name: 'USA New York',
+            address: '5th Avenue, Manhattan, New York',
+            city: 'New York',
+            province: 'New York',
+            lat: 40.7589,
+            lng: -73.9851,
+            phone: '12125551234',
+            hours: '9am - 9pm',
+            email: 'usa@moodytiger.com',
+            image: getStoreImage('', 'USA')
+          },
+          {
+            id: 6,
+            name: 'UAE Dubai Mall',
+            address: 'Dubai Mall, Downtown Dubai',
+            city: 'Dubai',
+            province: 'UAE',
+            lat: 25.1972,
+            lng: 55.2796,
+            phone: '971501234567',
+            hours: '10am - 12am',
+            email: 'uae@moodytiger.com',
+            image: getStoreImage('', 'Dubai')
+          }
+        ]; {% endcomment %}
+
+        calculateDistances();
+        updateStoresCount();
+
+        if (currentView === 'map') {
+          displayMapView();
+        } else {
+          displayListView();
+        }
+      } catch (error) {
+        console.error('Error fetching stores:', error);
+      }
+    }
+
+    function calculateDistances() {
+      stores.forEach(store => {
+        store.distance = calculateDistance(
+          userLocation.lat,
+          userLocation.lng,
+          store.lat,
+          store.lng
+        );
+      });
+
+      stores.sort((a, b) => a.distance - b.distance);
+    }
+
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 3959;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a =
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    function toRad(deg) {
+      return deg * (Math.PI/180);
+    }
+
+    function updateStoresCount() {
+      const nearbyStores = stores.filter(store => store.distance <= 50).length;
+      const countText = `${nearbyStores} stores near your location, within 50 miles.`;
+      const mapCount = document.getElementById('storesCount');
+      const listCount = document.getElementById('listStoresCount');
+
+      if (mapCount) mapCount.textContent = countText;
+      if (listCount) listCount.textContent = countText;
+    }
+
+    function toggleView(view) {
+      currentView = view;
+      const section = document.querySelector('.find-stores-page');
+
+      if (section) {
+        section.classList.toggle('is-map-view', view === 'map');
+        section.classList.toggle('is-list-view', view === 'list');
+      }
+
+      document.querySelectorAll('.view-toggle button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`.toggle-${view}`).classList.add('active');
+
+      document.getElementById('mapView').classList.toggle('active', view === 'map');
+      document.getElementById('listView').classList.toggle('active', view === 'list');
+
+      if (view === 'map') {
+        displayMapView();
+        setTimeout(() => {
+          google.maps.event.trigger(map, 'resize');
+          map.setCenter(userLocation);
+        }, 100);
+      } else {
+        displayListView();
+        document.getElementById('listStoresCount').textContent = document.getElementById('storesCount').textContent;
+      }
+    }
+
+    function displayMapView() {
+      markers.forEach(marker => marker.setMap(null));
+      markers = [];
+
+      const sidebar = document.getElementById('storeListSidebar');
+      sidebar.innerHTML = '';
+
+      stores.forEach((store, index) => {
+        const storeItem = document.createElement('div');
+        storeItem.className = 'store-item';
+
+        let contactInfo = '';
+        if (store.phone && store.phone.trim() !== '') {
+          contactInfo += `<div><strong>Contact Number:</strong> ${store.phone}</div>`;
+        }
+        if (store.hours && store.hours.trim() !== '') {
+          contactInfo += `<div><strong>Operation Hour:</strong> ${store.hours}</div>`;
+        }
+
+        let emailInfo = '';
+        if (store.email && store.email.trim() !== '') {
+          emailInfo = `<div class="store-email"><strong>Email:</strong> ${store.email}</div>`;
+        }
+
+        storeItem.innerHTML = `
+          <div class="store-name">${store.name}</div>
+          <div class="store-address">${store.address}</div>
+          ${contactInfo ? `<div class="store-contact">${contactInfo}</div>` : ''}
+          ${emailInfo}
+          <div class="store-distance">
+            <svg class="location-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            ${store.distance.toFixed(1)} miles from your location
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${store.lat},${store.lng}"
+            target="_blank" class="directions-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"></path>
+              <path d="M8 2v16"></path>
+              <path d="M16 6v16"></path>
+            </svg>
+            Get Directions
+          </a>
+        `;
+
+        storeItem.onclick = () => selectStore(index,false);
+        sidebar.appendChild(storeItem);
+
+        const marker = new google.maps.Marker({
+          position: { lat: store.lat, lng: store.lng },
+          map: map,
+          title: store.name,
+          icon: {
+            url: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+          }
+        });
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: createInfoWindowContent(store)
+        });
+
+        marker.addListener('click', () => {
+          if (activeInfoWindow) {
+            activeInfoWindow.close();
+          }
+          infoWindow.open(map, marker);
+          activeInfoWindow = infoWindow;
+          selectStore(index,true);
+        });
+
+        markers.push(marker);
+      });
+
+      updateMap();
+    }
+
+    function createInfoWindowContent(store) {
+      return `
+        <div class="store-info-window">
+          <img src="${store.image}" alt="${store.name}" onerror="handleImageError(this, '${store.name}')">
+          <h3><strong>${store.name}</strong></h3>
+          <p>${store.address}</p>
+          ${store.phone ? `<p><strong>Phone:</strong> ${store.phone}</p>` : ''}
+          ${store.hours ? `<p><strong>Hours:</strong> ${store.hours}</p>` : ''}
+          ${store.email ? `<p><strong>Email:</strong> ${store.email}</p>` : ''}
+          <a href="https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${store.lat},${store.lng}"
+             target="_blank" class="directions-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"></path>
+              <path d="M8 2v16"></path>
+              <path d="M16 6v16"></path>
+            </svg>
+            Get Directions
+          </a>
+        </div>
+      `;
+    }
+
+    function selectStore(index, fromMarker = false) {
+      document.querySelectorAll('.store-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+
+      if (!fromMarker && markers[index]) {
+        if (activeInfoWindow) {
+          activeInfoWindow.close();
+        }
+
+        const store = stores[index];
+        const infoWindow = new google.maps.InfoWindow({
+          content: createInfoWindowContent(store)
+        });
+        infoWindow.open(map, markers[index]);
+        activeInfoWindow = infoWindow;
+      }
+
+      const store = stores[index];
+      map.setCenter({ lat: store.lat, lng: store.lng });
+      map.setZoom(15);
+    }
+
+    function displayListView() {
+      const grid = document.getElementById('storeGrid');
+      grid.innerHTML = '';
+
+      const filteredStores = currentFilter === 'all'
+        ? stores
+        : stores.filter(store => {
+            const city = (store.city || '').toLowerCase();
+            const province = (store.province || '').toLowerCase();
+            const name = (store.name || '').toLowerCase();
+            const address = (store.address || '').toLowerCase();
+
+            switch(currentFilter) {
+              case 'hongkong':
+                return city.includes('hong kong') ||
+                       province.includes('hong kong') ||
+                       name.includes('hong kong') ||
+                       address.includes('hong kong');
+
+              case 'macau':
+                return city.includes('macau') ||
+                       province.includes('macau') ||
+                       name.includes('macau') ||
+                       address.includes('macau');
+
+              case 'malaysia':
+                return city.includes('kuala lumpur') ||
+                       city.includes('malaysia') ||
+                       province.includes('malaysia') ||
+                       name.includes('malaysia') ||
+                       address.includes('malaysia') ||
+                       address.includes('kuala lumpur');
+
+              case 'singapore':
+                return city.includes('singapore') ||
+                       province.includes('singapore') ||
+                       name.includes('singapore') ||
+                       address.includes('singapore');
+
+              case 'usa':
+                return city.includes('usa') ||
+                       city.includes('united states') ||
+                       province.includes('usa') ||
+                       province.includes('united states') ||
+                       name.includes('usa') ||
+                       name.includes('united states') ||
+                       address.includes('usa') ||
+                       address.includes('united states');
+
+              case 'uae':
+                return city.includes('dubai') ||
+                       city.includes('uae') ||
+                       city.includes('emirates') ||
+                       city.includes('abu dhabi') ||
+                       province.includes('uae') ||
+                       province.includes('emirates') ||
+                       name.includes('uae') ||
+                       name.includes('emirates') ||
+                       name.includes('dubai') ||
+                       address.includes('uae') ||
+                       address.includes('emirates') ||
+                       address.includes('dubai');
+
+              default:
+                return city.includes(currentFilter) || province.includes(currentFilter);
+            }
+          });
+
+      filteredStores.forEach(store => {
+        const card = document.createElement('div');
+        card.className = 'store-card';
+
+        let contactInfo = '';
+        if (store.phone && store.phone.trim() !== '') {
+          contactInfo += `<div>Contact Number: ${store.phone}</div>`;
+        }
+        if (store.hours && store.hours.trim() !== '') {
+          contactInfo += `<div>Operation Hour: ${store.hours}</div>`;
+        }
+
+        card.innerHTML = `
+          <img src="${store.image}" alt="${store.name}" class="store-card-image" onerror="handleImageError(this, '${store.name}')">
+          <div class="store-card-content">
+            <div class="store-card-title">${store.name}</div>
+            <div class="store-card-info">${store.address}</div>
+            ${contactInfo ? `<div class="store-card-contact">${contactInfo}</div>` : ''}
+            ${store.email && store.email.trim() !== '' ? `<div class="store-card-email">Email: ${store.email}</div>` : ''}
+            <div class="store-card-distance">
+              <svg class="location-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              ${store.distance.toFixed(1)} miles from your location
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${store.lat},${store.lng}"
+               target="_blank" class="directions-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"></path>
+                <path d="M8 2v16"></path>
+                <path d="M16 6v16"></path>
+              </svg>
+              Get Directions
+            </a>
+            <svg class="badge-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterStores(filter) {
+      currentFilter = filter;
+
+      document.querySelectorAll('.filter-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      displayListView();
+    }
+
+    function searchLocation() {
+      const searchInput = document.getElementById('locationSearch').value;
+
+      if (!searchInput) return;
+
+      const geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode({ address: searchInput }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+          const location = results[0].geometry.location;
+          userLocation = {
+            lat: location.lat(),
+            lng: location.lng()
+          };
+
+          calculateDistances();
+          updateStoresCount();
+
+          {% comment %} if (currentView === 'map') {
+            displayMapView();
+            map.setCenter(userLocation);
+          } else {
+            displayListView();
+          } {% endcomment %}
+
+          displayMapView();
+
+          // 直接设置地图中心和缩放，而不是调用 updateMap()
+          map.setCenter(userLocation);
+          map.setZoom(12);
+
+          // 更新用户位置标记
+          if (userMarker) {
+            userMarker.setPosition(userLocation);
+          }
+        } else {
+          alert('Location not found. Please try a different search.');
+        }
+      });
+    }
+
+    function updateMap() {
+      if (!map || stores.length === 0) return;
+
+      const bounds = new google.maps.LatLngBounds();
+      bounds.extend(userLocation);
+
+      stores.forEach(store => {
+        bounds.extend({ lat: store.lat, lng: store.lng });
+      });
+
+      map.fitBounds(bounds);
+
+      map.setCenter(userLocation);
+      map.setZoom(2);
+
+      const listener = google.maps.event.addListener(map, 'idle', function() {
+        if (map.getZoom() > 15) map.setZoom(15);
+        if (map.getZoom() < 2) map.setZoom(2);
+
+        google.maps.event.removeListener(listener);
+      });
+    }
+  </script>
+
+
+{% schema %}
+{
+  "name": "Find Our Stores",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_hero_image",
+      "label": "Mobile hero image",
+      "info": "Recommended size: 390 x 300"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Find Our Stores"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,321 @@
+{{- 'product-grid.css' | asset_url | stylesheet_tag -}}
+{{- 'collection-tabs.css' | asset_url | stylesheet_tag -}}
+
+{%- liquid
+  assign section_heading = section.settings.heading
+  assign section_heading_left = section.settings.heading_left
+  assign section_heading_left_mobile = section.settings.heading_left_mobile
+  assign section_heading_button_label = section.settings.heading_button_label
+  assign section_description = section.settings.description
+  assign full_width = section.settings.full_width
+  assign columns_desktop = section.settings.columns_desktop
+  assign show_view_all = section.settings.show_view_all
+  assign show_progress_bar = section.settings.show_progress_bar
+  assign product_limit = section.settings.product_limit
+  assign product_card_badge_limit = section.settings.product_card_badge_limit
+  assign navigation_layout = section.settings.navigation_layout | default: 'split_center'
+  assign heading_top_spacing = section.settings.heading_top_spacing | default: 48
+  assign heading_tabs_spacing = section.settings.heading_tabs_spacing | default: 34
+  assign heading_bottom_spacing = section.settings.heading_bottom_spacing | default: 48
+  assign desktop_slide_width = 'calc(33.333333% - 13.333333px)'
+  assign mobile_columns = 2
+  assign show_desktop_arrows = false
+  assign show_mobile_arrows = false
+  assign show_mobile_arrows_only = false
+
+  assign disable_top_spacing = section.settings.disable_top_spacing
+  assign disable_bottom_spacing = section.settings.disable_bottom_spacing
+
+  assign columns_class = 'medium-6 large-4'
+  assign more_in_collection = false
+
+  case columns_desktop
+    when 2
+      assign columns_class = 'medium-6'
+      assign desktop_slide_width = 'calc(50% - 10px)'
+    when 3
+      assign columns_class = 'medium-4'
+      assign desktop_slide_width = 'calc(33.333333% - 13.333333px)'
+    when 4
+      assign columns_class = 'medium-6 large-3'
+      assign desktop_slide_width = 'calc(25% - 15px)'
+    when 5
+      assign columns_class = 'medium-6 large-1/5'
+      assign desktop_slide_width = 'calc(20% - 16px)'
+  endcase
+
+  if section.blocks
+    assign first_collection = section.blocks[0].settings.collection
+
+    if first_collection.all_products_count > product_limit
+      assign more_in_collection = true
+    endif
+
+    if show_view_all and more_in_collection
+      assign section_heading_button = first_collection
+    endif
+  endif
+
+  if product_limit > columns_desktop
+    assign show_desktop_arrows = true
+  endif
+
+  if product_limit > mobile_columns
+    assign show_mobile_arrows = true
+  endif
+
+  if show_mobile_arrows
+    unless show_desktop_arrows
+      assign show_mobile_arrows_only = true
+    endunless
+  endif
+-%}
+
+<div
+  class="cust-collection-tabs cust-collection-tabs--nav-{{ navigation_layout }}{% if show_mobile_arrows %} cust-collection-tabs--mobile-nav{% endif %}{% if show_mobile_arrows_only %} cust-collection-tabs--mobile-nav-only{% endif %} collection-tabs section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}"
+  style="--collection-tabs-heading-top: {{ heading_top_spacing }}px; --collection-tabs-heading-tabs: {{ heading_tabs_spacing }}px; --collection-tabs-heading-bottom: {{ heading_bottom_spacing }}px; --cust-collection-tabs-slide-width: {{ desktop_slide_width }};"
+>
+  <div class="row{% if full_width %} full-width-row{% endif %}">
+    <div class="small-12 columns">
+      <div class="cust-header--desktop-only">
+        {% render 'section-header',
+          section_heading: section_heading,
+          section_description: section_description,
+          section_heading_left: section_heading_left,
+          section_heading_button: section_heading_button,
+          section_heading_button_label: section_heading_button_label,
+          section_id: section.id,
+          blocks: section.blocks
+        %}
+      </div>
+
+      <div class="cust-header--mobile-only">
+        {% render 'section-header',
+          section_heading: section_heading,
+          section_description: section_description,
+          section_heading_left: section_heading_left_mobile,
+          section_heading_button: section_heading_button,
+          section_heading_button_label: section_heading_button_label,
+          section_id: section.id,
+          blocks: section.blocks
+        %}
+      </div>
+
+      <slide-show
+        id="product-grid-{{ section.id }}"
+        data-id="{{ section.id }}"
+        data-free-scroll="true"
+        class="products carousel row small-up-2 medium-up-{{ columns_desktop }}"
+      >
+        {% for block in section.blocks %}
+          {% assign mainloop = forloop %}
+
+          {% if block.settings.collection != blank %}
+            {%- for product in block.settings.collection.products limit: product_limit -%}
+              <div
+                class="{{ columns_class }} columns{% if mainloop.first == true %} carousel__slide{% endif %}"
+                data-collection="{{ block.settings.collection.handle }}"
+              >
+                {% render 'product-card',
+                  product_card_product: product,
+                  product_card_badge_limit: product_card_badge_limit,
+                  product_card_hide_from_price_label: true
+                %}
+              </div>
+            {%- endfor -%}
+          {% else %}
+            {%- for i in (1..product_limit) -%}
+              <div
+                class="{{ columns_class }} columns{% if mainloop.first == true %} carousel__slide{% endif %}"
+                data-collection="collection-{{ block.id }}"
+              >
+                {% render 'product-card' %}
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        {%- endfor -%}
+
+        {%- if show_desktop_arrows or show_mobile_arrows -%}
+          {%- render 'slideshow-arrows' -%}
+        {%- endif -%}
+      </slide-show>
+
+      {%- if show_progress_bar -%}
+        <div class="flickity-progress">
+          <div class="flickity-progress--bar"></div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'collection-tabs.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Cust Collection tabs",
+  "class": "section-collection-tabs",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Collection Tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_left",
+      "default": false,
+      "label": "Left align heading desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_left_mobile",
+      "default": false,
+      "label": "Left align heading mobile"
+    },
+    {
+      "type": "text",
+      "id": "heading_button_label",
+      "label": "Heading button label",
+      "info": "Leave blank to use the collection name."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Add a short description for your collections</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Make section full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 2,
+      "max": 16,
+      "step": 1,
+      "default": 6,
+      "label": "Number of products to show"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": false,
+      "label": "Enable \"View all\" button",
+      "info": "Enable \"View all\" button if collection includes more products than shown"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress_bar",
+      "label": "Show progress bar",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "product_card_badge_limit",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 1,
+      "label": "Product badge limit"
+    },
+    {
+      "type": "select",
+      "id": "navigation_layout",
+      "label": "Navigation layout",
+      "default": "split_center",
+      "options": [
+        {
+          "value": "split_center",
+          "label": "Split center"
+        },
+        {
+          "value": "bottom_right_grouped",
+          "label": "Bottom right grouped"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_top_spacing",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Heading top spacing"
+    },
+    {
+      "type": "number",
+      "id": "heading_tabs_spacing",
+      "default": 34,
+      "label": "Desktop heading to tabs spacing"
+    },
+    {
+      "type": "number",
+      "id": "heading_bottom_spacing",
+      "default": 48,
+      "label": "Desktop tabs to products spacing"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_top_spacing",
+      "default": false,
+      "label": "Remove top spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_bottom_spacing",
+      "default": false,
+      "label": "Remove bottom spacing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cust Collection tabs",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

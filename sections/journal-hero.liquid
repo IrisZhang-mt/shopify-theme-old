@@ -1,0 +1,163 @@
+{{ 'journal.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg = ''
+  if section.settings.background_image != blank
+    assign bg = section.settings.background_image | image_url: width: 3000
+  endif
+  assign bgpos = 'center center'
+  case section.settings.bg_position
+    when 'top'
+      assign bgpos = 'center top'
+    when 'bottom'
+      assign bgpos = 'center bottom'
+  endcase
+-%}
+
+<div class="mt-journal">
+  <section class="mt-hero{% if bg != '' %} has-bg{% endif %}" style="--hero-h:{{ section.settings.hero_height | default: 560 }}px;{% if bg != '' %}background-image:url('{{ bg }}');background-position:{{ bgpos }};{% endif %}">
+    {%- if bg != '' and section.settings.overlay_opacity > 0 -%}
+      <span class="mt-hero-scrim" style="opacity:{{ section.settings.overlay_opacity | times: 0.01 }}"></span>
+    {%- endif -%}
+    <div class="mt-hero-inner">
+      <div class="mt-hero-copy">
+        {%- if section.settings.heading != blank -%}
+          <h1>{{ section.settings.heading }}</h1>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p>{{ section.settings.subheading }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          {%- comment -%} Shop button -> brand official shop (set in theme editor) {%- endcomment -%}
+          <a class="mt-btn" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+            {{ section.settings.button_label }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Right-side image — used only when no full-width background is set {%- endcomment -%}
+      <div class="mt-hero-art" aria-hidden="true">
+        {%- if section.settings.hero_image != blank -%}
+          {{ section.settings.hero_image | image_url: width: 1200 | image_tag:
+             loading: 'eager', sizes: '(min-width: 900px) 46vw, 100vw',
+             widths: '600, 900, 1200, 1600' }}
+        {%- else -%}
+          <svg viewBox="0 0 520 300" preserveAspectRatio="xMidYMax meet">
+            <circle cx="430" cy="70" r="46" fill="#FAFBF9" opacity=".7"/>
+            <circle cx="470" cy="62" r="38" fill="#FAFBF9" opacity=".6"/>
+            <g transform="translate(150 70)">
+              <circle cx="40" cy="20" r="18" fill="#1D1D1D"/>
+              <path d="M28 38 q12 -8 24 0 l6 46 -14 4 -6 -30 -8 30 -14 -4z" fill="#818A7D"/>
+              <path d="M30 60 l-22 18 6 10 26 -18z" fill="#1D1D1D"/>
+              <path d="M52 60 l24 14 -4 11 -28 -12z" fill="#1D1D1D"/>
+              <path d="M22 96 l-16 22 9 6 18 -22z" fill="#1D1D1D"/>
+              <path d="M46 100 l20 20 -8 6 -22 -18z" fill="#1D1D1D"/>
+            </g>
+            <g transform="translate(300 88)">
+              <circle cx="40" cy="18" r="16" fill="#1D1D1D"/>
+              <path d="M28 34 q12 -7 22 0 l5 42 -12 4 -6 -27 -7 27 -12 -4z" fill="#BEDA6E"/>
+              <path d="M30 54 l-20 16 5 9 23 -16z" fill="#818A7D"/>
+              <path d="M48 54 l22 12 -4 10 -25 -11z" fill="#818A7D"/>
+              <path d="M22 88 l-15 20 8 5 16 -20z" fill="#1D1D1D"/>
+              <path d="M44 92 l18 18 -7 5 -20 -16z" fill="#1D1D1D"/>
+            </g>
+            <path d="M0 300 q260 -34 520 0 v40 h-520z" fill="#EAE1D2" opacity=".7"/>
+          </svg>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Journal hero",
+  "tag": "section",
+  "class": "mt-journal-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stay in the play."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Clothes that follow every run, jump, tumble, and reach — from school to sports to wherever the day leads."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link (brand shop)",
+      "info": "Where the Shop button goes. Defaults to the All products collection if left blank."
+    },
+    {
+      "type": "header",
+      "content": "Background (full width)"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Fills the whole banner. Recommended 2880 × 1152 px (landscape). Leave empty to use the gradient + side image below."
+    },
+    {
+      "type": "select",
+      "id": "bg_position",
+      "label": "Background focus",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "top", "label": "Top (keep faces / upper part)" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "center",
+      "info": "Which part of the photo to keep when it's cropped. Choose Top if faces are near the top."
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "label": "Banner height",
+      "min": 360,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 560,
+      "info": "Taller shows more of the photo (less cropping). Applies on desktop; capped on mobile."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Dark overlay",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "default": 0,
+      "info": "Darkens the photo so the white text stays readable."
+    },
+    {
+      "type": "header",
+      "content": "Side image (used only when no background is set)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Side image",
+      "info": "Shown on the right half. Recommended 1600 × 1200 px. Falls back to a brand illustration if empty."
+    }
+  ],
+  "presets": [{ "name": "Journal hero" }]
+}
+{% endschema %}

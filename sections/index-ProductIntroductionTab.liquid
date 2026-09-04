@@ -1,0 +1,342 @@
+
+<style>
+       .index_ProductIntroductionTabAll .swiper-pagination-bullet {
+        border-radius: unset !important;
+    }
+    .index_ProductIntroductionTab_boxTitle {
+        margin: 0;
+        line-height: 120%;
+    }
+    @media(max-width:999px) {
+        .shopify-section-{{section.id}}.index_ProductIntroductionTabAll{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        .shopify-section-{{section.id}}.index_ProductIntroductionTabAll{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+    }
+    .index_ProductIntroductionTab_boxText {
+        line-height: 140%;
+    }
+    .index_ProductIntroductionTab_box {
+        text-align: center;
+    }
+    .index_ProductIntroductionTab_boxTab_text {
+        transition: all 0.5s;
+    }
+    .index_ProductIntroductionTab_boxTab_text.active{
+        background-color: #151515 !important;
+        color: #fff;
+    }
+    @media (min-width:1000px) {
+        .index_ProductIntroductionTab_boxTab_text:hover {
+            background-color: #151515 !important;
+            color: #fff;
+        } 
+        .index_ProductIntroductionTab_box {
+            max-width: 1234px;
+            margin: 0 auto;
+        }
+        .index_ProductIntroductionTab_boxText {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .index_ProductIntroductionTab_boxTab {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        .index_ProductIntroductionTab_boxTab_text {
+            cursor: pointer;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4px 12px;
+            min-width: 225px;
+            background-color: #f8f8f8;
+            border-radius: 50px;
+            min-width: 225px;
+        }
+
+        .index_ProductIntroductionTab_boxTab.active{
+            position: fixed;
+            width: 100%;
+            top: 80px;
+            padding: 8px;
+            left: 0;
+            margin: 0;
+            right: 0;
+            z-index: 2;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 5px #00000045;
+        }
+
+        .index_ProductIntroductionTab_boxTab.active .index_ProductIntroductionTab_boxTab_text {
+            background-color: #fff;
+        }
+    }
+
+    @media (max-width:999px) {
+        .index_ProductIntroductionTabAll .my_m_25 {
+            font-size: 25px;
+        }
+        .index_ProductIntroductionTabAll .my_m_12 {
+            font-size: 12px;
+        }
+        .index_ProductIntroductionTab_boxTab_text:hover {
+            background-color: #151515 !important;
+            color: #fff;
+        } 
+        .index_ProductIntroductionTab_box {
+            max-width: 1234px;
+            margin: 0 auto;
+        }
+        .index_ProductIntroductionTab_boxText {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .index_ProductIntroductionTab_boxTab {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .index_ProductIntroductionTab_boxTab_text {
+            cursor: pointer;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4px 12px;
+            width: max-content;
+            min-width: 90px;
+            background-color: #f8f8f8;
+            border-radius: 50px;
+        }
+
+        .index_ProductIntroductionTab_boxTab.active{
+            position: fixed;
+            width: 100%;
+            top: 70px;
+            padding: 8px;
+            left: 0;
+            margin: 0;
+            right: 0;
+            z-index: 2;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 5px #00000045;
+        }
+
+        .index_ProductIntroductionTab_boxTab.active .index_ProductIntroductionTab_boxTab_text {
+            background-color: #fff;
+        }
+    }
+</style>
+
+<div class="index_ProductIntroductionTabAll shopify-section-{{section.id}}">
+    <div class="row full-width-row">
+        <div class="columns">
+            <div class="index_ProductIntroductionTab_box">
+                {% if section.settings.title !=blank %}
+                    <h2 class="index_ProductIntroductionTab_boxTitle h3 my_m_25">
+                        {{section.settings.title}}
+                    </h2>
+                {% endif %}
+                {% if section.settings.text !=blank %}
+                    <div class="index_ProductIntroductionTab_boxText my_m_12">
+                        {{section.settings.text}}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="index_ProductIntroductionTab_boxTab">
+        {% for block in section.blocks %}
+            {% if block.settings.text !=blank %}
+            <div class="index_ProductIntroductionTab_boxTab_text my_m_12" data-tab="{{block.settings.text}}">
+                {{block.settings.text}}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const boxTabNobg = document.querySelector('.index_ProductIntroductionTabAll .index_ProductIntroductionTab_boxTab'); // 要检查滚动位置的元素
+        const tabItems = document.querySelectorAll('.index_ProductIntroductionTab_boxTab_text'); // 获取所有需要点击的元素
+        const contentItems = document.querySelectorAll('.index_ProductIntroductionAll'); // 获取所有内容元素
+
+        // Check if the elements exist
+        if (boxTabNobg && tabItems.length > 0 && contentItems.length > 0) {
+            // 获取元素距离文档顶部的偏移量
+            const boxTabNobgOffsetTop = boxTabNobg.offsetTop; 
+
+            // 点击事件处理
+            tabItems.forEach(function(item, index) {
+                item.addEventListener('click', function () {
+                    // 移除所有其他元素的 active 类
+                    tabItems.forEach(function(tab) {
+                        tab.classList.remove('active');
+                    });
+                    // 为当前点击的元素添加 active 类
+                    item.classList.add('active');
+
+                    // 获取对应的 content 元素
+                    const contentItem = contentItems[index];
+
+                    // 使用 scrollIntoView 平滑滚动到对应的内容元素
+                    contentItem.scrollIntoView({
+                        behavior: 'smooth', // 平滑滚动
+                        block: 'start' // 滚动到元素的顶部
+                    });
+                });
+            });
+
+            // Scroll event handling
+            window.addEventListener('scroll', function () {
+                const scrollPosition = window.scrollY; // 当前滚动位置
+
+                // 判断是否滚动到元素的顶部，或者超出元素的顶部位置
+                if (scrollPosition > boxTabNobgOffsetTop - 20) {
+                    boxTabNobg.classList.add('active'); // 滚动到元素顶部或超过时添加 active 类
+                } else {
+                    boxTabNobg.classList.remove('active'); // 滚动回元素上方时移除 active 类
+                }
+
+                // 滚动时判断每个 content 元素的位置并与 tab 进行匹配
+                contentItems.forEach(function(contentItem, index) {
+                    const contentItemRect = contentItem.getBoundingClientRect(); // 获取内容元素的位置
+                    const tabItem = tabItems[index]; // 获取对应的 tab 元素
+                    const tabItemDataTab = tabItem.getAttribute('data-tab'); // 获取 tab 的 data-tab 属性
+                    const contentItemDataTab = contentItem.getAttribute('data-tab'); // 获取内容元素的 data-tab 属性
+
+                    // 判断 content 元素是否在视口内，且 data-tab 匹配
+                    if (contentItemRect.top <= window.innerHeight && contentItemRect.top >= 0) {
+                        // 如果 content 元素已到达顶部，并且 data-tab 匹配，添加 active 类
+                        if (tabItemDataTab === contentItemDataTab) {
+                            // 移除所有 tab 的 active 类
+                            tabItems.forEach(function(tab) {
+                                tab.classList.remove('active');
+                            });
+                            // 为当前的 tab 添加 active 类
+                            tabItem.classList.add('active');
+                        }
+                    } else {
+                        // 当 content 元素未到达顶部时移除 active 类
+                        tabItem.classList.remove('active');
+                    }
+                });
+            });
+        } else {
+            console.warn('Required elements are missing: .index_ProductIntroductionTab_boxTab or .index_ProductIntroductionTab_boxTab_text or .index_ProductIntroductionAll');
+        }
+    });
+</script>
+{% schema %} 
+  {
+    "name": "Product Introduction Tab",
+    "class": "ProductIntroductionTab",
+    "settings":[
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+    "blocks":[
+        {
+            "type": "text",
+            "name": "text",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Introduction Tab"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

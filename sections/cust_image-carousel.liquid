@@ -1,0 +1,422 @@
+{{- 'cust-image-carousel.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign section_heading = section.settings.heading
+  assign section_heading_left = section.settings.heading_left
+  assign section_description = section.settings.description
+  assign full_width = section.settings.full_width
+  assign image_size = section.settings.image_size
+  assign mobile_image_size = section.settings.mobile_image_size
+  assign slide_gap = section.settings.slide_gap
+  assign side_spacing = section.settings.side_spacing | default: section.settings.left_spacing
+  assign scroll_mode = section.settings.scroll_mode | default: 'group'
+  assign heading_top_spacing = section.settings.heading_top_spacing
+  assign heading_bottom_spacing = section.settings.heading_bottom_spacing
+  assign navigation_top_spacing = section.settings.navigation_top_spacing
+  assign disable_top_spacing = section.settings.disable_top_spacing
+  assign disable_bottom_spacing = section.settings.disable_bottom_spacing
+
+  if side_spacing == blank
+    assign side_spacing = 40
+  endif
+  if navigation_top_spacing == blank
+    assign navigation_top_spacing = 20
+  endif
+-%}
+
+<div
+  class="cust-image-carousel section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}"
+  style="--image-carousel-size: {{ image_size }}px; --image-carousel-mobile-size: {{ mobile_image_size }}px; --image-carousel-gap: {{ slide_gap }}px; --image-carousel-side-spacing: {{ side_spacing }}px; --image-carousel-heading-top: {{ heading_top_spacing }}px; --image-carousel-heading-bottom: {{ heading_bottom_spacing }}px; --image-carousel-nav-gap: {{ navigation_top_spacing }}px;"
+>
+  <div class="row{% if full_width %} full-width-row-full{% endif %}">
+    <div class="small-12 columns">
+      {% render 'section-header',
+        section_heading: section_heading,
+        section_description: section_description,
+        section_heading_left: section_heading_left
+      %}
+
+      <div class="cust-image-carousel__stage">
+        <slide-show
+          id="cust-image-carousel-{{ section.id }}"
+          data-id="{{ section.id }}"
+          data-scroll-mode="{{ scroll_mode }}"
+          class="cust-image-carousel__track carousel"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign hotspot_product_1 = block.settings.hotspot_product_1
+              assign hotspot_product_2 = block.settings.hotspot_product_2
+            -%}
+            <div class="cust-image-carousel__slide carousel__slide" {{ block.shopify_attributes }}>
+              {%- if block.settings.link != blank -%}
+                <a class="cust-image-carousel__link" href="{{ block.settings.link }}" aria-label="{{ block.settings.image.alt | default: section_heading | escape }}">
+              {%- endif -%}
+
+              <div class="cust-image-carousel__image">
+                {%- if block.settings.image -%}
+                  {%- render 'responsive-image',
+                    image: block.settings.image,
+                    sizes: '300x0,368x0,552x0,736x0'
+                  -%}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+                {%- endif -%}
+              </div>
+
+              {%- if block.settings.link != blank -%}
+                </a>
+              {%- endif -%}
+
+              {%- if hotspot_product_1 != blank -%}
+                <quick-view
+                  class="cust-image-carousel__hotspot"
+                  style="--hotspot-x: {{ block.settings.hotspot_x_1 }}%; --hotspot-y: {{ block.settings.hotspot_y_1 }}%; --hotspot-x-mobile: {{ block.settings.hotspot_x_mobile_1 }}%; --hotspot-y-mobile: {{ block.settings.hotspot_y_mobile_1 }}%;"
+                  data-product-handle="{{ hotspot_product_1.handle }}"
+                >
+                  <div class="cust-image-carousel__hotspot-content">
+                    <span class="cust-image-carousel__hotspot-icon">{%- render 'svg-icons' with 'plus' -%}</span>
+                    <div class="loading-overlay">
+                      {% render 'svg-icons' with 'thb-loading' %}
+                    </div>
+                  </div>
+                  <div class="cust-image-carousel__hotspot-arrow"></div>
+                  <div class="cust-image-carousel__hotspot-bubble">
+                    {% if hotspot_product_1.featured_image %}
+                      <a href="{{ hotspot_product_1.url }}" title="{{ hotspot_product_1.title | escape }}" class="cust-image-carousel__hotspot-product-image">
+                        {%- render 'responsive-image', image: hotspot_product_1.featured_image, sizes: '150x0' -%}
+                      </a>
+                    {% endif %}
+                    <div class="cust-image-carousel__hotspot-product-content">
+                      <div class="cust-image-carousel__hotspot-product-title">{{ hotspot_product_1.title }}</div>
+                      {% render 'product-price', product: hotspot_product_1 %}
+                      <a href="{{ hotspot_product_1.url }}" title="{{ hotspot_product_1.title | escape }}" class="text-button">
+                        {{- 'sections.shop_the_look.view_product' | t -}}
+                      </a>
+                    </div>
+                  </div>
+                </quick-view>
+              {%- endif -%}
+
+              {%- if hotspot_product_2 != blank -%}
+                <quick-view
+                  class="cust-image-carousel__hotspot"
+                  style="--hotspot-x: {{ block.settings.hotspot_x_2 }}%; --hotspot-y: {{ block.settings.hotspot_y_2 }}%; --hotspot-x-mobile: {{ block.settings.hotspot_x_mobile_2 }}%; --hotspot-y-mobile: {{ block.settings.hotspot_y_mobile_2 }}%;"
+                  data-product-handle="{{ hotspot_product_2.handle }}"
+                >
+                  <div class="cust-image-carousel__hotspot-content">
+                    <span class="cust-image-carousel__hotspot-icon">{%- render 'svg-icons' with 'plus' -%}</span>
+                    <div class="loading-overlay">
+                      {% render 'svg-icons' with 'thb-loading' %}
+                    </div>
+                  </div>
+                  <div class="cust-image-carousel__hotspot-arrow"></div>
+                  <div class="cust-image-carousel__hotspot-bubble">
+                    {% if hotspot_product_2.featured_image %}
+                      <a href="{{ hotspot_product_2.url }}" title="{{ hotspot_product_2.title | escape }}" class="cust-image-carousel__hotspot-product-image">
+                        {%- render 'responsive-image', image: hotspot_product_2.featured_image, sizes: '150x0' -%}
+                      </a>
+                    {% endif %}
+                    <div class="cust-image-carousel__hotspot-product-content">
+                      <div class="cust-image-carousel__hotspot-product-title">{{ hotspot_product_2.title }}</div>
+                      {% render 'product-price', product: hotspot_product_2 %}
+                      <a href="{{ hotspot_product_2.url }}" title="{{ hotspot_product_2.title | escape }}" class="text-button">
+                        {{- 'sections.shop_the_look.view_product' | t -}}
+                      </a>
+                    </div>
+                  </div>
+                </quick-view>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+
+          {%- if section.blocks.size > 1 -%}
+            <div class="cust-image-carousel__nav">
+              {%- render 'slideshow-arrows' -%}
+            </div>
+          {%- endif -%}
+        </slide-show>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cust Image carousel",
+  "class": "section-cust-image-carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Styled by you"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_left",
+      "default": true,
+      "label": "Left align heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Make section full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "min": 240,
+      "max": 520,
+      "step": 8,
+      "unit": "px",
+      "default": 368,
+      "label": "Desktop image size"
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_size",
+      "min": 220,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "default": 300,
+      "label": "Mobile image size"
+    },
+    {
+      "type": "range",
+      "id": "slide_gap",
+      "min": 0,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 20,
+      "label": "Image gap"
+    },
+    {
+      "type": "range",
+      "id": "side_spacing",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "label": "Side spacing"
+    },
+    {
+      "type": "select",
+      "id": "scroll_mode",
+      "label": "Scroll mode",
+      "default": "group",
+      "options": [
+        {
+          "value": "loop",
+          "label": "Loop"
+        },
+        {
+          "value": "single",
+          "label": "Single"
+        },
+        {
+          "value": "group",
+          "label": "Grouped"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_top_spacing",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72,
+      "label": "Heading top spacing"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Heading bottom spacing"
+    },
+    {
+      "type": "range",
+      "id": "navigation_top_spacing",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 20,
+      "label": "Navigation top spacing"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_top_spacing",
+      "default": false,
+      "label": "Remove top spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_bottom_spacing",
+      "default": false,
+      "label": "Remove bottom spacing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Hotspot 1"
+        },
+        {
+          "type": "product",
+          "id": "hotspot_product_1",
+          "label": "Hotspot 1 product"
+        },
+        {
+          "type": "paragraph",
+          "content": "If a selected hotspot product does not render, verify that the product is published in the current market/context."
+        },
+        {
+          "type": "range",
+          "id": "hotspot_x_1",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 1 horizontal",
+          "default": 35
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y_1",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 1 vertical",
+          "default": 35
+        },
+        {
+          "type": "range",
+          "id": "hotspot_x_mobile_1",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 1 mobile horizontal",
+          "default": 35
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y_mobile_1",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 1 mobile vertical",
+          "default": 35
+        },
+        {
+          "type": "header",
+          "content": "Hotspot 2"
+        },
+        {
+          "type": "product",
+          "id": "hotspot_product_2",
+          "label": "Hotspot 2 product"
+        },
+        {
+          "type": "paragraph",
+          "content": "If a selected hotspot product does not render, verify that the product is published in the current market/context."
+        },
+        {
+          "type": "range",
+          "id": "hotspot_x_2",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 2 horizontal",
+          "default": 65
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y_2",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 2 vertical",
+          "default": 65
+        },
+        {
+          "type": "range",
+          "id": "hotspot_x_mobile_2",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 2 mobile horizontal",
+          "default": 65
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y_mobile_2",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 2 mobile vertical",
+          "default": 65
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cust Image carousel",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

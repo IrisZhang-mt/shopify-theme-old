@@ -1,0 +1,810 @@
+.cust-image-card-grid {
+  overflow: hidden;
+}
+
+.cust-image-card-grid.section-spacing {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.section-cust-image-card-grid .section-header {
+  margin: 0;
+  padding: 40px 20px 32px;
+}
+
+.section-cust-image-card-grid .section-header--content {
+  max-width: none;
+}
+
+.section-cust-image-card-grid .section-header h2 {
+  color: #140f0f;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+}
+
+.cust-image-card-grid__items {
+  display: grid;
+  gap: var(--image-card-gap);
+  grid-template-columns: repeat(var(--image-card-count), minmax(0, 1fr));
+}
+
+.cust-image-card-grid__item {
+  min-width: 0;
+  position: relative;
+}
+
+.cust-image-card-grid__image-wrap {
+  width: 100%;
+}
+
+.cust-image-card-grid--centered_title_inset .cust-image-card-grid__image-wrap {
+  padding-left: var(--image-card-inset);
+  padding-right: var(--image-card-inset);
+}
+
+.cust-image-card-grid__image {
+  background: #f4f4f4;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: var(--image-card-mobile-ratio);
+  width: 100%;
+}
+
+.cust-image-card-grid__image img,
+.cust-image-card-grid__image svg {
+  height: 100%;
+  left: -0.5px;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: calc(100% + 1px);
+}
+
+.cust-image-card-grid__image img {
+  transform: scale(1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.cust-image-card-grid__content {
+  color: #140f0f;
+  padding: 24px 40px 0;
+}
+
+.cust-image-card-grid--centered_title_inset .cust-image-card-grid__content {
+  padding-top: 16px;
+  padding-left: var(--image-card-inset);
+  padding-right: var(--image-card-inset);
+  text-align: center;
+}
+
+.cust-image-card-grid--left_text_full .cust-image-card-grid__content {
+  padding: 24px 24px 12px;
+  text-align: left;
+}
+
+.cust-image-card-grid__content h3 {
+  color: inherit;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 40px;
+  margin: 0;
+}
+
+.cust-image-card-grid--centered_title_inset .cust-image-card-grid__content h3 {
+  font-size: var(--image-card-title-size, 16px);
+  font-weight: 600;
+  line-height: calc(var(--image-card-title-size, 16px) * 1.4);
+  text-transform: uppercase;
+}
+
+.cust-image-card-grid--left_text_full .cust-image-card-grid__content h3 {
+  color: #140f0f;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 36.4px;
+}
+
+.cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte,
+.cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte p {
+  color: #312e2e;
+}
+
+.cust-image-card-grid__content .rte {
+  color: inherit;
+  margin-top: 16px;
+}
+
+.cust-image-card-grid__content .rte p {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 22.4px;
+  margin: 0;
+}
+
+.cust-image-card-grid__link {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+@media (hover: hover) {
+  .cust-image-card-grid__item:hover .cust-image-card-grid__image img {
+    transform: scale(1.045);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .section-cust-image-card-grid .section-header {
+    padding: var(--image-card-heading-top-spacing) 40px var(--image-card-heading-bottom-spacing, 48px);
+  }
+
+  .section-cust-image-card-grid .section-header h2 {
+    font-size: 64px;
+    line-height: 64px;
+  }
+
+  .cust-image-card-grid__image {
+    padding-bottom: var(--image-card-desktop-ratio);
+  }
+
+  .cust-image-card-grid__items {
+    padding-left: var(--image-card-desktop-side-spacing);
+    padding-right: var(--image-card-desktop-side-spacing);
+  }
+
+  .cust-image-card-grid__content h3 {
+    color: var(--image-card-desktop-title-color, inherit);
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content h3 {
+    color: var(--image-card-desktop-title-color, #140f0f);
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte p {
+    color: var(--image-card-desktop-description-color, #312e2e);
+  }
+
+  .cust-image-card-grid--desktop-content-image_bottom_left .cust-image-card-grid__item {
+    overflow: hidden;
+  }
+
+  .cust-image-card-grid--desktop-content-image_bottom_left .cust-image-card-grid__content,
+  .cust-image-card-grid--desktop-content-image_bottom_left.cust-image-card-grid--centered_title_inset .cust-image-card-grid__content,
+  .cust-image-card-grid--desktop-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content {
+    bottom: var(--image-card-desktop-content-bottom, 20px);
+    color: #ffffff;
+    left: var(--image-card-desktop-content-left, 20px);
+    padding: 0;
+    position: absolute;
+    right: var(--image-card-desktop-content-left, 20px);
+    text-align: left;
+    z-index: 2;
+  }
+
+  .cust-image-card-grid--desktop-content-image_bottom_left.cust-image-card-grid--centered_title_inset .cust-image-card-grid__content {
+    left: calc(var(--image-card-inset) + var(--image-card-desktop-content-left, 20px));
+    right: calc(var(--image-card-inset) + var(--image-card-desktop-content-left, 20px));
+  }
+
+  .cust-image-card-grid--desktop-content-image_bottom_left .cust-image-card-grid__content h3,
+  .cust-image-card-grid--desktop-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content h3 {
+    color: var(--image-card-desktop-title-color, #ffffff);
+  }
+
+  .cust-image-card-grid--desktop-content-image_bottom_left .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--desktop-content-image_bottom_left .cust-image-card-grid__content .rte p,
+  .cust-image-card-grid--desktop-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--desktop-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte p {
+    color: var(--image-card-desktop-description-color, #ffffff);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .section-cust-image-card-grid .section-header {
+    padding: var(--image-card-heading-top-spacing) 0 20px;
+    /* {% comment %} 手机端模块的间距宽窄不一致GDF {% endcomment %} */
+    padding: 30px 0 20px;
+  }
+
+  .cust-image-card-grid--mobile-swipe.section-spacing {
+    margin-bottom: 0;
+  }
+
+  .section-cust-image-card-grid .section-header h2 {
+    /* 首页的标题调大GDF */
+    font-size: 26px;
+    line-height: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .cust-image-card-grid__items {
+    gap: var(--image-card-gap);
+    grid-template-columns: 1fr;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__items {
+    display: grid;
+    /* C 静明边距去掉GDF */
+    /* gap: max(var(--image-card-gap), 20px); */
+    grid-auto-columns: min(var(--image-card-mobile-width, 304px), calc(100vw - 40px));
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    box-sizing: border-box;
+    margin-left: 0;
+    overflow-x: auto;
+    padding: 0 20px;
+    scroll-padding-left: 20px;
+    scroll-padding-right: 20px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__items::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 32px;
+    margin-bottom: 10px;
+    padding-right: 12px;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #140f0f;
+    border-radius: 20px;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    margin-top: 0;
+    opacity: 1;
+    position: static;
+    transform: none !important;
+    width: 40px;
+    --color-accent: #140f0f;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav svg {
+    height: 16px;
+    width: 16px;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav svg path {
+    stroke: #140f0f;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav.is-disabled,
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav[aria-disabled="true"],
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav:disabled {
+    border-color: #686767;
+    cursor: default;
+    --color-accent: #686767;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav:disabled {
+    pointer-events: none;
+  }
+
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav.is-disabled svg path,
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav[aria-disabled="true"] svg path,
+  .cust-image-card-grid--mobile-swipe .cust-image-card-grid__nav .flickity-nav:disabled svg path {
+    stroke: #686767;
+  }
+
+  .section-cust-image-card-grid + .section-cust-image-card-grid .cust-image-card-grid--left_text_full .section-header {
+    padding-top: 48px;
+  }
+
+  .cust-image-card-grid--mobile-stack .cust-image-card-grid__items {
+    margin-left: 0;
+    overflow: visible;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .cust-image-card-grid--mobile-stack .cust-image-card-grid__item {
+    width: 100%;
+  }
+
+  .cust-image-card-grid--left_text_full.cust-image-card-grid--mobile-stack .cust-image-card-grid__items {
+    gap: 20px;
+  }
+
+  .cust-image-card-grid--centered_title_inset .cust-image-card-grid__image-wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .cust-image-card-grid__content,
+  .cust-image-card-grid--centered_title_inset .cust-image-card-grid__content,
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content {
+    padding: 20px 0 0;
+  }
+
+  .cust-image-card-grid__content h3 {
+    color: var(--image-card-mobile-title-color, inherit);
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content h3 {
+    color: var(--image-card-mobile-title-color, #140f0f);
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte p {
+    color: var(--image-card-mobile-description-color, #312e2e);
+  }
+
+  .cust-image-card-grid--mobile-content-image_bottom_left .cust-image-card-grid__item {
+    overflow: hidden;
+  }
+
+  .cust-image-card-grid--mobile-content-image_bottom_left .cust-image-card-grid__content,
+  .cust-image-card-grid--mobile-content-image_bottom_left.cust-image-card-grid--centered_title_inset .cust-image-card-grid__content,
+  .cust-image-card-grid--mobile-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content {
+    bottom: var(--image-card-mobile-content-bottom, 20px);
+    color: #ffffff;
+    left: var(--image-card-mobile-content-left, 20px);
+    padding: 0;
+    position: absolute;
+    right: var(--image-card-mobile-content-left, 20px);
+    text-align: left;
+    z-index: 2;
+  }
+
+  .cust-image-card-grid--mobile-content-image_bottom_left .cust-image-card-grid__content h3,
+  .cust-image-card-grid--mobile-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content h3 {
+    color: var(--image-card-mobile-title-color, #ffffff);
+  }
+
+  .cust-image-card-grid--mobile-content-image_bottom_left .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--mobile-content-image_bottom_left .cust-image-card-grid__content .rte p,
+  .cust-image-card-grid--mobile-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--mobile-content-image_bottom_left.cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte p {
+    color: var(--image-card-mobile-description-color, #ffffff);
+  }
+
+  .cust-image-card-grid--left_text_full .section-header {
+    padding-bottom: 20px;
+  }
+
+  .cust-image-card-grid__content h3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .cust-image-card-grid--centered_title_inset .cust-image-card-grid__content h3 {
+    font-size: var(--image-card-title-size, 16px);
+    line-height: calc(var(--image-card-title-size, 16px) * 1.4);
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content h3 {
+    font-size: 20px;
+    line-height: 26.54px;
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte {
+    margin-top: 11.67px;
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content .rte p {
+    font-size: 14px;
+    line-height: 16.33px;
+  }
+
+  .cust-image-card-grid--left_text_full .cust-image-card-grid__content {
+    padding: 17.5px 0 33px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cust-image-card-grid__nav {
+    display: none;
+  }
+}
+
+/* ==== Hover reveal (VIVAIA style): stronger zoom + description slides/fades in on hover ==== */
+@media (hover: hover) {
+  /* Stronger, operator-controlled zoom (overrides the base 1.045) */
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__item:hover .cust-image-card-grid__image img,
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__item:hover .cust-image-card-grid__image video {
+    transform: scale(var(--image-card-hover-scale, 1.06));
+  }
+
+  /* Accordion only: description hidden until hover (the carousel keeps it visible) */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__content .rte {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__item:hover .cust-image-card-grid__content .rte {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop accordion: hovered card widens, siblings narrow; fixed height keeps the row level */
+@media only screen and (min-width: 768px) and (hover: hover) {
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__items {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__item {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    transition: flex-grow 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Fixed height so expanding a card changes only its width, not its height */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__image {
+    height: var(--image-card-desktop-height, 408px);
+    padding-bottom: 0;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__items:hover .cust-image-card-grid__item:hover {
+    flex-grow: var(--image-card-hover-grow, 1.8);
+  }
+}
+
+/* While the carousel moves, cards slide under a stationary cursor and would
+   otherwise strobe through the hover zoom. Freeze it until scrolling settles. */
+.cust-image-card-grid--hover-reveal.is-scrolling .cust-image-card-grid__item:hover .cust-image-card-grid__image img,
+.cust-image-card-grid--hover-reveal.is-scrolling .cust-image-card-grid__item:hover .cust-image-card-grid__image video {
+  transform: scale(1);
+  transition: none;
+}
+
+/* Nav arrows: bare chevrons — no circle, border, background or shadow.
+   Doubled class beats the theme's own .flickity-nav button styling. */
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  margin: 0;
+  opacity: 1;
+  padding: 0;
+  position: static;
+  transform: none !important;
+  width: 24px;
+  --color-accent: #140f0f;
+}
+
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav svg {
+  height: 14px;
+  width: 9px;
+}
+
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav svg path {
+  stroke: #140f0f;
+}
+
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav:hover svg {
+  transform: none;
+}
+
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav.is-disabled,
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav[aria-disabled='true'] {
+  border: 0;
+  cursor: default;
+}
+
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav.is-disabled svg path,
+.cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav[aria-disabled='true'] svg path {
+  stroke: #686767;
+}
+
+/* A card can carry a landscape cut for desktop and a portrait one for phones.
+   Only the matching cut is rendered; JS plays whichever one is on screen. */
+.cust-image-card-grid__video--mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .cust-image-card-grid__video--desktop {
+    display: none;
+  }
+
+  .cust-image-card-grid__video--mobile {
+    display: block;
+  }
+}
+
+/* Videos behave exactly like the card images (fill, cover, zoomable) */
+.cust-image-card-grid__image video {
+  height: 100%;
+  left: -0.5px;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: calc(100% + 1px);
+  transform: scale(1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Keeps the video surface on its own compositing layer, so the carousel's
+     scaling doesn't re-rasterise it every frame (a common source of flicker). */
+  backface-visibility: hidden;
+}
+
+/* ==== VIVAIA-matched typography & placement for hover-reveal ==== */
+
+/* Images fill the whole column (no side inset / white bars), VIVAIA style */
+.cust-image-card-grid--hover-reveal .cust-image-card-grid__image-wrap {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Title: sentence case, semibold, left aligned (not the uppercase centered style) */
+.cust-image-card-grid--hover-reveal .cust-image-card-grid__content h3 {
+  font-size: var(--image-card-title-size, 16px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte p {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  /* Loop clones only exist for carousels; the accordion always shows the real set */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__item[data-clone] {
+    display: none;
+  }
+
+  /* Accordion: content sits inside the image, bottom-left (VIVAIA) */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-accordion .cust-image-card-grid__content {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    z-index: 2;
+  }
+
+  /* Carousel: centre-peek track — middle card largest, neighbours peek either side */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-carousel .cust-image-card-grid__items {
+    display: grid;
+    grid-auto-flow: column;
+    /* 100% of the content box, which the side padding below has already reduced to
+       exactly --image-card-desktop-peek of the track. Using the peek value here
+       instead would compound the two and yield peek x peek (70% -> 49%). */
+    grid-auto-columns: 100%;
+    grid-template-columns: none;
+    gap: var(--image-card-gap);
+    overflow-x: auto;
+    padding-left: calc((100% - var(--image-card-desktop-peek, 70%)) / 2);
+    padding-right: calc((100% - var(--image-card-desktop-peek, 70%)) / 2);
+    scroll-padding-left: calc((100% - var(--image-card-desktop-peek, 70%)) / 2);
+    scroll-padding-right: calc((100% - var(--image-card-desktop-peek, 70%)) / 2);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-carousel .cust-image-card-grid__items::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-carousel .cust-image-card-grid__item {
+    scroll-snap-align: center;
+    transform-origin: center center;
+  }
+
+  /* Off-centre cards can be shorter than the centre one. This changes the media
+     box height only, so object-fit crops the image instead of squashing it. */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-carousel .cust-image-card-grid__image {
+    transition: padding-bottom 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-carousel .cust-image-card-grid__item:not(.is-centre) .cust-image-card-grid__image {
+    padding-bottom: calc(var(--image-card-desktop-ratio) * var(--image-card-side-height, 1));
+  }
+
+  /* Caption below the image, centered — the default for every hover-reveal layout
+     except the accordion (which overlays it). Written with :not() so a card never
+     ends up with its text sitting invisibly on top of a photo or video. */
+  .cust-image-card-grid--hover-reveal:not(.cust-image-card-grid--desktop-accordion) .cust-image-card-grid__content {
+    position: static;
+    padding: 20px 12px 0;
+    margin: 0;
+    text-align: center;
+    /* Sits on the page background now, not on the photo — never inherit white */
+    color: #140f0f;
+  }
+
+  /* Text below the image always sits on the page background, so it is fixed dark
+     rather than following the title/description colour settings — those exist for
+     the accordion, where the text is overlaid on the photo. */
+  .cust-image-card-grid--hover-reveal:not(.cust-image-card-grid--desktop-accordion) .cust-image-card-grid__content h3 {
+    color: #140f0f;
+  }
+
+  .cust-image-card-grid--hover-reveal:not(.cust-image-card-grid--desktop-accordion) .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--hover-reveal:not(.cust-image-card-grid--desktop-accordion) .cust-image-card-grid__content .rte p {
+    color: #312e2e;
+  }
+
+
+  /* Carousel nav stays below the track, centered (the base rule hides nav on desktop) */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-carousel .cust-image-card-grid__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding-right: 0;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--desktop-carousel .cust-image-card-grid__count {
+    color: #140f0f;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    min-width: 48px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Dark text by default (VIVAIA uses dark on light photos); still overridable via color settings */
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content h3 {
+    color: var(--image-card-desktop-title-color, #140f0f);
+  }
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte {
+    margin-top: 8px;
+  }
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte p {
+    color: var(--image-card-desktop-description-color, #312e2e);
+  }
+
+  /* Extra breathing room below the whole section, before the next module */
+  .cust-image-card-grid--hover-reveal.section-spacing {
+    padding-bottom: 88px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* Loop clones belong to the swipe carousel only — never show them in a stack */
+  .cust-image-card-grid--hover-reveal:not(.cust-image-card-grid--mobile-swipe) .cust-image-card-grid__item[data-clone] {
+    display: none;
+  }
+
+  /* Mobile: title + description BELOW the image, centered, always visible */
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    padding: 14px 12px 0;
+    margin: 0;
+    text-align: center;
+    /* Sits on the page background now, not on the photo — never inherit white */
+    color: #140f0f;
+  }
+
+  /* Same on mobile: caption is below the image, so keep it dark regardless of
+     the colour settings left over from the overlaid design. */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__content h3 {
+    color: #140f0f;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte p {
+    color: #312e2e;
+  }
+
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content h3 {
+    color: var(--image-card-mobile-title-color, #140f0f);
+  }
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte {
+    opacity: 1;
+    transform: none;
+    margin-top: 8px;
+  }
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte,
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__content .rte p {
+    color: var(--image-card-mobile-description-color, #312e2e);
+  }
+
+  /* Center-peek carousel: the card at the middle is largest, neighbors shrink & peek in.
+     Card widths are set here; the live scaling is applied by JS on scroll. */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--mobile-swipe .cust-image-card-grid__items {
+    grid-auto-columns: 100%;  /* padding below already reserves the 10% peeks */
+    gap: 12px;
+    padding-left: 10%;
+    padding-right: 10%;
+    scroll-padding-left: 10%;
+    scroll-padding-right: 10%;
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--mobile-swipe .cust-image-card-grid__item {
+    scroll-snap-align: center;
+    transform-origin: center center;
+  }
+
+  /* Off-centre cards can be shorter than the centre one (media box only, so the
+     image is cropped rather than squashed). */
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--mobile-swipe .cust-image-card-grid__image {
+    transition: padding-bottom 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cust-image-card-grid--hover-reveal.cust-image-card-grid--mobile-swipe .cust-image-card-grid__item:not(.is-centre) .cust-image-card-grid__image {
+    padding-bottom: calc(var(--image-card-mobile-ratio) * var(--image-card-side-height, 1));
+  }
+
+  /* Nav below the images: centered, smaller, with a "current / total" counter */
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__nav {
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding-right: 0;
+  }
+
+  /* Extra breathing room below the whole section on mobile */
+  .cust-image-card-grid--hover-reveal.section-spacing {
+    padding-bottom: 32px;
+  }
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__nav .flickity-nav svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .cust-image-card-grid--hover-reveal .cust-image-card-grid__count {
+    color: #140f0f;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    min-width: 44px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+}

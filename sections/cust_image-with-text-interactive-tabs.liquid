@@ -1,0 +1,684 @@
+{%- assign collapsible_tabs = section.blocks | where: 'type', 'collapsible_tab' -%}
+{%- if collapsible_tabs -%}
+  {{- 'collapsible-content.css' | asset_url | stylesheet_tag -}}
+{%- endif -%}
+{{- 'image-with-text.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign section_width = section.settings.section_width
+  assign image = section.settings.image
+  assign use_video = section.settings.use_video
+  assign video = section.settings.video
+  assign video_hosted = section.settings.video_hosted
+  assign video_autoplay = section.settings.video_autoplay
+  assign video_controls = section.settings.video_controls
+  assign height = section.settings.height
+  assign content_position = section.settings.content_position
+  assign desktop_image_width = section.settings.desktop_image_width
+  assign desktop_layout = section.settings.layout
+  assign color_bg = section.settings.color_bg
+  assign color_text = section.settings.color_text
+  assign color_border = section.settings.color_border
+  assign disable_top_spacing = section.settings.disable_top_spacing
+  assign disable_bottom_spacing = section.settings.disable_bottom_spacing
+
+  assign use_product_metafield = section.settings.use_product_metafield
+  assign iwt_title = product.metafields.custom.image_with_tabs_title
+  assign iwt_questions = product.metafields.custom.image_with_tabs_questions.value
+  assign iwt_answers = product.metafields.custom.image_with_tabs_answers.value
+  assign iwt_images = product.metafields.custom.image_with_tabs_answers_image.value
+  assign min_loop_size = 50
+
+  if use_product_metafield
+    assign section_title = iwt_title
+  else
+    assign section_title = section.settings.text
+  endif
+
+  assign ratio = 1
+  if height == 'adapt' and image != blank
+    assign ratio = image.aspect_ratio
+  endif
+
+  if height == 'adapt' and use_video
+    if video_hosted != blank
+      assign ratio = video_hosted.aspect_ratio
+    else
+      assign ratio = 16.00 | divided_by: 9.00
+    endif
+  endif
+-%}
+
+{% if product.metafields.custom.image_with_tabs_answers_image.value !=blank %}
+
+{% comment %} DEV: desktop only {% endcomment %}
+<div class="row {{ section_width }} cust-image-with-text-interactive-tabs--desktop">
+  <div class="small-12 columns">
+    <div
+      class="image-with-text grid--image-{{ desktop_image_width }} {{ desktop_layout }} {{ content_position }} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}"
+      style="--color-bg:{{ color_bg }};--color-text:{{ color_text }};--color-text-rgb: {{ color_text | color_extract: 'red' }}, {{ color_text | color_extract: 'green' }}, {{ color_text | color_extract: 'blue' }}; --solid-button-background: {{ color_text }}; --outline-button-label: {{ color_text }};--solid-button-label: {{ color_bg }};--bg-body: {{ color_bg }};--color-border: {{ color_border }}"
+    >
+      <div
+        class="image-with-text__image image-with-text__inner"
+        style="position: relative;"
+      >
+        {% for i in (0..min_loop_size) %}
+          {% if use_product_metafield %}
+            {% for v in product.metafields.custom.image_with_tabs_answers_image.value %}
+              {% if forloop.index0 == i %}
+                {% assign image = v.preview_image %}
+              {% endif %}
+            {% endfor %}
+            {% assign heading = iwt_questions[i] %}
+            {% assign content = iwt_answers[i] %}
+          {% else %}
+            {% assign block = section.blocks[i] %}
+            {% assign image = block.settings.image %}
+            {% assign heading = block.settings.heading | default: block.settings.page.title %}
+            {% assign content = block.settings.content %}
+            {% assign page_content = block.settings.page.content %}
+          {% endif %}
+          {% if image != blank %}
+            <div
+              class="
+                image-with-text__image-media aspect-ratio aspect-ratio--{{ height }}
+                {% if forloop.index > 1 %}
+                  image-with-text__image-media--absolute
+                {% else %}
+                  c-active
+                {% endif %}
+              "
+              style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+            >
+              {%- if image != blank -%}
+                {%- liquid
+                  assign small_height = image.src.height | times: '690' | divided_by: image.src.width
+                  assign mid_height = image.src.height | times: '1340' | divided_by: image.src.width
+                  assign master_width = image.src.width | append: 'x' | append: image.src.height
+                  assign width = '690x' | append: small_height | append: ',' | append: '1340x' | append: mid_height | append: ',' | append: master_width
+                -%}
+                {%- render 'responsive-image', image: image, sizes: width -%}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+              {%- endif -%}
+            </div>
+          {% endif %}
+          {% comment %} Reset: {% endcomment %}
+          {% assign image = blank %}
+        {%- endfor -%}
+      </div>
+      <div class="image-with-text__content image-with-text__inner">
+        <div class="image-with-text__content--inner">
+          <h2 class="{{ section.settings.heading_size }}">
+            {{ section_title | newline_to_br }}
+          </h2>
+          {% for i in (0..min_loop_size) %}
+            {% if use_product_metafield %}
+              {% for v in product.metafields.custom.image_with_tabs_answers_image.value %}
+                {% if forloop.index0 == i %}
+                  {% assign image = v.preview_image %}
+                {% endif %}
+              {% endfor %}
+              {% assign heading = iwt_questions[i] %}
+              {% assign content = iwt_answers[i] %}
+            {% else %}
+              {% assign block = section.blocks[i] %}
+              {% assign image = block.settings.image %}
+              {% assign heading = block.settings.heading | default: block.settings.page.title %}
+              {% assign content = block.settings.content %}
+              {% assign page_content = block.settings.page.content %}
+            {% endif %}
+            {% if image != blank %}
+              <collapsible-row class="accordion" {{ block.shopify_attributes }}>
+                <details
+                  id="Details-{{ block.id }}-{{ section.id }}"
+                  {% if block.settings.open %}
+                    open
+                  {% endif %}
+                >
+                  <summary>
+                    {{ heading }}
+                    <span></span>
+                  </summary>
+                  <div
+                    class="collapsible__content accordion__content rte"
+                    id="Accordion-{{ block.id }}-{{ section.id }}"
+                  >
+                    {{ content }}
+                    {{ page_content }}
+                  </div>
+                </details>
+              </collapsible-row>
+            {% endif %}
+            {% comment %} Reset {% endcomment %}
+            {% assign image = blank %}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} Only one opened tab: {% endcomment %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const collapsibleRows = document.querySelectorAll('#shopify-section-{{ section.id }} collapsible-row');
+    const desktopImages = document.querySelectorAll(
+      '#shopify-section-{{ section.id }} .cust-image-with-text-interactive-tabs--desktop .image-with-text__image-media'
+    );
+    const imageActiveClass = 'c-active';
+
+    collapsibleRows.forEach((row, index) => {
+      row.addEventListener('click', (event) => {
+        collapsibleRows.forEach((_row, _index) => {
+          if (_row === row) {
+            // if it's not the first row, toggle it:
+            if (_index > 0) desktopImages[_index].classList.toggle(imageActiveClass);
+            return;
+          }
+
+          const detail = _row.querySelector('details');
+          const summary = _row.querySelector('summary');
+          if (detail.hasAttribute('open')) {
+            summary.click();
+            if (_index > 0) desktopImages[_index].classList.remove(imageActiveClass);
+          }
+        });
+      });
+    }); 
+  });
+</script>
+
+{% comment %} DEV: mobile slider: {% endcomment %}
+<div
+  class="cust-image-with-text-interactive-tabs--mobile"
+  style="--color-bg:{{ color_bg }};--color-text:{{ color_text }};--color-text-rgb: {{ color_text | color_extract: 'red' }}, {{ color_text | color_extract: 'green' }}, {{ color_text | color_extract: 'blue' }}; --solid-button-background: {{ color_text }}; --outline-button-label: {{ color_text }};--solid-button-label: {{ color_bg }};--bg-body: {{ color_bg }};--color-border: {{ color_border }}"
+>
+  <h2 class="{{ section.settings.heading_size }}">
+    {{ section_title | newline_to_br }}
+  </h2>
+  <div class="c-tabs-slider">
+    {% for i in (0..min_loop_size) %}
+      {% if use_product_metafield %}
+        {% for v in product.metafields.custom.image_with_tabs_answers_image.value %}
+          {% if forloop.index0 == i %}
+            {% assign image = v.preview_image %}
+          {% endif %}
+        {% endfor %}
+        {% assign heading = iwt_questions[i] %}
+        {% assign content = iwt_answers[i] %}
+      {% else %}
+        {% assign block = section.blocks[i] %}
+        {% assign image = block.settings.image %}
+        {% assign heading = block.settings.heading | default: block.settings.page.title %}
+        {% assign content = block.settings.content %}
+        {% assign page_content = block.settings.page.content %}
+      {% endif %}
+      
+      {% if image != blank %}
+        <div class="c-tabs-slide-item">
+          <div
+            class="image-with-text__image aspect-ratio aspect-ratio--{{ height }}"
+            style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+          >
+            {%- if image != blank -%}
+              {%- liquid
+                assign small_height = image.src.height | times: '690' | divided_by: image.src.width
+                assign mid_height = image.src.height | times: '1340' | divided_by: image.src.width
+                assign master_width = image.src.width | append: 'x' | append: image.src.height
+                assign width = '690x' | append: small_height | append: ',' | append: '1340x' | append: mid_height | append: ',' | append: master_width
+              -%}
+              {%- render 'responsive-image', image: image, sizes: width -%}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+            {%- endif -%}
+          </div>
+          <div>
+            <div class="summary-text" style="color: var(--color-text, --color-body);">
+              {{ heading }}
+            </div>
+            <div
+              class="rte"
+              style="color: var(--color-text, --color-body);"
+            >
+              {{ content }}
+              {{ page_content }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% comment %} Reset: {% endcomment %}
+      {% assign image = blank %}
+    {%- endfor -%}
+  </div>
+</div>
+{% elsif product.metafields.custom.image_with_tabs_answers_image.value ==blank and use_product_metafield ==false %}
+  {% comment %} DEV: desktop only {% endcomment %}
+<div class="row {{ section_width }} cust-image-with-text-interactive-tabs--desktop">
+  <div class="small-12 columns">
+    <div
+      class="image-with-text grid--image-{{ desktop_image_width }} {{ desktop_layout }} {{ content_position }} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}"
+      style="--color-bg:{{ color_bg }};--color-text:{{ color_text }};--color-text-rgb: {{ color_text | color_extract: 'red' }}, {{ color_text | color_extract: 'green' }}, {{ color_text | color_extract: 'blue' }}; --solid-button-background: {{ color_text }}; --outline-button-label: {{ color_text }};--solid-button-label: {{ color_bg }};--bg-body: {{ color_bg }};--color-border: {{ color_border }}"
+    >
+      <div
+        class="image-with-text__image image-with-text__inner"
+        style="position: relative;"
+      >
+        {% for i in (0..min_loop_size) %}
+          {% if use_product_metafield %}
+            {% for v in product.metafields.custom.image_with_tabs_answers_image.value %}
+              {% if forloop.index0 == i %}
+                {% assign image = v.preview_image %}
+              {% endif %}
+            {% endfor %}
+            {% assign heading = iwt_questions[i] %}
+            {% assign content = iwt_answers[i] %}
+          {% else %}
+            {% assign block = section.blocks[i] %}
+            {% assign image = block.settings.image %}
+            {% assign heading = block.settings.heading | default: block.settings.page.title %}
+            {% assign content = block.settings.content %}
+            {% assign page_content = block.settings.page.content %}
+          {% endif %}
+          {% if image != blank %}
+            <div
+              class="
+                image-with-text__image-media aspect-ratio aspect-ratio--{{ height }}
+                {% if forloop.index > 1 %}
+                  image-with-text__image-media--absolute
+                {% else %}
+                  c-active
+                {% endif %}
+              "
+              style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+            >
+              {%- if image != blank -%}
+                {%- liquid
+                  assign small_height = image.src.height | times: '690' | divided_by: image.src.width
+                  assign mid_height = image.src.height | times: '1340' | divided_by: image.src.width
+                  assign master_width = image.src.width | append: 'x' | append: image.src.height
+                  assign width = '690x' | append: small_height | append: ',' | append: '1340x' | append: mid_height | append: ',' | append: master_width
+                -%}
+                {%- render 'responsive-image', image: image, sizes: width -%}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+              {%- endif -%}
+            </div>
+          {% endif %}
+          {% comment %} Reset: {% endcomment %}
+          {% assign image = blank %}
+        {%- endfor -%}
+      </div>
+      <div class="image-with-text__content image-with-text__inner">
+        <div class="image-with-text__content--inner">
+          <h2 class="{{ section.settings.heading_size }}">
+            {{ section_title | newline_to_br }}
+          </h2>
+          {% for i in (0..min_loop_size) %}
+            {% if use_product_metafield %}
+              {% for v in product.metafields.custom.image_with_tabs_answers_image.value %}
+                {% if forloop.index0 == i %}
+                  {% assign image = v.preview_image %}
+                {% endif %}
+              {% endfor %}
+              {% assign heading = iwt_questions[i] %}
+              {% assign content = iwt_answers[i] %}
+            {% else %}
+              {% assign block = section.blocks[i] %}
+              {% assign image = block.settings.image %}
+              {% assign heading = block.settings.heading | default: block.settings.page.title %}
+              {% assign content = block.settings.content %}
+              {% assign page_content = block.settings.page.content %}
+            {% endif %}
+            {% if image != blank %}
+              <collapsible-row class="accordion" {{ block.shopify_attributes }}>
+                <details
+                  id="Details-{{ block.id }}-{{ section.id }}"
+                  {% if block.settings.open %}
+                    open
+                  {% endif %}
+                >
+                  <summary>
+                    {{ heading }}
+                    <span></span>
+                  </summary>
+                  <div
+                    class="collapsible__content accordion__content rte"
+                    id="Accordion-{{ block.id }}-{{ section.id }}"
+                  >
+                    {{ content }}
+                    {{ page_content }}
+                  </div>
+                </details>
+              </collapsible-row>
+            {% endif %}
+            {% comment %} Reset {% endcomment %}
+            {% assign image = blank %}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} Only one opened tab: {% endcomment %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const collapsibleRows = document.querySelectorAll('#shopify-section-{{ section.id }} collapsible-row');
+    const desktopImages = document.querySelectorAll(
+      '#shopify-section-{{ section.id }} .cust-image-with-text-interactive-tabs--desktop .image-with-text__image-media'
+    );
+    const imageActiveClass = 'c-active';
+
+    collapsibleRows.forEach((row, index) => {
+      row.addEventListener('click', (event) => {
+        collapsibleRows.forEach((_row, _index) => {
+          if (_row === row) {
+            // if it's not the first row, toggle it:
+            if (_index > 0) desktopImages[_index].classList.toggle(imageActiveClass);
+            return;
+          }
+
+          const detail = _row.querySelector('details');
+          const summary = _row.querySelector('summary');
+          if (detail.hasAttribute('open')) {
+            summary.click();
+            if (_index > 0) desktopImages[_index].classList.remove(imageActiveClass);
+          }
+        });
+      });
+    }); 
+  });
+</script>
+
+{% comment %} DEV: mobile slider: {% endcomment %}
+<div
+  class="cust-image-with-text-interactive-tabs--mobile"
+  style="--color-bg:{{ color_bg }};--color-text:{{ color_text }};--color-text-rgb: {{ color_text | color_extract: 'red' }}, {{ color_text | color_extract: 'green' }}, {{ color_text | color_extract: 'blue' }}; --solid-button-background: {{ color_text }}; --outline-button-label: {{ color_text }};--solid-button-label: {{ color_bg }};--bg-body: {{ color_bg }};--color-border: {{ color_border }}"
+>
+  <h2 class="{{ section.settings.heading_size }}">
+    {{ section_title | newline_to_br }}
+  </h2>
+  <div class="c-tabs-slider">
+    {% for i in (0..min_loop_size) %}
+      {% if use_product_metafield %}
+        {% for v in product.metafields.custom.image_with_tabs_answers_image.value %}
+          {% if forloop.index0 == i %}
+            {% assign image = v.preview_image %}
+          {% endif %}
+        {% endfor %}
+        {% assign heading = iwt_questions[i] %}
+        {% assign content = iwt_answers[i] %}
+      {% else %}
+        {% assign block = section.blocks[i] %}
+        {% assign image = block.settings.image %}
+        {% assign heading = block.settings.heading | default: block.settings.page.title %}
+        {% assign content = block.settings.content %}
+        {% assign page_content = block.settings.page.content %}
+      {% endif %}
+      
+      {% if image != blank %}
+        <div class="c-tabs-slide-item">
+          <div
+            class="image-with-text__image aspect-ratio aspect-ratio--{{ height }}"
+            style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+          >
+            {%- if image != blank -%}
+              {%- liquid
+                assign small_height = image.src.height | times: '690' | divided_by: image.src.width
+                assign mid_height = image.src.height | times: '1340' | divided_by: image.src.width
+                assign master_width = image.src.width | append: 'x' | append: image.src.height
+                assign width = '690x' | append: small_height | append: ',' | append: '1340x' | append: mid_height | append: ',' | append: master_width
+              -%}
+              {%- render 'responsive-image', image: image, sizes: width -%}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+            {%- endif -%}
+          </div>
+          <div>
+            <div class="summary-text" style="color: var(--color-text, --color-body);">
+              {{ heading }}
+            </div>
+            <div
+              class="rte"
+              style="color: var(--color-text, --color-body);"
+            >
+              {{ content }}
+              {{ page_content }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% comment %} Reset: {% endcomment %}
+      {% assign image = blank %}
+    {%- endfor -%}
+  </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Image with tabs",
+  "class": "section-image-with-text",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_product_metafield",
+      "label": "Use product metafield",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Image with text"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "Extra Large"
+        },
+        {
+          "value": "h2",
+          "label": "Large"
+        },
+        {
+          "value": "h3",
+          "label": "Medium"
+        },
+        {
+          "value": "h4",
+          "label": "Small"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "adapt",
+      "label": "Image height"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_width",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Desktop image width",
+      "info": "Image is automatically optimized for mobile."
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "full-width-row",
+          "label": "Full width"
+        },
+        {
+          "value": "full-width-row-full",
+          "label": "Full width, no spacing"
+        }
+      ],
+      "default": "grid",
+      "label": "Section width"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "image_first",
+          "label": "Image first"
+        },
+        {
+          "value": "text_first",
+          "label": "Image second"
+        }
+      ],
+      "default": "image_first",
+      "label": "Desktop image placement",
+      "info": "Image first is the default mobile layout."
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Desktop content alignment",
+      "options": [
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-left", "label": "Left" },
+        { "value": "text-right", "label": "Right" }
+      ],
+      "default": "text-left"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#151515"
+    },
+    {
+      "type": "color",
+      "id": "color_border",
+      "label": "Borders",
+      "default": "#e2e2e2"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_top_spacing",
+      "default": false,
+      "label": "Remove top spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_bottom_spacing",
+      "default": false,
+      "label": "Remove bottom spacing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collapsible_tab",
+      "name": "Collapsible row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "1340 x 1340 .jpg recommended."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible row",
+          "info": "Include a heading that explains the content.",
+          "label": "Heading"
+        },
+        {
+          "type": "checkbox",
+          "id": "open",
+          "default": false,
+          "label": "Open by default"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Row content"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Row content from page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with tabs",
+      "blocks": [
+        {
+          "type": "collapsible_tab"
+        },
+        {
+          "type": "collapsible_tab"
+        },
+        {
+          "type": "collapsible_tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

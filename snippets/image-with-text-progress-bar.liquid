@@ -1,0 +1,59 @@
+<div
+  {{ block.shopify_attributes }}
+  style="
+    margin-top: {{ block.settings.mt }}px;
+    margin-bottom: {{ block.settings.mb }}px;
+    display: flex;
+    gap: 24px;
+  "
+>
+  {%- assign icon = block.settings.icon -%}
+  {%- if icon != blank -%}
+    {{ icon | image_url: width: 50 | image_tag }}
+  {%- endif -%}
+  <div
+    style="
+      --progress-value: {{ block.settings.progress }};
+      --progress: calc(var(--progress-value) / 100 * 100%);
+      width: 100%;
+    "
+  >
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        line-height: 19.5px;
+      "
+    >
+      {%- if block.settings.label_left -%}
+        <div>
+          {{ block.settings.label_left }}
+        </div>
+      {%- endif -%}
+      {%- if block.settings.label_right -%}
+        <div>
+          {{ block.settings.label_right }}
+        </div>
+      {%- endif -%}
+    </div>
+    <div
+      style="
+        background-color: #EAEAEA;
+        width: 100%;
+        height: 18px;
+        border-radius: 100px;
+        margin-top: 5px;
+        overflow: hidden;
+      "
+    >
+      <div
+        style="
+          background-color: {{ block.settings.color }};
+          width: var(--progress);
+          height: 100%;
+        "
+      ></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,352 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+  #shopify-section-{{section.id}} .blackFive_activityPage3All{
+      margin-top: {{section.settings.Desktop_top}}px;
+      margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+      padding-top:{{section.settings.Desktop_paddingTop}}px;
+      padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+  }
+  @media(max-width:999px) {
+      #shopify-section-{{section.id}} .blackFive_activityPage3All{
+          margin-top: {{section.settings.Mobile_top}}px;
+          margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+          padding-top:{{section.settings.Mobile_paddingTop}}px;
+          padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+      }
+  }
+
+  .blackFive_activityPage3All .swiper-button-prev::after,.blackFive_activityPage3All .swiper-button-next::after {
+    content: unset;
+  }
+  .blackFive_activityPage3All .swiper-button-next.swiper-button-disabled,.blackFive_activityPage3All .swiper-button-prev.swiper-button-disabled {
+    opacity: 0 !important;
+    display: none;
+  }
+  .blackFive_activityPage3All .swiper-slide {
+    position: relative;
+    overflow: hidden;
+  }
+  #shopify-section-{{section.id}} .activityPage3Swiper_label {
+    color: {{section.settings.top_color}};
+    background-color: {{section.settings.top_bg_color}};
+    border: 1px solid {{section.settings.top_border_color}};
+    position: absolute;
+    height: 30px;
+    font-weight: 600;
+    width: 140px;
+    font-size:18px;
+    top: 76px;
+    transform: rotate(45deg);
+    right: -22px;
+    line-height: 30px;
+    /* transform: rotate(36deg); */
+    text-align: center;
+    transform-origin: top right;
+    /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); */
+    z-index: 1;
+  }
+  .blackFive_activityPage3_title p:last-child {
+    margin: 0;
+  }
+  .blackFive_activityPage3_title, .blackFive_activityPage3_title p {
+    line-height: 110%;
+  }
+  #shopify-section-{{section.id}} .blackFive_activityPage3_title strong {
+    color: {{ section.settings.active_color }};
+  }
+  .activityPage3Swiper .swiper-button-prev svg,.activityPage3Swiper .swiper-button-next svg {
+    width: 15px;
+    height: auto;
+  }
+  .blackFive_activityPage3_title {
+    font-weight: 500;
+  }
+  @media (min-width: 1000px) {
+    .blackFive_activityPage3All .swiper-button-prev,.blackFive_activityPage3All .swiper-button-next {
+      z-index: 4;
+      background: var(--bg-body, #fff);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 30;
+      opacity: 0;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #00000026;
+      transition: all .25s cubic-bezier(.104,.204,.492,1);
+    }
+    .activityPage3Swiper:hover .swiper-button-prev,.activityPage3Swiper:hover .swiper-button-next {
+      opacity: 1 !important;
+    }
+    .blackFive_activityPage3_title {
+      font-size: 34px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .blackFive_activityPage3_title strong {
+      font-weight: 600;
+    }
+    .blackFive_activityPage3All {
+      overflow: hidden;
+    }
+    .activityPage3Swiper {
+      overflow: unset !important;
+    }
+
+    .pc_hide_color .product-card-swatches--container {
+      display:none;
+    }
+  }
+  @media (max-width: 999px) {
+    .mobile_hide_color .product-card-swatches--container {
+      display:none;
+    }
+    .no_activityPage3 .swiper-wrapper {
+      flex-direction: column;
+      transform: unset !important;
+      display: grid;
+      gap: 5px;
+      grid-template-columns: repeat(2,1fr);
+    }
+    .no_activityPage3 .swiper-slide {
+      margin-right: unset !important;
+    }
+    .blackFive_activityPage3All .swiper-button-prev,.blackFive_activityPage3All .swiper-button-next {
+      display: none;
+    }
+    .blackFive_activityPage3_title {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .activityPage3Swiper_label {
+      font-size: 12px;
+      line-height: 20px;
+      height: 20px;
+      top: 62px;
+      right: -36px;
+    }
+  }
+</style>
+<div class="blackFive_activityPage3All">
+  <div class="row full-width-row">
+    <div class="columns">
+       {% if section.settings.title != blank %}
+        <h2 class="blackFive_activityPage3_title">
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+      
+      <div class="blackFive_activityPage3_box {% if section.settings.pc_hide_color %} pc_hide_color{% endif %} {% if section.settings.mobile_hide_color %} mobile_hide_color{% endif %}">
+        <div class="swiper activityPage3Swiper {% if section.settings.mobile_swiper %} no_activityPage3{% endif %}">
+          <div class="swiper-wrapper">
+            {%- for product in section.settings.collection.products limit: section.settings.product_limit -%}
+              <div class="swiper-slide">
+                {% if section.settings.top %}
+                  <div class="activityPage3Swiper_label">
+                    {{ section.settings.top_text -}}{{- forloop.index }}
+                  </div>
+                {% endif %}
+                {% render 'product-card', product_card_product: product %}
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="swiper-button-prev">
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 5.5H2" stroke="var(--color-accent)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M5.30002 1L0.800018 5.5L5.30002 10" stroke="var(--color-accent)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <div class="swiper-button-next">
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 5.5H13" stroke="var(--color-accent)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M9.69995 1L14.2 5.5L9.69995 10" stroke="var(--color-accent)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('#shopify-section-{{ section.id }} .activityPage3Swiper', {
+          observer: true,
+          observeParents: true,
+          breakpoints: {
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 5,
+            },
+            720: {
+              slidesPerView: 2,
+              spaceBetween: 5,
+            },
+            1080: {
+              slidesPerView: 4,
+              spaceBetween: 5,
+            },
+            1400: {
+              slidesPerView: 4.95,
+              spaceBetween: 5,
+            },
+          },
+          navigation: {
+            nextEl: '#shopify-section-{{section.id}} .swiper-button-next',
+            prevEl: '#shopify-section-{{section.id}} .swiper-button-prev',
+          },
+          pagination: {
+            el: '#shopify-section-{{section.id}} .swiper-pagination',
+            clickable: true,
+          },
+        });
+    });
+</script>
+{% schema %}
+{
+  "name": "Black Five Activity Page3",
+  "tag": "section",
+  "settings": [
+   {
+      "type": "richtext",
+      "id": "title",
+      "label": "title"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "active color"
+    },
+    {
+      "type": "color",
+      "id": "top_color",
+      "label": "top color"
+    },
+    
+    {
+      "type": "color",
+      "id": "top_border_color",
+      "label": "top border color"
+    },
+     {
+      "type": "color",
+      "id": "top_bg_color",
+      "label": "top background color"
+    },
+    {
+      "type": "checkbox",
+      "id": "top",
+      "label": "show top",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "top text"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "product limit",
+      "default": 5,
+      "min": 5,
+      "max": 20,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_swiper",
+      "label": "mobile no swiper",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "pc_hide_color",
+      "label": "pc hide color",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_hide_color",
+      "label": "mobile hide color",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Spacing Top:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_top",
+      "label": "Desktop Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_top",
+      "label": "Mobile Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingTop",
+      "label": "Desktop Padding Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingTop",
+      "label": "Mobile Padding Top",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Bottom:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_bottom",
+      "label": "Desktop Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_bottom",
+      "label": "Mobile Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingBottom",
+      "label": "Mobile Padding Bottom",
+      "default": 0
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Black Five Activity Page3"
+    }
+  ]
+}
+{% endschema %}

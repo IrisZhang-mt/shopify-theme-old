@@ -1,0 +1,170 @@
+{{ 'journal.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mode = section.settings.content_source | default: 'demo'
+  assign coll = collections[section.settings.collection]
+  assign limit = section.settings.products_to_show | default: 12
+-%}
+
+<div class="mt-journal">
+  <section class="mt-wrap mt-shelf" aria-label="{{ section.settings.heading | default: 'Shop the products' | escape }}">
+
+    {%- if section.settings.heading != blank -%}
+      <div class="mt-shelf-head"><h2>{{ section.settings.heading }}</h2></div>
+    {%- endif -%}
+
+    <div class="mt-shelf-body">
+      <button class="mt-shelf-btn prev" type="button" aria-label="Previous products" data-shelf-prev="{{ section.id }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <div class="mt-shelf-track" id="mt-shelf-{{ section.id }}">
+        {%- if mode == 'blog' -%}
+          {%- comment -%} ===== LIVE: real collection products ===== {%- endcomment -%}
+          {%- if coll != blank and coll.products.size > 0 -%}
+            {%- for product in coll.products limit: limit -%}
+              <a class="mt-product" href="{{ product.url }}">
+                <div class="mt-ph">
+                  {%- if product.featured_image -%}
+                    {{ product.featured_image | image_url: width: 500 | image_tag:
+                       loading: 'lazy', sizes: '(min-width: 750px) 18vw, 62vw', widths: '250, 500, 750' }}
+                  {%- else -%}
+                    <div class="mt-ph-fill" style="background:linear-gradient(160deg,#F1EADD,#E0D6C6)"></div>
+                  {%- endif -%}
+                </div>
+                <div class="mt-dots">
+                  {%- for option in product.options_with_values -%}
+                    {%- assign oname = option.name | downcase -%}
+                    {%- if oname == 'color' or oname == 'colour' or oname == '颜色' -%}
+                      {%- for value in option.values limit: 4 -%}
+                        {%- if value.swatch.color -%}
+                          <i style="background:{{ value.swatch.color }}" title="{{ value | escape }}"></i>
+                        {%- elsif value.swatch.image -%}
+                          <i style="background-image:url({{ value.swatch.image | image_url: width: 24 }});background-size:cover" title="{{ value | escape }}"></i>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+                <div class="mt-name">{{ product.title }}</div>
+                <div class="mt-price">{{ product.price | money }}</div>
+              </a>
+            {%- endfor -%}
+          {%- else -%}
+            <p style="color:#818A7D">Select a collection in the theme editor to show products here.</p>
+          {%- endif -%}
+
+        {%- else -%}
+          {%- comment -%} ===== DEMO: placeholder products (matches the design) ===== {%- endcomment -%}
+          <a class="mt-product" href="#">
+            <div class="mt-ph"><div class="mt-ph-fill" style="background:linear-gradient(160deg,#C8DE86,#A9C45E)"></div></div>
+            <div class="mt-dots"><i style="background:#BEDA6E"></i><i style="background:#EAE1D2"></i><i style="background:#1D1D1D"></i></div>
+            <div class="mt-name">AirMove&trade; Training Tee</div>
+            <div class="mt-price">$32.00</div>
+          </a>
+          <a class="mt-product" href="#">
+            <div class="mt-ph"><div class="mt-ph-fill" style="background:linear-gradient(160deg,#2A2F36,#1D1D1D)"></div></div>
+            <div class="mt-dots"><i style="background:#1D1D1D"></i><i style="background:#818A7D"></i><i style="background:#EAE1D2"></i></div>
+            <div class="mt-name">FlexForm&trade; Active Leggings</div>
+            <div class="mt-price">$42.00</div>
+          </a>
+          <a class="mt-product" href="#">
+            <div class="mt-ph"><div class="mt-ph-fill" style="background:linear-gradient(160deg,#F1EADD,#E0D6C6)"></div></div>
+            <div class="mt-dots"><i style="background:#EAE1D2"></i><i style="background:#BEDA6E"></i><i style="background:#818A7D"></i></div>
+            <div class="mt-name">Quick-Dry Tennis Dress</div>
+            <div class="mt-price">$58.00</div>
+          </a>
+          <a class="mt-product" href="#">
+            <div class="mt-ph"><div class="mt-ph-fill" style="background:linear-gradient(160deg,#9AA193,#6E7669)"></div></div>
+            <div class="mt-dots"><i style="background:#818A7D"></i><i style="background:#1D1D1D"></i></div>
+            <div class="mt-name">TrailReady Lightweight Jacket</div>
+            <div class="mt-price">$78.00</div>
+          </a>
+          <a class="mt-product" href="#">
+            <div class="mt-ph"><div class="mt-ph-fill" style="background:linear-gradient(160deg,#2C333D,#171B21)"></div></div>
+            <div class="mt-dots"><i style="background:#1D1D1D"></i><i style="background:#818A7D"></i><i style="background:#F37434"></i></div>
+            <div class="mt-name">Everyday Motion Shorts</div>
+            <div class="mt-price">$36.00</div>
+          </a>
+          <a class="mt-product" href="#">
+            <div class="mt-ph"><div class="mt-ph-fill" style="background:linear-gradient(160deg,#F8F4EE,#E7E0D4)"></div></div>
+            <div class="mt-dots"><i style="background:#FAFBF9"></i><i style="background:#EAE1D2"></i><i style="background:#818A7D"></i></div>
+            <div class="mt-name">Cushion Crew Socks (3-Pack)</div>
+            <div class="mt-price">$18.00</div>
+          </a>
+        {%- endif -%}
+      </div>
+
+      <button class="mt-shelf-btn next" type="button" aria-label="Next products" data-shelf-next="{{ section.id }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </section>
+</div>
+
+<script>
+  (function () {
+    function bindShelf(track) {
+      if (!track || track.dataset.shelfReady) return;
+      track.dataset.shelfReady = '1';
+      var id = track.id.replace('mt-shelf-', '');
+      var prev = document.querySelector('[data-shelf-prev="' + id + '"]');
+      var next = document.querySelector('[data-shelf-next="' + id + '"]');
+      function step() { return track.clientWidth + 20; }
+      if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    }
+    function initShelves(root) {
+      (root || document).querySelectorAll('.mt-shelf-track').forEach(bindShelf);
+    }
+    if (!window.__mtShelfBound) {
+      window.__mtShelfBound = true;
+      document.addEventListener('shopify:section:load', function (e) { initShelves(e.target); });
+    }
+    if (document.readyState !== 'loading') initShelves();
+    else document.addEventListener('DOMContentLoaded', function () { initShelves(); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Journal products",
+  "tag": "section",
+  "class": "mt-journal-products-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_source",
+      "label": "Content source",
+      "options": [
+        { "value": "demo", "label": "Demo (placeholder products)" },
+        { "value": "blog", "label": "Live collection" }
+      ],
+      "default": "demo",
+      "info": "Demo shows sample products. Switch to Live and pick a collection when ready."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Most Loved",
+      "info": "Shown above the row, aligned with the first product. Leave blank to hide."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection (Live mode)"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show (Live mode)",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 12
+    }
+  ],
+  "presets": [{ "name": "Journal products" }]
+}
+{% endschema %}

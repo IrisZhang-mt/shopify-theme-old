@@ -1,0 +1,819 @@
+ <style>
+	.slp_e72bb8 {
+		padding: 0 !important;;
+	}
+	@media (min-width:1000px) {
+		.my_h_title  {
+			text-transform: uppercase;
+		}
+		.account_customerRight {
+			padding-right:40px;
+		}
+		.account_customerLeft_bottomBox {
+			cursor: pointer;
+			display: flex !important;
+			gap: 16px;
+			align-items: center;
+			font-weight: 400;
+			min-width: 190px;
+			height: 36px;
+			font-size: 20px; 
+			width: 100%;
+			padding-bottom: 14px;
+			color: #000 !important;
+			text-decoration: unset !important;
+			border-bottom: 1px solid transparent;
+		}
+		.account_customerLeft_bottomBox:not(:first-child){
+			margin-top: 32px;
+		}
+		.account_customerLeft_bottomBox.active{
+			color: #FF8300 !important;
+			font-weight: 600;
+			border-color:#FF8300;
+		}
+		.account_customerLeft_bottomBox svg{
+			width:36px;
+			height:auto;
+		}
+		.account_customerLeft_bottomBox.active svg path{
+			fill:#FF8300;
+		}
+		.accountCustomerLeft_bottomBox_left{
+			display: flex;
+		}
+		.account_customerLeftBox {
+			max-width: 383px;
+			margin-left: auto;
+		}
+		.account_customerLeft_svg{
+			display: flex;
+			margin-top: 72px;
+			justify-content: center;
+			margin-bottom: 54px;
+		}
+		.account_customerBox{
+			min-height: 100vh;
+			display: flex;
+			gap: 128px;
+		}
+		.account_customerLeft{
+			padding-left: 40px;
+			background: #FDF6EE;
+			width: 30.2%;
+			max-width: 580px;
+		}
+		.account_customerRight{
+			width: 69.8%;
+		}
+		.account_customerRight .account_customerRight_box{
+			padding-top: 185px;
+		}
+ 
+		.account_detailsTop,.account_ordersTop {
+			padding-bottom: 32px;
+			margin-bottom: 42px;
+			border-bottom: 1px solid #FF8300;
+		}
+		.account_detailsBox{
+			display: flex;
+			gap: 35px;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.account_detailsBox_Isleft{
+			display: flex;
+			gap: 16px;
+			align-items: center; 
+		}
+		.account_detailsBox:not(:first-child){
+			margin-top: 36px;
+		}
+		.account_detailsBox_left{
+			color: #FF8300;
+			font-weight: 500;
+			width: min-content;
+			display: block;
+			min-width: max-content;
+		}
+		.account_detailsBox_right{
+			color: #333;
+		}
+		.account_customerRight_box {
+			max-width: 960px;
+		}
+		.account_detailsBox_IsRight {
+			display: flex;
+			align-items: center;
+		}
+		/* order */
+
+		.rowgroup>div{
+			color: #FF8300;
+			font-size: 20px;
+			line-height: 1;
+			font-weight: 600;
+		}
+		.account_ordersBottom .rowgroup{
+			margin-bottom: 32px;
+		}
+		.rowgroup,.rowgroup_bottom .row_text{
+			display: flex;
+			gap: 34px;
+			margin-bottom: 24px;
+			align-items: center;
+		}
+		.rowgroup_1,.rowgroupContent_1{
+			width: 150px;
+		}
+		.rowgroup_2,.rowgroupContent_2{
+			width: 210px;
+		}
+		.rowgroup_3,.rowgroupContent_3{
+			width: 250px;
+		}
+		.rowgroup_4,.rowgroupContent_4{
+			width: 250px;
+		}
+		.rowgroup_5,.rowgroupContent_5{
+			width: auto;
+			min-width: 65px;
+		}
+		.row_text{
+			font-size: 16px;
+			color: #000;
+		}
+		.rowgroupContent_1 a{
+			color: #FF8300;
+		}
+		/*  */
+		.my_h_title{
+		font-weight: 600;
+		font-size: 36px;
+		}
+		.account_customerRight_box{
+		display: none;
+		}
+		.account_customerRight_box.active{
+		display: block;
+		}
+	}
+	@media (max-width:999px) {
+		.slp_51a39c {
+			padding: 0 !important;;
+		}
+		.account_customerLeft{
+			display: none;
+		}
+		.account_customerRight_box3,.account_customerRight_box4  {
+ 			font-size: 14px;
+		}
+		.account_customerRight_box1{
+			display: none;
+		}
+		.account_customerMobileBox{
+			padding: 66px 20px 88px; 
+			background: #FDF6EE;
+		}
+		.account_customerAll {
+			position: relative;
+		}
+		.account_customerMobile_left {
+			display: flex;
+		}
+		.account_customerMobile{
+			display: flex;
+			gap: 24px;
+			line-height: 100%;
+			align-items: center;
+		}
+		.account_customerMobile_rightName {
+			font-weight: 600;
+			color: #FF8300;
+			font-size: 18px;
+			line-height: 120%;
+		}
+		.account_customerMobile_rightEmail{
+			color: #000;
+			line-height: 120%;
+			margin-top: 8px;
+		}
+		.account_customerMobile_rightAddress{
+			color: #000;
+			line-height: 120%;
+			margin-top: 4px;
+		}
+		.account_customerMobile_tab{
+			margin-top: 32px;
+		}
+		.account_customerMobile_tabBox_left{
+			display: flex;
+		}
+		.account_customerMobile_tabBox{
+			height: 46px;
+			display: flex;
+			font-weight: 400;
+			gap: 16px;
+			padding: 15px 16px;
+			align-items: center;
+			background-color: #fff;
+			color: #000 !important;
+			text-decoration: unset !important;
+		}
+		.account_customerMobile_tabBox:not(:first-child){
+			margin-top: 16px;
+		}
+		
+		.account_customerRight_boxMobile1,.account_customerRight_boxMobile2,.account_customerRight_boxMobile3{
+			display: none;
+		}
+	
+		.account_customerRight_boxMobile{
+			padding: 23px 20px;
+		}
+		.my_h_title{
+			font-weight: 600;
+		}
+	
+		.row_text{
+			height: 96px;
+			display: flex;
+			flex-direction: column;
+			font-weight: 400;
+			padding: 10px 16px;
+			background-color: #FDF6EE;
+			justify-content: space-between;
+		}
+		.row_text:not(:first-child){
+			margin-top: 16px;
+		}
+		.row_textTop{
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.row_textBottom{
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.account_ordersTop {
+			width: max-content;
+			cursor: pointer; 
+			display: flex;
+			gap: 8px;
+			line-height: 1;
+			align-items: center;
+			color: #FF8300;
+			margin-bottom: 32px;
+			font-weight: 600;
+		}
+		.row_textTop_left a{
+			color: #FF8300;
+			font-weight: 600;
+		}
+		.row_textBottom_left {
+			font-size: 18px;
+			font-weight: 600;
+		}
+		.row_textTop_right{
+			color: #000;
+		}
+		.row_textBottom_right {
+		
+		}
+		.row_textBottom_right>div{
+			line-height: 1;
+		}
+		.yotpo-widget-my-rewards-widget .yotpo-is-mobile .yotpo-action-buttons-tile{
+			gap: 10px !important;
+		}
+
+		.account_customerMobile_right{
+			width: 100%;
+			gap: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.account_customerMobile_rightBox{
+			width: auto;
+		}
+		.account_detailsBox_IsRight{
+			display: flex;
+			justify-content: flex-end;
+			min-width: 30px;
+			align-items: flex-end;
+		}
+		.account_detailsBox_IsRight svg{
+			width: 16px;
+			height: auto;
+		}
+	}
+</style>
+<div class="account_customerAll account section-{{ section.id }}-padding">
+  <div class="account_customerBox">
+    <div class="account_customerLeft">
+		<div class="account_customerLeftBox">
+			<div class="account_customerLeft_svg">
+				<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+				  <path d="M48.0063 89.8924L47.6615 89.8901C36.5549 89.8001 26.1532 85.3917 18.3686 77.4752C10.6945 69.6747 6.34619 58.8067 6.43858 47.6581C6.62824 24.7469 25.2684 6.10754 47.9914 6.10754H48.3335C71.6677 7.55098 89.7434 26.1026 89.5615 48.3446C89.3717 71.2545 70.7302 89.8924 48.0063 89.8924ZM52.2605 87.1384C71.6305 84.9965 86.8755 68.4055 87.0418 48.3237C87.2128 27.4204 70.1766 9.98332 48.256 8.62507L47.9914 8.62728C26.6468 8.62728 9.13704 26.1458 8.9586 47.6791C8.87216 58.1631 12.9572 68.3805 20.1649 75.7084C27.4769 83.145 37.2476 87.2864 47.6765 87.3701L48.0077 87.3723C49.4441 87.3723 50.863 87.293 52.2605 87.1384Z" fill="#FF8300"/>
+				  <path d="M47.9517 53.7137C38.9922 53.7137 31.7034 46.3512 31.7034 37.3029C31.7034 28.2561 38.9922 20.8945 47.9517 20.8945C56.9104 20.8945 64.1983 28.2561 64.1983 37.3029C64.1983 46.3512 56.9105 53.7137 47.9517 53.7137ZM47.9517 23.4141C40.3813 23.4141 34.2234 29.6448 34.2234 37.3029C34.2234 44.9621 40.3814 51.194 47.9517 51.194C55.5202 51.194 61.6782 44.962 61.6782 37.3029C61.6782 29.6448 55.5202 23.4141 47.9517 23.4141Z" fill="#FF8300"/>
+				  <path d="M74.8042 78.5679C74.1078 78.5679 73.5442 78.0043 73.5442 77.3084C73.5442 66.0082 67.0711 56.047 57.8025 53.0865C57.1406 52.8751 56.774 52.1663 56.9869 51.5044C57.1985 50.8412 57.9035 50.4746 58.5704 50.6875C68.8696 53.9763 76.0639 64.923 76.0639 77.3085C76.0642 78.0042 75.5007 78.5679 74.8042 78.5679Z" fill="#FF8300"/>
+				  <path d="M21.1935 78.5679C20.497 78.5679 19.9335 78.0043 19.9335 77.3084C19.9335 65.0384 27.0439 54.1187 37.2244 50.7538C37.8813 50.5345 38.5972 50.8953 38.8152 51.5548C39.034 52.2153 38.6746 52.9291 38.0141 53.1465C28.8525 56.1748 22.4536 66.1114 22.4536 77.3078C22.4535 78.0042 21.8899 78.5679 21.1935 78.5679Z" fill="#FF8300"/>
+				</svg>
+			</div>
+			<div class="account_customerLeft_bottom">
+			  <div class="account_customerLeft_bottomBox active">
+				  <div class="accountCustomerLeft_bottomBox_left">
+					<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+					  <path d="M20.708 32.0001H15.2849C12.9837 32.0001 10.8074 32.0001 9.22683 31.7575C8.45619 31.6398 6.11215 31.2794 6.11215 29.36V28.8284C6.11215 23.8442 10.2294 19.7912 15.2885 19.7912H20.7115C25.7707 19.7912 29.8879 23.8442 29.8879 28.8284V29.36C29.8879 31.2366 27.5438 31.6077 26.7768 31.7325C25.2069 31.9823 23.102 32.0001 20.708 32.0001ZM15.2849 21.336C11.0785 21.336 7.65344 24.6969 7.65344 28.8284V29.36C7.65344 29.8487 8.63458 30.1021 9.45874 30.2305C10.9251 30.4553 13.0408 30.4553 15.2814 30.4553H20.7044C23.0306 30.4553 25.0749 30.4374 26.5235 30.2055C27.0693 30.1199 28.3323 29.863 28.3323 29.36V28.8284C28.3323 24.6969 24.9073 21.336 20.7008 21.336H15.2849ZM17.975 18.3426C13.9613 18.3426 10.6968 15.1245 10.6968 11.1714C10.6968 7.21827 13.9613 4.00012 17.975 4.00012C21.9888 4.00012 25.2533 7.21827 25.2533 11.1714C25.2533 15.1245 21.9888 18.3426 17.975 18.3426ZM17.975 5.54497C14.814 5.54497 12.2416 8.0674 12.2416 11.1714C12.2416 14.2754 14.814 16.7978 17.975 16.7978C21.1361 16.7978 23.7085 14.2754 23.7085 11.1714C23.7085 8.0674 21.1361 5.54497 17.975 5.54497Z" fill="black"/>
+					</svg>
+	  
+				  </div>
+				  <div class="accountCustomerLeft_bottomBox_right">
+					My Profile
+				  </div>
+			  </div>
+			  <div class="account_customerLeft_bottomBox">
+				<div class="accountCustomerLeft_bottomBox_left">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+					<path d="M24.75 6.5C25.7446 6.5 26.6984 6.89509 27.4017 7.59835C28.1049 8.30161 28.5 9.25544 28.5 10.25V26.75C28.5 27.7446 28.1049 28.6984 27.4017 29.4017C26.6984 30.1049 25.7446 30.5 24.75 30.5H11.25C10.2554 30.5 9.30161 30.1049 8.59835 29.4017C7.89509 28.6984 7.5 27.7446 7.5 26.75V10.25C7.5 9.25544 7.89509 8.30161 8.59835 7.59835C9.30161 6.89509 10.2554 6.5 11.25 6.5C11.4489 6.5 11.6397 6.42098 11.7803 6.28033C11.921 6.13968 12 5.94891 12 5.75C12 5.55109 11.921 5.36032 11.7803 5.21967C11.6397 5.07902 11.4489 5 11.25 5C10.5606 5 9.87787 5.1358 9.24091 5.39963C8.60395 5.66347 8.0252 6.05018 7.53769 6.53769C7.05018 7.0252 6.66347 7.60395 6.39963 8.24091C6.1358 8.87787 6 9.56056 6 10.25V26.75C6 28.1424 6.55312 29.4777 7.53769 30.4623C8.52226 31.4469 9.85761 32 11.25 32H24.75C25.4394 32 26.1221 31.8642 26.7591 31.6004C27.396 31.3365 27.9748 30.9498 28.4623 30.4623C28.9498 29.9748 29.3365 29.396 29.6004 28.7591C29.8642 28.1221 30 27.4394 30 26.75V10.25C30 9.56056 29.8642 8.87787 29.6004 8.24091C29.3365 7.60395 28.9498 7.0252 28.4623 6.53769C27.9748 6.05018 27.396 5.66347 26.7591 5.39963C26.1221 5.1358 25.4394 5 24.75 5C24.5511 5 24.3603 5.07902 24.2197 5.21967C24.079 5.36032 24 5.55109 24 5.75C24 5.94891 24.079 6.13968 24.2197 6.28033C24.3603 6.42098 24.5511 6.5 24.75 6.5Z" fill="black"/>
+					<path d="M11.25 19.25C11.0511 19.25 10.8603 19.171 10.7197 19.0303C10.579 18.8897 10.5 18.6989 10.5 18.5C10.5 18.3011 10.579 18.1103 10.7197 17.9697C10.8603 17.829 11.0511 17.75 11.25 17.75H24.75C24.9489 17.75 25.1397 17.829 25.2803 17.9697C25.421 18.1103 25.5 18.3011 25.5 18.5C25.5 18.6989 25.421 18.8897 25.2803 19.0303C25.1397 19.171 24.9489 19.25 24.75 19.25H11.25ZM11.25 14.75C11.0511 14.75 10.8603 14.671 10.7197 14.5303C10.579 14.3897 10.5 14.1989 10.5 14C10.5 13.8011 10.579 13.6103 10.7197 13.4697C10.8603 13.329 11.0511 13.25 11.25 13.25H24.75C24.9489 13.25 25.1397 13.329 25.2803 13.4697C25.421 13.6103 25.5 13.8011 25.5 14C25.5 14.1989 25.421 14.3897 25.2803 14.5303C25.1397 14.671 24.9489 14.75 24.75 14.75H11.25ZM11.25 23.75C11.0511 23.75 10.8603 23.671 10.7197 23.5303C10.579 23.3897 10.5 23.1989 10.5 23C10.5 22.8011 10.579 22.6103 10.7197 22.4697C10.8603 22.329 11.0511 22.25 11.25 22.25H24.75C24.9489 22.25 25.1397 22.329 25.2803 22.4697C25.421 22.6103 25.5 22.8011 25.5 23C25.5 23.1989 25.421 23.3897 25.2803 23.5303C25.1397 23.671 24.9489 23.75 24.75 23.75H11.25ZM14.25 6.5H21.75C21.9489 6.5 22.1397 6.42098 22.2803 6.28033C22.421 6.13968 22.5 5.94891 22.5 5.75C22.5 5.55109 22.421 5.36032 22.2803 5.21967C22.1397 5.07902 21.9489 5 21.75 5H14.25C14.0511 5 13.8603 5.07902 13.7197 5.21967C13.579 5.36032 13.5 5.55109 13.5 5.75C13.5 5.94891 13.579 6.13968 13.7197 6.28033C13.8603 6.42098 14.0511 6.5 14.25 6.5Z" fill="black"/>
+				  </svg>
+				</div>
+				<div class="accountCustomerLeft_bottomBox_right">
+				  Orders
+				</div>
+			  </div>
+			{% if section.settings.my_points !=blank %}
+			  <div class="account_customerLeft_bottomBox">
+				<div class="accountCustomerLeft_bottomBox_left">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+					<path d="M30.3579 16.5427L19.6821 29.1554C19.4573 29.421 19.1815 29.6336 18.8727 29.7792C18.5639 29.9247 18.2292 30 17.8906 30H17.8755C17.5345 29.9979 17.1978 29.9194 16.8881 29.7697C16.5783 29.62 16.3026 29.4026 16.0795 29.132L5.62761 16.4731C5.26714 16.0399 5.04965 15.4961 5.00753 14.9228C4.9654 14.3495 5.10089 13.7772 5.39383 13.2911L9.04503 7.17938C9.25951 6.81747 9.55867 6.51912 9.91407 6.3127C10.2695 6.10627 10.6693 5.99863 11.0755 6.00001H24.8975C25.3033 5.99885 25.7027 6.10637 26.0578 6.31239C26.4129 6.51841 26.712 6.81612 26.9267 7.17731L30.6114 13.3339C30.9037 13.8262 31.0369 14.4043 30.9912 14.9823C30.9456 15.5603 30.7235 16.1075 30.3579 16.5427ZM29.2304 14.2446L25.5457 8.08802C25.4771 7.97261 25.3816 7.87748 25.2682 7.81166C25.1547 7.74583 25.0272 7.71149 24.8975 7.71189H11.0755C10.8102 7.71189 10.5679 7.85311 10.4267 8.08871L6.77551 14.2005C6.6695 14.3765 6.62054 14.5837 6.63592 14.7912C6.6513 14.9988 6.73021 15.1956 6.86088 15.3523L17.3121 28.0112C17.4585 28.1882 17.6621 28.2868 17.8861 28.2888C18.108 28.2854 18.3142 28.1938 18.4633 28.0188L29.1391 15.406C29.4103 15.0857 29.4477 14.6076 29.2304 14.2446ZM20.8989 12.2737H15.1076C14.8845 12.2729 14.6708 12.1797 14.5131 12.0142C14.3553 11.8487 14.2664 11.6245 14.2657 11.3905C14.2657 10.9042 14.6446 10.5067 15.1076 10.5067H20.8989C21.3619 10.5067 21.7408 10.9042 21.7408 11.3905C21.7408 11.8762 21.3619 12.2737 20.8989 12.2737Z" fill="black"/>
+				  </svg>
+	  
+				</div>
+				<div class="accountCustomerLeft_bottomBox_right">
+					{{section.settings.my_points}}
+				</div>
+			  </div>
+			{% endif %}
+			  {% if section.settings.refer_friend !=blank %}
+			  <div class="account_customerLeft_bottomBox">
+				<div class="accountCustomerLeft_bottomBox_left">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+					<path d="M27.6345 24.0179C27.6345 26.583 25.55 28.6675 22.9849 28.6675H11.7728C9.20775 28.6675 7.12324 26.583 7.12324 24.0179V12.8059C7.12324 10.2408 9.20775 8.15629 11.7728 8.15629H15.8233V6.82382H11.7728C8.47443 6.82382 5.79077 9.50748 5.79077 12.8059V24.0179C5.79077 27.3163 8.47443 30 11.7728 30H22.9849C26.2833 30 28.967 27.3163 28.967 24.0179V19.9675H27.6345V24.0179Z" fill="black"/>
+					<path d="M27.7063 10.9273H24.2706C16.5223 10.9273 10.2188 17.2308 10.2188 24.9791H11.5513C11.5513 17.9672 17.2556 12.2598 24.2706 12.2598H27.7C27.6407 12.3659 27.5658 12.4689 27.4753 12.5594L23.7994 16.2478L24.7449 17.1902L28.4209 13.5018C29.4725 12.4439 29.4725 10.7276 28.4177 9.67286L24.7418 6L23.7994 6.9424L27.4722 10.6153C27.569 10.7089 27.647 10.815 27.7063 10.9273Z" fill="black"/>
+				  </svg>
+				</div>
+				<div class="accountCustomerLeft_bottomBox_right">
+					{{section.settings.refer_friend}}
+				</div>
+			  </div>
+				{% endif %}
+			  <a href="{{ routes.account_logout_url }}" class="account_customerLeft_bottomBox">
+				<div class="accountCustomerLeft_bottomBox_left">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+					<path d="M23.5219 10.0119C23.5219 8.17661 22.4177 6.84448 20.8959 6.84448H7.62603C6.10452 6.84448 5 8.17691 5 10.0131V26.158C5 27.8948 6.10423 29.1555 7.62603 29.1555H20.8962C22.4177 29.1555 23.5222 27.8233 23.5222 25.9881V24.144C23.5222 23.9202 23.4361 23.7096 23.2796 23.5514C23.1238 23.3938 22.9164 23.307 22.6962 23.307C22.2836 23.307 22.0172 23.6355 22.0172 24.144V25.9881C22.0172 26.7526 21.5143 27.3749 20.8962 27.3749H7.77189C7.15376 27.3749 6.6509 26.7529 6.6509 25.9881V10.0131C6.6509 9.24791 7.15376 8.62507 7.77189 8.62507H20.8959C21.514 8.62507 22.0169 9.24761 22.0169 10.0131V11.7098C22.0169 12.1657 22.3777 12.6953 22.8429 12.6953C23.2555 12.6953 23.5219 12.3668 23.5219 11.8584V10.0119Z" fill="black"/>
+					<path d="M26.2885 23.6799L30.7675 18.8372C30.9245 18.6658 31.0092 18.4323 30.9992 18.1976L30.9989 18.1905L30.9992 18.1835C31.0086 17.9321 30.9263 17.6991 30.7675 17.5274L26.2909 12.6865C26.1391 12.5194 25.9253 12.4244 25.703 12.4244C25.4807 12.4244 25.2669 12.5194 25.1164 12.6853C24.7991 13.039 24.7991 13.5737 25.1169 13.9283L28.235 17.3007H16.8742C16.4187 17.3007 16.0482 17.6962 16.0482 18.1826C16.0482 18.669 16.4187 19.0645 16.8742 19.0645H28.2364L25.1155 22.4387C24.7979 22.7912 24.7979 23.3259 25.1169 23.6802C25.2669 23.8461 25.4807 23.9416 25.703 23.9416C25.925 23.9411 26.1385 23.8458 26.2885 23.6799Z" fill="black"/>
+				  </svg>
+				</div>
+				<div class="accountCustomerLeft_bottomBox_right">
+				  Logout
+				</div>
+			  </a>
+			</div>
+		</div>
+    </div>
+    <div class="pad_mobile">
+      <div class="account_customerMobileBox">
+        <div class="account_customerMobile">
+          <div class="account_customerMobile_left">
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" fill="none">
+            <path d="M36.0045 67.4192L35.7459 67.4175C27.4159 67.35 19.6147 64.0437 13.7762 58.1063C8.02069 52.2559 4.75943 44.1049 4.82872 35.7435C4.97097 18.5601 18.9511 4.58057 35.9933 4.58057H36.2499C53.7506 5.66314 67.3073 19.5769 67.1709 36.2584C67.0286 53.4408 53.0475 67.4192 36.0045 67.4192ZM39.1951 65.3537C53.7227 63.7473 65.1564 51.304 65.2811 36.2427C65.4094 20.5652 52.6322 7.4874 36.1918 6.46871L35.9933 6.47036C19.9849 6.47036 6.85256 19.6092 6.71873 35.7593C6.65391 43.6222 9.71766 51.2853 15.1235 56.7812C20.6075 62.3587 27.9355 65.4647 35.7572 65.5275L36.0055 65.5291C37.0829 65.5291 38.147 65.4696 39.1951 65.3537Z" fill="#FF8300"/>
+            <path d="M35.9636 40.2852C29.2439 40.2852 23.7774 34.7633 23.7774 27.9771C23.7774 21.1919 29.2439 15.6708 35.9636 15.6708C42.6826 15.6708 48.1485 21.1919 48.1485 27.9771C48.1485 34.7633 42.6827 40.2852 35.9636 40.2852ZM35.9636 17.5605C30.2858 17.5605 25.6674 22.2335 25.6674 27.9771C25.6674 33.7215 30.2859 38.3954 35.9636 38.3954C41.64 38.3954 46.2584 33.7214 46.2584 27.9771C46.2584 22.2335 41.64 17.5605 35.9636 17.5605Z" fill="#FF8300"/>
+            <path d="M56.103 58.9258C55.5807 58.9258 55.1579 58.5031 55.1579 57.9812C55.1579 49.506 50.3031 42.0351 43.3517 39.8148C42.8552 39.6562 42.5803 39.1246 42.74 38.6282C42.8987 38.1308 43.4274 37.8559 43.9276 38.0155C51.652 40.4821 57.0477 48.6921 57.0477 57.9813C57.048 58.503 56.6253 58.9258 56.103 58.9258Z" fill="#FF8300"/>
+            <path d="M15.8949 58.9258C15.3725 58.9258 14.9499 58.5031 14.9499 57.9812C14.9499 48.7787 20.2827 40.5889 27.9181 38.0652C28.4107 37.9007 28.9477 38.1714 29.1112 38.333C29.2753 39.1614 29.0058 39.6967 28.5104 39.8598C21.6392 42.131 16.84 49.5835 16.84 57.9807C16.8399 58.503 16.4172 58.9258 15.8949 58.9258Z" fill="#FF8300"/>
+          </svg>
+
+          </div>
+          <div class="account_customerMobile_right">
+            <div class="account_customerMobile_rightBox">
+              <div class="account_customerMobile_rightName my_m_18">
+                {{customer.first_name}} {{customer.last_name}}
+              </div>
+              <div class="account_customerMobile_rightEmail my_m_14">
+                {{customer.email}}
+              </div>
+              <div class="account_customerMobile_rightAddress my_m_14">
+                {%- for address in customer.addresses -%}
+                  {{address.address1}}
+                 {% endfor %}
+              </div>
+            </div>
+            <a href="{{ routes.account_addresses_url }}" class="account_detailsBox_IsRight">
+             
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+				<g clip-path="url(#clip0_14_753)">
+				<path d="M8.022 0V1.5H2C1.86739 1.5 1.74021 1.55268 1.64645 1.64645C1.55268 1.74021 1.5 1.86739 1.5 2V14C1.5 14.1326 1.55268 14.2598 1.64645 14.3536C1.74021 14.4473 1.86739 14.5 2 14.5H14C14.1326 14.5 14.2598 14.4473 14.3536 14.3536C14.4473 14.2598 14.5 14.1326 14.5 14V8.124H16V14C16 14.5304 15.7893 15.0391 15.4142 15.4142C15.0391 15.7893 14.5304 16 14 16H2C1.46957 16 0.960859 15.7893 0.585786 15.4142C0.210714 15.0391 0 14.5304 0 14V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0L8.022 0Z" fill="#FF8300"/>
+				<path d="M14.6168 0.531982L15.7058 1.56398L6.49183 11.284L5.40283 10.253L14.6168 0.531982Z" fill="#FF8300"/>
+				</g>
+				<defs>
+				<clipPath id="clip0_14_753">
+					<rect width="16" height="16" fill="white"/>
+				</clipPath>
+				</defs>
+			</svg>
+
+            </a>
+          </div>
+        </div>
+        <div class="account_customerMobile_tab">
+          <div class="account_customerMobile_tabBox my_m_16">
+            <div class="account_customerMobile_tabBox_left">
+            
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M16.5 4.33325C17.163 4.33325 17.7989 4.59664 18.2678 5.06549C18.7366 5.53433 19 6.17021 19 6.83325V17.8333C19 18.4963 18.7366 19.1322 18.2678 19.601C17.7989 20.0699 17.163 20.3333 16.5 20.3333H7.5C6.83696 20.3333 6.20107 20.0699 5.73223 19.601C5.26339 19.1322 5 18.4963 5 17.8333V6.83325C5 6.17021 5.26339 5.53433 5.73223 5.06549C6.20107 4.59664 6.83696 4.33325 7.5 4.33325C7.63261 4.33325 7.75979 4.28057 7.85355 4.18681C7.94732 4.09304 8 3.96586 8 3.83325C8 3.70064 7.94732 3.57347 7.85355 3.4797C7.75979 3.38593 7.63261 3.33325 7.5 3.33325C7.04037 3.33325 6.58525 3.42378 6.16061 3.59967C5.73597 3.77557 5.35013 4.03337 5.02513 4.35838C4.70012 4.68338 4.44231 5.06922 4.26642 5.49386C4.09053 5.9185 4 6.37363 4 6.83325V17.8333C4 18.7615 4.36875 19.6517 5.02513 20.3081C5.6815 20.9645 6.57174 21.3333 7.5 21.3333H16.5C16.9596 21.3333 17.4148 21.2427 17.8394 21.0668C18.264 20.8909 18.6499 20.6331 18.9749 20.3081C19.2999 19.9831 19.5577 19.5973 19.7336 19.1726C19.9095 18.748 20 18.2929 20 17.8333V6.83325C20 6.37363 19.9095 5.9185 19.7336 5.49386C19.5577 5.06922 19.2999 4.68338 18.9749 4.35838C18.6499 4.03337 18.264 3.77557 17.8394 3.59967C17.4148 3.42378 16.9596 3.33325 16.5 3.33325C16.3674 3.33325 16.2402 3.38593 16.1464 3.4797C16.0527 3.57347 16 3.70064 16 3.83325C16 3.96586 16.0527 4.09304 16.1464 4.18681C16.2402 4.28057 16.3674 4.33325 16.5 4.33325Z" fill="#FF8300"/>
+                <path d="M7.5 12.8333C7.36739 12.8333 7.24022 12.7806 7.14645 12.6868C7.05268 12.593 7 12.4659 7 12.3333C7 12.2006 7.05268 12.0735 7.14645 11.9797C7.24022 11.8859 7.36739 11.8333 7.5 11.8333H16.5C16.6326 11.8333 16.7598 11.8859 16.8536 11.9797C16.9473 12.0735 17 12.2006 17 12.3333C17 12.4659 16.9473 12.593 16.8536 12.6868C16.7598 12.7806 16.6326 12.8333 16.5 12.8333H7.5ZM7.5 9.83325C7.36739 9.83325 7.24022 9.78057 7.14645 9.68681C7.05268 9.59304 7 9.46586 7 9.33325C7 9.20064 7.05268 9.07347 7.14645 8.9797C7.24022 8.88593 7.36739 8.83325 7.5 8.83325H16.5C16.6326 8.83325 16.7598 8.88593 16.8536 8.9797C16.9473 9.07347 17 9.20064 17 9.33325C17 9.46586 16.9473 9.59304 16.8536 9.68681C16.7598 9.78057 16.6326 9.83325 16.5 9.83325H7.5ZM7.5 15.8333C7.36739 15.8333 7.24022 15.7806 7.14645 15.6868C7.05268 15.593 7 15.4659 7 15.3333C7 15.2006 7.05268 15.0735 7.14645 14.9797C7.24022 14.8859 7.36739 14.8333 7.5 14.8333H16.5C16.6326 14.8333 16.7598 14.8859 16.8536 14.9797C16.9473 15.0735 17 15.2006 17 15.3333C17 15.4659 16.9473 15.593 16.8536 15.6868C16.7598 15.7806 16.6326 15.8333 16.5 15.8333H7.5ZM9.5 4.33325H14.5C14.6326 4.33325 14.7598 4.28057 14.8536 4.18681C14.9473 4.09304 15 3.96586 15 3.83325C15 3.70064 14.9473 3.57347 14.8536 3.4797C14.7598 3.38593 14.6326 3.33325 14.5 3.33325H9.5C9.36739 3.33325 9.24021 3.38593 9.14645 3.4797C9.05268 3.57347 9 3.70064 9 3.83325C9 3.96586 9.05268 4.09304 9.14645 4.18681C9.24021 4.28057 9.36739 4.33325 9.5 4.33325Z" fill="#FF8300"/>
+              </svg>
+            </div>
+            <div class="account_customerMobile_tabBox_right">
+              Orders
+            </div>
+          </div>
+		  {% if section.settings.my_points !=blank %}
+          <div class="account_customerMobile_tabBox my_m_16">
+            <div class="account_customerMobile_tabBox_left">
+            
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+				<path d="M20.2388 11.0285L13.1216 19.437C12.9717 19.614 12.7878 19.7557 12.5819 19.8528C12.3761 19.9498 12.153 20 11.9273 20H11.9172C11.6898 19.9986 11.4654 19.9462 11.2589 19.8464C11.0524 19.7466 10.8686 19.6017 10.7198 19.4213L3.7519 10.9821C3.51159 10.6933 3.3333 10.3308 3.33851 9.94854C3.31043 9.56631 3.40076 9.18479 3.59605 8.86076L6.03018 4.78625C6.17317 4.54498 6.37261 4.34608 6.60954 4.20846C6.84647 4.07085 7.11302 3.99909 7.38384 4.00001H16.5985C16.869 3.99923 17.1353 4.07091 17.372 4.20826C17.6087 4.34561 17.8081 4.54408 17.9513 4.78488L20.4078 8.88924C20.6026 9.21747 20.6914 9.60285 20.661 9.9882C20.6305 10.3736 20.4825 10.7383 20.2388 11.0285ZM19.4871 9.49637L17.0306 5.39201C16.9849 5.31507 16.9212 5.25166 16.8456 5.20777C16.77 5.16389 16.6849 5.14099 16.5985 5.14126H7.38384C7.20697 5.14126 7.04543 5.23541 6.9513 5.39247L4.51717 9.46698C4.44649 9.58431 4.41385 9.72246 4.42411 9.86083C4.43437 9.9992 4.48697 10.1304 4.57408 10.2349L11.5416 18.6741C11.6392 18.7922 11.7749 18.8578 11.9242 18.8592C12.0722 18.8569 12.2096 18.7958 12.309 18.6792L19.4262 10.2707C19.607 10.0571 19.632 9.7384 19.4871 9.49637ZM13.9328 8.18245H10.0719C9.92318 8.18196 9.78069 8.11977 9.67554 8.00946C9.57038 7.89915 9.5111 7.74968 9.51064 7.59368C9.51064 7.26945 9.76325 7.00446 10.0719 7.00446H13.9328C14.2414 7.00446 14.494 7.26945 14.494 7.59368C14.494 7.91746 14.2414 8.18245 13.9328 8.18245Z" fill="#FF8300"/>
+				</svg>
+
+            </div>
+            <div class="account_customerMobile_tabBox_right">
+				{{section.settings.my_points}}
+            </div>
+          </div>
+		{% endif %}
+		{% if section.settings.refer_friend !=blank %}
+        <div class="account_customerMobile_tabBox my_m_16">
+            <div class="account_customerMobile_tabBox_left">
+            
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+				<path d="M18.2563 16.012C18.2563 17.722 16.8333 19.1117 15.1566 19.1117H7.68189C5.97183 19.1117 4.58216 17.722 4.58216 16.012V8.53725C4.58216 6.8272 5.97183 5.43752 7.68189 5.43752H10.3822V4.54921H7.68189C5.48295 4.54921 3.69385 6.33832 3.69385 8.53725V16.012C3.69385 18.2109 5.48295 20 7.68189 20H15.1566C17.3555 20 19.1446 18.2109 19.1446 16.012V13.3117H18.2563V16.012Z" fill="#FF8300"/>
+				<path d="M18.3042 7.28488H16.0137C10.8482 7.28488 6.64587 11.4872 6.64587 16.6527H7.53418C7.53418 11.9782 11.3371 8.17319 16.0137 8.17319H18.3C18.2605 8.24392 18.2106 8.31257 18.1502 8.3729L15.6996 10.8319L16.3299 11.4601L18.7806 9.00117C19.4817 8.29593 19.4817 7.15174 18.7785 6.44858L16.3278 4L15.6996 4.62827L18.1481 7.07684C18.2126 7.13925 18.2646 7.20999 18.3042 7.28488Z" fill="#FF8300"/>
+				</svg>
+
+            </div>
+            <div class="account_customerMobile_tabBox_right">
+				{{section.settings.refer_friend}}
+            </div>
+        </div>
+		{% endif %}
+          <a href="{{ routes.account_logout_url }}" class="account_customerMobile_tabBox my_m_16">
+            <div class="account_customerMobile_tabBox_left">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M15.6814 6.6746C15.6814 5.45108 14.9453 4.56299 13.9308 4.56299H5.08419C4.06984 4.56299 3.3335 5.45127 3.3335 6.67538V17.4387C3.3335 18.5965 4.06965 19.437 5.08419 19.437H13.931C14.9453 19.437 15.6816 18.5489 15.6816 17.3254V16.096C15.6816 15.9468 15.6242 15.8064 15.5199 15.7009C15.416 15.5959 15.2778 15.538 15.1309 15.538C14.8559 15.538 14.6783 15.757 14.6783 16.096V17.3254C14.6783 17.8351 14.343 18.2499 13.931 18.2499H5.18142C4.76934 18.2499 4.4341 17.8353 4.4341 17.3254V6.67538C4.4341 6.16527 4.76934 5.75005 5.18142 5.75005H13.9308C14.3428 5.75005 14.6781 6.16507 14.6781 6.67538V7.80657C14.6781 8.11044 14.9186 8.46352 15.2288 8.46352C15.5038 8.46352 15.6814 8.24453 15.6814 7.90557V6.6746Z" fill="#FF8300"/>
+              <path d="M17.5258 15.7866L20.5118 12.5581C20.6165 12.4438 20.673 12.2882 20.3333 12.1317L20.3331 12.127L20.3333 12.1223C20.6726 11.9547 20.6177 11.7994 20.5118 11.6849L17.5274 8.45764C17.4263 8.34628 17.2837 8.28296 17.1355 8.28296C16.9873 8.28296 16.8448 8.34628 16.7444 8.45685C16.5329 8.69269 16.5329 9.04911 16.7448 9.28554L18.8235 11.5338H11.2496C10.946 11.5338 10.6989 11.7975 10.6989 12.1217C10.6989 12.446 10.946 12.7097 11.2496 12.7097H18.8244L16.7438 14.9591C16.5321 15.1942 16.5321 15.5506 16.7448 15.7868C16.8448 15.8974 16.9873 15.9611 17.1355 15.9611C17.2835 15.9607 17.4259 15.8972 17.5258 15.7866Z" fill="#FF8300"/>
+            </svg>
+
+            </div>
+            <div class="account_customerMobile_tabBox_right">
+              Logout
+            </div>
+          </a>
+        </div>
+      </div>                 
+    </div>
+    <div class="account_customerRight">
+      <div class="account_customerRight_box account_customerRight_box1 active">
+          <div class="account_customerRight_Box">
+              <h3 class="account_detailsTop my_h_title">
+                Account Details
+              </h3>
+              <div class="account_detailsBottom">
+                <div class="account_detailsBox">
+                  <div class="account_detailsBox_Isleft">
+                    <span class="account_detailsBox_left my_h_16 my_m_12">
+                      Name:
+                    </span>
+                    <span class="account_detailsBox_right my_h_16 my_m_12">
+                      {{customer.first_name}} {{customer.last_name}}
+                    </span>
+                  </div>
+                  
+                  {% comment %} <a href="{{ routes.account_addresses_url }}" class="account_detailsBox_IsRight">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+					<g clip-path="url(#clip0_14_314)">
+						<path d="M12.033 0V2.25H3C2.80109 2.25 2.61032 2.32902 2.46967 2.46967C2.32902 2.61032 2.25 2.80109 2.25 3V21C2.25 21.1989 2.32902 21.3897 2.46967 21.5303C2.61032 21.671 2.80109 21.75 3 21.75H21C21.1989 21.75 21.3897 21.671 21.5303 21.5303C21.671 21.3897 21.75 21.1989 21.75 21V12.186H24V21C24 21.7956 23.6839 22.5587 23.1213 23.1213C22.5587 23.6839 21.7956 24 21 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.316071 22.5587 0 21.7956 0 21V3C0 2.20435 0.316071 1.44129 0.87868 0.87868C1.44129 0.316071 2.20435 0 3 0L12.033 0Z" fill="#FF8300"/>
+						<path d="M21.9255 0.797974L23.559 2.34597L9.738 16.926L8.1045 15.3795L21.9255 0.797974Z" fill="#FF8300"/>
+					</g>
+					<defs>
+						<clipPath id="clip0_14_314">
+						<rect width="24" height="24" fill="white"/>
+						</clipPath>
+					</defs>
+					</svg>
+                  </a> {% endcomment %}
+
+                </div>
+                <div class="account_detailsBox">
+                  <div class="account_detailsBox_Isleft">
+                    <span class="account_detailsBox_left my_h_16 my_m_12">
+                      Email:
+                    </span> 
+                    <span class="account_detailsBox_right my_h_16 my_m_12">
+                      {{customer.email}}
+                    </span>
+                  </div>
+                  {% comment %} <a href="{{ routes.account_addresses_url }}" class="account_detailsBox_IsRight">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+					<g clip-path="url(#clip0_14_314)">
+						<path d="M12.033 0V2.25H3C2.80109 2.25 2.61032 2.32902 2.46967 2.46967C2.32902 2.61032 2.25 2.80109 2.25 3V21C2.25 21.1989 2.32902 21.3897 2.46967 21.5303C2.61032 21.671 2.80109 21.75 3 21.75H21C21.1989 21.75 21.3897 21.671 21.5303 21.5303C21.671 21.3897 21.75 21.1989 21.75 21V12.186H24V21C24 21.7956 23.6839 22.5587 23.1213 23.1213C22.5587 23.6839 21.7956 24 21 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.316071 22.5587 0 21.7956 0 21V3C0 2.20435 0.316071 1.44129 0.87868 0.87868C1.44129 0.316071 2.20435 0 3 0L12.033 0Z" fill="#FF8300"/>
+						<path d="M21.9255 0.797974L23.559 2.34597L9.738 16.926L8.1045 15.3795L21.9255 0.797974Z" fill="#FF8300"/>
+					</g>
+					<defs>
+						<clipPath id="clip0_14_314">
+						<rect width="24" height="24" fill="white"/>
+						</clipPath>
+					</defs>
+					</svg>
+                  </a> {% endcomment %}
+                </div>
+                <div class="account_detailsBox">
+                  <div class="account_detailsBox_Isleft">
+                    <span class="account_detailsBox_left my_h_16 my_m_12">
+                      Primary Address:
+                    </span> 
+                    <span class="account_detailsBox_right my_h_16 my_m_12">
+                      {%- for address in customer.addresses -%}
+                        {{address.address1}}
+                      {% endfor %}
+                      {% comment %} {{ customer.default_address | format_address }} {% endcomment %}
+                    </span>
+                  </div>
+                  <a href="{{ routes.account_addresses_url }}" class="account_detailsBox_IsRight">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<g clip-path="url(#clip0_14_314)">
+						<path d="M12.033 0V2.25H3C2.80109 2.25 2.61032 2.32902 2.46967 2.46967C2.32902 2.61032 2.25 2.80109 2.25 3V21C2.25 21.1989 2.32902 21.3897 2.46967 21.5303C2.61032 21.671 2.80109 21.75 3 21.75H21C21.1989 21.75 21.3897 21.671 21.5303 21.5303C21.671 21.3897 21.75 21.1989 21.75 21V12.186H24V21C24 21.7956 23.6839 22.5587 23.1213 23.1213C22.5587 23.6839 21.7956 24 21 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.316071 22.5587 0 21.7956 0 21V3C0 2.20435 0.316071 1.44129 0.87868 0.87868C1.44129 0.316071 2.20435 0 3 0L12.033 0Z" fill="#FF8300"/>
+						<path d="M21.9255 0.797974L23.559 2.34597L9.738 16.926L8.1045 15.3795L21.9255 0.797974Z" fill="#FF8300"/>
+						</g>
+						<defs>
+						<clipPath id="clip0_14_314">
+							<rect width="24" height="24" fill="white"/>
+						</clipPath>
+						</defs>
+					</svg>
+                  </a>
+                </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="account_customerRight_box account_customerRight_box2 account_customerRight_boxMobile account_customerRight_boxMobile1">
+        <div class="account_ordersBox my_m_14">
+          <h2 class="account_ordersTop my_h_title pad_pc">{{ 'customer.orders.title' | t }}</h2>
+          <h2 class="account_ordersTop my_h_title pad_mobile my_m_14">< &nbsp {{ 'customer.orders.title' | t }}</h2>
+
+          <div class="account_ordersBottom ">
+            {% paginate customer.orders by 20 %}
+              {%- if customer.orders.size > 0 -%}
+                <div class="pad_pc">
+                  <div role="table" class="order-history">
+                    <div class="rowgroup">
+                      <div id="ColumnOrder" class="rowgroup_1" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</div>
+                      <div id="ColumnDate" class="rowgroup_2" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</div>
+                      <div id="ColumnPayment" class="rowgroup_3" scope="col" role="columnheader">{{ 'customer.orders.payment_status' | t }}</div>
+                      <div id="ColumnFulfillment" class="rowgroup_4" scope="col" role="columnheader">
+                        {{ 'customer.orders.fulfillment_status' | t }}
+                      </div>
+                      <div id="ColumnTotal" class="rowgroup_5"  scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</div>
+                    </div>
+                    <div role="rowgroup" class="rowgroup_bottom">
+                      {%- for order in customer.orders -%}
+                        <div role="row" class="row_text">
+                          <div
+                            id="RowOrder"
+                            class="rowgroupContent_1"
+                            role="cell"
+                            headers="ColumnOrder"
+                            data-label="{{ 'customer.orders.order_number' | t }}"
+                          >
+ 
+                            <a
+                              href="{{ order.customer_url }}"
+                              aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                            >
+                            {{ order.name }}
+                          </a> 
+                          </div>
+                          <div headers="RowOrder ColumnDate" role="cell" class="rowgroupContent_2"  data-label="{{ 'customer.orders.date' | t }}">
+                            {{ order.created_at | time_tag: format: 'date' }}
+                          </div>
+                          <div
+                            headers="RowOrder ColumnPayment"
+                            role="cell"
+                            class="rowgroupContent_3"
+                            data-label="{{ 'customer.orders.payment_status' | t }}"
+                          >
+                            {{ order.financial_status_label }}
+                          </div>
+                          <div
+                            headers="RowOrder ColumnFulfillment"
+                            role="cell"
+                            class="rowgroupContent_4"
+                            data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+                          >
+                            {{ order.fulfillment_status_label }}
+                          </div>
+                          <div headers="RowOrder ColumnTotal" class="rowgroupContent_5" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                            {{ order.total_net_amount | money_with_currency }}
+                          </div>
+                        </div>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+                <div class="pad_mobile">
+                    <div class="row_textBox">
+                      {%- for order in customer.orders -%}
+                        <div role="row" class="row_text">
+                          <div class="row_textTop">
+                              <div class="row_textTop_left my_m_14">
+                                <a
+                                  href="{{ order.customer_url }}"
+                                  aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                                >
+                                {{ order.name }}
+                              </a> 
+                              </div>
+                              <div class="row_textTop_right my_m_14">
+                                {{ order.created_at | time_tag: format: 'date' }}
+                              </div>
+                          </div>
+                          <div class="row_textBottom">
+     
+                              <div class="row_textBottom_right my_m_12">
+                                  <div>
+									{{ order.financial_status_label }}
+                                    {{ order.fulfillment_status_label }} 
+                                  </div>
+                       
+                              </div>
+							  <div class="row_textBottom_left my_m_20">
+                                {{ order.total_net_amount | money_with_currency }}
+                              </div>
+                          </div>
+                        </div>
+                      {%- endfor -%}
+                    </div>
+                </div>
+              {%- else -%}
+                <p class="my_h_16 my_m_14">{{ 'customer.orders.none' | t }}</p>
+              {%- endif -%}
+  
+              {%- if paginate.pages > 1 -%}
+                {%- if paginate.parts.size > 0 -%}
+                  <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+                    <ul role="list">
+                      {%- if paginate.previous -%}
+                        <li>
+                          <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                            <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                            </svg>
+                          </a>
+                        </li>
+                      {%- endif -%}
+  
+                      {%- for part in paginate.parts -%}
+                        <li>
+                          {%- if part.is_link -%}
+                            <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                              {{- part.title -}}
+                            </a>
+                          {%- else -%}
+                            {%- if part.title == paginate.current_page -%}
+                              <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                                {{- part.title -}}
+                              </span>
+                            {%- else -%}
+                              <span>{{ part.title }}</span>
+                            {%- endif -%}
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+  
+                      {%- if paginate.next -%}
+                        <li>
+                          <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">
+                            <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                            </svg>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  </nav>
+                {%- endif -%}
+              {%- endif -%}
+            {% endpaginate %}
+          </div>
+        </div>
+
+      </div>
+
+	  	{% for block in section.blocks %}	
+			{% if block.type == '@app' %}
+				{% if forloop.index0 == 0%}
+					<div class="account_customerRight_box account_customerRight_box3 account_customerRight_boxMobile account_customerRight_boxMobile2">
+						<h2 class="account_ordersTop my_h_title pad_pc">{{section.settings.my_points}}</h2>
+						<h2 class="account_ordersTop my_h_title pad_mobile my_m_14">< &nbsp {{section.settings.my_points}}</h2>
+						{% render block %}
+					</div>
+				{% endif %}
+				{% if forloop.index0 == 1 %}
+					<div class="account_customerRight_box account_customerRight_box4 account_customerRight_boxMobile account_customerRight_boxMobile3">
+						<h2 class="account_ordersTop my_h_title pad_pc">{{section.settings.refer_friend}}</h2>
+						<h2 class="account_ordersTop my_h_title pad_mobile my_m_14">< &nbsp {{section.settings.refer_friend}}</h2>
+						{% render block %}
+					</div>
+				{% endif %}
+	  		{% endif %}
+		{% endfor %}
+
+    </div>
+  </div>
+</div> 
+<script>
+	document.querySelectorAll(".account_customerLeft_bottomBox").forEach(function(element, index) {
+		element.addEventListener("click", function() {
+			document.documentElement.scrollTop = 0; // 滚动到页面顶部
+			document.body.scrollTop = 0;
+			
+			document.querySelectorAll(".account_customerLeft_bottomBox").forEach(function(el) {
+				el.classList.remove("active");
+			});
+			element.classList.add("active");
+			
+			document.querySelectorAll(".account_customerRight_box").forEach(function(el) {
+				el.classList.remove("active");
+			});
+			document.querySelectorAll(".account_customerRight_box")[index].classList.add("active");
+		});
+	});
+
+	document.querySelectorAll(".account_customerMobile_tabBox").forEach(function(element, index) {
+		element.addEventListener("click", function() {
+			document.querySelector(".account_customerMobileBox").style.display = "none";
+			var mobileBox = document.querySelector(".account_customerRight_boxMobile" + (index + 1));
+			if (mobileBox) {
+				mobileBox.style.display = "block";
+			}
+			document.querySelectorAll(".account_customerRight_boxMobile").forEach(function(el) {
+				if (el !== mobileBox) {
+					el.style.display = "none";
+				}
+			});
+		});
+	});
+
+	document.querySelectorAll(".account_ordersTop").forEach(function(element) {
+		element.addEventListener("click", function() {
+			document.querySelector(".account_customerMobileBox").style.display = "block";
+			var parentBox = element.closest(".account_customerRight_boxMobile");
+			if (parentBox) {
+				parentBox.style.display = "none";
+			}
+		});
+	});
+</script> 
+{% schema %} 
+{ 
+  "name": "main account",  
+  "settings": [
+	{
+		"type": "text",
+		"id": "my_points",
+		"label": "My Points",
+		"default": "My Points"
+	},
+	{
+		"type": "text",
+		"id": "refer_friend",
+		"label": "Refer a friend",
+		"default": "Refer a friend"
+	}
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+]
+}
+{% endschema %}

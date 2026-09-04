@@ -1,0 +1,108 @@
+{%- liquid
+  assign overlay_color = block.settings.overlay_color
+  assign overlay_opacity = block.settings.overlay_opacity
+  assign content_position = block.settings.content_position
+-%}
+<div
+  class="
+    gallery__item
+     {% if block.type == 'cust_promotion' %}
+    	product-card product-card-cust-promotion
+    {% endif %}
+  "
+  {{ block.shopify_attributes }}
+  style="--overlay-color-rgb: {{ overlay_color.rgb | replace: ' ' , ',' }}; --overlay-opacity: {{ overlay_opacity | divided_by: 100.0 }}"
+>
+  <figure
+    class="
+      aspect-ratio
+      {% if block.type == 'cust_promotion' %}
+      	product-featured-image
+      {% endif %}
+    "
+  >
+    {%- if block.settings.image -%}
+      {%- liquid
+        assign sizes = block.settings.image.width | append: 'x' | append: block.settings.image.height
+      -%}
+      {%- render 'responsive-image', image: block.settings.image, sizes: sizes -%}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+    {%- endif -%}
+    <div
+      class="
+        gallery__item-content
+        {% if block.type == 'cust_promotion' %}
+        content-{{ content_position }}
+        {% else %}
+        	content-middle-center
+        {% endif %}
+         text-center
+      "
+    >
+      <div>
+        {% if block.settings.title != blank %}
+          <h4>{{ block.settings.title }}</h4>
+        {% endif %}
+        {% if block.settings.text != blank %}
+          <p>{{ block.settings.text }}</p>
+        {% endif %}
+        {% if block.settings.link_label != blank %}
+          {% liquid
+            assign button_class = 'button white'
+            if block.settings.use_text_button
+              assign button_class = 'text-button white'
+            endif
+          -%}
+          <a
+            class="{{ button_class }}"
+            {% if block.settings.link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ block.settings.link }}"
+            {% endif %}
+            ><span>{{ block.settings.link_label }}</span></a
+          >
+        {% endif %}
+        {% if block.settings.block_link != blank %}
+          <a href="{{ block.settings.block_link }}" class="gallery__item-content-link" target="_blank"></a>
+        {% endif %}
+      </div>
+    </div>
+  </figure>
+  {% if block.type == 'cust_promotion' %}
+    <div
+      class="product-card-info"
+      style="opacity: 0;"
+    >
+      <a href="" title="Fearless Leggings" class="product-card-title">
+        <h3 class="inherit-all-title"></h3>
+      </a>
+
+      <span class="price">
+        <ins
+          ><span class="amount"><span class="transcy-money">$</span></span></ins
+        >
+        <small class="unit-price  hidden">
+          <span></span>
+          <span class="unit-price-separator">/</span>
+          <span></span>
+        </small>
+      </span>
+
+      <div class="product-card-swatches--container no-js-hidden">
+        <div class="product-card-swatches" data-index="0">
+          <div
+            class="product-card-swatch active"
+            style="--option-color: atlantic;--option-color-image: url('');"
+          ></div>
+          <div
+            class="product-card-swatch"
+            style="--option-color: charcoal black;--option-color-image: url('');"
+          ></div>
+        </div>
+        <div class="product-card-swatches--title">Available in 2 colors</div>
+      </div>
+    </div>
+  {% endif %}
+</div>

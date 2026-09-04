@@ -1,0 +1,217 @@
+<style>
+    .RewardsBottom_Title {
+        font-weight: 600;
+        margin: 0;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}}.RewardsBottom_all{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}}.RewardsBottom_all{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px; 
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+
+
+    }
+    @media(min-width:1000px) {   
+        .RewardsBottom_box {
+            margin: 0 auto;
+            max-width: 536px;
+            text-align: center;
+        }
+        .RewardsBottom_sub {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .RewardsBottom_text {
+            margin-top: 8px;
+        }
+        .RewardsBottom_button {
+            width: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            margin-top: 32px;
+            height: 48px;
+            padding: 14px 40px;
+            font-weight:500;
+            border-radius: 100px;
+            border: 1px solid #151515;
+        }
+
+    }
+    @media(max-width:999px) {   
+        .RewardsBottom_box {
+            margin: 0 auto;
+            max-width: 536px;
+            text-align: center;
+        }
+        .RewardsBottom_sub {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .RewardsBottom_text {
+            margin-top: 8px;
+        }
+        .RewardsBottom_button {
+            width: max-content;
+            display: flex;
+            font-weight:500;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            margin-top: 32px;
+            height: 48px;
+            padding: 14px 40px;
+            border-radius: 100px;
+            border: 1px solid #151515;
+        }
+    }
+</style>
+<div
+    class="RewardsBottom_all"
+    id="shopify-section-{{section.id}}"
+    {% if section.settings.background_image != blank %}
+        style="--rewards-bottom-bg-image: url('{{ section.settings.background_image | image_url: width: 2400 }}');"
+    {% endif %}
+>
+    <div class="my_container">  
+        <div class="RewardsBottom_box">
+            {% if section.settings.sub !=blank %}
+                <div class="RewardsBottom_sub my_h_28 my_m_18">
+                    {{section.settings.sub}}
+                </div>
+            {% endif %}
+            {% if section.settings.title !=blank %}
+                <h2 class="RewardsBottom_Title my_h_40 my_m_28">
+                    {{section.settings.title}}
+                </h2>
+            {% endif %}
+            {% if section.settings.text !=blank %}
+                <div class="RewardsBottom_text my_h_14 my_m_14">
+                    {{section.settings.text}}
+                </div>
+            {% endif %}
+            {% if section.settings.text !=blank %}
+                <a href="{{section.settings.button_link}}" class="RewardsBottom_button my_h_16 my_m_16">
+                    {{section.settings.button}}
+                </a>
+            {% endif %}
+        </div>
+    </div>  
+</div>
+
+{% schema %}
+  {
+    "name": "Rewards Bottom",
+    "class": "RewardsBottom",
+    "settings":[
+        {
+            "type": "textarea",
+            "id": "sub",
+            "label": "sub"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "button"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "button link"
+        },
+        {
+            "type": "image_picker",
+            "id": "background_image",
+            "label": "Background image"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+    "presets": [
+        {
+            "name": "Rewards Bottom"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

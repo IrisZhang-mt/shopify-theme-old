@@ -1,0 +1,277 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    .CollectionTopAll img {
+        width: 100%;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .CollectionTopAll{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}} .CollectionTopAll{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+    }
+    .CollectionTopBottom_boxBox {
+        display: inline-block;
+        position: relative;
+    }
+   
+    .CollectionTopBottom_boxBox_positionText {
+        font-weight: var(--font-body-bold-weight, 600);
+    }
+    @media (min-width:1000px) {
+        .pad_mobile{
+            display: none;
+        }
+       .CollectionTopBottom_box.grid_number2 {
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(2,1fr);
+        }
+        .CollectionTopBottom_box.grid_number3 {
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(3,1fr);
+        }
+        .CollectionTopBottom_boxBox_position {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .my_h_30 {
+            font-size: 30px;
+        }
+
+    }
+
+    @media (max-width:999px) {
+        .pad_pc{
+            display: none;
+        }
+        .my_m_12 {
+            font-size: 12px;
+        }
+        .CollectionTopAll {
+            overflow: hidden;
+        }
+        .CollectionTopSwiper {
+            overflow: unset;
+        }
+        .CollectionTopBottom_boxBox_position {
+            padding-top: 14px;
+        }
+ 
+    }
+</style>
+<div class="CollectionTopAll">
+    <div class="{% if section.settings.full_width %} {%- else -%} row full-width-row{% endif %}">
+        <div class="columns">
+            <div class="CollectionTopBottom">
+                <div class="pad_pc">
+                    <div class="CollectionTopBottom_box {% if section.settings.grid_number == "2" %} grid_number2{% else %} grid_number3{% endif %}">
+                        {% for block in section.blocks %}
+                            <a href="{%- if block.settings.link !=blank -%}{{block.settings.link}} {%- else -%} javascript:void(0){%- endif -%}" class="CollectionTopBottom_boxBox">
+                                <img src="{{ block.settings.img | img_url: 'master' }}" class="" alt="{{block.settings.img.alt}}">
+                                <div class="CollectionTopBottom_boxBox_position" style="color: {{block.settings.text_color}};">
+                                    {% if block.settings.text !=blank %}
+                                        <div class="CollectionTopBottom_boxBox_positionText my_h_30">
+                                            {{block.settings.text}}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="pad_mobile">
+                    <div class="CollectionTopBottom_box swiper CollectionTopSwiper">
+       
+                        <div class="swiper-wrapper">
+                            {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                <a href="{%- if block.settings.link !=blank -%}{{block.settings.link}} {%- else -%} javascript:void(0){%- endif -%}" class="CollectionTopBottom_boxBox">
+                                    <img src="{{ block.settings.img_mobile | img_url: '750x' }}" class="" alt="{{block.settings.img_mobile.alt}}">
+                                    {% if section.settings.mobile_text  %}
+                                    <div class="CollectionTopBottom_boxBox_position">
+                                        {% if block.settings.text !=blank %}
+                                            <div class="CollectionTopBottom_boxBox_positionText my_m_12">
+                                                {{block.settings.text}}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>  
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('#shopify-section-{{ section.id }} .CollectionTopSwiper', {
+        observer: true,  //开启动态检查器，监测swiper和slide
+        observeParents: true,  //监测Swiper 的祖/父元素  
+        slidesPerView: 2, 
+        spaceBetween: 5,
+        mousewheel: {
+            forceToAxis: true,
+        },
+        pagination: {
+            el: '#shopify-section-{{section.id}} .swiper-pagination',
+            clickable: true,
+        }
+    });
+});
+</script>
+  {% schema %} 
+  {
+    "name": "Collection Top",
+    "settings":[
+        {
+        "type": "checkbox",
+        "id": "mobile_text",
+        "label": "show mobile text",
+        "default": true
+        },
+       {
+            "type": "select",
+            "id": "grid_number",
+            "label": "grid number",
+            "default": "3",
+            "options": [
+                {
+                    "value": "2",
+                    "label": "2"
+                },
+                {
+                    "value": "3",
+                    "label": "3"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+    "blocks":[
+        {
+            "type": "text",
+            "name": "text",
+            "settings": [
+               
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "img"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "img_mobile",
+                    "label": "img mobile"
+                },
+                {
+                  "type": "url",
+                  "id": "link",
+                  "label": "link"
+                },
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "text"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "text color"
+                }
+            ]
+        }
+
+    ],
+    "presets": [
+        {
+            "name": "Collection Top"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

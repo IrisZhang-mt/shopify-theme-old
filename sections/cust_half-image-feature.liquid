@@ -1,0 +1,394 @@
+{% style %}
+  .cust-half-image-feature__inner{position:relative}
+  .cust-half-image-feature__stretched-link{position:absolute;inset:0;z-index:1}
+  .cust-half-image-feature__button{position:relative;z-index:2}
+{% endstyle %}
+{{- 'cust-half-image-feature.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign section_heading = section.settings.section_heading
+  assign image = section.settings.image
+  assign logo_image = section.settings.logo_image
+  assign heading = section.settings.heading
+  assign text = section.settings.text
+  assign button_label = section.settings.button_label
+  assign button_link = section.settings.button_link
+  assign desktop_ratio_width = section.settings.desktop_ratio_width
+  assign desktop_ratio_height = section.settings.desktop_ratio_height
+  assign mobile_width = section.settings.mobile_width
+  assign mobile_height = section.settings.mobile_height
+-%}
+
+<div
+  class="cust-half-image-feature{% if section.id contains 'cust_half_image_feature_eHwAqd' %} cust-half-image-feature--home-store{% endif %} cust-half-image-feature--{{ section.settings.image_position }} cust-half-image-feature--align-{{ section.settings.content_alignment }} cust-half-image-feature--mobile-{{ section.settings.mobile_display }}"
+  style="--half-image-width: {{ section.settings.image_width_percent }}%; --half-content-width: {{ 100 | minus: section.settings.image_width_percent }}%; --half-desktop-ratio: {{ desktop_ratio_width }} / {{ desktop_ratio_height }}; --half-mobile-ratio: {{ mobile_width }} / {{ mobile_height }}; --half-content-padding-right: {{ section.settings.content_padding_right }}px; --half-content-padding-left: {{ section.settings.content_padding_left }}px; --half-logo-width: {{ section.settings.logo_width }}px; --half-mobile-logo-width: {{ section.settings.mobile_logo_width }}px; --half-mobile-heading-size: {{ section.settings.mobile_heading_size }}px; --half-mobile-description-size: {{ section.settings.mobile_description_size }}px; --half-mobile-button-size: {{ section.settings.mobile_button_size }}px; --half-mobile-logo-heading-spacing: {{ section.settings.mobile_logo_heading_spacing }}px; --half-mobile-heading-description-spacing: {{ section.settings.mobile_heading_description_spacing }}px; --half-mobile-description-button-spacing: {{ section.settings.mobile_description_button_spacing }}px; --half-section-top: {{ section.settings.section_top_spacing }}px; --half-section-bottom: {{ section.settings.section_bottom_spacing }}px; --half-heading-padding-left: {{ section.settings.section_heading_padding_left }}px; --half-heading-padding-bottom: {{ section.settings.section_heading_padding_bottom }}px; --half-bg: {{ section.settings.background_color }}; --half-content-bg: {{ section.settings.content_background_color }}; --half-text: {{ section.settings.text_color }};"
+>
+  <div class="row{% if section.settings.full_width %} full-width-row-full{% endif %}">
+    <div class="small-12 columns">
+      {%- if section_heading != blank -%}
+        <div class="cust-half-image-feature__section-heading-wrap">
+          <h2 class="cust-half-image-feature__section-heading">{{ section_heading }}</h2>
+        </div>
+      {%- endif -%}
+      <div class="cust-half-image-feature__inner">
+        {%- if button_link != blank -%}
+          <a class="cust-half-image-feature__stretched-link" href="{{ button_link }}" aria-hidden="true" tabindex="-1"></a>
+        {%- endif -%}
+        <div class="cust-half-image-feature__media">
+          {%- if image -%}
+            {%- render 'responsive-image',
+              image: image,
+              sizes: '375x0,750x0,1125x0,1440x0'
+            -%}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+          {%- endif -%}
+        </div>
+
+        <div class="cust-half-image-feature__content">
+          <div class="cust-half-image-feature__content-inner">
+            {%- if logo_image -%}
+              <div class="cust-half-image-feature__logo">
+                {%- render 'responsive-image',
+                  image: logo_image,
+                  sizes: '184x0,368x0,736x0'
+                -%}
+              </div>
+            {%- endif -%}
+
+            {%- if heading != blank -%}
+              <h2>{{ heading }}</h2>
+            {%- endif -%}
+
+            {%- if text != blank -%}
+              <div class="cust-half-image-feature__text rte">
+                {%- if section.id contains 'cust_half_image_feature_eHwAqd' and text contains ', Mon-' -%}
+                  {%- liquid
+                    assign store_text_parts = text | split: ', Mon-'
+                    assign store_address = store_text_parts[0] | remove: '<p>' | strip
+                    assign store_time = store_text_parts[1] | prepend: 'Mon-' | remove: '</p>' | strip
+                  -%}
+                  <p>
+                    <span class="cust-half-image-feature__store-address">{{ store_address }}</span>
+                    <span class="cust-half-image-feature__store-time">{{ store_time }}</span>
+                  </p>
+                {%- else -%}
+                  {{ text }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if button_label != blank -%}
+              <a class="cust-half-image-feature__button" href="{{ button_link | default: '#' }}">
+                <span>{{ button_label }}</span>
+                {%- render 'svg-icons' with 'thb-inline-link-arrow' -%}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cust Half image feature",
+  "class": "section-cust-half-image-feature",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading"
+    },
+    {
+      "type": "range",
+      "id": "section_heading_padding_left",
+      "label": "Section heading left padding",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_heading_padding_bottom",
+      "label": "Section heading bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Top image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bluesign, highest safety standards"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>We partner with trusted standards to create safer, more responsible performance pieces for every day.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_display",
+      "label": "Mobile display mode",
+      "default": "stack",
+      "options": [
+        {
+          "value": "stack",
+          "label": "Content above, image below"
+        },
+        {
+          "value": "image_top",
+          "label": "Image above, content below"
+        },
+        {
+          "value": "overlay",
+          "label": "Content overlaid on image, centered"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Make section full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_width_percent",
+      "min": 35,
+      "max": 65,
+      "step": 1,
+      "unit": "%",
+      "default": 50,
+      "label": "Desktop image width",
+      "info": "Controls how much horizontal space the image takes on desktop."
+    },
+    {
+      "type": "range",
+      "id": "desktop_ratio_width",
+      "min": 240,
+      "max": 1200,
+      "step": 10,
+      "unit": "px",
+      "default": 720,
+      "label": "Desktop ratio width",
+      "info": "Used with desktop ratio height to define the desktop image ratio."
+    },
+    {
+      "type": "range",
+      "id": "desktop_ratio_height",
+      "min": 240,
+      "max": 760,
+      "step": 10,
+      "unit": "px",
+      "default": 520,
+      "label": "Desktop ratio height",
+      "info": "Used with desktop ratio width to define the desktop image ratio."
+    },
+    {
+      "type": "range",
+      "id": "mobile_width",
+      "min": 120,
+      "max": 600,
+      "step": 5,
+      "unit": "px",
+      "default": 390,
+      "label": "Mobile image width",
+      "info": "Used with mobile image height to define the mobile ratio."
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 120,
+      "max": 600,
+      "step": 5,
+      "unit": "px",
+      "default": 295,
+      "label": "Mobile image height",
+      "info": "Used with mobile image width to define the mobile ratio."
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 120,
+      "max": 520,
+      "step": 8,
+      "unit": "px",
+      "default": 368,
+      "label": "Top image width"
+    },
+    {
+      "type": "number",
+      "id": "mobile_logo_width",
+      "default": 177,
+      "label": "Mobile top image width (px)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile text style"
+    },
+    {
+      "type": "number",
+      "id": "mobile_heading_size",
+      "default": 20,
+      "label": "Mobile heading font size (px)"
+    },
+    {
+      "type": "number",
+      "id": "mobile_description_size",
+      "default": 12,
+      "label": "Mobile description font size (px)"
+    },
+    {
+      "type": "number",
+      "id": "mobile_button_size",
+      "default": 12,
+      "label": "Mobile button font size (px)"
+    },
+    {
+      "type": "number",
+      "id": "mobile_logo_heading_spacing",
+      "default": 20,
+      "label": "Mobile top image to heading spacing (px)"
+    },
+    {
+      "type": "number",
+      "id": "mobile_heading_description_spacing",
+      "default": 16,
+      "label": "Mobile heading to description spacing (px)"
+    },
+    {
+      "type": "number",
+      "id": "mobile_description_button_spacing",
+      "default": 24,
+      "label": "Mobile description to button spacing (px)"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_right",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Content right padding"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_left",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Content left padding"
+    },
+    {
+      "type": "range",
+      "id": "section_top_spacing",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0,
+      "label": "Section top spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_bottom_spacing",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0,
+      "label": "Section bottom spacing"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "content_background_color",
+      "label": "Content background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#140F0F"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cust Half image feature"
+    }
+  ]
+}
+{% endschema %}

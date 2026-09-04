@@ -1,0 +1,345 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    .index_shopFeedBottom_pcBoxImg img{
+        width: 100%;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}}.index_shopFeedAll{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}}.index_shopFeedAll{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+    }
+    @media (min-width:1000px) {
+
+        .index_shopFeedTitle{
+            text-align: center;
+            margin: 0;
+            margin-bottom: 30px;
+        }
+        .index_shopFeedBottom_pc{
+            display: grid;
+            gap: 5px;
+            row-gap: 5px;
+            grid-template-columns: repeat(4,1fr);
+        }
+        .index_shopFeedBottom_pcBox{
+            display: block;
+            position: relative;
+        }
+        .index_shopFeedBottom_pcBoxLeftText{
+            display: flex;
+            align-items: flex-end;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+            opacity: 1;
+            transition: opacity .3s ease-out;
+        }
+        .index_shopFeedBottom_pcBoxText{
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #00000080;
+            opacity: 0;
+            transition: opacity .3s ease-out;
+        }
+        .index_shopFeedBottom_pcBox:hover .index_shopFeedBottom_pcBoxText {
+            opacity: 1;
+        }
+        .index_shopFeedBottom_pcBox:hover .index_shopFeedBottom_pcBoxLeftText {
+            opacity: 0;
+        }
+        .pad_mobile{
+            display: none;
+        }
+    }
+
+    @media (max-width:999px) {
+        .pad_pc{
+            display: none;
+        }
+        .index_shopFeedTitle{
+            text-align: center;
+            margin: 0;
+            margin-bottom: 30px;
+        }
+        .index_shopFeedBottom_pcBox{
+            display: block;
+            position: relative;
+        }
+        .index_shopFeedBottom_pcBoxLeftText{
+            display: flex;
+            align-items: flex-end;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            font-size: 12px;
+        }
+        .index_shopFeedBottom_pcBoxText{
+           display: none;
+        }
+        .index_shopFeedBottom_MobileBox{
+            display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(2,1fr);
+        }
+        .index_shopFeedBottom_pc {
+            padding-bottom: 20px;
+        }
+        .index_shopFeedAll .swiper-pagination {
+            bottom: 0px;
+            overflow: hidden;
+            top: unset;
+            border-radius: 0.75rem;
+            background-color: #d9d9d9;
+        }
+        .index_shopFeedAll .swiper-pagination-progressbar-fill{
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: #000 !important;
+        }
+        .index_shopFeedAll .swiper_wrapper .indexCollectionSwiper_box {
+            width: 100% !important;
+        }
+    }
+</style>
+<div class="index_shopFeedAll" id="shopify-section-{{section.id}}">
+    <div class="{% if section.settings.full_width %} {%- else -%} row full-width-row{% endif %}">
+        <div class="columns">
+            {% if section.settings.title !=blank %}
+                <h2 class="index_shopFeedTitle h3">
+                    {{section.settings.title}}
+                </h2>
+            {% endif %}
+            <div class="index_shopFeedBottom">
+                <div class="pad_pc">
+                    <div class="index_shopFeedBottom_pc">
+                        {% for block in section.blocks %}
+                            <a href="{% if block.settings.link !=blank %}{{ block.settings.link }}{% else %} javascript:void(0); {% endif %}" class="index_shopFeedBottom_pcBox" id="block-{{block.id}}" style="color: {{block.settings.text_color}};">
+                                <div class="index_shopFeedBottom_pcBoxImg">
+                                    <img loading="lazy" src="{{ block.settings.img | img_url: '1000x' }}" class="" alt="{{block.settings.img.alt}}">  
+                                </div>
+                                {% if block.settings.hide_text !=blank %}
+                                <div class="index_shopFeedBottom_pcBoxText">
+                                    {{block.settings.hide_text}}
+                                </div>
+                                {% endif %}
+                                {% if block.settings.text !=blank %}
+                                <div class="index_shopFeedBottom_pcBoxLeftText">
+                                    {{block.settings.text}}
+                                </div>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="pad_mobile">
+                    <div class="index_shopFeedBottom_pc swiper IndexShopFeedSwiper">
+                        {% assign block_counter = 0 %}
+                        <div class="swiper-wrapper">
+                            {% for block in section.blocks %}
+                                {% if block_counter == 0 %}
+                                <div class="swiper-slide">
+                                    <div class="index_shopFeedBottom_MobileBox">
+
+                                {% endif %}
+                                    
+                                    <a href="{% if block.settings.link !=blank %}{{ block.settings.link }}{% else %} javascript:void(0); {% endif %}" class="index_shopFeedBottom_pcBox" id="block-{{ block.id }}" style="color: {{ block.settings.text_color }};">
+                                        <div class="index_shopFeedBottom_pcBoxImg">
+                                            <img loading="lazy" src="{{ block.settings.img | img_url: '1000x' }}" class="" alt="{{ block.settings.img.alt }}">  
+                                        </div>
+                                        {% if block.settings.hide_text != blank %}
+                                        <div class="index_shopFeedBottom_pcBoxText my_m_12">
+                                            {{ block.settings.hide_text }}
+                                        </div>
+                                        {% endif %}
+                                        {% if block.settings.text !=blank %}
+                                        <div class="index_shopFeedBottom_pcBoxLeftText my_m_12">
+                                            {{block.settings.text}}
+                                        </div>
+                                        {% endif %}
+                                    </a>
+                        
+                                {% assign block_counter = block_counter | plus: 1 %}
+                                {% if block_counter == 4 or forloop.last %}
+                                    </div>
+                                </div>
+                                {% assign block_counter = 0 %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>  
+                        <div class="pad_mobile">
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('#shopify-section-{{ section.id }} .IndexShopFeedSwiper', {
+        observer: true,  //开启动态检查器，监测swiper和slide
+        observeParents: true,  //监测Swiper 的祖/父元素  
+        slidesPerView: 1, 
+        spaceBetween: 0,
+        mousewheel: {
+            forceToAxis: true,
+        },
+        pagination: {
+            el: '#shopify-section-{{section.id}} .swiper-pagination',
+            type: "progressbar",
+        }
+    });
+});
+</script>
+  {% schema %} 
+  {
+    "name": "Index Shop Feed",
+    "class": "IndexShopFeed",
+    "settings":[
+        {
+            "type": "checkbox",
+            "id": "full_width",
+            "label": "full width",
+            "default": false
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+        },
+    
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+    "blocks":[
+        {
+            "type": "text",
+            "name": "text",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "img"
+                },
+                {
+                    "type": "text",
+                    "id": "text",
+                    "label": "text"
+                },
+                {
+                    "type": "text",
+                    "id": "hide_text",
+                    "label": "hide text"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "link"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "text color",
+                    "default": "#fff"
+                }
+            ]
+        }
+
+    ],
+    "presets": [
+        {
+            "name": "Index Shop Feed"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

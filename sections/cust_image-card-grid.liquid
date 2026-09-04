@@ -1,0 +1,640 @@
+{{- 'cust-image-card-grid.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'cust-image-card-grid.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign section_heading = section.settings.heading
+  assign section_heading_left = section.settings.heading_left
+  assign section_description = section.settings.description
+  assign full_width = section.settings.full_width
+  assign card_style = section.settings.card_style
+  assign desktop_image_width = section.settings.desktop_image_width
+  assign desktop_image_height = section.settings.desktop_image_height
+  assign mobile_image_width = section.settings.mobile_image_width
+  assign mobile_image_height = section.settings.mobile_image_height
+  assign desktop_side_spacing = section.settings.desktop_side_spacing
+  assign image_side_inset = section.settings.image_side_inset
+  assign column_gap = section.settings.column_gap
+  assign mobile_layout = section.settings.mobile_layout | default: 'swipe'
+  assign image_card_title_size = section.settings.image_card_title_size | default: 16
+  assign content_position = section.settings.content_position | default: 'below_image'
+  assign mobile_content_position = section.settings.mobile_content_position | default: 'below_image'
+  assign heading_top_spacing = section.settings.heading_top_spacing
+  assign heading_bottom_spacing = section.settings.heading_bottom_spacing | default: 48
+  assign disable_top_spacing = section.settings.disable_top_spacing
+  assign disable_bottom_spacing = section.settings.disable_bottom_spacing
+
+  assign hover_reveal = section.settings.hover_reveal
+  assign hover_zoom = section.settings.hover_zoom | default: 106
+  assign hover_scale = hover_zoom | divided_by: 100.0
+  assign hover_expand = section.settings.hover_expand | default: 180
+  assign hover_grow = hover_expand | divided_by: 100.0
+  assign desktop_layout = section.settings.desktop_layout | default: 'carousel'
+  assign desktop_peek = section.settings.desktop_peek | default: 70
+  assign side_shrink = section.settings.side_shrink | default: 8
+  assign side_min_scale = 100 | minus: side_shrink | divided_by: 100.0
+  assign side_height = section.settings.side_height | default: 100
+  assign side_height_scale = side_height | divided_by: 100.0
+  assign show_counter = section.settings.show_counter
+  assign enable_loop = section.settings.enable_loop
+  if section.settings.enable_loop == nil
+    assign enable_loop = true
+  endif
+  assign video_playback = section.settings.video_playback | default: 'center'
+
+  assign video_autoplay = false
+  if video_playback == 'autoplay'
+    assign video_autoplay = true
+  endif
+
+  assign show_nav = false
+  if section.blocks.size > 1
+    if mobile_layout == 'swipe'
+      assign show_nav = true
+    endif
+    if hover_reveal and desktop_layout == 'carousel'
+      assign show_nav = true
+    endif
+  endif
+
+  assign card_count = section.blocks.size
+  if card_count < 1
+    assign card_count = 1
+  endif
+-%}
+
+{%- liquid
+  assign desktop_ratio_percent = 100
+  if desktop_image_width > 0 and desktop_image_height > 0
+    assign desktop_ratio_percent = desktop_image_height | times: 100.0 | divided_by: desktop_image_width
+  endif
+
+  assign mobile_ratio_percent = desktop_ratio_percent
+  if mobile_image_width > 0 and mobile_image_height > 0
+    assign mobile_ratio_percent = mobile_image_height | times: 100.0 | divided_by: mobile_image_width
+  endif
+-%}
+
+<div
+  class="cust-image-card-grid cust-image-card-grid--{{ card_style }} cust-image-card-grid--mobile-{{ mobile_layout }} cust-image-card-grid--desktop-content-{{ content_position }} cust-image-card-grid--mobile-content-{{ mobile_content_position }}{% if hover_reveal %} cust-image-card-grid--hover-reveal cust-image-card-grid--desktop-{{ desktop_layout }}{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}"
+  data-video-playback="{{ video_playback }}"
+  data-loop="{% if enable_loop %}true{% else %}false{% endif %}"
+  style="--image-card-hover-scale: {{ hover_scale }}; --image-card-hover-grow: {{ hover_grow }}; --image-card-desktop-peek: {{ desktop_peek }}%; --image-card-min-scale: {{ side_min_scale }}; --image-card-side-height: {{ side_height_scale }}; --image-card-desktop-height: {{ desktop_image_height }}px; --image-card-count: {{ card_count }}; --image-card-desktop-ratio: {{ desktop_ratio_percent }}%; --image-card-mobile-ratio: {{ mobile_ratio_percent }}%; --image-card-mobile-width: {{ mobile_image_width }}px; --image-card-mobile-height: {{ mobile_image_height }}px; --image-card-desktop-side-spacing: {{ desktop_side_spacing }}px; --image-card-inset: {{ image_side_inset }}px; --image-card-gap: {{ column_gap }}px; --image-card-title-size: {{ image_card_title_size }}px; {%- if section.settings.title_color != blank -%} --image-card-desktop-title-color: {{ section.settings.title_color }};{%- endif -%} {%- if section.settings.description_color != blank -%} --image-card-desktop-description-color: {{ section.settings.description_color }};{%- endif -%} {%- if section.settings.mobile_title_color != blank -%} --image-card-mobile-title-color: {{ section.settings.mobile_title_color }};{%- endif -%} {%- if section.settings.mobile_description_color != blank -%} --image-card-mobile-description-color: {{ section.settings.mobile_description_color }};{%- endif -%} --image-card-desktop-content-left: {{ section.settings.content_left_spacing }}px; --image-card-desktop-content-bottom: {{ section.settings.content_bottom_spacing }}px; --image-card-mobile-content-left: {{ section.settings.mobile_content_left_spacing }}px; --image-card-mobile-content-bottom: {{ section.settings.mobile_content_bottom_spacing }}px; --image-card-heading-top-spacing: {{ heading_top_spacing }}px; --image-card-heading-bottom-spacing: {{ heading_bottom_spacing }}px;"
+>
+  <div class="row{% if full_width %} full-width-row-full{% endif %}">
+    <div class="small-12 columns">
+      {% render 'section-header',
+        section_heading: section_heading,
+        section_description: section_description,
+        section_heading_left: section_heading_left
+      %}
+
+      <div class="cust-image-card-grid__items">
+        {%- for block in section.blocks -%}
+          <div class="cust-image-card-grid__item" {{ block.shopify_attributes }}>
+            <div class="cust-image-card-grid__image-wrap">
+              {%- liquid
+                assign video_desktop = block.settings.video
+                assign video_mobile = block.settings.video_mobile
+
+                # Either field on its own is used at both breakpoints; only when both
+                # are filled does the card carry a separate portrait cut for mobile.
+                assign has_both_videos = false
+                if video_desktop != blank and video_mobile != blank
+                  assign has_both_videos = true
+                endif
+
+                assign single_video = video_desktop
+                if video_desktop == blank
+                  assign single_video = video_mobile
+                endif
+              -%}
+              <figure class="cust-image-card-grid__image">
+                {%- if has_both_videos -%}
+                  {{
+                    video_desktop
+                    | video_tag:
+                      autoplay: video_autoplay,
+                      muted: true,
+                      loop: true,
+                      playsinline: true,
+                      controls: false,
+                      preload: 'metadata',
+                      image_size: '1200x',
+                      class: 'cust-image-card-grid__video cust-image-card-grid__video--desktop'
+                  }}
+                  {{
+                    video_mobile
+                    | video_tag:
+                      autoplay: video_autoplay,
+                      muted: true,
+                      loop: true,
+                      playsinline: true,
+                      controls: false,
+                      preload: 'metadata',
+                      image_size: '900x',
+                      class: 'cust-image-card-grid__video cust-image-card-grid__video--mobile'
+                  }}
+                {%- elsif single_video != blank -%}
+                  {{
+                    single_video
+                    | video_tag:
+                      autoplay: video_autoplay,
+                      muted: true,
+                      loop: true,
+                      playsinline: true,
+                      controls: false,
+                      preload: 'metadata',
+                      image_size: '1200x',
+                      class: 'cust-image-card-grid__video'
+                  }}
+                {%- elsif block.settings.image -%}
+                  {%- render 'responsive-image',
+                    image: block.settings.image,
+                    sizes: '375x0,750x0,1125x0,1440x0'
+                  -%}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder_svg_tag' }}
+                {%- endif -%}
+              </figure>
+            </div>
+
+            {%- liquid
+              assign show_desc = false
+              if block.settings.text != blank
+                if card_style == 'left_text_full' or hover_reveal
+                  assign show_desc = true
+                endif
+              endif
+            -%}
+            {%- if block.settings.title != blank or show_desc -%}
+              <div class="cust-image-card-grid__content">
+                {%- if block.settings.title != blank -%}
+                  <h3>{{ block.settings.title }}</h3>
+                {%- endif -%}
+                {%- if show_desc -%}
+                  <div class="rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.link != blank -%}
+              <a class="cust-image-card-grid__link" href="{{ block.settings.link }}" aria-label="{{ block.settings.title | default: section_heading | escape }}"></a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if show_nav -%}
+        <div class="cust-image-card-grid__nav">
+          <button class="flickity-nav flickity-prev is-disabled" type="button" aria-disabled="true" aria-label="Previous" data-image-card-grid-prev>
+            {%- if hover_reveal -%}
+              {%- render 'svg-icons' with 'thb-caret-left' -%}
+            {%- else -%}
+              {%- render 'svg-icons' with 'carousel-prev' -%}
+            {%- endif -%}
+          </button>
+          {%- if hover_reveal and show_counter -%}
+            <span class="cust-image-card-grid__count" data-image-card-grid-count aria-hidden="true">1 / {{ section.blocks.size }}</span>
+          {%- endif -%}
+          <button class="flickity-nav flickity-next" type="button" aria-disabled="false" aria-label="Next" data-image-card-grid-next>
+            {%- if hover_reveal -%}
+              {%- render 'svg-icons' with 'thb-caret-right' -%}
+            {%- else -%}
+              {%- render 'svg-icons' with 'carousel-next' -%}
+            {%- endif -%}
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cust Image card grid",
+  "class": "section-cust-image-card-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Image card grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_left",
+      "default": true,
+      "label": "Left align heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Make section full width",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "default": "centered_title_inset",
+      "options": [
+        {
+          "value": "centered_title_inset",
+          "label": "Centered title, inset image"
+        },
+        {
+          "value": "left_text_full",
+          "label": "Left title and description, full image"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "desktop_image_width",
+      "min": 120,
+      "max": 1200,
+      "step": 12,
+      "unit": "px",
+      "default": 276,
+      "label": "Desktop image width",
+      "info": "Used with desktop image height to define the desktop image ratio."
+    },
+    {
+      "type": "range",
+      "id": "desktop_image_height",
+      "min": 120,
+      "max": 800,
+      "step": 8,
+      "unit": "px",
+      "default": 408,
+      "label": "Desktop image height",
+      "info": "Used with desktop image width to define the desktop image ratio."
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_width",
+      "min": 120,
+      "max": 800,
+      "step": 8,
+      "unit": "px",
+      "default": 304,
+      "label": "Mobile image width",
+      "info": "Used with mobile image height to define the mobile image ratio."
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "min": 120,
+      "max": 640,
+      "step": 8,
+      "unit": "px",
+      "default": 360,
+      "label": "Mobile image height",
+      "info": "Used with mobile image width to define the mobile image ratio."
+    },
+    {
+      "type": "range",
+      "id": "desktop_side_spacing",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 0,
+      "label": "Desktop side spacing"
+    },
+    {
+      "type": "range",
+      "id": "image_side_inset",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "label": "Image side inset"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 0,
+      "label": "Column gap"
+    },
+    {
+      "type": "number",
+      "id": "image_card_title_size",
+      "label": "Image card title size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Desktop image card title color"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Desktop image card description color"
+    },
+    {
+      "type": "color",
+      "id": "mobile_title_color",
+      "label": "Mobile image card title color"
+    },
+    {
+      "type": "color",
+      "id": "mobile_description_color",
+      "label": "Mobile image card description color"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Desktop card content position",
+      "default": "below_image",
+      "options": [
+        {
+          "value": "below_image",
+          "label": "Below image"
+        },
+        {
+          "value": "image_bottom_left",
+          "label": "Inside image, bottom left"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_position",
+      "label": "Mobile card content position",
+      "default": "below_image",
+      "options": [
+        {
+          "value": "below_image",
+          "label": "Below image"
+        },
+        {
+          "value": "image_bottom_left",
+          "label": "Inside image, bottom left"
+        }
+      ]
+    },
+    {
+      "type": "number",
+      "id": "content_left_spacing",
+      "label": "Desktop inside image content left spacing (px)",
+      "default": 20
+    },
+    {
+      "type": "number",
+      "id": "content_bottom_spacing",
+      "label": "Desktop inside image content bottom spacing (px)",
+      "default": 20
+    },
+    {
+      "type": "number",
+      "id": "mobile_content_left_spacing",
+      "label": "Mobile inside image content left spacing (px)",
+      "default": 20
+    },
+    {
+      "type": "number",
+      "id": "mobile_content_bottom_spacing",
+      "label": "Mobile inside image content bottom spacing (px)",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Hover effect (VIVAIA style)"
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_reveal",
+      "default": false,
+      "label": "Reveal description on hover",
+      "info": "Desktop: title stays visible, description slides/fades in on hover. Works best with card content position 'Inside image, bottom left'. On mobile (no hover) the description is always shown."
+    },
+    {
+      "type": "range",
+      "id": "hover_zoom",
+      "min": 100,
+      "max": 115,
+      "step": 1,
+      "unit": "%",
+      "default": 106,
+      "label": "Hover image zoom",
+      "info": "How much the image scales up on hover. 100% = no zoom."
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop layout",
+      "default": "carousel",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "Carousel — centered card, neighbours peek"
+        },
+        {
+          "value": "accordion",
+          "label": "Accordion — equal columns, hovered card widens"
+        }
+      ],
+      "info": "Carousel matches the mobile behaviour: the middle card is largest and shrinks as it scrolls away."
+    },
+    {
+      "type": "range",
+      "id": "desktop_peek",
+      "min": 40,
+      "max": 92,
+      "step": 2,
+      "unit": "%",
+      "default": 70,
+      "label": "Desktop centre card width",
+      "info": "Carousel layout only. The rest of the row is split between the two peeking neighbours."
+    },
+    {
+      "type": "range",
+      "id": "side_shrink",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 8,
+      "label": "Side card shrink",
+      "info": "How much the off-centre cards scale down. This is the main cause of the visible gap between cards — lower it to tighten the spacing, set 0 for no shrink at all."
+    },
+    {
+      "type": "range",
+      "id": "side_height",
+      "min": 60,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "default": 100,
+      "label": "Side card height",
+      "info": "Height of the off-centre cards relative to the centre one. Images are cropped, not squashed. 100% keeps every card the same height."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_counter",
+      "default": false,
+      "label": "Show slide counter",
+      "info": "Shows the '1 / 3' counter between the arrows."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_loop",
+      "default": true,
+      "label": "Loop the carousel",
+      "info": "Lets it scroll forever in one direction. Looping works by jumping between duplicate copies of the cards, which makes videos flash at the jump — so it is ignored automatically whenever a card uses a video. With looping off the carousel simply stops at the first and last card."
+    },
+    {
+      "type": "select",
+      "id": "video_playback",
+      "label": "Video playback",
+      "default": "center",
+      "options": [
+        {
+          "value": "center",
+          "label": "Play the centre card only (sides stay still)"
+        },
+        {
+          "value": "hover",
+          "label": "Play on hover (mobile: plays when centered)"
+        },
+        {
+          "value": "autoplay",
+          "label": "Autoplay while visible"
+        }
+      ],
+      "info": "Applies to cards that use a video. Videos are always muted and looped."
+    },
+    {
+      "type": "range",
+      "id": "hover_expand",
+      "min": 100,
+      "max": 260,
+      "step": 5,
+      "unit": "%",
+      "default": 180,
+      "label": "Hover expand width",
+      "info": "Desktop only: how much the hovered card widens while the others narrow (accordion). 100% = no expanding (equal columns). Cards keep a fixed height set by 'Desktop image height'."
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "default": "swipe",
+      "options": [
+        {
+          "value": "swipe",
+          "label": "Horizontal swipe"
+        },
+        {
+          "value": "stack",
+          "label": "Vertical stack"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_top_spacing",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72,
+      "label": "Heading top spacing"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing",
+      "min": 0,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Heading bottom spacing"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_top_spacing",
+      "default": false,
+      "label": "Remove top spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_bottom_spacing",
+      "default": false,
+      "label": "Remove bottom spacing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Image card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video — Desktop (optional)",
+          "info": "If set, the video replaces the image on this card. Playback is controlled by the section's 'Video playback' setting."
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Video — Mobile (optional)",
+          "info": "Portrait cut shown on phones. Leave empty to reuse the desktop video. Set the card's mobile ratio with 'Mobile image width/height' so a portrait video is not cropped."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Image card"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cust Image card grid",
+      "blocks": [
+        {
+          "type": "image_card"
+        },
+        {
+          "type": "image_card"
+        },
+        {
+          "type": "image_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

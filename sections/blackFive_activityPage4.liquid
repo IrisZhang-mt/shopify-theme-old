@@ -1,0 +1,425 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+  #shopify-section-{{section.id}} .blackFive_activityPage4All{
+      margin-top: {{section.settings.Desktop_top}}px;
+      margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+      padding-top:{{section.settings.Desktop_paddingTop}}px;
+      padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+  }
+  @media(max-width:999px) {
+      #shopify-section-{{section.id}} .blackFive_activityPage4All{
+          margin-top: {{section.settings.Mobile_top}}px;
+          margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+          padding-top:{{section.settings.Mobile_paddingTop}}px;
+          padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+      }
+  }
+
+  .blackFive_activityPage4_title p:last-child ,.blackFive_activityPage4_itemText p:last-child{
+      margin: 0;
+  }
+  .blackFive_activityPage4_title, .blackFive_activityPage4_title p {
+      line-height: 110%;
+  }
+  .blackFive_activityPage4_left img {
+      width: 100%;
+  }
+  .blackFive_activityPage4_positon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  #shopify-section-{{section.id}} .blackFive_activityPage4_positonTitle {
+      color: {{ section.settings.title_color }};
+  }
+  .blackFive_activityPage4All .product-card {
+    margin-bottom: unset !important;
+  }
+   #shopify-section-{{section.id}}  .blackFive_activityPage4_itemText {
+    color: {{ section.settings.text_color }};
+  }
+  @media (min-width: 1000px) {
+    .blackFive_activityPage4_positon {
+      padding: 22px 30px;
+    }
+    .blackFive_activityPage4_title strong {
+        font-weight: 600;
+    }
+    .blackFive_activityPage4_box {
+        display: flex;
+        gap: 20px;
+    }
+    .blackFive_activityPage4_left {
+      position: relative;
+      position: sticky;
+      top: 0px;
+      align-self: flex-start;
+      display: block;
+      width: 50%;
+    }
+    .blackFive_activityPage4_right {
+      width: 50%;
+    }
+    .blackFive_activityPage4_rightBox {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(2,1fr);
+    }
+    .blackFive_activityPage4_bottomRight svg {
+      width: 60px;
+      height: auto;
+    }
+    .pc_hide_color .product-card-swatches--container {
+      display:none;
+    }
+    .blackFive_activityPage4_positon svg {
+      width: 60px;
+      height: auto;
+    }
+    .blackFive_activityPage4_bottomLeftText {
+      font-size: 18px;
+      line-height: 29px;
+    }
+    .blackFive_activityPage4_itemText {
+    font-size: 26px
+    }
+  }
+  @media (max-width: 999px) {
+      .mobile_hide_color .product-card-swatches--container {
+        display:none;
+      }
+      .blackFive_activityPage4_positon {
+        padding: 22px 30px;
+      }
+      .blackFive_activityPage4_title strong {
+          font-weight: 600;
+      }
+      .blackFive_activityPage4_left {
+        position: relative;
+        top: 0px;
+        display: block;
+      }
+      .blackFive_activityPage4_right {
+        width: 100%;
+        padding: 0 15px;
+        margin-top: 15px;
+      }
+      .blackFive_activityPage4_bottomRight svg {
+        width: 40px;
+        height: auto;
+      }
+      .blackFive_activityPage4All .row,.blackFive_activityPage4All .columns {
+        padding: 0;
+      }
+      .blackFive_activityPage4All .swiper-grid-column>.swiper-wrapper {
+        flex-direction: unset;
+        row-gap: 0px;
+      }
+      .activityPage4Swiper {
+        margin: 0 -2.5px;
+      }
+      .blackFive_activityPage4All .swiper-backface-hidden .swiper-slide .product-card {
+        padding: 0 2.5px;
+      }
+      .blackFive_activityPage4All .swiper-scrollbar {
+        border-radius: 10px;
+      }
+      .blackFive_activityPage4All .swiper-scrollbar-drag {
+        background-color: #000;
+      }
+      .blackFive_activityPage4All .swiper-scrollbar {
+        max-width: 300px;
+        margin: 0 auto;
+        height: 2px !important;
+        background-color: #f0f0f0;
+        position: static !important;
+        margin-top: 32px;
+      }
+
+      .blackFive_activityPage4_itemPosition {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 12px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+    .blackFive_activityPage4_itemText {
+      font-size: 18px;
+    }
+    .blackFive_activityPage4_bottomLeftText {
+      font-size: 12px;
+    }
+    .blackFive_activityPage4_positon svg {
+      width: 40px;
+      height: auto;
+    }
+  }
+</style>
+<div class="blackFive_activityPage4All">
+  <div class="row full-width-row">
+    <div class="columns">
+      <div class="blackFive_activityPage4_box {% if section.settings.pc_hide_color %} pc_hide_color{% endif %} {% if section.settings.mobile_hide_color %} mobile_hide_color{% endif %}">
+        {% if section.settings.link != blank %}
+          <a href="{{section.settings.link}}" class="blackFive_activityPage4_left">
+            <img
+              loading="lazy"
+              src="{{ section.settings.img | img_url:'master' }}"
+              alt="{{ section.settings.img.alt }}"
+              class="pad_pc"
+            >
+            <img
+              loading="lazy"
+              src="{{ section.settings.img_mobile | img_url:'master' }}"
+              alt="{{ section.settings.img_mobile.alt }}"
+              class="pad_mobile"
+            >
+                {% if section.settings.text != blank %}
+              <div class="blackFive_activityPage4_positon">
+                <div class="blackFive_activityPage4_itemText">
+                  {{ section.settings.text }}
+                </div>
+
+                
+                  <svg id="ctr" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: #fff;
+                        }
+
+                        .cls-2 {
+                          fill: #151515;
+                          fill-rule: evenodd;
+                        }
+                      </style>
+                    </defs>
+                    <circle id="椭圆_3" data-name="椭圆 3" class="cls-1" cx="40" cy="40" r="40"/>
+                    <path id="矩形_17" data-name="矩形 17" class="cls-2" d="M1362.8,4511.37l22.63,22.63-2.27,2.26-22.62-22.62Z" transform="translate(-1330 -4494)"/>
+                    <path id="矩形_17_拷贝" data-name="矩形 17 拷贝" class="cls-2" d="M1360.54,4554.36l22.62-22.62,2.27,2.26-22.63,22.63Z" transform="translate(-1330 -4494)"/>
+                  </svg>
+
+              </div>
+            {% endif %}
+            
+          </a>
+        {%- else -%}
+          <div class="blackFive_activityPage4_left">
+            <img
+              loading="lazy"
+              src="{{ section.settings.img | img_url:'master' }}"
+              alt="{{ section.settings.img.alt }}"
+              class="pad_pc"
+            >
+            <img
+              loading="lazy"
+              src="{{ section.settings.img_mobile | img_url:'master' }}"
+              alt="{{ section.settings.img_mobile.alt }}"
+              class="pad_mobile"
+            >
+                {% if section.settings.text != blank %}
+              <div class="blackFive_activityPage4_positon">
+                <div class="blackFive_activityPage4_itemText">
+                  {{ section.settings.text }}
+                </div>
+
+                
+                  <svg id="ctr" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: #fff;
+                        }
+
+                        .cls-2 {
+                          fill: #151515;
+                          fill-rule: evenodd;
+                        }
+                      </style>
+                    </defs>
+                    <circle id="椭圆_3" data-name="椭圆 3" class="cls-1" cx="40" cy="40" r="40"/>
+                    <path id="矩形_17" data-name="矩形 17" class="cls-2" d="M1362.8,4511.37l22.63,22.63-2.27,2.26-22.62-22.62Z" transform="translate(-1330 -4494)"/>
+                    <path id="矩形_17_拷贝" data-name="矩形 17 拷贝" class="cls-2" d="M1360.54,4554.36l22.62-22.62,2.27,2.26-22.63,22.63Z" transform="translate(-1330 -4494)"/>
+                  </svg>
+
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="blackFive_activityPage4_right">
+          <div class="pad_pc">
+            <div class="blackFive_activityPage4_rightBox">
+              {%- for product in section.settings.collection.products limit: section.settings.product_limit -%}
+                {% render 'product-card', product_card_product: product %}
+              {%- endfor -%}
+            </div>
+          </div>
+            <div class="pad_mobile">
+              <div class="swiper activityPage4Swiper">
+                <div class="swiper-wrapper">
+                  {%- for product in section.settings.collection.products limit: section.settings.product_limit -%}
+                    <div class="swiper-slide">
+                      {% render 'product-card', product_card_product: product %}
+                    </div>
+                  {%- endfor -%}
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const activityPage4Swiper = new Swiper('#shopify-section-{{ section.id }} .activityPage4Swiper', {
+      observer: true,
+      observeParents: true,
+      slidesPerGroup: 4,     
+      slidesPerView: 2,    
+      grid: {
+          fill: 'column',
+          rows: 2, 
+      },
+      scrollbar: {
+        el: '#shopify-section-{{section.id}} .activityPage4Swiper .swiper-scrollbar',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Black Five Activity Page4",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "img"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_mobile",
+      "label": "img mobile"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "text"
+    },
+     {
+      "type": "color",
+      "id": "text_color",
+      "label": "text color"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "link"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "product limit",
+      "default": 5,
+      "min": 5,
+      "max": 20,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "pc_hide_color",
+      "label": "pc hide color",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_hide_color",
+      "label": "mobile hide color",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Spacing Top:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_top",
+      "label": "Desktop Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_top",
+      "label": "Mobile Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingTop",
+      "label": "Desktop Padding Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingTop",
+      "label": "Mobile Padding Top",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Bottom:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_bottom",
+      "label": "Desktop Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_bottom",
+      "label": "Mobile Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingBottom",
+      "label": "Mobile Padding Bottom",
+      "default": 0
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Black Five Activity Page4"
+    }
+  ]
+}
+{% endschema %}

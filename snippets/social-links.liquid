@@ -1,0 +1,58 @@
+<ul class="social-links">
+	{% if settings.social_facebook_link != blank %}
+	<li><a href="{{ settings.social_facebook_link }}" class="social facebook" target="_blank" rel="noreferrer" title="Facebook">
+		{% comment %}
+		{% render 'svg-icons' with 'facebook' %} 
+		{% endcomment %}
+		<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M18 0H0.75C0.335156 0 0 0.335156 0 0.75V18C0 18.4148 0.335156 18.75 0.75 18.75H18C18.4148 18.75 18.75 18.4148 18.75 18V0.75C18.75 0.335156 18.4148 0 18 0ZM15.8344 5.47266H14.3367C13.1625 5.47266 12.9352 6.03047 12.9352 6.85078V8.65781H15.7383L15.3727 11.4867H12.9352V18.75H10.0125V11.4891H7.56797V8.65781H10.0125V6.57187C10.0125 4.15078 11.4914 2.83125 13.6523 2.83125C14.6883 2.83125 15.5766 2.90859 15.8367 2.94375V5.47266H15.8344Z" fill="white"/>
+		</svg>
+	<span>{{ 'social.links.facebook' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_twitter_link != blank %}
+	<li><a href="{{ settings.social_twitter_link }}" class="social twitter" target="_blank" rel="noreferrer" title="Twitter">{% render 'svg-icons' with 'twitter' %} <span>{{ 'social.links.twitter' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_instagram_link != blank %}
+	<li><a href="{{ settings.social_instagram_link }}" class="social instagram" target="_blank" rel="noreferrer" title="Instagram">
+		{% comment %}
+		{% render 'svg-icons' with 'instagram' %} 
+		{% endcomment %}
+		<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M10.1242 7C8.40391 7 7 8.40391 7 10.1242C7 11.8445 8.40391 13.2484 10.1242 13.2484C11.8445 13.2484 13.2484 11.8445 13.2484 10.1242C13.2484 8.40391 11.8445 7 10.1242 7Z" fill="white"/>
+			<path d="M20.5949 10.2978C20.5949 8.87578 20.6078 7.4666 20.5279 6.04711C20.4481 4.39834 20.072 2.93506 18.8663 1.7294C17.6581 0.521159 16.1974 0.14761 14.5486 0.0677475C13.1265 -0.0121148 11.7173 0.000766276 10.2978 0.000766276C8.87578 0.000766276 7.4666 -0.0121148 6.04711 0.0677475C4.39834 0.14761 2.93506 0.523735 1.7294 1.7294C0.521159 2.93764 0.14761 4.39834 0.0677475 6.04711C-0.0121148 7.46918 0.000766276 8.87836 0.000766276 10.2978C0.000766276 11.7173 -0.0121148 13.1291 0.0677475 14.5486C0.14761 16.1974 0.523736 17.6606 1.7294 18.8663C2.93764 20.0745 4.39834 20.4481 6.04711 20.5279C7.46918 20.6078 8.87836 20.5949 10.2978 20.5949C11.7199 20.5949 13.1291 20.6078 14.5486 20.5279C16.1974 20.4481 17.6606 20.072 18.8663 18.8663C20.0745 17.6581 20.4481 16.1974 20.5279 14.5486C20.6104 13.1291 20.5949 11.7199 20.5949 10.2978ZM10.2953 15.5816C7.37128 15.5816 5.01148 13.2218 5.01148 10.2978C5.01148 7.37386 7.37128 5.01406 10.2953 5.01406C13.2193 5.01406 15.5791 7.37386 15.5791 10.2978C15.5791 13.2218 13.2193 15.5816 10.2953 15.5816ZM15.7955 6.03166C15.1128 6.03166 14.5615 5.48035 14.5615 4.79766C14.5615 4.11496 15.1128 3.56365 15.7955 3.56365C16.4782 3.56365 17.0295 4.11496 17.0295 4.79766C17.0269 5.48292 16.4782 6.03166 15.7955 6.03166Z" fill="white"/>
+		</svg>
+		<span>{{ 'social.links.instagram' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_youtube_link != blank %}
+	<li><a href="{{ settings.social_youtube_link }}" class="social youtube" target="_blank" rel="noreferrer" title="YouTube">
+		{% comment %}
+		{% render 'svg-icons' with 'youtube' %}
+		{% endcomment %}
+		<svg width="27" height="19" viewBox="0 0 27 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M26.0976 2.9136C25.8062 1.74816 24.8905 0.874081 23.7251 0.541098C21.6439 -2.9771e-07 13.3193 0 13.3193 0C13.3193 0 4.99475 -2.9771e-07 2.9136 0.541098C1.74816 0.832458 0.874081 1.74816 0.541098 2.9136C0 4.99475 0 9.32353 0 9.32353C0 9.32353 0 13.6523 0.541098 15.7335C0.832458 16.8989 1.74816 17.773 2.9136 18.106C4.99475 18.6471 13.3193 18.6471 13.3193 18.6471C13.3193 18.6471 21.6439 18.6471 23.7251 18.106C24.8905 17.8146 25.7646 16.8989 26.0976 15.7335C26.6387 13.6523 26.6387 9.32353 26.6387 9.32353C26.6387 9.32353 26.6387 4.99475 26.0976 2.9136ZM10.6555 13.3193V5.32773L17.5649 9.32353L10.6555 13.3193Z" fill="white"/>
+		</svg>
+		<span>{{ 'social.links.youtube' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_pinterest_link != blank %}
+	<li><a href="{{ settings.social_pinterest_link }}" class="social pinterest" target="_blank" rel="noreferrer" title="Pinterest">
+		{% comment %}
+		{% render 'svg-icons' with 'pinterest' %} 
+		{% endcomment %}
+		<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M10.7598 0C4.81744 0 0 4.81744 0 10.7598C0 16.7021 4.81744 21.5195 10.7598 21.5195C16.7021 21.5195 21.5195 16.7021 21.5195 10.7598C21.5195 4.81744 16.7021 0 10.7598 0ZM11.7497 14.018C10.9544 14.018 10.2061 13.5788 9.94887 13.08C9.94887 13.08 9.52141 14.8133 9.43045 15.1478C9.27785 15.7132 8.98343 16.2776 8.71052 16.7246C8.32121 17.2332 7.87224 16.8557 7.81844 16.392C7.80083 15.8755 7.81942 15.2642 7.94755 14.7076C8.08939 14.0972 8.89539 10.6082 8.89539 10.6082C8.89539 10.6082 8.65965 10.1279 8.65965 9.41773C8.65965 8.30263 9.29252 7.47021 10.0809 7.47021C10.751 7.47021 11.0747 7.98472 11.0747 8.59999C11.0747 9.28763 10.6453 10.3167 10.4243 11.2694C10.2394 12.0676 10.8165 12.718 11.5873 12.718C12.9831 12.718 13.9241 10.8869 13.9241 8.71834C13.9241 7.06917 12.8364 5.83571 10.8576 5.83571C8.62248 5.83571 7.22958 7.5377 7.22958 9.43827C7.22958 10.0936 7.41837 10.5563 7.71573 10.9133C7.85169 11.0777 7.87126 11.1442 7.82137 11.333C7.78616 11.4719 7.70497 11.8044 7.67171 11.9365C7.6228 12.1272 7.47119 12.1947 7.30295 12.1243C6.27294 11.6949 5.79364 10.5436 5.79364 9.25046C5.79364 7.11318 7.55922 4.5504 11.0601 4.5504C13.8733 4.5504 15.7249 6.62899 15.7249 8.86018C15.7259 11.8132 14.1188 14.018 11.7497 14.018Z" fill="white"/>
+		</svg>
+		<span>{{ 'social.links.pinterest' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_vimeo_link != blank %}
+	<li><a href="{{ settings.social_vimeo_link }}" class="social vimeo" target="_blank" rel="noreferrer" title="Vimeo">{% render 'svg-icons' with 'vimeo' %} <span>{{ 'social.links.vimeo' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_tiktok_link != blank %}
+	<li><a href="{{ settings.social_tiktok_link }}" class="social tiktok" target="_blank" rel="noreferrer" title="TikTok">{% render 'svg-icons' with 'tiktok' %} <span>{{ 'social.links.tiktok' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_linkedin_link != blank %}
+	<li><a href="{{ settings.social_linkedin_link }}" class="social linkedin" target="_blank" rel="noreferrer" title="Linkedin">{% render 'svg-icons' with 'linkedin' %} <span>{{ 'social.links.linkedin' | t }}</span></a></li>
+	{% endif %}
+	{% if settings.social_wechat_link != blank %}
+	<li><a href="{{ settings.social_wechat_link }}" class="social wechat" target="_blank" rel="noreferrer" title="WeChat">{% render 'svg-icons' with 'wechat' %} <span>{{ 'social.links.wechat' | t }}</span></a></li>
+	{% endif %}
+</ul>

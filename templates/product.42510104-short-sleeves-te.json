@@ -1,0 +1,632 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {}
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "uppercase": false,
+            "show_products_rating": true
+          }
+        },
+        "product_icon_heM8JP": {
+          "type": "product_icon",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "color_picker": true,
+            "color_picker_size": "regular",
+            "color_picker_use_variants": false,
+            "variant_is_disabled": true,
+            "sizing_guide_variant": "Size",
+            "sizing_guide_text": "Size Chart",
+            "sizing_guide_icon": "ruler",
+            "sizing_guide_page": "size-chart-leggings"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "0b3e272b-c86a-4dba-946c-c6912251371c": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_HeAfn6": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Material & care",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": "",
+            "custom_product_data": "materials"
+          }
+        },
+        "collapsible_tab_xWnVNK": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Size & fit",
+            "open": true,
+            "content": "",
+            "page": "",
+            "custom_liquid": "",
+            "custom_product_data": "size_fit"
+          }
+        },
+        "collapsible_tab_jFcGTb": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Sustainability",
+            "open": false,
+            "content": "<p>bluesign®</p><p>Bluesign conducts on-site assessments to understand the environmental and chemical management status of the facility against bluesign® requirements, called the bluesign® CRITERIA. A specific action plan is shared with the facility, to close the gaps observed during the assessment in order to achieve responsible production with the use of safe chemistry and with responsible consumption of resources (water, energy, chemistry), thereby reducing environmental impact.</p>",
+            "page": "",
+            "custom_liquid": "",
+            "custom_product_data": "none"
+          }
+        },
+        "complementary_q9MXz6": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Pairs well with",
+            "product_list_limit": 4
+          }
+        },
+        "95b7e00a-0453-4eb0-9cf0-1dae84d8b822": {
+          "type": "side_panel",
+          "settings": {
+            "side_panel_1_label": "Free shipping on $79+",
+            "side_panel_1_icon": "box",
+            "side_panel_1_content": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
+            "side_panel_1_page": "",
+            "side_panel_2_label": "30-day easy returns",
+            "side_panel_2_icon": "return",
+            "side_panel_2_content": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
+            "side_panel_2_page": "",
+            "side_panel_3_label": "",
+            "side_panel_3_icon": "bottle",
+            "side_panel_3_content": "",
+            "side_panel_3_page": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "product_icon_heM8JP",
+        "variant_picker",
+        "buy_buttons",
+        "0b3e272b-c86a-4dba-946c-c6912251371c",
+        "collapsible_tab_HeAfn6",
+        "collapsible_tab_xWnVNK",
+        "collapsible_tab_jFcGTb",
+        "complementary_q9MXz6",
+        "95b7e00a-0453-4eb0-9cf0-1dae84d8b822"
+      ],
+      "settings": {
+        "collapsable_title_highlight_color": "#ff8300",
+        "full_width": true,
+        "enable_sticky_info": true,
+        "enable_sticky_add_to_cart": true,
+        "show_taxes_included": false,
+        "media_layout": "grid",
+        "display_slider_pagination": true,
+        "media_aspect_ratio": "adapt",
+        "display_captions": false,
+        "hide_variants": false,
+        "lightbox": true,
+        "enable_video_looping": false
+      }
+    },
+    "spacer_6DJzDC": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 50,
+        "spacer_desktop": 100,
+        "border_separator": false,
+        "border_separator_full": false
+      }
+    },
+    "spacer_ALA6t9": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 0,
+        "spacer_desktop": 0,
+        "border_separator": true,
+        "border_separator_full": true
+      }
+    },
+    "image_with_text_EAURFF": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_HdWBaX": {
+          "type": "heading",
+          "settings": {
+            "text": "Experience the Ultimate Coolness and Breathability",
+            "heading_size": "h3"
+          }
+        },
+        "text_Ur9eFe": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HdWBaX",
+        "text_Ur9eFe"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Frame_259.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "large",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "text_first",
+        "content_position": "text-left",
+        "color_bg": "rgba(0,0,0,0)",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "cust_image_with_text_progress_bar_NkfiwJ": {
+      "type": "cust_image-with-text-progress-bar",
+      "blocks": {
+        "heading_R3d7EV": {
+          "type": "heading",
+          "settings": {
+            "text": "Experience the Ultimate Coolness and Breathability",
+            "heading_size": "h3"
+          }
+        },
+        "text_VtnqFA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        },
+        "progress_kNGiTi": {
+          "type": "progress",
+          "settings": {
+            "color": "#ff8300",
+            "icon": "shopify://shop_images/Frame_4.png",
+            "progress": "{{ product.metafields.custom.weight_for_progress_bar.value }}",
+            "label_left": "Light",
+            "label_right": "Heavy",
+            "mt": 30,
+            "mb": 24
+          }
+        },
+        "progress_cnVLV3": {
+          "type": "progress",
+          "settings": {
+            "color": "#ff8300",
+            "icon": "shopify://shop_images/Frame_148.png",
+            "progress": "{{ product.metafields.custom.temperature_for_progress_bar.value }}",
+            "label_left": "Cool",
+            "label_right": "Warm",
+            "mt": 0,
+            "mb": 24
+          }
+        },
+        "progress_TeQK4d": {
+          "type": "progress",
+          "settings": {
+            "color": "#ff8300",
+            "icon": "shopify://shop_images/Frame_149.png",
+            "progress": "{{ product.metafields.custom.tightness_for_progress_bar.value }}",
+            "label_left": "Loose",
+            "label_right": "Tight",
+            "mt": 0,
+            "mb": 24
+          }
+        }
+      },
+      "block_order": [
+        "heading_R3d7EV",
+        "text_VtnqFA",
+        "progress_kNGiTi",
+        "progress_cnVLV3",
+        "progress_TeQK4d"
+      ],
+      "disabled": true,
+      "settings": {
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "section_width": "grid",
+        "layout": "text_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    },
+    "image_with_text_eeUatc": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_7wgpJp": {
+          "type": "heading",
+          "settings": {
+            "text": "Why Breezy Leggings?",
+            "heading_size": "h3"
+          }
+        },
+        "collapsible_tab_7yFjtM": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Cool-feeling & Breathable",
+            "open": true,
+            "content": "<p>Constructed with special designed yarns and advanced sewing technology, Brizi® keeps the hot air outside and cool down your body.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_kdCL4V": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Super Stretchy & Ultra Lightweight",
+            "open": false,
+            "content": "<p>High performance four-way stretch structure gives our breezy leggings excellent shape retention, while the innovative fabric enables our breezy leggings to be super lightweight.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_rPLwPJ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "UPF50+, Ultimate Sun Protector",
+            "open": false,
+            "content": "<p>Equipped with special dying technology, our breezy legging can effectively block out more than 98% of the sun’s harmful rays.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_7wgpJp",
+        "collapsible_tab_7yFjtM",
+        "collapsible_tab_kdCL4V",
+        "collapsible_tab_rPLwPJ"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/breezy-legging-09.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "large",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#fdf6ee",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "cust_image_with_text_interactive_tabs_RrwTUp": {
+      "type": "cust_image-with-text-interactive-tabs",
+      "blocks": {
+        "collapsible_tab_cri7Wf": {
+          "type": "collapsible_tab",
+          "settings": {
+            "image": "shopify://shop_images/20240619-100710.jpg",
+            "heading": "Feather-light and cotton-soft",
+            "open": true,
+            "content": "<p>Ultra-lightweight yarn,Blockmax® on the back for a silky, weightless feel.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_74Rbet": {
+          "type": "collapsible_tab",
+          "settings": {
+            "image": "shopify://shop_images/img_v3_02bv_743a0733-4024-4555-aa3f-bece3ca610dg.gif",
+            "heading": "Quick-dry and moisture-wicking",
+            "open": false,
+            "content": "<p>Feel fresh throughout the day with this classic, quick-dry t-shirt that offers ultimate comfort for your every move. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_HYDfLj": {
+          "type": "collapsible_tab",
+          "settings": {
+            "image": "shopify://shop_images/img_v3_02bv_df79cee7-8457-42ae-be85-c55a6e7b5a0g.jpg",
+            "heading": "Artistically unique",
+            "open": false,
+            "content": "<p>Imagination is the expression of our souls.<br/>Ink-like patterns reinvent the traditional colour wheel.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_cri7Wf",
+        "collapsible_tab_74Rbet",
+        "collapsible_tab_HYDfLj"
+      ],
+      "settings": {
+        "use_product_metafield": true,
+        "text": "Why Back Printed Tee?",
+        "heading_size": "h3",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#fdf6ee",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "image_with_text_g9ebEe": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_UDVbmf": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_size": "h3"
+          }
+        },
+        "text_9VDmXD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UDVbmf",
+        "text_9VDmXD"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Ellipse_70.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "section_width": "grid",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "image_with_text_WegbcB": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_LMCbam": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_size": "h3"
+          }
+        },
+        "text_Hzzeaa": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LMCbam",
+        "text_Hzzeaa"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Ellipse_72.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "section_width": "grid",
+        "layout": "text_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "image_with_text_pKVKGE": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_3AzGEg": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_size": "h3"
+          }
+        },
+        "text_kVwi4e": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3AzGEg",
+        "text_kVwi4e"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Ellipse_73.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "section_width": "grid",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "1663667029efc274af": {
+      "type": "collapsible-content",
+      "blocks": {
+        "1663667029f86d6497-0": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What payment methods can I use?",
+            "open": false,
+            "content": "<p>We offer 35 different payment methods including major providers like Mastercard, Visa, PayPal, American Express and Diners as well as many different local payment methods including Klarna, iDEAL, AliPay, Sofort, giropay, and many more.</p>",
+            "page": ""
+          }
+        },
+        "1663667029f86d6497-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Can I purchase items with another currency?",
+            "open": false,
+            "content": "<p>Yes, you may select a currency based on your personal preference. When you select your country in the country selector on the upper right of the website or are taken directly to your country’s version of the website, you will see prices listed in the regional currency.</p>",
+            "page": ""
+          }
+        },
+        "1663667029f86d6497-2": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Can I make changes to my order after it’s been placed?",
+            "open": false,
+            "content": "<p>We do everything we can to fulfill orders quickly and unfortunately cannot make updates after an order has been placed. These changes include removing or adding products and/or changing the delivery address. If a mistake has been made with your order information, it’s quickest to create a new order with the correct information and then let our Customer Service.</p>",
+            "page": ""
+          }
+        },
+        "1663667029f86d6497-3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Do you offer e-gift cards for international customers?",
+            "open": false,
+            "content": "<p>E-gift cards are only available to customers shipping within the U.S.</p>",
+            "page": ""
+          }
+        },
+        "68288bd2-3db2-455d-a841-5aa19d752abb": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How Do I Set Up A Subscription Order?",
+            "open": false,
+            "content": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.</p>",
+            "page": ""
+          }
+        },
+        "de9966d6-0cd0-4b0f-9810-aa062aff88ce": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How To Return My Items?",
+            "open": false,
+            "content": "<p>We do not currently offer free returns to overseas customers. You will therefore need to cover all costs of returning any items to us yourself. We advise that you mark your package ‘returned goods’ to avoid further duties. Remember: We strongly recommend that you return any items via a registered trackable service and obtain and retain proof of posting as we do not accept responsibility for items that fail to arrive with us.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "1663667029f86d6497-0",
+        "1663667029f86d6497-1",
+        "1663667029f86d6497-2",
+        "1663667029f86d6497-3",
+        "68288bd2-3db2-455d-a841-5aa19d752abb",
+        "de9966d6-0cd0-4b0f-9810-aa062aff88ce"
+      ],
+      "settings": {
+        "heading": "FAQ",
+        "description": "",
+        "uppercase_heading": false,
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "16623877721f33fb14": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 35,
+        "spacer_desktop": 50,
+        "border_separator": false,
+        "border_separator_full": true
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "heading_left": false,
+        "description": "",
+        "full_width": true,
+        "mobile_swipe": true,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-product",
+    "spacer_6DJzDC",
+    "spacer_ALA6t9",
+    "image_with_text_EAURFF",
+    "cust_image_with_text_progress_bar_NkfiwJ",
+    "image_with_text_eeUatc",
+    "cust_image_with_text_interactive_tabs_RrwTUp",
+    "image_with_text_g9ebEe",
+    "image_with_text_WegbcB",
+    "image_with_text_pKVKGE",
+    "1663667029efc274af",
+    "16623877721f33fb14",
+    "product-recommendations"
+  ]
+}

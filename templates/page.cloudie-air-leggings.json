@@ -1,0 +1,315 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "section_series_page1_QprTDF": {
+      "type": "section-seriesPage1",
+      "settings": {
+        "img": "shopify://shop_images/kvpc_fafe6da0-6d9b-4850-b7e8-3badc462647f.jpg",
+        "img_mobile": "shopify://shop_images/mb-2_890c6618-3b66-4027-8e70-41d5ff020dbc.jpg",
+        "title": "Air-light comfort for little girls.",
+        "button": "Cloudie Air Leggings",
+        "button_link": "shopify://products/breathable-kids-leggings-breezy",
+        "text": "So breathable, they’ll stay cool from sunrise to sunset.",
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "text_color": "#ffffff"
+      }
+    },
+    "section_series_page2_jFxgPk": {
+      "type": "section-seriesPage2",
+      "blocks": {
+        "text_DiFUYV": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/blue_16bc5d82-4897-492b-a22b-11846113ff67.png",
+            "year": "2024",
+            "text": "bluesign® Approved Product"
+          }
+        },
+        "text_AJ8ace": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/reddot_3e3d9dd1-9c66-4400-a9aa-cdcdc2f765d4.png",
+            "year": "2023",
+            "text": "Red Dot Design Award"
+          }
+        },
+        "text_ka9NP9": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/EPDA_8d667515-2351-456e-bfa7-b5480e094911.png",
+            "year": "2023",
+            "text": "European Product Design Award"
+          }
+        },
+        "text_P8yFpX": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/LUX_d1cec450-658b-4220-9d09-3695829492e7.png",
+            "year": "2020",
+            "text": "Lux Life Magazine Awards"
+          }
+        }
+      },
+      "block_order": [
+        "text_DiFUYV",
+        "text_AJ8ace",
+        "text_ka9NP9",
+        "text_P8yFpX"
+      ],
+      "settings": {
+        "text": "Brizi® cooling fabric",
+        "text2": "Quick-dry & lightweight",
+        "text3": "Tailored for children",
+        "Desktop_top": 60,
+        "Mobile_top": 30,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "bg_color": "#f0f0f0"
+      }
+    },
+    "section_series_page3_iwcVQM": {
+      "type": "section-seriesPage3",
+      "settings": {
+        "product": "breathable-kids-leggings-breezy",
+        "title": "Why do So Many Kids Love Them?",
+        "img": "shopify://shop_images/pc_c1dbccc8-483e-48dc-83e4-9e43347cb15f.jpg",
+        "img_mobile": "shopify://shop_images/mb_7f90eccc-d3ed-487a-ba34-fb9a2d28bece.jpg",
+        "text": "<p>Cooler Than a Breeze.</p>",
+        "small_text": "Crafted with Brizi® tech fabric, our leggings instantly cool on contact—lab-tested, kid-approved.",
+        "small_buyNow": "Shop Now",
+        "Desktop_top": 60,
+        "Mobile_top": 30,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "text_color": "#ffffff",
+        "small_bg_color": "#ffffff",
+        "small_color": "#151515"
+      }
+    },
+    "section_series_page3_UdNDYh": {
+      "type": "section-seriesPage3",
+      "settings": {
+        "product": "breathable-kids-leggings-breezy",
+        "title": "",
+        "img": "shopify://shop_images/pc-1_af3d7307-5a9a-45a1-9c46-2f90b6ebddf1.jpg",
+        "img_mobile": "shopify://shop_images/mb-1_d7e3a74a-da30-46c1-a05e-ec3f5c36603a.jpg",
+        "text": "<p>Light as air. Dry in a flash.</p>",
+        "small_text": "Made for sunny days. Wicks sweat fast to keep kids dry, cool, and free to move.",
+        "small_buyNow": "shop now",
+        "Desktop_top": 24,
+        "Mobile_top": 30,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "text_color": "#ffffff",
+        "small_bg_color": "#ffffff",
+        "small_color": "#151515"
+      }
+    },
+    "section_series_page3_pYqdCA": {
+      "type": "section-seriesPage3",
+      "blocks": {
+        "text_WRXEKM": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/86bce7eacee0c849d9746a959d02b0e9_5df81256-b978-4c88-b8cf-4efbf37d6064.jpg",
+            "text": "Bluesign, highest safety standards"
+          }
+        },
+        "text_9hYrkx": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/2_b838d3b1-874c-4d3c-85ed-c1ef5fd945e0.jpg",
+            "text": "Tear-off tag for itch-free comfort."
+          }
+        },
+        "text_9HGMXC": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1_8cae8b46-4138-458f-a496-95e15dbbe692.jpg",
+            "text": "Make a splash in unique prints"
+          }
+        }
+      },
+      "block_order": [
+        "text_WRXEKM",
+        "text_9hYrkx",
+        "text_9HGMXC"
+      ],
+      "settings": {
+        "product": "breathable-kids-leggings-breezy",
+        "title": "",
+        "img": "shopify://shop_images/pc-2_a18bbeaa-d5b6-464a-a0b6-6ee8718309c3.jpg",
+        "img_mobile": "shopify://shop_images/mb-2_890c6618-3b66-4027-8e70-41d5ff020dbc.jpg",
+        "text": "<p>Feels like a Second Skin.</p>",
+        "small_text": "This layer helps protect kids’ skin without chemicals or coatings—just smart fabric doing its job, so they can stay out chasing light.",
+        "small_buyNow": "shop now",
+        "Desktop_top": 24,
+        "Mobile_top": 30,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "text_color": "#ffffff",
+        "small_bg_color": "#ffffff",
+        "small_color": "#151515"
+      }
+    },
+    "section_series_page4_GMqzNx": {
+      "type": "section-seriesPage4",
+      "blocks": {
+        "text_rLhjkT": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/3_1193fc46-e619-4bfe-8493-ca4fc898b8e8.jpg",
+            "text": "Dimension Purple >",
+            "bg_color": "#cebbe5",
+            "text_color": "#ffffff",
+            "link": "https://moodytiger.com/products/breezy-legging?variant=48513041858806"
+          }
+        },
+        "text_RR6PAk": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/4_98db7cd8-64f9-4395-bbee-5efd23adfb3d.jpg",
+            "text": "Lustrous Pink  >",
+            "bg_color": "#f5cae7",
+            "text_color": "#ffffff",
+            "link": "https://moodytiger.com/products/breezy-legging?variant=48513043169526"
+          }
+        },
+        "text_68mgea": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/cb5f28ed126d00f32b3116ed50edb008_efd85629-3d1c-44ea-b231-11888bca4b44.jpg",
+            "text": "Quiet Color Purple  >",
+            "bg_color": "#bfa7ea",
+            "text_color": "#ffffff",
+            "link": "https://moodytiger.com/products/breezy-legging?variant=47773220012278"
+          }
+        },
+        "text_AMPqhk": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1_22c9c797-c0e1-4e49-bc12-5415f57c002b.jpg",
+            "text": "Gradient Buzz Pink >",
+            "bg_color": "#b89bcf",
+            "text_color": "#ffffff",
+            "link": "https://moodytiger.com/products/cloudie-air-leggings-2025-0?variant=47792877895926"
+          }
+        },
+        "text_3Xn94y": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/2_c7ac89b9-8e88-47ce-8ff8-c18f5cf95039.jpg",
+            "text": "Pandora Purple  >",
+            "bg_color": "#a5ace9",
+            "text_color": "#ffffff",
+            "link": "https://moodytiger.com/products/breezy-leggings-2024-0?variant=48128637763830"
+          }
+        },
+        "text_rjgUTN": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "img": "shopify://shop_images/5_26d41c09-c72c-4b6b-8920-d8609ac853b0.jpg",
+            "text": "Illusion Pink >",
+            "bg_color": "#e1b4c1",
+            "text_color": "#ffffff",
+            "link": "https://moodytiger.com/products/fairy-long-sleeve-tee-2025-0?variant=48527820587254"
+          }
+        }
+      },
+      "block_order": [
+        "text_rLhjkT",
+        "text_RR6PAk",
+        "text_68mgea",
+        "text_AMPqhk",
+        "text_3Xn94y",
+        "text_rjgUTN"
+      ],
+      "settings": {
+        "title": "Choose Their Favorite Color",
+        "Desktop_top": 68,
+        "Mobile_top": 30,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 68,
+        "Mobile_bottom": 30,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "featured_collection_DGm9q8": {
+      "type": "featured-collection",
+      "custom_css": [
+        "@media (min-width: 1000px) {h2 {font-size: 40px; font-weight: 500; }}",
+        "@media (max-width: 999px) {h2 {font-size: 18px; font-weight: 500; }}"
+      ],
+      "settings": {
+        "heading": "Find Out More of Cloudie Air Leggings",
+        "heading_left": false,
+        "description": "",
+        "full_width": false,
+        "collection": "breezy-leggings",
+        "display_type": "carousel",
+        "product_limit": 4,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "mobile_swipe": true,
+        "show_progress_bar": false,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_series_page1_QprTDF",
+    "section_series_page2_jFxgPk",
+    "section_series_page3_iwcVQM",
+    "section_series_page3_UdNDYh",
+    "section_series_page3_pYqdCA",
+    "section_series_page4_GMqzNx",
+    "featured_collection_DGm9q8"
+  ]
+}

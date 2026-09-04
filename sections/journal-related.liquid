@@ -1,0 +1,111 @@
+{{ 'journal.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign limit = section.settings.count | default: 3
+  assign prefer = section.settings.prefer_tag
+  assign current_tag = article.tags | first
+  assign shown = 0
+-%}
+
+<div class="mt-journal">
+  <div class="mt-wrap mt-related">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="mt-related-title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="mt-posts">
+
+      {%- comment -%} Pass 1: same category (matching the current article's first tag) {%- endcomment -%}
+      {%- if prefer and current_tag != blank -%}
+        {%- for a in blog.articles -%}
+          {%- if a.id != article.id and shown < limit and a.tags contains current_tag -%}
+            {%- assign shown = shown | plus: 1 -%}
+            {%- assign cat = a.tags | first -%}
+            <article class="mt-post">
+              <a class="mt-thumb" href="{{ a.url }}" aria-label="{{ a.title | escape }}">
+                {%- if a.image -%}
+                  {{ a.image | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw', widths: '400, 800, 1200' }}
+                {%- else -%}
+                  <div class="mt-ph-fill" style="background:linear-gradient(135deg,#EAE1D2,#C9BCA6)"></div>
+                {%- endif -%}
+              </a>
+              <div class="mt-meta">
+                <span class="mt-tag">{{ cat | default: blog.title }}</span>
+                <span class="mt-date">{{ a.published_at | date: '%b %d, %Y' }}</span>
+              </div>
+              <h3><a href="{{ a.url }}">{{ a.title }}</a></h3>
+              <a class="mt-read" href="{{ a.url }}">Read More &rarr;</a>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- comment -%} Pass 2: fill remaining slots with the most recent other posts {%- endcomment -%}
+      {%- for a in blog.articles -%}
+        {%- if a.id != article.id and shown < limit -%}
+          {%- assign skip = false -%}
+          {%- if prefer and current_tag != blank and a.tags contains current_tag -%}
+            {%- assign skip = true -%}{%- comment -%} already shown in pass 1 {%- endcomment -%}
+          {%- endif -%}
+          {%- unless skip -%}
+            {%- assign shown = shown | plus: 1 -%}
+            {%- assign cat = a.tags | first -%}
+            <article class="mt-post">
+              <a class="mt-thumb" href="{{ a.url }}" aria-label="{{ a.title | escape }}">
+                {%- if a.image -%}
+                  {{ a.image | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw', widths: '400, 800, 1200' }}
+                {%- else -%}
+                  <div class="mt-ph-fill" style="background:linear-gradient(135deg,#EAE1D2,#C9BCA6)"></div>
+                {%- endif -%}
+              </a>
+              <div class="mt-meta">
+                <span class="mt-tag">{{ cat | default: blog.title }}</span>
+                <span class="mt-date">{{ a.published_at | date: '%b %d, %Y' }}</span>
+              </div>
+              <h3><a href="{{ a.url }}">{{ a.title }}</a></h3>
+              <a class="mt-read" href="{{ a.url }}">Read More &rarr;</a>
+            </article>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+
+    {%- if shown == 0 -%}
+      <p style="color:#818A7D;text-align:center">No other posts yet.</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Journal related",
+  "tag": "section",
+  "class": "mt-journal-related-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "You may also like"
+    },
+    {
+      "type": "range",
+      "id": "count",
+      "label": "Articles to show",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "prefer_tag",
+      "label": "Prefer same category (tag)",
+      "default": true,
+      "info": "Show posts sharing this article's first tag first, then fill with the most recent other posts."
+    }
+  ],
+  "presets": [{ "name": "Journal related" }]
+}
+{% endschema %}

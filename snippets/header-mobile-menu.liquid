@@ -1,0 +1,295 @@
+{% comment %} 菜单栏有关联对应的图片GDF {% endcomment %}
+<nav id="mobile-menu" class="mobile-menu-drawer" role="dialog" tabindex="-1">
+  <div class="mobile-menu-drawer--inner">
+    {%- liquid
+      assign mega_menu_blocks = blocks | where: 'type', 'megamenu'
+      assign menu_badge_blocks = blocks | where: 'type', 'menu_badge'
+    -%}
+    <div class="mobile-menu-panels" data-mobile-menu-panels>
+      <div
+        class="mobile-menu-panel mobile-menu-panel--root is-active"
+        id="mobile-menu-panel-root"
+        data-mobile-menu-panel="root"
+        aria-hidden="false"
+      >
+        {%- if header_settings.menu -%}
+          <ul class="mobile-menu" role="list">
+            {%- for link in header_settings.menu.links -%}
+              {%- liquid
+                assign parent_index = forloop.index
+                assign has_sub_menu = false
+                assign has_mega_menu = false
+                assign mega_menu_block_index = false
+                assign link_title = link.title | strip | downcase
+                assign panel_id = 'mobile-menu-panel-' | append: parent_index
+
+                if link.links.size > 0
+                  assign has_sub_menu = true
+                endif
+
+                for block in mega_menu_blocks
+                  assign block_menu_title = block.settings.menu_title | strip | downcase
+                  if block_menu_title == link_title
+                    assign has_mega_menu = true
+                    assign mega_menu_block_index = forloop.index0
+                    break
+                  endif
+                endfor
+              -%}
+              <li>
+                {%- if has_sub_menu == true or has_mega_menu == true -%}
+                  <div class="mobile-menu-link mobile-menu-link--split">
+                    <a class="mobile-menu-link-target" href="{{ link.url }}" title="{{ link.title | escape }}">
+                      <span class="mobile-menu-link-title">{{ link.title }}</span>
+                    </a>
+                    <button
+                      class="mobile-menu-panel-trigger mobile-menu-link-arrow"
+                      type="button"
+                      data-mobile-menu-target="{{ panel_id }}"
+                      aria-controls="{{ panel_id }}"
+                      aria-label="{{ link.title | escape }}"
+                    >
+                      <span class="mobile-menu-chevron" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false" role="presentation">
+                          <path d="M9.5 6L15.5 12L9.5 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                {%- else -%}
+                  <a class="mobile-menu-link" href="{{ link.url }}" title="{{ link.title | escape }}">
+                    <span class="mobile-menu-link-title">{{ link.title }}</span>
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        <div class="mobile-menu-panel__footer">
+          <div class="no-js-hidden">
+            {%- render 'localization',
+              id: 'MobileMenuLocalization',
+              show_language_switcher: header_settings.show_language_switcher,
+              show_currency_switcher: header_settings.show_currency_switcher
+            -%}
+          </div>
+          {%- if header_settings.mobile_secondary_menu -%}
+            <ul class="mobile-secondary-menu">
+              {%- for link in header_settings.mobile_secondary_menu.links -%}
+                <li class="{% if link.active %} active{% endif %}">
+                  <a href="{{ link.url }}" title="{{ link.title | escape }}">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+          <div class="thb-mobile-menu-footer">
+            {%- if shop.customer_accounts_enabled -%}
+              {%- if customer -%}
+                {%- assign profile_link = routes.account_url -%}
+                {%- capture profile_text -%}
+                  {{ 'sections.header.my_account' | t }}
+                {%- endcapture -%}
+              {%- else -%}
+                {%- assign profile_link = routes.account_login_url -%}
+                {%- capture profile_text -%}
+                  {{ 'sections.header.login' | t }}
+                {%- endcapture -%}
+              {%- endif -%}
+              <a class="thb-mobile-account-link" href="{{ profile_link | escape }}" title="{{ profile_text | escape }}">
+                <span class="button white button-new-login button-new-login--mobile">
+                  {%- render 'icon-sign' -%}
+                  {%- if header_settings.signup_cta_text != blank -%}
+                    {{ header_settings.signup_cta_text -}}
+                  {%- else -%}
+                    {{ profile_text -}}
+                  {%- endif -%}
+                </span>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+      {%- if header_settings.menu -%}
+        {%- for link in header_settings.menu.links -%}
+          {%- liquid
+            assign parent_index = forloop.index
+            assign has_sub_menu = false
+            assign has_mega_menu = false
+            assign mega_menu_block_index = false
+            assign link_title = link.title | strip | downcase
+            assign panel_id = 'mobile-menu-panel-' | append: parent_index
+
+            if link.links.size > 0
+              assign has_sub_menu = true
+            endif
+
+            for block in mega_menu_blocks
+              assign block_menu_title = block.settings.menu_title | strip | downcase
+              if block_menu_title == link_title
+                assign has_mega_menu = true
+                assign mega_menu_block_index = forloop.index0
+                break
+              endif
+            endfor
+          -%}
+          {%- if has_sub_menu == true or has_mega_menu == true -%}
+            {%- liquid
+              assign mega_menu_block = mega_menu_blocks[mega_menu_block_index]
+            -%}
+            <div
+              class="mobile-menu-panel"
+              id="{{ panel_id }}"
+              data-mobile-menu-panel="{{ panel_id }}"
+              aria-hidden="true"
+            >
+              <div class="mobile-menu-panel__header">
+                <button class="mobile-menu-panel__back" type="button" data-mobile-menu-back>
+                  <span class="mobile-menu-panel__back-icon" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false" role="presentation">
+                      <path d="M14.5 6L8.5 12L14.5 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span>{{ link.title }}</span>
+                </button>
+              </div>
+              <div class="mobile-menu-panel__body">
+                {%- if has_sub_menu -%}
+                  <ul class="mobile-menu mobile-menu--panel" role="list">
+                    {%- for l in link.links -%}
+                      {%- liquid
+                        assign child_index = forloop.index
+                        assign child_has_sub_menu = false
+                        assign child_panel_id = panel_id | append: '-' | append: child_index
+                        if l.links.size > 0
+                          assign child_has_sub_menu = true
+                        endif
+                      -%}
+                      <li>
+                        {%- if child_has_sub_menu -%}
+                          <div class="mobile-menu-link mobile-menu-link--split">
+                            <a class="mobile-menu-link-target" href="{{ l.url }}" title="{{ l.title | escape }}">
+                              <span class="mobile-menu-link-title">{{ l.title }}</span>
+                            </a>
+                            <button
+                              class="mobile-menu-panel-trigger mobile-menu-link-arrow"
+                              type="button"
+                              data-mobile-menu-target="{{ child_panel_id }}"
+                              aria-controls="{{ child_panel_id }}"
+                              aria-label="{{ l.title | escape }}"
+                            >
+                              <span class="mobile-menu-chevron" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false" role="presentation">
+                                  <path d="M9.5 6L15.5 12L9.5 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                            </button>
+                          </div>
+                        {%- else -%}
+                          <a class="mobile-menu-link" href="{{ l.url }}" title="{{ l.title | escape }}">
+                            <span class="mobile-menu-link-title">{{ l.title }}</span>
+                          </a>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+                {%- if has_mega_menu == true and mega_menu_block.settings.promo_1_image -%}
+                  <div class="mobile-menu-promotion-item">
+                    {% render 'header-full-menu-promotion',
+                      promotion_image: mega_menu_block.settings.promo_1_image,
+                      promotion_link: mega_menu_block.settings.promo_1_link,
+                      promotion_heading: mega_menu_block.settings.promo_1_heading,
+                      promotion_description: mega_menu_block.settings.promo_1_description,
+                      promotion_link_label: mega_menu_block.settings.promo_1_link_label,
+                      layout: 'card'
+                    %}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+
+            {%- for l in link.links -%}
+              {%- if l.links.size > 0 -%}
+                {%- liquid
+                  assign child_index = forloop.index
+                  assign child_panel_id = panel_id | append: '-' | append: child_index
+
+                  assign child_promotion_image = blank
+                  assign child_promotion_link = l.url
+                  assign child_promotion_heading = l.title
+                  assign child_promotion_description = blank
+                  assign child_promotion_link_label = blank
+                  assign child_title_compare = l.title | strip | downcase
+
+                  if has_mega_menu == true
+                    for index in (1..20)
+                      assign hover_title_id = 'hover_promo_' | append: index | append: '_title'
+                      assign hover_image_id = 'hover_promo_' | append: index | append: '_image'
+                      assign hover_title = mega_menu_block.settings[hover_title_id]
+                      assign hover_image = mega_menu_block.settings[hover_image_id]
+                      assign hover_title_compare = hover_title | strip | downcase
+
+                      if hover_title_compare == child_title_compare and hover_image != blank
+                        assign child_promotion_image = hover_image
+                        break
+                      endif
+                    endfor
+                  endif
+                -%}
+                <div
+                  class="mobile-menu-panel"
+                  id="{{ child_panel_id }}"
+                  data-mobile-menu-panel="{{ child_panel_id }}"
+                  aria-hidden="true"
+                >
+                  <div class="mobile-menu-panel__header">
+                    <button class="mobile-menu-panel__back" type="button" data-mobile-menu-back>
+                      <span class="mobile-menu-panel__back-icon" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false" role="presentation">
+                          <path d="M14.5 6L8.5 12L14.5 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>{{ l.title }}</span>
+                    </button>
+                  </div>
+                  <div class="mobile-menu-panel__body">
+                    <ul class="mobile-menu mobile-menu--panel" role="list">
+                      {%- for sub_link in l.links -%}
+                        <li>
+                          <a class="mobile-menu-link" href="{{ sub_link.url }}" title="{{ sub_link.title | escape }}" role="menuitem">
+                            {%- render 'header-menu-icon',
+                              parent_title: l.title,
+                              value: sub_link.title,
+                              enable_color_circle: header_settings.enable_color_circle,
+                              enable_icon: header_settings.enable_icon
+                            -%}
+                            <span class="mobile-menu-link-title">{{ sub_link.title }}</span>
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                    {%- if child_promotion_image != blank -%}
+                      <div class="mobile-menu-promotion-item">
+                        {% render 'header-full-menu-promotion',
+                          promotion_image: child_promotion_image,
+                          promotion_link: child_promotion_link,
+                          promotion_heading: child_promotion_heading,
+                          promotion_description: child_promotion_description,
+                          promotion_link_label: child_promotion_link_label,
+                          layout: 'card'
+                        %}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</nav>
+<link rel="stylesheet" href="{{ 'mobile-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'mobile-menu.css' | asset_url | stylesheet_tag }}</noscript>

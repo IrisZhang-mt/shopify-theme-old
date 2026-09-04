@@ -1,0 +1,402 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    .RewardsVip_all .swiper-button-next::after,.RewardsVip_all .swiper-button-prev::after {
+        content: unset;
+    }
+    .RewardsVip_all .swiper-button-prev{
+        left: 0;
+        width: 8px;
+        height: auto;
+        top: calc(50% - 8px);
+    }
+    .RewardsVip_all .swiper-button-next{
+        right: 0;
+        width: 8px;
+        height: auto;
+        top: calc(50% - 8px);
+    }
+    #shopify-section-{{section.id}}.RewardsVip_all{
+        background-color:{{section.settings.bg_color}}
+    }
+    .RewardsVip_boxLeftBoxTitle {
+        margin: 0;
+    }
+
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}}.RewardsVip_all{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}}.RewardsVip_all{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px; 
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+
+
+    }
+
+    .RewardsVip_all .swiper-slide {
+        height:auto !important;
+    }
+    .RewardsVip_bottomBox_bottom li {
+        list-style: none;
+    }
+    .RewardsVip_bottomBox_bottom li::before {
+        content: "";
+        display: inline-block;
+        width: 14px;
+        height: 21px;
+        background-image: url("https://cdn.shopify.com/s/files/1/0475/6920/7457/files/Frame.png?v=1741698623");
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-right: 16px;
+        vertical-align: middle;
+    }
+    .RewardsVip_bottomBox_listText ol,.RewardsVip_bottomBox_listText ul {
+        margin: 0;
+    }
+    @media(min-width:1000px) {
+        .RewardsVipSwiper {
+            padding-bottom:10px;
+        }   
+        .RewardsVip_boxLeftBoxTitle {
+            text-align: center;
+        }
+        .RewardsVip_bottom {
+            margin-top: 32px;
+        }
+        .RewardsVip_bottomBox {
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 0px 6px 8px 0px rgba(21, 21, 21, 0.12);
+        }
+        .RewardsVip_bottomBox_title {
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .RewardsVip_bottomBox_text {
+            margin-top: 4px;
+        }
+        .RewardsVip_bottomBox_top {
+            color: #fff;
+            padding: 24px 32px;
+            text-align: center;
+            background-color: #FF8300;
+        }
+        .RewardsVip_bottomBox_bottom {
+            padding: 24px 16px;
+        }
+    
+        .RewardsVip_bottomBox_listText ol,.RewardsVip_bottomBox_listText ul {
+            display: grid;
+            gap: 28px;
+        }
+        
+
+    }
+    @media(max-width:999px) {   
+        .RewardsVipSwiper {
+            padding-bottom:10px;
+        }   
+        .RewardsVip_boxLeftBoxTitle {
+            text-align: center;
+        }
+        .RewardsVip_bottom {
+            margin-top: 24px;
+        }
+        .RewardsVip_bottomBox {
+            max-width: 300px;
+            margin: 0 auto;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 0px 6px 8px 0px rgba(21, 21, 21, 0.12);
+        }
+        .RewardsVip_bottomBox_title {
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .RewardsVip_bottomBox_text {
+            margin-top: 4px;
+        }
+        .RewardsVip_bottomBox_top {
+            color: #fff;
+            padding: 16px 32px;
+            text-align: center;
+            background-color: #FF8300;
+        }
+        .RewardsVip_bottomBox_bottom {
+            padding: 24px 16px;
+        }
+    
+        .RewardsVip_bottomBox_listText ol,.RewardsVip_bottomBox_listText ul {
+            display: grid;
+            gap: 28px;
+        }
+        .RewardsVip_all .swiper-pagination {
+            position: static;
+            line-height: 1;
+            margin-top: 12px;
+        }
+        .RewardsVip_all .swiper-pagination-bullet{
+            width: 6px;
+            height: 6px;
+            opacity: 1;
+            background-color: #99989B;
+        }
+        .RewardsVip_all .swiper-pagination-bullet-active {
+            background-color: #FF8300;
+        }
+        
+    }
+</style>
+<div class="RewardsVip_all" id="shopify-section-{{section.id}}"> 
+    <div class="my_container">  
+        <div class="RewardsVip_box">
+            {% if section.settings.title !=blank %}
+                <h2 class="RewardsVip_boxLeftBoxTitle my_h_32 my_m_28">
+                    {{section.settings.title}}
+                </h2>
+            {% endif %}
+            <div class="RewardsVip_bottom">
+                <div class="swiper RewardsVipSwiper">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            {%- liquid
+                                assign tier_handle = block.settings.title | handleize
+                                assign tier_number = ''
+                                assign tier_color = '#140f0f'
+                                case tier_handle
+                                    when 'general'
+                                        assign tier_number = '1'
+                                        assign tier_color = '#89400d'
+                                    when 'silver'
+                                        assign tier_number = '2'
+                                        assign tier_color = '#4a4a4a'
+                                    when 'gold'
+                                        assign tier_number = '3'
+                                        assign tier_color = '#784200'
+                                    when 'platinum'
+                                        assign tier_number = '4'
+                                        assign tier_color = '#e9ac12'
+                                endcase
+                            -%}
+                            <div class="swiper-slide RewardsVip_slide--{{ block.settings.title | handleize }}">
+                                <div class="RewardsVip_bottomBox">
+                                    <div class="RewardsVip_bottomBox_top">
+                                        {% if tier_number != blank %}
+                                            <div class="RewardsVip_tierIcon RewardsVip_tierIcon--{{ tier_handle }}" style="--rewards-vip-tier-color: {{ tier_color }};" aria-hidden="true">
+                                                <svg width="80" height="69" viewBox="0 0 80 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="39.8696" cy="28.06" r="14.2611" stroke="currentColor" stroke-width="1.84014"/>
+                                                    <path d="M37.4863 3.36621C38.9159 2.35971 40.8233 2.35977 42.2529 3.36621L47.0615 6.75098C47.8953 7.33801 48.8488 7.73374 49.8535 7.9082L55.6475 8.91406C57.3699 9.21337 58.7184 10.5626 59.0176 12.2852L60.0244 18.0781C60.1989 19.0828 60.5937 20.0364 61.1807 20.8701L64.5654 25.6787C65.572 27.1083 65.5719 29.0157 64.5654 30.4453L61.1807 35.2539C60.5936 36.0877 60.1989 37.0412 60.0244 38.0459L59.0176 43.8398C58.7183 45.5621 57.3697 46.9107 55.6475 47.21L49.8535 48.2168C48.8488 48.3913 47.8953 48.786 47.0615 49.373L42.2529 52.7578C40.8233 53.7643 38.9159 53.7644 37.4863 52.7578L32.6777 49.373C31.844 48.786 30.8904 48.3913 29.8857 48.2168L24.0928 47.21C22.3703 46.9108 21.021 45.5623 20.7217 43.8398L19.7158 38.0459C19.5414 37.0412 19.1456 36.0877 18.5586 35.2539L15.1738 30.4453C14.1674 29.0157 14.1673 27.1083 15.1738 25.6787L18.5586 20.8701C19.1456 20.0363 19.5414 19.0828 19.7158 18.0781L20.7217 12.2852C21.0208 10.5625 22.3701 9.21321 24.0928 8.91406L29.8857 7.9082C30.8904 7.73374 31.844 7.33801 32.6777 6.75098L37.4863 3.36621Z" stroke="currentColor" stroke-width="2.76021"/>
+                                                    <path d="M46.7705 50.6023L53.262 64.2044C53.56 64.8288 54.4146 64.9132 54.829 64.3593L59.2281 58.4795C59.4062 58.2414 59.6883 58.1041 59.9855 58.1108L66.7808 58.2642C67.4669 58.2797 67.9279 57.5656 67.6312 56.9466L59.5202 40.0248" stroke="currentColor" stroke-width="2.76021"/>
+                                                    <path d="M33.7154 50.6039L27.2239 64.206C26.9259 64.8304 26.0713 64.9149 25.6568 64.3609L21.2578 58.4811C21.0797 58.2431 20.7975 58.1057 20.5003 58.1125L13.7067 58.2658C13.0202 58.2813 12.5592 57.5664 12.8566 56.9474L20.5477 40.9418" stroke="currentColor" stroke-width="2.76021"/>
+                                                    <path d="M60.1113 18.3984H76.7477C77.9749 18.3984 78.8583 19.5769 78.514 20.7549L75.5556 30.8756C75.3262 31.6602 74.6068 32.1995 73.7894 32.1995H63.0662" stroke="currentColor" stroke-width="2.76021"/>
+                                                    <path d="M60.5713 40.9415H68.9057C69.6977 40.9415 70.4009 40.4347 70.6514 39.6833L72.9922 32.6602" stroke="currentColor" stroke-width="2.76021"/>
+                                                    <path d="M19.8584 18.3984H3.22199C1.99478 18.3984 1.11145 19.5769 1.45577 20.7549L4.41414 30.8756C4.64349 31.6602 5.36293 32.1995 6.18037 32.1995H16.9036" stroke="currentColor" stroke-width="2.76021"/>
+                                                    <path d="M19.3984 40.9415H11.064C10.272 40.9415 9.56878 40.4347 9.31832 39.6833L6.97751 32.6602" stroke="currentColor" stroke-width="2.76021"/>
+                                                    <text x="39.8" y="37.2" fill="currentColor" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400">{{ tier_number }}</text>
+                                                </svg>
+                                            </div>
+                                        {% elsif block.settings.svg !=blank %}
+                                            {{ block.settings.svg }}
+                                        {% endif %}
+                                        {% if block.settings.title !=blank %}
+                                        <div class="RewardsVip_bottomBox_title my_h_20 my_m_20">
+                                            {{block.settings.title}}
+                                        </div>
+                                        {% endif %}
+                                        {% if block.settings.text !=blank %}
+                                            <div class="RewardsVip_bottomBox_text my_h_14 my_m_14">
+                                                {{block.settings.text}}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="RewardsVip_bottomBox_bottom">
+                                        {% if block.settings.list_text !=blank %}
+                                            <div class="RewardsVip_bottomBox_listText my_h_14 my_m_14">
+                                                {{block.settings.list_text}}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="pad_mobile">
+                        <div class="swiper-button-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                <path d="M1 1L9 6.7931L1 13" stroke="#151515" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                <path d="M9 1L1 6.7931L9 13" stroke="#99989B" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var isMilesLandingMobile = document.body.classList.contains('template-page-smile-landing-page') && window.matchMedia('(max-width: 999px)').matches;
+        var swiper = new Swiper("#shopify-section-{{section.id}} .RewardsVipSwiper", {
+            observer: true,
+            observeParents: true,
+            initialSlide: isMilesLandingMobile ? 3 : 0,
+            centeredSlides: isMilesLandingMobile,
+            loop: isMilesLandingMobile,
+            grabCursor: isMilesLandingMobile,
+            watchSlidesProgress: isMilesLandingMobile,
+            roundLengths: true,
+            breakpoints: {
+                320: {  //当屏幕宽度大于等于320
+                    slidesPerView: isMilesLandingMobile ? 'auto' : 1,
+                    spaceBetween: isMilesLandingMobile ? 16 : 10
+                },
+                768: {  //当屏幕宽度大于等于768 
+                    slidesPerView: 2,
+                    spaceBetween: 16
+                },
+                1000: {  //当屏幕宽度大于等于1280
+                    slidesPerView: 4,
+                    spaceBetween: 16, 
+                }
+            },
+            pagination: {
+                el: "#shopify-section-{{section.id}} .swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: "#shopify-section-{{section.id}} .swiper-button-next",
+                prevEl: "#shopify-section-{{section.id}} .swiper-button-prev",
+            }
+        });
+    });
+</script>
+{% schema %}
+  {
+    "name": "Rewards Vip",
+    "class": "RewardsVip",
+    "settings":[
+       
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "background color",
+            "default": "#FDF6EE"
+        }
+    ],
+"blocks":[
+    {
+        "type": "text",
+        "name": "text",
+        "settings": [
+           
+            {
+                "type": "textarea",
+                "id": "svg",
+                "label": "svg"
+            },
+            {
+                "type": "textarea",
+                "id": "title",
+                "label": "title"
+            },
+            {
+                "type": "textarea",
+                "id": "text",
+                "label": "text"
+            },
+            {
+                "type": "richtext",
+                "id": "list_text",
+                "label": "list text"
+            }
+        ]
+    }
+    ],
+    "presets": [
+        {
+            "name": "Rewards Vip"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

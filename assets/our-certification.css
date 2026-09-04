@@ -1,0 +1,87 @@
+@media only screen and (max-width: 767px) {
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__vertical_slideshow_bG8WF6
+    .vertical-slideshow--slide-inner {
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+  }
+
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__vertical_slideshow_bG8WF6
+    .vertical-slideshow--slide-content {
+    box-sizing: border-box !important;
+    max-width: none !important;
+    padding: 0 60px 0 20px !important;
+    text-align: left;
+  }
+
+  body.template-page-our-certification .section-vertical-slideshow .vertical-slideshow--slide-content .vertical-slideshow--slide-logos,
+  body.template-page-our-certification .section-vertical-slideshow .vertical-slideshow--slide.text-center .vertical-slideshow--slide-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+
+  body.template-page-our-certification .section-vertical-slideshow .vertical-slideshow--slide:has(.vertical-slideshow--slide-logos) p.split-text,
+  body.template-page-our-certification .section-vertical-slideshow .vertical-slideshow--slide p.split-text {
+    margin: 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__rich_text_7AYtd7
+    .rich-text
+    .rte,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__rich_text_7AYtd7
+    .rich-text
+    .rte
+    p,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__image_with_text_PbkE8Q
+    .rich-text
+    .rte,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__image_with_text_PbkE8Q
+    .rich-text
+    .rte
+    p,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__cust_image_with_text_interactive_tabs_mE8VhU
+    .accordion__content,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__cust_image_with_text_interactive_tabs_mE8VhU
+    .accordion__content
+    p,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__cust_image_with_text_interactive_tabs_mE8VhU
+    .cust-image-with-text-interactive-tabs--mobile
+    .rte,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__cust_image_with_text_interactive_tabs_mE8VhU
+    .cust-image-with-text-interactive-tabs--mobile
+    .rte
+    p {
+    font-size: 14px !important;
+    line-height: 22px !important;
+  }
+
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__image_with_text_mw4MzP
+    .cust-half-image-feature__text,
+  body.template-page-our-certification
+    #shopify-section-template--21672447803638__image_with_text_mw4MzP
+    .cust-half-image-feature__text
+    p {
+    line-height: 22px !important;
+  }
+}

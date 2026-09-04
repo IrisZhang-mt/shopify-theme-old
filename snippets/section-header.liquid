@@ -1,0 +1,78 @@
+{%- if section_heading != blank or section_description != blank -%}
+	<div class="section-header section-header-left--{{ section_heading_left }}"  {% if no_left_padding %}style="padding-left:0;"{% endif %}>
+		<div class="section-header--content">
+			{%- if section_heading -%}
+				<h2 class="
+					{% if h6 %}
+						h6
+					{% else %}
+						h3
+					{% endif %}
+					"
+				{% if no_left_padding %}style="padding-left:0;"{% endif %}
+				>
+					{%- if icon -%}
+						{{ icon | image_url: width: 40 | image_tag }}
+					{%- endif -%}
+					{{ section_heading }}</h2>
+			{%- endif -%}
+			{%- if section_description != blank -%}
+				<div class="rte">
+					{{ section_description }}
+				</div>
+			{%- endif -%}
+			{%- if blocks -%}
+			<scroll-shadow>
+				<collection-tabs class="collection-tabs__list" data-target="product-grid-{{ section_id }}">
+					{%- for block in blocks -%}
+						{%- if block.settings.collection != blank -%}
+							<button type="button" data-collection="{{ block.settings.collection.handle }}" class="collection-tabs__list-link{% if forloop.first == true %} active{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.collection.title }}</button>
+						{%- else -%}
+							<button type="button" data-collection="collection-{{ block.id }}" class="collection-tabs__list-link{% if forloop.first == true %} active{% endif %}" {{ block.shopify_attributes }}>Collection {{ forloop.index }}</button>
+						{%- endif -%}
+						  {% comment %} /* most loved 模块，产品数量展示由3个变为1.5个GDF */ {% endcomment %}
+						{% comment %} {%- unless forloop.last -%} <span>/</span>{%- endunless -%} {% endcomment %}
+					{%- endfor -%}
+				</collection-tabs>
+			</scroll-shadow>
+			{%- endif -%}
+		</div>
+		{%- if blocks and section_heading_button -%}
+		<div class="section-header--button has--tabs">
+			{%- for block in blocks -%}
+				{%- if block.settings.collection != blank -%}
+					<a class="text-button linked-to-tab{% if forloop.first == true %} active{% endif %}" href="{{ block.settings.collection.url }}">
+						{%- if section_heading_button_label != blank -%}
+							{{ section_heading_button_label }}
+						{%- else -%}
+							{{ 'sections.featured_collection.shop_collection' | t: collection: block.settings.collection.title }}
+						{%- endif -%}
+					</a>
+				{%- else -%}
+					<a class="text-button linked-to-tab{% if forloop.first == true %} active{% endif %}" href="#">
+						{%- if section_heading_button_label != blank -%}
+							{{ section_heading_button_label }}
+						{%- else -%}
+							{{ 'sections.featured_collection.shop_collection' | t: collection: 'Collection' }}
+						{%- endif -%}
+					</a>
+				{%- endif -%}
+			{%- endfor -%}
+		</div>
+		{%- elsif section_heading_button -%}
+		<div class="section-header--button">
+			<a class="text-button" href="{{ section_heading_button.url }}">
+				{%- if section_heading_button_label != blank -%}
+					{{ section_heading_button_label }}
+				{%- else -%}
+					{{ 'sections.featured_collection.shop_collection' | t: collection: section_heading_button.title }}
+				{%- endif -%}
+			</a>
+		</div>
+		{%- elsif section_heading_button_blog -%}
+		<div class="section-header--button">
+			<a class="text-button" href="{{ section_heading_button_blog.url }}">{{ 'sections.featured_blog.view_all' | t }}</a>
+		</div>
+		{%- endif -%}
+	</div>
+{%- endif -%}

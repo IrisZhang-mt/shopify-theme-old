@@ -1,0 +1,33 @@
+{%- if product.metafields.custom.product_icons.value.size > 0 -%}
+  <style>
+    .product-icons-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 15px;
+    }
+    .product-icons-list-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .product-icons-list img {
+      width: 20px;
+      height: auto;
+    }
+    {% comment %} #FF8300 {% endcomment %}
+  </style>
+
+  <div class="product-icons-list">
+    {%- for v in product.metafields.custom.product_icons.value -%}
+      <div class="product-icons-list-item">
+        {%- assign handled_v = v | handleize -%}
+        {%- assign img_filename = handled_v | append: '.svg' -%}
+
+       
+        <img src="{{ img_filename | asset_url }}" alt="{{ v }}" width="20" height="20">
+        {{ v }}
+      </div>
+    {%- endfor -%}
+  </div>
+{%- endif -%}

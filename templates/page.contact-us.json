@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1661619382b4020fa2": {
+      "type": "rich-text",
+      "blocks": {
+        "166161938159ca8988-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Contact Us",
+            "size": "h2"
+          }
+        },
+        "166161938159ca8988-2": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Please fill in the form below to leave a message or email us at:<a href=\"mailto:order@moodytiger.com\" target=\"_blank\" title=\"mailto:order@moodytiger.com\">order@moodytiger.com</a>, our customer care team will be in touch as soon as possible.</p>",
+            "custom_liquid": "",
+            "size": "text-size-small"
+          }
+        }
+      },
+      "block_order": [
+        "166161938159ca8988-1",
+        "166161938159ca8988-2"
+      ],
+      "settings": {
+        "section_width": "grid",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "color_bg": "rgba(0,0,0,0)",
+        "color_text": "#151515",
+        "color_links": "#151515",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    },
+    "1652268757b7c53383": {
+      "type": "contact-form",
+      "blocks": {
+        "text_FErd9n": {
+          "type": "text",
+          "settings": {
+            "heading": "Leave us a message",
+            "text": "<p>Please fill in the form to leave a message or email us at:<a href=\"mailto:order@moodytiger.com\" target=\"_blank\" title=\"mailto:order@moodytiger.com\">order@moodytiger.com</a>, our customer care team will be in touch as soon as possible.</p>"
+          }
+        },
+        "text_FTyBVf": {
+          "type": "text",
+          "settings": {
+            "heading": "Live & email",
+            "text": "<p>Monday – Friday 9:00 to 18:00 (GMT +8)<br/>Closed on weekends & Public Holidays</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_FErd9n",
+        "text_FTyBVf"
+      ],
+      "settings": {
+        "heading": "",
+        "description": "",
+        "show_phone_number": true,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "1661619382b4020fa2",
+    "1652268757b7c53383"
+  ]
+}

@@ -1,0 +1,481 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    .RewardsPoints_all .swiper-button-next::after,.RewardsPoints_all .swiper-button-prev::after {
+        content: unset;
+    }
+    .RewardsPoints_all .swiper-button-prev{
+        left: 0;
+        width: 8px;
+        height: auto;
+        top: calc(50% - 8px);
+    }
+    .RewardsPoints_all .swiper-button-next{
+        right: 0;
+        width: 8px;
+        height: auto;
+        top: calc(50% - 8px);
+    }
+    #shopify-section-{{section.id}}.RewardsPoints_all{
+        background-color:{{section.settings.bg_color}}
+    }
+    .RewardsPoints_boxTitle {
+        margin: 0;
+        font-weight: 600;
+    } 
+
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}}.RewardsPoints_all{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}}.RewardsPoints_all{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px; 
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+
+
+    }
+    .RewardsPoints_all .swiper-slide {
+        height:auto !important;
+    }
+    .RewardsPoints_bottomBox_title {
+        color: #FF8300;
+    }
+    .RewardsPoints_toggle {
+        display: none;
+    }
+    @media(min-width:1000px) {
+   
+        .RewardsPoints_boxTitle {
+            font-weight: 600;
+            text-align: center;
+        }
+        .RewardsPoints_boxSub {
+            font-weight: 600;
+            text-align: center;
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .RewardsPoints_boxText {
+            margin-top: 8px;
+            text-align: center;
+        }
+        .RewardsPoints_bottom {
+            margin-top: 48px;
+        }
+        .RewardsPoints_bottomBox { 
+            height: 100%;
+            text-align: center;
+            padding: 36px 63px 35px 63px;
+            border: 1px solid #99989B;
+        }
+        .RewardsPoints_bottomBox_title {
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .RewardsPoints_bottomBox_text {
+            margin-top: 8px;
+        }
+    
+        .RewardsPoints_button {
+            width: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            font-weight:500;
+            margin-top: 32px;
+            height: 48px;
+            padding: 14px 26px;
+            border-radius: 100px;
+            border: 1px solid #151515;
+        }
+            .RewardsPointsSwiper_box {
+                display: grid;
+                gap: 16px;
+                grid-template-columns: repeat(4,1fr);
+            }
+
+    }
+    @media(max-width:999px) {   
+    
+        .RewardsPoints_boxTitle {
+            font-weight: 600;
+            text-align: center;
+        }
+        .RewardsPoints_boxSub {
+            font-weight: 600;
+            text-align: center;
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .RewardsPoints_boxText {
+            margin-top: 8px;
+            text-align: center;
+        }
+        .RewardsPoints_bottom {
+            margin-top: 32px;
+        }
+        .RewardsPoints_bottomBox {
+            display: flex;
+            max-width: 268px;
+            height: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px solid #99989B;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .RewardsPoints_bottomBox_title {
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .RewardsPoints_bottomBox_text {
+            margin-top: 8px;
+        }
+    
+        .RewardsPoints_button {
+            width: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            font-weight:500;
+            margin-top: 32px;
+            height: 48px;
+            padding: 14px 26px;
+            border-radius: 100px;
+            color:#fff;
+            background: #151515;
+            border: 1px solid #151515;
+        }
+        .RewardsPoints_all .swiper-pagination {
+            position: static;
+            line-height: 1;
+            margin-top: 12px;
+        }
+        .RewardsPoints_all .swiper-pagination-bullet{
+            width: 6px;
+            height: 6px;
+            opacity: 1;
+            background-color: #99989B;
+        }
+        .RewardsPoints_all .swiper-pagination-bullet-active {
+            background-color: #FF8300;
+        }
+    }
+</style>
+<div class="RewardsPoints_all" id="shopify-section-{{section.id}}"> 
+    <div class="my_container">  
+        <div class="RewardsPoints_box">
+            {% if section.settings.title !=blank %}
+                <h2 class="RewardsPoints_boxTitle my_h_40 my_m_28">
+                    {{section.settings.title}}
+                </h2>
+            {% endif %}
+            {% if section.settings.sub !=blank %}
+                <div class="RewardsPoints_boxSub my_h_14 my_m_14">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 7 7" fill="none">
+                    <circle cx="3.5" cy="3.5" r="3" fill="#FF8300"/>
+                    </svg>
+                    {{section.settings.sub}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 7 7" fill="none">
+                    <circle cx="3.5" cy="3.5" r="3" fill="#FF8300"/>
+                    </svg>
+                </div>
+            {% endif %}
+            {% if section.settings.text !=blank %}
+                <div class="RewardsPoints_boxText my_h_14 my_m_14">
+                    {{section.settings.text}}
+                </div>
+            {% endif %}
+            <div class="RewardsPoints_bottom">
+                <div class="pad_mobile">
+                    <div class="swiper RewardsPointsSwiper">
+                        <div class="swiper-wrapper">
+                            {% for block in section.blocks %}
+                                <div class="swiper-slide">
+                                    <div class="RewardsPoints_bottomBox">
+                                        {% if template == 'page.smile-landing-page' %}
+                                            {% assign reward_title_parts = block.settings.title | split: '-' %}
+                                            {% assign reward_label = reward_title_parts | last | strip %}
+                                            {% if block.settings.text !=blank %}
+                                                <div class="RewardsPoints_bottomBox_title my_h_20 my_m_18">
+                                                    {{ block.settings.text | replace: 'points', 'Points' }}
+                                                </div>
+                                            {% endif %}
+                                            {% if reward_label !=blank %}
+                                                <div class="RewardsPoints_bottomBox_text my_h_14 my_m_14">
+                                                    {{ reward_label }}
+                                                </div>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if block.settings.title !=blank %}
+                                                <div class="RewardsPoints_bottomBox_title my_h_20 my_m_18">
+                                                    {{block.settings.title}}
+                                                </div>
+                                            {% endif %}
+                                            {% if block.settings.text !=blank %}
+                                                <div class="RewardsPoints_bottomBox_text my_h_14 my_m_14">
+                                                    {{block.settings.text}}
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="pad_mobile">
+                            <div class="swiper-button-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                    <path d="M1 1L9 6.7931L1 13" stroke="#151515" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="swiper-button-prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 10 14" fill="none">
+                                    <path d="M9 1L1 6.7931L9 13" stroke="#99989B" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pad_pc">
+
+                    <div class="RewardsPointsSwiper_box">
+                        {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                <div class="RewardsPoints_bottomBox">
+                                    {% if template == 'page.smile-landing-page' %}
+                                        {% assign reward_title_parts = block.settings.title | split: '-' %}
+                                        {% assign reward_label = reward_title_parts | last | strip %}
+                                        {% if block.settings.text !=blank %}
+                                            <div class="RewardsPoints_bottomBox_title my_h_20 my_m_18">
+                                                {{ block.settings.text | replace: 'points', 'Points' }}
+                                            </div>
+                                        {% endif %}
+                                        {% if reward_label !=blank %}
+                                            <div class="RewardsPoints_bottomBox_text my_h_14 my_m_14">
+                                                {{ reward_label }}
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if block.settings.title !=blank %}
+                                            <div class="RewardsPoints_bottomBox_title my_h_20 my_m_18">
+                                                {{block.settings.title}}
+                                            </div>
+                                        {% endif %}
+                                        {% if block.settings.text !=blank %}
+                                            <div class="RewardsPoints_bottomBox_text my_h_14 my_m_14">
+                                                {{block.settings.text}}
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if section.blocks.size > 4 %}
+                        <button class="RewardsPoints_toggle" type="button" aria-expanded="false" aria-label="Show all point rewards">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    {% endif %}
+           
+                      
+                    </div>
+                </div>
+            </div>
+            {% if section.settings.text !=blank %}
+                <a href="{{section.settings.button_link}}" class="RewardsPoints_button my_h_16 my_m_16">
+                    {{section.settings.button}}
+                </a>
+            {% endif %}
+        </div>
+    </div>  
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var pointsRoot = document.querySelector(".RewardsPoints_all#shopify-section-{{section.id}}");
+        var pointsToggle = pointsRoot ? pointsRoot.querySelector(".RewardsPoints_toggle") : null;
+        if (pointsToggle) {
+            pointsToggle.addEventListener("click", function () {
+                var expanded = pointsRoot.classList.toggle("is-expanded");
+                pointsToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+                pointsToggle.setAttribute("aria-label", expanded ? "Hide point rewards" : "Show all point rewards");
+            });
+        }
+        if (typeof Swiper === 'function') {
+            var swiper = new Swiper("#shopify-section-{{section.id}} .RewardsPointsSwiper", {
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+                    320: {  //当屏幕宽度大于等于320
+                        slidesPerView: 1,
+                        spaceBetween: 10
+                    },
+                    768: {  //当屏幕宽度大于等于768 
+                        slidesPerView: 2,
+                        spaceBetween: 16
+                    },
+                    1000: {  //当屏幕宽度大于等于1280
+                        slidesPerView: 4,
+                        spaceBetween: 16,
+                    }
+                },
+                pagination: {
+                    el: "#shopify-section-{{section.id}} .swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: "#shopify-section-{{section.id}} .swiper-button-next",
+                    prevEl: "#shopify-section-{{section.id}} .swiper-button-prev",
+                }
+            });
+        }
+    });
+</script>
+{% schema %}
+  {
+    "name": "Rewards Points",
+    "class": "RewardsPoints",
+    "settings":[
+       
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "textarea",
+            "id": "sub",
+            "label": "sub"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "button"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "button link"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "background color",
+            "default": "#FDF6EE"
+        }
+    ],
+"blocks":[
+    {
+        "type": "text",
+        "name": "text",
+        "settings": [
+           
+          
+            {
+                "type": "textarea",
+                "id": "title",
+                "label": "title"
+            },
+            {
+                "type": "textarea",
+                "id": "text",
+                "label": "text"
+            }
+        ]
+    }
+    ],
+    "presets": [
+        {
+            "name": "Rewards Points"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

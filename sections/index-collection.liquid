@@ -1,0 +1,565 @@
+<style>
+    .indexCollection_Box  {
+        display: inline-block;
+    }
+    .indexCollection_positionTitle {
+        margin: 0;
+    }
+    #shopify-section-{{section.id}}.indexCollectionText_all{
+        margin-top:{{section.settings.Desktop_top}}px;
+        margin-bottom:{{section.settings.Desktop_bottom}}px;
+
+        padding-top:{{section.settings.Desktop_paddingTop}}px;
+        padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+    }
+     /*  */
+    .modals{
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        text-align: center;
+        outline: 0 none;
+        background-color: rgba(17, 17, 17, 0.5);
+    }
+    .modals:after{
+        content: "";
+        height: 100%;
+        width: 0;
+    }
+    .modals.fade{
+        opacity: 0;
+        transition: opacity .15s linear;
+    }
+    .modals.show{
+        opacity: 1;
+        display: block;
+    }
+    .modals .modals-dialog{
+        max-width: 1280px;
+    }
+    .modals-dialog, .modals:after{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .modals-dialog{
+        position: relative;
+        margin: 50px 0;
+        min-width: 992px;
+    }
+    .modals-content{
+        position: relative;
+        outline: 0;
+        text-align: left;
+    }
+    .inform-modals{
+        position: relative;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .inform-modals__close{
+        position: absolute;
+        top: 34px;
+        right: 34px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+    .inform-modals__close::before{
+        transform: rotate(45deg);
+    }
+    .inform-modals__close::after{
+        transform: rotate(-45deg);
+    }
+    .inform-modals__close::after, .inform-modals__close::before{
+        position: absolute;
+        content: '';
+        top: 8px;
+        left: -2px;
+        width: 25px;
+        height: 3px;
+        border-radius: 5px;
+        background-color: #999999;
+    }
+    .inform-modals__inner{
+        padding: 50px 60px;
+        background-color: #fff;
+    }
+    .inform-modals__title{
+        margin-bottom: 5px;
+        line-height: 1.22;
+        font-weight: 700;
+    }
+    .inform-modals__subtitle{
+        margin-bottom: 35px;
+        color: #999;
+    }
+    .inform-modals__text{
+        line-height: 1.57;
+        color: #111111;
+    }
+ 
+    /* 弹窗 end */
+    @media (max-width: 999px) {
+      #shopify-section-{{section.id}}.indexCollectionText_all{
+        margin-top:{{section.settings.Mobile_top}}px;
+        margin-bottom:{{section.settings.Mobile_bottom}}px;
+
+        padding-top:{{section.settings.Mobile_paddingTop}}px;
+        padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+      } 
+    }
+
+
+    @media (max-width:999px) {
+        {% if section.settings.img_mobile !=blank %}
+            #shopify-section-{{ section.id }}.indexCollectionText_all{
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url({{section.settings.img_mobile | img_url: '750x'}});
+        } 
+        
+        {% endif %}
+
+        .indexCollection_top{
+            width: 100%;
+            text-align: center;
+        }
+        .indexCollectionTitle{
+            margin: 0;
+            font-size: 24px;
+        }
+        .indexCollectionText{
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .indexCollectionButton{
+            cursor: pointer;
+            text-decoration: underline;
+                text-underline-offset: 5px;
+        }
+        .indexCollection_topBox{
+            margin-top: 5px;
+        }
+        .indexCollectionBox{
+            width: 50%;
+            position: relative;
+        }
+        .indexCollection_positionText{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .indexCollection_box{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .indexCollectionBox{
+            padding: 2.5px;
+            width: 50%;
+        }
+        #shopify-section-{{section.id}} .indexCollection_top, #shopify-section-{{section.id}} .indexCollectionTitle{
+            color: {{section.settings.text_color}} !important;
+        }
+        #shopify-section-{{section.id}} .indexCollection_positionText span{
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .indexCollection_topBox{
+            display: flex;
+            justify-content: center ;
+            align-items: center;
+            gap: 12px;
+        }
+   
+        .modals-dialog{
+            min-width: unset;
+            display: flex;
+            height: 100%;
+            align-items: center;
+            margin: 0;
+        }
+        .inform-modals__inner{
+            padding: 30px 20px;
+        }
+        .inform-modals__text{
+            font-size: 14px;
+            max-height: 500px;
+            overflow: auto;
+            line-height: 1.33;
+        }
+        .inform-modals__close{
+            top: 12px;
+            right: 12px;
+        }
+                      #shopify-section-{{section.id}} .indexCollection_positionText span{
+            font-weight: 700;
+
+        }
+        .indexCollection_topBox{
+            display: flex;
+            justify-content: center ;
+            align-items: center;
+            gap: 12px;
+        }
+        #shopify-section-{{section.id}} .indexCollection_Box.active .indexCollection_positionText span::after {
+             width: 100%;
+        }
+              
+        .indexCollection_positionText span{
+            position: relative;
+        }
+        .indexCollection_positionText span::after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            left: 0;
+            height: 1px;
+           transition: all 0.5s;
+        }
+        .indexCollectionBox:hover .indexCollection_positionText span::after{
+            width: 100%;
+        }
+    } 
+    
+    @media(min-width:1000px) {
+        {% if section.settings.img !=blank %}
+            #shopify-section-{{ section.id }}.indexCollectionText_all{
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url({{section.settings.img | img_url: '1920x'}});
+        } 
+        {% endif %}
+
+        .indexCollection_top{
+            width: 100%;
+            text-align: center;
+        }
+        .indexCollectionTitle{
+            margin: 0;
+        }
+        .indexCollectionText{
+            font-weight: 500;
+        }
+        .indexCollectionButton{
+            cursor: pointer;
+            text-decoration: underline;
+                text-underline-offset: 5px;
+        }
+        .indexCollection_topBox{
+            margin-top: 10px;
+        }
+        .indexCollection_Box{
+            position: relative;
+        }
+        .indexCollection_positionText{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .indexCollection_box{
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .indexCollectionBox{
+            width: 25%;
+            padding: 0 2.5px;
+        }
+             #shopify-section-{{section.id}} .indexCollection_top, #shopify-section-{{section.id}} .indexCollectionTitle {
+            color: {{section.settings.text_color}} !important;
+        }
+        #shopify-section-{{section.id}} .indexCollection_positionText span{
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .indexCollection_topBox{
+            display: flex;
+            justify-content: center ;
+            align-items: center;
+            gap: 12px;
+        }
+        #shopify-section-{{section.id}} .indexCollection_Box.active .indexCollection_positionText span::after {
+             width: 100%;
+        }
+              
+        .indexCollection_positionText span{
+            position: relative;
+        }
+        .indexCollection_positionText span::after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            left: 0;
+            height: 1px;
+           transition: all 0.5s;
+        }
+        .indexCollectionBox:hover .indexCollection_positionText span::after{
+            width: 100%;
+        }
+              
+     
+    }
+    
+</style>
+<div class="indexCollectionText_all" id="shopify-section-{{section.id}}">
+    <div class="row full-width-row">
+        <div class="indexCollection_top">
+            {% if section.settings.title !=blank %}
+                <h2 class="indexCollectionTitle my_h_24 my_m_24">
+                    {{ section.settings.title }}
+                </h2>
+            {% endif %}
+            <div class="indexCollection_topBox">
+                {% if section.settings.text !=blank %} 
+                    <div class="indexCollectionText">
+                        {{ section.settings.text }}
+                    </div>
+                {% endif %}
+                {% if section.settings.button !=blank %}
+                    <div class="indexCollectionButton">
+                        {{ section.settings.button }}
+                    </div>
+                {% endif %}
+                <div class="indexCollectionButton_hide" style="display:none">
+                    {{collection.metafields.custom.collection_text | metafield_tag }}
+                </div>
+            </div>
+        </div>
+
+        <div class="indexCollection_box">
+            {% for block in section.blocks %}
+              <style>
+                #block-{{block.id}} .indexCollection_positionText {
+                   color: {{block.settings.text_color}} !important;
+                }
+                 #block-{{block.id}} .indexCollection_positionText span::after{
+                    background-color: {{block.settings.text_color}} ;
+                }
+              </style>
+                <div class="indexCollectionBox " id="block-{{block.id}}">
+                    <a  href="{{block.settings.link}}" class="indexCollection_Box  {% if block.settings.link == collection.url %}  active{% endif %}">
+                        <div class="indexCollection_img">
+                            <img src="{{block.settings.img | img_url: '1000x'}}" alt="{{block.settings.img.alt}}" class="lazyload">
+                        </div>
+                        {% if block.settings.text !=blank %}
+                            <div class="indexCollection_positionText my_h_14 my_m_12 ">
+                               <span> {{ block.settings.text }}</span>
+                            </div>
+                        {% endif %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="modals fade modals-md" id="modals-inform-team">
+        <div class="modals-dialog">
+            <div class="modals-content">
+                <div class="inform-modals">
+                    <div class="inform-modals__close" data-dismiss="modals"></div>
+                    <div class="inform-modals__inner">
+                        <div class="inform-modals__text my_h_20 my_m_18"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<script>
+document.querySelectorAll("#shopify-section-{{section.id}} .modals, #shopify-section-{{section.id}} .inform-modals__close").forEach(function (element) {
+    element.addEventListener("click", function () {
+        const indexCollectionTextAll = this.closest(".indexCollectionText_all");
+        if (indexCollectionTextAll) {
+            const modals = indexCollectionTextAll.querySelectorAll(".modals");
+            modals.forEach(function (modal) {
+                modal.classList.remove("show");
+            });
+        }
+        document.documentElement.style.overflow = "unset";
+    });
+});
+
+document.querySelectorAll("#shopify-section-{{section.id}} .inform-modals").forEach(function (element) {
+    element.addEventListener("click", function (event) {
+        event.preventDefault();
+    });
+});
+
+document.querySelectorAll("#shopify-section-{{section.id}} .indexCollectionButton").forEach(function (element) {
+    element.addEventListener("click", function () {
+        console.log(11);
+        const indexCollectionTop = this.closest(".indexCollection_top");
+        if (indexCollectionTop) {
+            const hiddenText = indexCollectionTop.querySelector(".indexCollectionButton_hide").innerHTML;
+            const indexCollectionTextAll = this.closest(".indexCollectionText_all");
+            if (indexCollectionTextAll) {
+                const modals = indexCollectionTextAll.querySelectorAll(".modals");
+                modals.forEach(function (modal) {
+                    modal.classList.add("show");
+                });
+            }
+            const informModalsText = document.querySelector("#shopify-section-{{section.id}} .inform-modals__text");
+            if (informModalsText) {
+                informModalsText.innerHTML = hiddenText;
+            }
+        }
+        document.documentElement.style.overflow = "hidden";
+    });
+});
+</script>
+
+{% schema %} 
+{
+    "name": "Index Collection",
+    "class": "indexCollectionText",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "img",
+            "label": "img"
+        },
+        {
+            "type": "image_picker",
+            "id": "img_mobile",
+            "label": "img mobile"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "button"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "text color",
+            "default": "#fff"
+        }
+    ],
+    "blocks": [{
+        "type": "text",
+        "name": "text",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "img",
+                "label": "img"
+            },
+            {
+                "type": "textarea",
+                "id": "text",
+                "label": "text"
+            },
+            {
+                "type": "url",
+                "id": "link",
+                "label": "link"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "text color",
+                "default": "#fff"
+            }
+        ]
+    }],
+    "presets": [
+        {
+        "name": "Index Collection",
+        "category": "Image"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,138 @@
+{{- 'our-fabric.css' | asset_url | stylesheet_tag -}}
+
+{%- if section.blocks.size > 0 -%}
+  <nav class="our-fabric-tabs" aria-label="{{ section.settings.nav_label | escape }}" data-our-fabric-tabs>
+    <div class="our-fabric-tabs__inner">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.label != blank and block.settings.anchor != blank -%}
+          <a
+            class="our-fabric-tabs__link"
+            href="#{{ block.settings.anchor | handle }}"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.label }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </nav>
+{%- endif -%}
+
+<script>
+  (() => {
+    const navs = document.querySelectorAll('[data-our-fabric-tabs]:not([data-tabs-ready])');
+
+    navs.forEach((nav) => {
+      nav.dataset.tabsReady = 'true';
+
+      nav.addEventListener('click', (event) => {
+        const eventTarget = event.target && event.target.closest ? event.target : event.target.parentElement;
+        const link = eventTarget && eventTarget.closest ? eventTarget.closest('a[href^="#"]') : null;
+        if (!link || !nav.contains(link)) return;
+
+        const id = decodeURIComponent(link.hash.slice(1));
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        event.preventDefault();
+
+        const headerHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
+        const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 24;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          window.scrollTo(0, targetTop);
+          history.pushState(null, '', link.hash);
+          return;
+        }
+
+        const startTop = window.pageYOffset;
+        const distance = targetTop - startTop;
+        const duration = 420;
+        const startTime = performance.now();
+
+        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+        const step = (time) => {
+          const progress = Math.min((time - startTime) / duration, 1);
+          window.scrollTo(0, startTop + distance * easeOutCubic(progress));
+
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            history.pushState(null, '', link.hash);
+          }
+        };
+
+        window.requestAnimationFrame(step);
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Our fabric tabs",
+  "class": "section-our-fabric-tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "nav_label",
+      "label": "Navigation label",
+      "default": "Fabric sections"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Anchor link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "anchor",
+          "label": "Anchor ID"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our fabric tabs",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "label": "Brizi®",
+            "anchor": "brizi"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Air Supply",
+            "anchor": "air-supply"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "illucra®",
+            "anchor": "illucra"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Blockmax® Lite",
+            "anchor": "blockmax-lite"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

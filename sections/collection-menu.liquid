@@ -1,0 +1,359 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+   @media(min-width:1000px) {
+    .collection-menu--{{ section.id }}.collection-menu{
+      margin-top: {{section.settings.Desktop_top}}px;
+      margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+      padding-top:{{section.settings.Desktop_paddingTop}}px; 
+      padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+    }
+    .nav-tabs-content-{{ section.id }}{
+      padding-bottom: 2rem;
+    }
+    .nav-tabs-content-{{ section.id }} .swiper-slide:hover{
+      transform: scale(1.02);
+      border-bottom: 2px solid #57585b;
+    }
+    .nav-tabs-image-text h3{
+      margin-bottom: 10px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #323232;
+    }
+    .nav-tabs-image-text .nav-tabs-description{
+      margin-bottom: 5px;
+      font-size: 17px;
+      color: #57585b;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .nav-tabs-content-{{ section.id }} .swiper-button-next,
+    .nav-tabs-content-{{ section.id }} .swiper-button-prev{
+      width: 48px;
+      height: 48px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+      z-index: 2;
+      opacity: 1;
+    }
+    .nav-tabs-content-{{ section.id }} .swiper-button-next.swiper-button-disabled,
+    .nav-tabs-content-{{ section.id }} .swiper-button-prev.swiper-button-disabled{
+      opacity: 0;
+    }
+    .nav-tabs-content-{{ section.id }} .swiper-button-next:after,
+    .nav-tabs-content-{{ section.id }} .swiper-button-prev:after{
+      color: #151515;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .nav-tabs-image-text{
+      padding:1rem;
+    }
+    .nav-tabs-bottom-item{
+      display: flex;
+      margin-bottom: 5px;
+    }
+    .nav-tabs-bottom-item img{
+      width: 18px;
+      height: 18px;
+      margin: 3px 10px 0 0;
+    }
+  }
+  @media(max-width:999px) {
+    .collection-menu--{{ section.id }}.collection-menu{
+      margin-top: {{section.settings.Mobile_top}}px;
+      margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+      padding-top:{{section.settings.Mobile_paddingTop}}px;
+      padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+    }
+    .nav-tabs-image-text h3{
+      font-size: 19px;
+      padding-bottom: 6px;
+      margin: 0;
+    }
+    .nav-tabs-image-text .nav-tabs-description{
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .nav-tabs-image-text{
+      padding: 8px 4px 12px 8px;
+    }
+    .nav-tabs-content-{{ section.id }} .swiper-button-next,
+    .nav-tabs-content-{{ section.id }} .swiper-button-prev{
+      display: none;
+    }
+    .nav-tabs-bottom-item{
+      display: flex;
+      margin-bottom: 8px;
+    }
+    .nav-tabs-bottom-item img{
+      height: 16px;
+      margin: 5px 5px 5px 0;
+    }
+  }
+  .nav-tabs-content-{{ section.id }}{
+    padding:50px 0;
+  }
+  .nav-tabs-content-{{ section.id }} .swiper-wrapper{
+    display: flex;
+  }
+  .nav-tabs-content-{{ section.id }} .swiper-slide {
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+  }
+  .nav-tabs-content-{{ section.id }} .swiper-slide{
+    transition: .25s;
+  }
+  .nav-tabs-image-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .nav-tabs-content-{{ section.id }} .swiper-slide.active{
+    transform: scale(1.02);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    border-bottom: 2px solid #57585b;
+  }
+  {% comment %} .nav-tabs-content-{{ section.id }} .swiper-slide.swiper-slide-active img{
+    border: 2px solid #ff8300;
+    border-radius: 10px 10px 0 0;
+  } {% endcomment %}
+</style>
+<div class="collection-menu collection-menu--{{ section.id }}">
+  <div class="row full-width-row">
+    <div class="columns">
+    <div class="nav-tabs">
+      <div class="nav-tabs-content swiper nav-tabs-content-{{ section.id }}">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide {% if collection.title == block.settings.title or forloop.first %}active{% endif %}"> 
+              <a href="{%- if block.settings.link !=blank -%}{{block.settings.link}}{%- else -%} javascript:void(0){%- endif -%}">
+              <div class="nav-tabs-item">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | img_url: 'master' }}" class="nav-tabs-image" alt="{{block.settings.image.alt}}">
+                {% endif %}
+                
+                  <div class="nav-tabs-image-text">
+                    {% if block.settings.title != blank %}
+                      <h3 class="nav-tabs-title">{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% for i in (1..3) %}
+                      {% liquid
+                          assign image_text_icon_key = 'icon_' | append: i 
+                          assign image_text_description_key = 'description_' | append: i
+
+                          assign image_text_icon = block.settings[image_text_icon_key]
+                          assign image_text_description = block.settings[image_text_description_key]
+                        %}
+                        <div class="nav-tabs-bottom-item">
+                          {% if image_text_icon != blank %}
+                            <img src="{{ image_text_icon | img_url: 'master' }}" class="nav-tabs-icon" alt="{{ image_text_icon.alt }}" width="16" height="16">
+                          {% endif %}
+                          {% if image_text_description != blank %}
+                            <span class="nav-tabs-description">{{ image_text_description }}</span>
+                          {% endif %}
+                        </div>
+                    
+                    {% endfor %}
+                  </div>
+                  </div>
+                </a>
+              </div>
+          {% endfor %}
+        </div>
+        {% if section.blocks.size > 0 %}
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        {% endif %}
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+(function () {
+
+  function initSwiperCollectionMenu() {
+    const el = document.querySelector('.nav-tabs-content-{{ section.id }}');
+    if (!el) return;
+
+    if (el.swiper) {
+      el.swiper.destroy(true, true);
+    }
+
+    new Swiper(el, {
+      observer: true,
+      observeParents: true,
+      breakpoints: {
+        300: {
+          slidesPerView: 2.2,
+          spaceBetween: 5
+        },
+        768: {
+          slidesPerView: 2.5,
+          spaceBetween: 8
+        },
+        999: {
+          slidesPerView: 3,
+          spaceBetween: 15
+        },
+        1200: {
+          slidesPerView: {{ section.settings.columns_desktop }},
+          spaceBetween: 15
+        }
+      },
+      navigation: {
+        nextEl: `.nav-tabs-content-{{ section.id }} .swiper-button-next`,
+        prevEl: `.nav-tabs-content-{{ section.id }} .swiper-button-prev`,
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initSwiperCollectionMenu );
+
+  document.addEventListener('shopify:section:load', function(e){
+    if (e.target.querySelector('.nav-tabs-content-{{ section.id }}')) {
+      initSwiperCollectionMenu();
+    }
+  });
+
+})();
+</script>
+{% schema %}
+{
+  "name": "Collection Menu",
+  "class": "collection-menu-section",
+  "settings": [
+    {
+        "type": "number",
+        "id": "Desktop_top",
+        "label": "Desktop Margin Top",
+        "default": 0
+    },
+    {
+        "type": "number",
+        "id": "Mobile_top",
+        "label": "Mobile Margin Top",
+        "default": 0
+    },
+    {
+        "type": "number",
+        "id": "Desktop_paddingTop",
+        "label": "Desktop Padding Top",
+        "default": 0
+    },
+    {
+        "type": "number",
+        "id": "Mobile_paddingTop",
+        "label": "Mobile Padding Top",
+        "default": 0
+    },
+    
+    {
+        "type": "header",
+        "content": "Spacing Bottom:"
+    },
+    {
+        "type": "number",
+        "id": "Desktop_bottom",
+        "label": "Desktop Margin Bottom",
+        "default": 0
+    },
+    {
+        "type": "number",
+        "id": "Mobile_bottom",
+        "label": "Mobile Margin Bottom",
+        "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+        "type": "number",
+        "id": "Mobile_paddingBottom",
+        "label": "Mobile Padding Bottom",
+        "default": 0
+    },
+    {
+        "type": "header",
+        "content": "Number of columns:"
+    },
+    {
+        "type": "range",
+        "id": "columns_desktop",
+        "min": 4,
+        "max": 6,
+        "step": 1,
+        "default": 4,
+        "label": "Number of columns on desktop"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_text",
+      "name": "Image Text Item",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1",
+          "label": "Icon 1"
+        },
+        {
+          "type": "text",
+          "id": "description_1",
+          "label": "Description_1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2",
+          "label": "Icon 2"
+        },
+        {
+          "type": "text",
+          "id": "description_2",
+          "label": "Description_2"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3",
+          "label": "Icon 3"
+        },
+        {
+          "type": "text",
+          "id": "description_3",
+          "label": "Description_3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "Collection Menu"
+    }
+  ]
+}
+{% endschema %}

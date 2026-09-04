@@ -1,0 +1,267 @@
+{% comment %}
+  moodytiger Spin & Win — 全站自动弹窗 v5(设计稿终版)
+  安装:snippets/spin-popup.liquid + theme.liquid </body> 前 {% render 'spin-popup' %}
+  测试:URL 加 ?spintest=1 立即弹出并无限重转
+  需要 assets:gift-tote-v2.png / gift-towel-v2.png / gift-umbrella-v2.png / spin-photo-v2.jpg
+{% endcomment %}
+
+{% comment %} 性能：弹窗字体改为非阻塞加载。弹窗延后到 load 后 10 秒才出现，
+   字体不参与首屏关键渲染，故用 media=print + onload 切换，避免每页多一个渲染阻塞样式表。
+   （fonts.gstatic 的 preconnect 已在 theme.liquid head 全站声明，此处不再重复。） {% endcomment %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  #mtSpin,#mtSpin *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  #mtSpin{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;
+    background:rgba(40,33,20,.5);padding:16px;font-family:'Montserrat',sans-serif;}
+  #mtSpin.on{display:flex;}
+  body.mt-lock{overflow:hidden!important;touch-action:none;}
+  .mt-card{display:flex;background:#fff;border-radius:12px;overflow:hidden;max-width:700px;width:100%;
+    position:relative;box-shadow:0 18px 60px rgba(0,0,0,.3);
+    animation:mtIn .4s cubic-bezier(.34,1.56,.64,1) both;max-height:86svh;}
+  @keyframes mtIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+  .mt-x{position:absolute;top:10px;right:12px;width:30px;height:30px;border:none;background:none;
+    font-size:22px;line-height:1;color:#8A7355;cursor:pointer;z-index:6;}
+  .mt-left{flex:0 0 50%;max-width:50%;padding:22px 26px 16px;text-align:center;min-width:0;
+    display:flex;flex-direction:column;justify-content:center;}
+  .mt-photo{flex:0 0 50%;max-width:50%;min-width:0;background:#EFE7DA url('{{ 'spin-photo-v2.jpg' | asset_url }}') center top/cover no-repeat;}
+  .mt-h{font-size:22px;font-weight:500;color:#8A7355;margin:0 0 12px;line-height:1.25;letter-spacing:.2px;}
+
+  .mt-stage{position:relative;width:212px;height:212px;margin:0 auto;contain:layout paint;}
+  .mt-ptr{position:absolute;top:50%;right:-4px;margin-top:-10px;z-index:4;width:0;height:0;
+    border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:18px solid #8A7355;}
+  .mt-shell{position:absolute;inset:0;border-radius:50%;border:9px solid #8A7355;z-index:3;pointer-events:none;}
+  .mt-clip{position:absolute;inset:9px;border-radius:50%;overflow:hidden;transform:translateZ(0);}
+  .mt-rotor{position:absolute;inset:0;border-radius:50%;
+    will-change:transform;transform:translateZ(0);backface-visibility:hidden;
+    transition:transform 6.2s cubic-bezier(.18,.6,.16,1);
+    background:conic-gradient(#E7DFD2 0 60deg,#FFFFFF 60deg 120deg,#E7DFD2 120deg 180deg,#FFFFFF 180deg 240deg,#E7DFD2 240deg 300deg,#FFFFFF 300deg 360deg);}
+  .mt-seg{position:absolute;top:0;left:50%;width:94px;height:100px;transform-origin:bottom center;
+    display:flex;flex-direction:column;align-items:center;padding-top:15px;}
+  .mt-seg .t{font-size:14px;font-weight:500;color:#8A7355;letter-spacing:.1px;line-height:1.12;text-align:center;}
+  .mt-seg .c{font-size:8.5px;font-weight:400;letter-spacing:.5px;color:#8A7355;margin-top:1px;}
+  .mt-lines{position:absolute;inset:0;pointer-events:none;}
+
+  .mt-form{margin-top:14px;}
+  .mt-form input{width:100%;height:44px;border:1px solid #C9B285;border-radius:8px;background:#fff;
+    padding:0 16px;font-size:16px;outline:none;color:#333;font-family:inherit;}
+  .mt-form input:focus{border-color:#8A7355;}
+  .mt-btn{width:100%;height:48px;margin-top:9px;border:none;border-radius:8px;background:#111;color:#fff;
+    font-size:14px;font-weight:600;letter-spacing:1.5px;cursor:pointer;font-family:inherit;}
+  .mt-btn:disabled{opacity:.55;cursor:wait;}
+  .mt-err{min-height:18px;font-size:12.5px;color:#c0392b;margin-top:6px;}
+  .mt-pol{font-size:10.5px;color:#A99C7E;line-height:1.5;margin:8px 0 0;}
+  .mt-pol a{color:inherit;text-decoration:underline;}
+
+  .mt-reveal{display:none;padding-top:6px;}
+  .mt-reveal.on{display:block;animation:mtIn .35s ease both;}
+  .mt-spinview.hide{display:none;}
+  .mt-rhead{font-size:26px;font-weight:500;color:#8A7355;margin:12px 0 22px;letter-spacing:.2px;}
+  .mt-rbody{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .mt-rimg{width:210px;height:210px;object-fit:contain;display:block;}
+  .mt-rbig{color:#8A7355;font-weight:600;text-align:center;}
+  .mt-rs{font-size:13.5px;color:#8A7355;margin:18px 0 8px;line-height:1.6;}
+  .mt-rs b{color:#5c4a33;}
+  .mt-code{display:inline-flex;align-items:center;gap:5px;margin:0 0 16px;cursor:pointer;user-select:none;
+    font-size:12px;color:#A08A63;}
+  .mt-code .k{font-weight:600;letter-spacing:.5px;color:#8A7355;text-decoration:underline;text-underline-offset:3px;}
+  .mt-code.done{color:#1d9e75;}
+  .mt-code.done .k{color:#1d9e75;}
+  .mt-rbtn{display:block;width:100%;height:50px;line-height:50px;border:none;border-radius:8px;background:#111;
+    color:#fff;font-size:14px;font-weight:600;letter-spacing:1px;cursor:pointer;font-family:inherit;text-decoration:none;text-align:center;}
+  .mt-rbtn:hover{color:#fff;opacity:.92;}
+
+  @media(max-width:640px){
+    .mt-card{max-width:330px;}
+    .mt-photo{display:none;}
+    .mt-left{flex:1 1 100%;max-width:100%;width:100%;padding:24px 18px 16px;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
+    .mt-h{font-size:22px;margin-bottom:14px;}
+    .mt-stage{width:252px;height:252px;}
+    .mt-clip{inset:7px;}
+    .mt-shell{border-width:7px;}
+    .mt-ptr{border-right-width:15px;border-top-width:8px;border-bottom-width:8px;margin-top:-8px;}
+    .mt-seg{width:112px;height:120px;padding-top:16px;}
+    .mt-seg .t{font-size:15.5px;}
+    .mt-seg .c{font-size:9px;}
+    .mt-rhead{font-size:21px;margin:8px 0 14px;}
+    .mt-rbody{min-height:180px;}
+    .mt-rimg{width:160px;height:160px;}
+    .mt-form{margin-top:14px;}
+  }
+</style>
+
+<div id="mtSpin" role="dialog" aria-modal="true" aria-label="Spin to win">
+  <div class="mt-card">
+    <button class="mt-x" id="mtX" aria-label="Close">&times;</button>
+
+    <div class="mt-left">
+      <div class="mt-spinview" id="mtSpinView">
+        <div class="mt-h">Spin to Unlock<br>Your Treat</div>
+        <div class="mt-stage">
+          <div class="mt-ptr"></div>
+          <div class="mt-clip">
+            <div class="mt-rotor" id="mtRotor">
+              <div id="mtSegs"></div>
+              <svg class="mt-lines" viewBox="0 0 282 282">
+                <g stroke="#fff" stroke-width="2">
+                  <line x1="141" y1="141" x2="141" y2="0"/><line x1="141" y1="141" x2="263" y2="70"/>
+                  <line x1="141" y1="141" x2="263" y2="212"/><line x1="141" y1="141" x2="141" y2="282"/>
+                  <line x1="141" y1="141" x2="19" y2="212"/><line x1="141" y1="141" x2="19" y2="70"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="mt-shell"></div>
+        </div>
+        <div class="mt-form">
+          <input id="mtEmail" type="email" placeholder="Email address" autocomplete="email">
+          <button class="mt-btn" id="mtBtn">SPIN IT</button>
+          <div class="mt-err" id="mtErr"></div>
+        </div>
+        <p class="mt-pol">By spinning you agree to receive marketing emails from moodytiger. See our <a href="/policies/terms-of-service">Terms</a> and <a href="/policies/privacy-policy">Privacy Policy</a>.</p>
+      </div>
+
+      <div class="mt-reveal" id="mtReveal">
+        <div class="mt-rhead">Congratulations</div>
+        <div class="mt-rbody" id="mtRBody"></div>
+        <div class="mt-code" id="mtCode" style="display:none;"><span id="mtCodeCp">Copy code</span> <span class="k" id="mtCodeK"></span></div>
+        <div class="mt-rs" id="mtRS"></div>
+        <a class="mt-rbtn" id="mtRBtn" href="/">CLAIM &amp; SHOP</a>
+      </div>
+    </div>
+
+    <div class="mt-photo"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ============ CONFIG ============ */
+  var DELAY_SEC = 10;
+  var FREQ_DAYS = 1;
+  var IMG = {
+    tote:     "{{ 'gift-tote-v2.png'     | asset_url }}",
+    towel:    "{{ 'gift-towel-v2.png'    | asset_url }}",
+    umbrella: "{{ 'gift-umbrella-v2.png' | asset_url }}"
+  };
+  /* 6 格,概率合计 100;Almost 恒为 0 不会中 */
+  var PRIZES = [
+    { key:'SPINBOX1', l1:'Blind', l2:'Box', cap:'No.01', kind:'gift', img:'tote',     variant:50586983039222, weight:42 },
+    { key:'SPINSHIP', l1:'Free',  l2:'Shipping', cap:'', kind:'ship',                                        weight:5  },
+    { key:'SPINBOX2', l1:'Blind', l2:'Box', cap:'No.02', kind:'gift', img:'towel',    variant:50894291304694, weight:30 },
+    { key:'SPIN5',    l1:'$5',    l2:'Off', cap:'',      kind:'code',                                        weight:5  },
+    { key:'SPINBOX3', l1:'Blind', l2:'Box', cap:'No.03', kind:'gift', img:'umbrella', variant:50459162968310, weight:18 },
+    { key:'',         l1:'Almost',l2:'',    cap:'',      kind:'none',                                        weight:0  }
+  ];
+  var SEG_DEG = 60, POINTER_DEG = 90; /* 指针在右侧 */
+  /* ================================ */
+
+  var TEST=/[?&]spintest=1/.test(location.search);
+  var KEY='mt_spin_seen';
+  function seenRecently(){ if(TEST) return false; var t=+localStorage.getItem(KEY)||0; return (Date.now()-t)<FREQ_DAYS*864e5; }
+  function markSeen(){ try{ localStorage.setItem(KEY,Date.now()); }catch(e){} }
+
+  var root=document.getElementById('mtSpin');
+  var segWrap=document.getElementById('mtSegs');
+  PRIZES.forEach(function(p,i){
+    var d=document.createElement('div');d.className='mt-seg';
+    d.style.transform='translateX(-50%) rotate('+(i*SEG_DEG+SEG_DEG/2)+'deg)';
+    var longCls=(p.l1+p.l2).length>10?' style="font-size:12px"':'';
+    d.innerHTML='<div class="t"'+longCls+'>'+p.l1+(p.l2?'<br>'+p.l2:'')+'</div>'+(p.cap?'<div class="c">'+p.cap+'</div>':'');
+    segWrap.appendChild(d);
+  });
+
+  var rotor=document.getElementById('mtRotor'),btn=document.getElementById('mtBtn'),
+      email=document.getElementById('mtEmail'),err=document.getElementById('mtErr'),
+      spinView=document.getElementById('mtSpinView'),reveal=document.getElementById('mtReveal'),
+      rBody=document.getElementById('mtRBody'),rS=document.getElementById('mtRS'),rBtn=document.getElementById('mtRBtn'),
+      codeBox=document.getElementById('mtCode'),codeK=document.getElementById('mtCodeK'),codeCp=document.getElementById('mtCodeCp');
+  var total=PRIZES.reduce(function(a,p){return a+p.weight},0),rot=0,spinning=false;
+
+  codeBox.addEventListener('click',function(){
+    var code=codeK.textContent;
+    var done=function(){ codeBox.classList.add('done'); codeCp.textContent='Copied!'; };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(code).then(done).catch(function(){ fallbackCopy(code); done(); });
+    } else { fallbackCopy(code); done(); }
+  });
+  function fallbackCopy(t){ try{ var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }catch(e){} }
+
+  function open(){
+    root.classList.add('on'); document.body.classList.add('mt-lock'); markSeen();
+    Object.keys(IMG).forEach(function(k){ var im=new Image(); im.src=IMG[k]; });
+  }
+  function close(){ root.classList.remove('on'); document.body.classList.remove('mt-lock'); }
+  document.getElementById('mtX').addEventListener('click',close);
+  root.addEventListener('click',function(e){ if(e.target===root && !spinning) close(); });
+
+  function subscribe(em,key){
+    var fd=new FormData();
+    fd.append('form_type','customer');fd.append('utf8','✓');
+    fd.append('contact[email]',em);
+    fd.append('contact[accepts_marketing]','true');
+    fd.append('contact[tags]','spin-wheel'+(key?',prize:'+key:''));
+    return fetch('/contact',{method:'POST',body:fd}).catch(function(){});
+  }
+  function applyPrize(p){
+    if(p.kind==='gift'){
+      return fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({items:[{id:p.variant,quantity:1}]})})
+        .then(function(){return fetch('/discount/'+p.key).catch(function(){});})
+        .catch(function(){});
+    }
+    if(p.key) return fetch('/discount/'+p.key).catch(function(){});
+    return Promise.resolve();
+  }
+  function setCode(key){
+    if(key){ codeK.textContent=key; codeCp.textContent='Copy code'; codeBox.classList.remove('done'); codeBox.style.display='inline-flex'; }
+    else { codeBox.style.display='none'; }
+  }
+  function showReveal(p){
+    if(p.kind==='gift'){
+      rBody.innerHTML='<img class="mt-rimg" src="'+IMG[p.img]+'" alt="Special Gift">';
+      setCode(p.key);
+      rS.innerHTML='Your <b>Special Gift</b> is in your cart at <b>100% off</b> with any order.';
+      rBtn.textContent='VIEW MY CART'; rBtn.href='/cart';
+    } else if(p.kind==='ship'){
+      rBody.innerHTML='<div class="mt-rbig" style="font-size:52px;line-height:1.05;">FREE<div style="font-size:32px;letter-spacing:2px;">SHIPPING</div></div>';
+      setCode(p.key);
+      rS.innerHTML='Applied automatically at checkout.';
+      rBtn.textContent='CLAIM & SHOP'; rBtn.href='/';
+    } else {
+      rBody.innerHTML='<div class="mt-rbig" style="font-size:88px;line-height:1;">$5<div style="font-size:36px;letter-spacing:4px;font-weight:500;">OFF</div></div>';
+      setCode(p.key);
+      rS.innerHTML='Applied automatically at checkout.';
+      rBtn.textContent='CLAIM & SHOP'; rBtn.href='/';
+    }
+    spinView.classList.add('hide'); reveal.classList.add('on');
+  }
+
+  btn.addEventListener('click',function(){
+    if(spinning) return; err.textContent='';
+    var em=(email.value||'').trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ err.textContent='Please enter a valid email address.'; return; }
+    spinning=true; btn.disabled=true;
+    var r=Math.random()*total,acc=0,idx=0;
+    for(var i=0;i<PRIZES.length;i++){acc+=PRIZES[i].weight;if(r<=acc){idx=i;break;}}
+    var p=PRIZES[idx];
+    subscribe(em,p.key);
+    applyPrize(p);
+    if(p.kind==='gift'){ var pre=new Image(); pre.src=IMG[p.img]; }
+    var A=idx*SEG_DEG+SEG_DEG/2,desired=(POINTER_DEG-A+720)%360,cur=((rot%360)+360)%360,delta=(desired-cur+360)%360;
+    rot+=360*4+delta;
+    rotor.style.transform='translateZ(0) rotate('+rot+'deg)';
+    setTimeout(function(){ spinning=false; showReveal(p); },6300);
+  });
+  email.addEventListener('keydown',function(e){ if(e.key==='Enter') btn.click(); });
+
+  /* 初始化延后到页面 load 之后,不占首屏资源 */
+  function schedule(){
+    if(TEST){ open(); return; }
+    if(seenRecently()) return;
+    setTimeout(function(){ if(!root.classList.contains('on')) open(); },DELAY_SEC*1000);
+  }
+  if(document.readyState==='complete'){ schedule(); }
+  else { window.addEventListener('load',schedule); }
+})();
+</script>

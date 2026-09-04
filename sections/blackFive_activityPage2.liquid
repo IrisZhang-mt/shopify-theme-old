@@ -1,0 +1,198 @@
+<style>
+    #shopify-section-{{section.id}} .blackFive_activityPage2All{
+        margin-top: {{section.settings.Desktop_top}}px;
+        margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+        padding-top:{{section.settings.Desktop_paddingTop}}px;
+        padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .blackFive_activityPage2All{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+
+    #shopify-section-{{section.id}} .blackFive_activityPage2All {
+        background-color: {{section.settings.bg_color}};
+        color: {{section.settings.text_color}};
+    }
+    .blackFive_activityPage2_itemText p:last-child {
+        margin: 0;
+    }
+    @media (min-width: 1000px) {
+      .blackFive_activityPage2_box {
+        display: flex;
+        gap: 100px;
+        justify-content: center;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .blackFive_activityPage2_item {
+          text-align: center;
+      }
+      .blackFive_activityPage2_item img {
+        width: auto;
+        height: 80px;
+      }
+      .blackFive_activityPage2_itemText {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 29px;
+      }
+    }
+    @media (max-width: 999px) {
+
+      .blackFive_activityPage2All .row,.blackFive_activityPage2All .columns {
+        padding: 0;
+      }
+      .blackFive_activityPage2_box {
+        background-color: #fff;
+      }
+       #shopify-section-{{section.id}} .blackFive_activityPage2_item {
+        background-color: {{section.settings.bg_color}};
+        color: {{section.settings.text_color}};
+      }
+      .blackFive_activityPage2_box {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3px;
+
+      }
+      .blackFive_activityPage2_item {
+          text-align: center;
+          padding: 23px 6px;
+      }
+      .blackFive_activityPage2_item img {
+        width: auto;
+        height: 58px;
+      }
+      .blackFive_activityPage2_itemText {
+        margin-top: 14px;
+        font-size: 12px;
+      }
+    }
+</style>
+<div class="container blackFive_activityPage2All">
+  <div class="row full-width-row">
+    <div class="columns">
+      <div class="blackFive_activityPage2_box">
+        {% for block in section.blocks %}
+          <div class="blackFive_activityPage2_item">
+            {% if block.settings.icon != blank %}
+              <img src="{{ block.settings.icon | img_url:'master' }}" alt="{{ block.settings.icon.alt }}">
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="blackFive_activityPage2_itemText">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Black Five Activity Page2",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "background color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "text color"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Top:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_top",
+      "label": "Desktop Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_top",
+      "label": "Mobile Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingTop",
+      "label": "Desktop Padding Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingTop",
+      "label": "Mobile Padding Top",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Bottom:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_bottom",
+      "label": "Desktop Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_bottom",
+      "label": "Mobile Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingBottom",
+      "label": "Mobile Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "icon"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Black Five Activity Page2"
+    }
+  ]
+}
+{% endschema %}

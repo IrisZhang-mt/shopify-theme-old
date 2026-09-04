@@ -1,0 +1,961 @@
+{% doc %}
+  Renders a controlled PDP variant picker using buttons instead of native radio inputs.
+
+The picker owns selected option state and updates the existing product form,
+media, URL, price blocks, pickup availability, and add-to-cart button.
+
+  @param {product} product - Product object.
+  @param {object} section - Section object.
+  @param {object} block - Variant picker block.
+  @param {string} product_form_id - Product form id shared with the buy buttons.
+  @param {boolean} [update_url] - Whether to update the URL when variants change.
+
+  @example
+  {% render 'product-variant-picker-new', product: product, section: section, block: block, product_form_id: product_form_id, update_url: true %}
+{% enddoc %}
+
+{%- liquid
+  assign custom_colors = settings.color_swatches | newline_to_br | split: '<br />'
+  assign key_array = ''
+  assign val_array = ''
+
+  for color in custom_colors
+    assign key = color | split: ':' | first | rstrip
+    assign value = color | split: ':' | last | lstrip
+    assign key_array = key_array | append: ',' | append: key
+    assign val_array = val_array | append: ',' | append: value
+  endfor
+
+  assign key_array = key_array | remove_first: ',' | strip_newlines | downcase | split: ','
+  assign val_array = val_array | remove_first: ',' | split: ','
+  assign selected_variant = product.selected_or_first_available_variant
+  assign is_disabled = block.settings.variant_is_disabled
+-%}
+
+<product-variant-picker-new
+  id="variant-picker-new-{{ section.id }}"
+  class="product-variant-picker-new no-js-hidden is-ready"
+  data-section="{{ section.id }}"
+  data-url="{{ product.url }}"
+  data-update-url="{{ update_url }}"
+  data-is-disabled="{{ is_disabled }}"
+  data-hide-out-of-stock="{{ section.settings.hide_out_of_stock }}"
+  data-product-form-id="{{ product_form_id }}"
+>
+  <div class="variations" {{ block.shopify_attributes }}>
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign option_name = option.name | downcase | escape
+        assign option_name_handle = option.name | handleize
+        assign option_type = block.settings.picker_type
+        assign color_picker_size = block.settings.color_picker_size | default: 'regular'
+        assign color_picker_use_variants = block.settings.color_picker_use_variants
+        assign swatch_count = option.values | map: 'swatch' | compact | size
+
+        if block.settings.color_picker
+          if option_name contains 'color' or option_name contains 'colour' or option_name contains 'couleur' or option_name contains 'farbe' or option_name contains '颜色' or option_name contains '顏色' or option_name contains 'カラー' or option_name contains '색상' or option_name contains 'لون'
+            assign option_type = 'color'
+          endif
+        endif
+
+        if swatch_count > 0
+          assign option_type = 'color'
+        endif
+
+        assign option_key = 'option' | append: forloop.index
+        assign selected_value = selected_variant[option_key] | default: option.selected_value
+        assign handle = option.name | replace: ' ', '-' | downcase | escape
+        assign sizing_link = ''
+        assign option_slug = option.name | downcase
+        assign sizing_guide_variant = block.settings.sizing_guide_variant | default: 'Size' | downcase
+      -%}
+
+      {%- if option_slug == sizing_guide_variant and block.settings.sizing_guide_text != '' -%}
+        {%- capture sizing_link -%}
+          <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-{{ block.id }}">
+            <button id="ProductPopup-{{ block.id }}" class="product-popup-modal__button" type="button" aria-haspopup="dialog">
+              {% render 'svg-icons-inline', icon: block.settings.sizing_guide_icon %}<span>{{ block.settings.sizing_guide_text }}</span>
+            </button>
+          </modal-opener>
+        {%- endcapture -%}
+        {%- capture sizing_popup -%}
+          <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal">
+            <div role="dialog" aria-label="{{ block.settings.sizing_guide_text }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+              <div class="product-popup-modal__content-header">
+                <h5>{{ block.settings.sizing_guide_page.title }}</h5>
+                <button id="ModalClose-{{ block.id }}" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
+                  {% render 'svg-icons' with 'close' %}
+                </button>
+              </div>
+              <scroll-shadow>
+                <div class="product-popup-modal__content-info">
+                  {{ block.settings.sizing_guide_page.content }}
+                </div>
+              </scroll-shadow>
+            </div>
+          </modal-dialog>
+        {%- endcapture -%}
+      {%- endif -%}
+
+      <fieldset
+        class="product-form__input product-form__input--{{ option_type }}{% if option_type == 'block' %} product-form__input--block{% endif %}{% if option_type == 'color' %} product-form__input--color product-form__input--color--{{ color_picker_size }}{% endif %} product-variant-picker-new__option"
+        data-pdp-new-option
+        data-index="option{{ forloop.index }}"
+        data-option-index="{{ forloop.index0 }}"
+        data-handle="{{ handle }}"
+      >
+        <div class="form__label">
+          {{ option.name }}
+          <span class="form__label__value" data-current-value>{{ selected_value }}</span>
+          {{ sizing_link }}
+          {% if option_name_handle == 'size' %}
+            <span class="size_chart_0620" role="button" tabindex="0" hidden>Size Chart</span>
+            <script>
+              (function () {
+                if (window.__moodyKiwiSizeChartBridge) return;
+                window.__moodyKiwiSizeChartBridge = true;
+
+                const syncKiwiSizeChartLinks = function () {
+                  const kiwiLink = document.querySelector('.ks-chart-modal-link');
+                  const triggers = document.querySelectorAll('.size_chart_0620');
+                  triggers.forEach(function (trigger, index) {
+                    trigger.hidden = !kiwiLink || index > 0;
+                  });
+                  if (!kiwiLink || !triggers.length) return;
+
+                  const primaryTrigger = triggers[0];
+                  if (!primaryTrigger.contains(kiwiLink)) {
+                    primaryTrigger.replaceChildren(kiwiLink);
+                  }
+                  kiwiLink.setAttribute('role', 'button');
+                  kiwiLink.setAttribute('tabindex', '0');
+                };
+
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', syncKiwiSizeChartLinks);
+                } else {
+                  syncKiwiSizeChartLinks();
+                }
+
+                new MutationObserver(syncKiwiSizeChartLinks).observe(document.documentElement, {
+                  childList: true,
+                  subtree: true,
+                });
+              })();
+            </script>
+          {% endif %}
+        </div>
+
+        {%- if option_type == 'dropdown' -%}
+          <div class="select product-variant-picker-new__select-wrap">
+            <select
+              class="product-variant-picker-new__select"
+              data-pdp-new-option-select
+              data-option-index="{{ forloop.index0 }}"
+              aria-label="{{ option.name | escape }}"
+            >
+              {%- for value in option.values -%}
+                <option
+                  value="{{ value | escape }}"
+                  {% if selected_value == value %}
+                    selected="selected"
+                  {% endif %}
+                >
+                  {{ value }}
+                </option>
+              {%- endfor -%}
+            </select>
+            <div class="select-arrow">{%- render 'svg-icons' with 'thb-select' -%}</div>
+          </div>
+        {%- elsif option_type == 'color' and product.metafields.custom.main_color_promotion.value != blank -%}
+          <div class="matching_items matching_Coloritems product-variant-picker-new__color-group">
+            <div class="matching_items_label">
+              <div class="form__label">
+                {{ product.metafields.custom.main_color_promotion_title.value }}
+                <span class="form_label_value">
+                  {%- for value in option.values -%}
+                    {%- assign is_matching = false -%}
+                    {%- for item in product.metafields.custom.main_color_promotion.value -%}
+                      {%- if value == item or value contains item -%}
+                        {%- assign is_matching = true -%}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    {%- if is_matching and selected_value == value -%}
+                      {{ value }}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </span>
+              </div>
+            </div>
+            <div class="product-variant-picker-new__values product-variant-picker-new__values--{{ option_type }}">
+              {%- for value in option.values -%}
+                {%- assign is_matching = false -%}
+                {%- for item in product.metafields.custom.main_color_promotion.value -%}
+                  {%- if value == item or value contains item -%}
+                    {%- assign is_matching = true -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- if is_matching -%}
+                  {%- liquid
+                    assign swatch_image = blank
+                    assign swatch_color = value | downcase | escape
+                    assign swatch_focal_point = blank
+
+                    for custom_color in key_array
+                      if custom_color == swatch_color
+                        assign swatch_color = val_array[forloop.index0] | strip
+                      endif
+                    endfor
+
+                    if swatch_color contains '.'
+                      assign swatch_image = swatch_color | file_url
+                      assign swatch_color = 'var(--bg-body)'
+                    endif
+
+                    if color_picker_use_variants
+                      for variant in product.variants
+                        if variant[option_key] == value and variant.image
+                          assign swatch_image = variant.image | image_url: width: 104
+                          break
+                        endif
+                      endfor
+                    endif
+
+                    if value.swatch.image
+                      assign swatch_image = value.swatch.image | image_url: width: 104
+                      assign swatch_focal_point = value.swatch.image.presentation.focal_point
+                    elsif value.swatch.color
+                      assign swatch_color = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                    endif
+                  -%}
+                  <button
+                    type="button"
+                    class="product-variant-picker-new__value product-variant-picker-new__value--color{% if selected_value == value %} is-active{% endif %}"
+                    data-pdp-new-option-value
+                    data-option-index="{{ forloop.parentloop.index0 }}"
+                    data-option-name="{{ option.name | escape }}"
+                    data-value="{{ value | escape }}"
+                    aria-pressed="{% if selected_value == value %}true{% else %}false{% endif %}"
+                    style="--option-color: {{ swatch_color | downcase | escape }};{% if swatch_image != blank %} --option-color-image: url('{{ swatch_image | escape }}');{% endif %}{% if swatch_focal_point != blank %} --option-focal-point: {{ swatch_focal_point }};{% endif %}"
+                  >
+                    <span>{{ value }}</span>
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+
+          <div class="non_matching_items matching_Coloritems product-variant-picker-new__color-group">
+            <div class="matching_items_label">
+              <div class="form__label">
+                {{ option.name }}
+                <span class="form_label_value">
+                  {%- for value in option.values -%}
+                    {%- assign is_matching = false -%}
+                    {%- for item in product.metafields.custom.main_color_promotion.value -%}
+                      {%- if value == item or value contains item -%}
+                        {%- assign is_matching = true -%}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    {%- unless is_matching -%}
+                      {%- if selected_value == value -%}
+                        {{ value }}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endunless -%}
+                  {%- endfor -%}
+                </span>
+              </div>
+            </div>
+            <div class="product-variant-picker-new__values product-variant-picker-new__values--{{ option_type }}">
+              {%- for value in option.values -%}
+                {%- assign is_matching = false -%}
+                {%- for item in product.metafields.custom.main_color_promotion.value -%}
+                  {%- if value == item or value contains item -%}
+                    {%- assign is_matching = true -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- unless is_matching -%}
+                  {%- liquid
+                    assign swatch_image = blank
+                    assign swatch_color = value | downcase | escape
+                    assign swatch_focal_point = blank
+
+                    for custom_color in key_array
+                      if custom_color == swatch_color
+                        assign swatch_color = val_array[forloop.index0] | strip
+                      endif
+                    endfor
+
+                    if swatch_color contains '.'
+                      assign swatch_image = swatch_color | file_url
+                      assign swatch_color = 'var(--bg-body)'
+                    endif
+
+                    if color_picker_use_variants
+                      for variant in product.variants
+                        if variant[option_key] == value and variant.image
+                          assign swatch_image = variant.image | image_url: width: 104
+                          break
+                        endif
+                      endfor
+                    endif
+
+                    if value.swatch.image
+                      assign swatch_image = value.swatch.image | image_url: width: 104
+                      assign swatch_focal_point = value.swatch.image.presentation.focal_point
+                    elsif value.swatch.color
+                      assign swatch_color = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                    endif
+                  -%}
+                  <button
+                    type="button"
+                    class="product-variant-picker-new__value product-variant-picker-new__value--color{% if selected_value == value %} is-active{% endif %}"
+                    data-pdp-new-option-value
+                    data-option-index="{{ forloop.parentloop.index0 }}"
+                    data-option-name="{{ option.name | escape }}"
+                    data-value="{{ value | escape }}"
+                    aria-pressed="{% if selected_value == value %}true{% else %}false{% endif %}"
+                    style="--option-color: {{ swatch_color | downcase | escape }};{% if swatch_image != blank %} --option-color-image: url('{{ swatch_image | escape }}');{% endif %}{% if swatch_focal_point != blank %} --option-focal-point: {{ swatch_focal_point }};{% endif %}"
+                  >
+                    <span>{{ value }}</span>
+                  </button>
+                {%- endunless -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- else -%}
+          <div class="product-variant-picker-new__values product-variant-picker-new__values--{{ option_type }}">
+            {%- for value in option.values -%}
+              {%- liquid
+                assign swatch_image = blank
+                assign swatch_color = value | downcase | escape
+                assign swatch_focal_point = blank
+
+                for custom_color in key_array
+                  if custom_color == swatch_color
+                    assign swatch_color = val_array[forloop.index0] | strip
+                  endif
+                endfor
+
+                if swatch_color contains '.'
+                  assign swatch_image = swatch_color | file_url
+                  assign swatch_color = 'var(--bg-body)'
+                endif
+
+                if color_picker_use_variants
+                  for variant in product.variants
+                    if variant[option_key] == value and variant.image
+                      assign swatch_image = variant.image | image_url: width: 104
+                      break
+                    endif
+                  endfor
+                endif
+
+                if value.swatch.image
+                  assign swatch_image = value.swatch.image | image_url: width: 104
+                  assign swatch_focal_point = value.swatch.image.presentation.focal_point
+                elsif value.swatch.color
+                  assign swatch_color = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                endif
+              -%}
+              <button
+                type="button"
+                class="product-variant-picker-new__value{% if option_type == 'color' %} product-variant-picker-new__value--color{% else %} product-variant-picker-new__value--button{% endif %}{% if selected_value == value %} is-active{% endif %}"
+                data-pdp-new-option-value
+                data-option-index="{{ forloop.parentloop.index0 }}"
+                data-option-name="{{ option.name | escape }}"
+                data-value="{{ value | escape }}"
+                aria-pressed="{% if selected_value == value %}true{% else %}false{% endif %}"
+                style="{% if option_type == 'color' %}--option-color: {{ swatch_color | downcase | escape }};{% if swatch_image != blank %} --option-color-image: url('{{ swatch_image | escape }}');{% endif %}{% if swatch_focal_point != blank %} --option-focal-point: {{ swatch_focal_point }};{% endif %}{% endif %}"
+              >
+                <span>{{ value }}</span>
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </fieldset>
+    {%- endfor -%}
+  </div>
+
+  <script type="application/json" data-variants-json>
+    {{ product.variants | json }}
+  </script>
+  <script type="application/json" data-swatch-map>
+    {
+      {%- for custom_color in key_array -%}
+        {%- assign sw_val = val_array[forloop.index0] | strip -%}
+        {%- if sw_val contains '.' -%}
+          {{ custom_color | json }}: { "image": {{ sw_val | file_url | json }} }
+        {%- else -%}
+          {{ custom_color | json }}: { "color": {{ sw_val | json }} }
+        {%- endif -%}
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    }
+  </script>
+</product-variant-picker-new>
+
+{{ sizing_popup }}
+
+{% stylesheet %}
+  .product-variant-picker-new .product-form__input {
+    border: 0;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+
+  .product-variant-picker-new .form__label {
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
+
+  .product-variant-picker-new [data-handle='size'] .product-popup-modal__opener {
+    color: #140f0f;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: inherit;
+    margin-left: auto;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .product-variant-picker-new [data-handle='size'] .product-popup-modal__button {
+    color: inherit;
+    gap: 0;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    text-decoration: inherit;
+  }
+
+  .product-variant-picker-new [data-handle='size'] .product-popup-modal__button svg {
+    display: none;
+  }
+
+  .product-variant-picker-new [data-handle='size'] .product-popup-modal__button span {
+    font-size: inherit;
+    line-height: inherit;
+    text-decoration: inherit;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .product-variant-picker-new [data-handle='size'] .product-popup-modal__opener,
+    .product-variant-picker-new [data-handle='size'] .product-popup-modal__button span {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 24px;
+    }
+  }
+
+  .product-variant-picker-new__values {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .product-variant-picker-new__values--color {
+    column-gap: 8px;
+    row-gap: 0;
+  }
+
+  .product-variant-picker-new__values--block,
+  .product-variant-picker-new [data-handle='size'] .product-variant-picker-new__values {
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+
+  .product-variant-picker-new__value {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    margin: 0;
+    position: relative;
+  }
+
+  .product-variant-picker-new__value--button {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #7d7d7d;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px var(--color-border) inset;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 400;
+    height: 36px;
+    justify-content: center;
+    letter-spacing: 0;
+    line-height: 20px;
+    margin: 0;
+    min-width: 63px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .product-variant-picker-new [data-handle='size'] .product-variant-picker-new__value--button {
+    max-width: none;
+    min-width: 63px;
+  }
+
+  .product-variant-picker-new__value--button.is-active {
+    background: #140f0f;
+    box-shadow: none;
+    color: #fff;
+    z-index: 3;
+  }
+
+  .product-variant-picker-new__value--button.is-soldout {
+    background: rgba(231, 230, 230, 0.5);
+    border-color: transparent;
+    color: #686767;
+  }
+
+  .product-variant-picker-new__value--button.is-soldout.is-active {
+    box-shadow: 0 0 0 1px #140f0f inset;
+  }
+
+  .product-variant-picker-new__value--button.is-soldout::before {
+    content: '';
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .product-variant-picker-new__value--color {
+    align-items: center;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--color-border) inset;
+    color: transparent;
+    display: inline-flex;
+    height: 40px;
+    justify-content: center;
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    text-indent: -9999em;
+    width: 40px;
+    z-index: 1;
+  }
+
+  .product-variant-picker-new__value--color::after {
+    background-color: var(--option-color);
+    background-image: var(--option-color-image);
+    background-position: var(--option-focal-point, center);
+    background-size: cover;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 30px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+  }
+
+  .product-variant-picker-new__value--color.is-active {
+    box-shadow: 0 0 0 1px var(--color-body) inset;
+    z-index: 5;
+  }
+
+  .product-variant-picker-new__value:focus-visible {
+    outline: 2px solid #015ecc;
+    outline-offset: 2px;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  if (!customElements.get('product-variant-picker-new')) {
+    customElements.define(
+      'product-variant-picker-new',
+      class ProductVariantPickerNew extends HTMLElement {
+        connectedCallback() {
+          this.sectionId = this.dataset.section;
+          this.productFormId = this.dataset.productFormId;
+          this.updateUrl = this.dataset.updateUrl === 'true';
+          this.variants = JSON.parse(this.querySelector('[data-variants-json]').textContent);
+          this.selectedOptions = this.getSelectedOptionsFromDom();
+          this.currentVariant = this.findVariant();
+          this.abortController = null;
+          this.requestId = 0;
+
+          this.addEventListener('click', this.onOptionClick.bind(this));
+          this.addEventListener('change', this.onOptionChange.bind(this));
+          this.applyLocalizedSwatchImages();
+          this.updateAvailability();
+          this.commitState({ renderInfo: false });
+          window.requestAnimationFrame(() => {
+            this.updateMedia();
+          });
+        }
+
+        onOptionClick(event) {
+          const button = event.target.closest('[data-pdp-new-option-value]');
+          if (!button || !this.contains(button)) return;
+
+          event.preventDefault();
+          const optionIndex = Number(button.dataset.optionIndex);
+          this.selectedOptions[optionIndex] = button.dataset.value;
+          this.currentVariant = this.findVariant();
+          this.commitState({ renderInfo: true });
+        }
+
+        onOptionChange(event) {
+          const select = event.target.closest('[data-pdp-new-option-select]');
+          if (!select || !this.contains(select)) return;
+
+          const optionIndex = Number(select.dataset.optionIndex);
+          this.selectedOptions[optionIndex] = select.value;
+          this.currentVariant = this.findVariant();
+          this.commitState({ renderInfo: true });
+        }
+
+        getSelectedOptionsFromDom() {
+          return Array.from(this.querySelectorAll('[data-pdp-new-option]')).map((option) => {
+            return (
+              option.querySelector('[data-pdp-new-option-select]')?.value ||
+              option.querySelector('[data-pdp-new-option-value].is-active')?.dataset.value
+            );
+          });
+        }
+
+        findVariant() {
+          return this.variants.find((variant) => {
+            return variant.options.every((option, index) => option === this.selectedOptions[index]);
+          });
+        }
+
+        commitState({ renderInfo }) {
+          this.updateButtons();
+          this.updateCurrentLabels();
+          this.updateAvailability();
+          this.updateVariantInput();
+          this.updateAddButton();
+          this.updateMedia();
+          this.updatePickupAvailability();
+          this.updateUrlState();
+          this.updateStickyPicker();
+          this.dispatchVariantChange();
+          if (renderInfo) this.renderProductInfo();
+        }
+
+        updateButtons() {
+          this.querySelectorAll('[data-pdp-new-option]').forEach((option) => {
+            const optionIndex = Number(option.dataset.optionIndex);
+            const select = option.querySelector('[data-pdp-new-option-select]');
+            if (select && select.value !== this.selectedOptions[optionIndex])
+              select.value = this.selectedOptions[optionIndex];
+
+            option.querySelectorAll('[data-pdp-new-option-value]').forEach((button) => {
+              const isActive = button.dataset.value === this.selectedOptions[optionIndex];
+              button.classList.toggle('is-active', isActive);
+              button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+          });
+        }
+
+        updateCurrentLabels() {
+          this.querySelectorAll('[data-pdp-new-option]').forEach((option) => {
+            const optionIndex = Number(option.dataset.optionIndex);
+            const label = option.querySelector('[data-current-value]');
+            if (label) label.textContent = this.selectedOptions[optionIndex] || '';
+          });
+        }
+
+        updateAvailability() {
+          this.querySelectorAll('[data-pdp-new-option]').forEach((option) => {
+            const optionIndex = Number(option.dataset.optionIndex);
+            const select = option.querySelector('[data-pdp-new-option-select]');
+
+            if (select) {
+              Array.from(select.options).forEach((optionElement) => {
+                const testOptions = [...this.selectedOptions];
+                testOptions[optionIndex] = optionElement.value;
+                const matchingVariant = this.variants.find((variant) => {
+                  return variant.options.every((value, index) => value === testOptions[index]);
+                });
+                optionElement.disabled = false;
+              });
+            }
+
+            option.querySelectorAll('[data-pdp-new-option-value]').forEach((button) => {
+              const testOptions = [...this.selectedOptions];
+              testOptions[optionIndex] = button.dataset.value;
+              const matchingVariant = this.variants.find((variant) => {
+                return variant.options.every((value, index) => value === testOptions[index]);
+              });
+              const isMissingCombination = !matchingVariant;
+              const isSoldOut = matchingVariant && !matchingVariant.available;
+              button.classList.toggle('is-unavailable-combination', isMissingCombination);
+              button.classList.toggle('is-soldout', isMissingCombination || isSoldOut);
+              button.setAttribute('aria-disabled', isMissingCombination || isSoldOut ? 'true' : 'false');
+            });
+          });
+        }
+
+        updateStickyPicker() {
+          document.querySelectorAll(`variant-selects[data-section="${this.sectionId}"]`).forEach((picker) => {
+            if (!picker.id || picker.id.indexOf('--sticky') === -1) return;
+            this.selectedOptions.forEach((value, index) => {
+              const fieldset = picker.querySelector(`[data-index="option${index + 1}"]`);
+              const select = fieldset?.querySelector('select');
+              if (select) {
+                select.value = value;
+                return;
+              }
+              const input = Array.from(fieldset?.querySelectorAll('input[type="radio"]') || []).find(
+                (radio) => radio.value === value
+              );
+              if (input) input.checked = true;
+            });
+            if (typeof picker.updateOptions === 'function') picker.updateOptions();
+            if (typeof picker.updateMasterId === 'function') picker.updateMasterId();
+            if (typeof picker.updateVariantText === 'function') picker.updateVariantText();
+            if (typeof picker.setDisabled === 'function') picker.setDisabled();
+          });
+        }
+
+        updateVariantInput() {
+          const productForms = document.querySelectorAll(
+            `#${CSS.escape(this.productFormId)}, #product-form-installment`
+          );
+          productForms.forEach((form) => {
+            const input = form.querySelector('[name="id"]');
+            if (!input) return;
+            if (!this.currentVariant) {
+              input.value = '';
+              return;
+            }
+            input.value = this.currentVariant.id;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          });
+        }
+
+        updateAddButton() {
+          const submitButtons = document.querySelectorAll('.single-add-to-cart-button');
+          submitButtons.forEach((button) => {
+            const text = button.querySelector('.single-add-to-cart-button--text');
+            const isAvailable = this.currentVariant && this.currentVariant.available;
+            button.toggleAttribute('disabled', !isAvailable);
+            button.classList.toggle('sold-out', !isAvailable);
+            button.classList.remove('loading');
+            if (text)
+              text.textContent = this.currentVariant
+                ? isAvailable
+                  ? window.theme.variantStrings.addToCart
+                  : window.theme.variantStrings.soldOut
+                : window.theme.variantStrings.unavailable;
+          });
+        }
+
+        updateMedia() {
+          if (!this.currentVariant || !this.currentVariant.featured_media) return;
+          const gallery = document.querySelector(`#MediaGallery-${this.sectionId}`);
+          const slider = gallery?.querySelector('#Product-Slider');
+          if (!slider) return;
+
+          const mediaId = `${this.sectionId}-${this.currentVariant.featured_media.id}`;
+          const activeMedia = slider.querySelector(`[data-media-id="${mediaId}"]`);
+          if (!activeMedia) return;
+
+          slider.querySelectorAll('[data-media-id]').forEach((element) => element.classList.remove('is-active'));
+          activeMedia.classList.add('is-active');
+          activeMedia.parentElement.prepend(activeMedia);
+          this.updateColorRelatedMedia(gallery, slider);
+        }
+
+        updateColorRelatedMedia(gallery, slider) {
+          const currentAlt = this.currentVariant?.featured_media?.alt || '';
+          const currentColor = (currentAlt.match(/\*\*(.*?)\*\*/)?.[1] || '').toLowerCase().trim();
+          gallery.querySelectorAll('[data-color-info]').forEach((media) => {
+            const mediaColor = ((media.dataset.colorInfo || '').match(/\*\*(.*?)\*\*/)?.[1] || '').toLowerCase().trim();
+            if (!mediaColor || !currentColor) {
+              media.classList.remove('color-info-hide');
+            } else {
+              media.classList.toggle('color-info-hide', mediaColor !== currentColor);
+            }
+          });
+          this.updateMediaPagination(gallery, slider);
+        }
+
+        updateMediaPagination(gallery, slider) {
+          const visibleSlides = Array.from(slider.querySelectorAll('[data-media-id]')).filter((slide) => {
+            return !slide.classList.contains('color-info-hide');
+          });
+          const activeIndex = Math.max(
+            0,
+            visibleSlides.findIndex((slide) => slide.classList.contains('is-active'))
+          );
+
+          gallery.querySelectorAll('.product-images-buttons').forEach((pagination) => {
+            const current = pagination.querySelector('.slider-counter--current');
+            const total = pagination.querySelector('.slider-counter--total');
+            const prev = pagination.querySelector('.slider-button--prev');
+            const next = pagination.querySelector('.slider-button--next');
+
+            if (current) current.textContent = String(activeIndex + 1);
+            if (total) total.textContent = String(visibleSlides.length);
+            if (prev) prev.toggleAttribute('disabled', activeIndex <= 0);
+            if (next) next.toggleAttribute('disabled', activeIndex >= visibleSlides.length - 1);
+          });
+        }
+
+        applyLocalizedSwatchImages() {
+          const mapEl = this.querySelector('[data-swatch-map]');
+          const colorButtons = Array.from(this.querySelectorAll('[data-handle="color"] [data-pdp-new-option-value]'));
+          if (!mapEl || !colorButtons.length) return;
+
+          let swatchMap;
+          try {
+            swatchMap = JSON.parse(mapEl.textContent);
+          } catch (error) {
+            return;
+          }
+
+          const colorValues = new Set(colorButtons.map((button) => button.dataset.value.toLowerCase().trim()));
+          const bridge = {};
+          this.variants.forEach((variant) => {
+            const alt = variant.featured_media?.alt || '';
+            const english = (alt.match(/\*\*(.*?)\*\*/)?.[1] || '').toLowerCase().trim();
+            if (!english) return;
+
+            (variant.options || []).forEach((option) => {
+              const key = String(option).toLowerCase().trim();
+              if (colorValues.has(key)) bridge[key] = english;
+            });
+          });
+
+          let swatchBaseUrl = '';
+          Object.keys(swatchMap).some((key) => {
+            const image = swatchMap[key]?.image;
+            if (image && image.indexOf('/') > -1) {
+              swatchBaseUrl = image.slice(0, image.lastIndexOf('/') + 1);
+              return true;
+            }
+            return false;
+          });
+
+          colorButtons.forEach((button) => {
+            const raw = button.dataset.value.toLowerCase().trim();
+            const english = bridge[raw] || raw;
+            const info = swatchMap[english] || swatchMap[raw];
+
+            if (info?.image) {
+              button.style.setProperty('--option-color', 'var(--bg-body)');
+              button.style.setProperty('--option-color-image', `url('${info.image}')`);
+            } else if (info?.color) {
+              button.style.setProperty('--option-color', info.color);
+              button.style.removeProperty('--option-color-image');
+            } else if (swatchBaseUrl && english) {
+              this.applyConstructedSwatch(button, swatchBaseUrl, english);
+            }
+          });
+        }
+
+        applyConstructedSwatch(button, baseUrl, english) {
+          const slug = english.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          if (!slug) return;
+
+          const cleanBase = baseUrl.split('?')[0];
+          const exts = ['png', 'jpg', 'jpeg', 'webp'];
+          let index = 0;
+          const tryNext = () => {
+            if (index >= exts.length) return;
+            const url = `${cleanBase}${slug}.${exts[index++]}`;
+            const image = new Image();
+            image.onload = () => {
+              button.style.setProperty('--option-color', 'var(--bg-body)');
+              button.style.setProperty('--option-color-image', `url('${url}')`);
+            };
+            image.onerror = tryNext;
+            image.src = url;
+          };
+          tryNext();
+        }
+
+        updatePickupAvailability() {
+          const pickup = document.querySelector('.pickup-availability-wrapper');
+          if (!pickup) return;
+          if (this.currentVariant && this.currentVariant.available) {
+            pickup.fetchAvailability?.(this.currentVariant.id);
+          } else {
+            pickup.removeAttribute('available');
+            pickup.innerHTML = '';
+          }
+        }
+
+        updateUrlState() {
+          if (!this.currentVariant || !this.updateUrl) return;
+          window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+        }
+
+        renderProductInfo() {
+          if (!this.currentVariant) return;
+          this.requestId += 1;
+          const requestId = this.requestId;
+          if (this.abortController) this.abortController.abort();
+          this.abortController = new AbortController();
+
+          const sections = this.getSectionsToRender();
+          fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.sectionId}`, {
+            signal: this.abortController.signal,
+          })
+            .then((response) => response.text())
+            .then((responseText) => {
+              if (requestId !== this.requestId) return;
+              const html = new DOMParser().parseFromString(responseText, 'text/html');
+              sections.forEach((id) => {
+                const destination = document.getElementById(id);
+                const source = html.getElementById(id);
+                if (source && destination) destination.innerHTML = source.innerHTML;
+                const price = document.getElementById(id);
+                const priceFixed = document.getElementById(id + '--sticky');
+                if (price) price.classList.remove('visibility-hidden');
+                if (priceFixed) priceFixed.classList.remove('visibility-hidden');
+              });
+              this.updateAddButton();
+              this.updateUrlState();
+            })
+            .catch((error) => {
+              if (error.name !== 'AbortError') console.error(error);
+            });
+        }
+
+        getSectionsToRender() {
+          return [
+            `price-${this.sectionId}`,
+            `price-${this.sectionId}--sticky`,
+            `product-image-${this.sectionId}--sticky`,
+            `inventory-${this.sectionId}`,
+            `sku-${this.sectionId}`,
+            `quantity-${this.sectionId}`,
+          ];
+        }
+
+        dispatchVariantChange() {
+          document.dispatchEvent(
+            new CustomEvent('product:variant-change', {
+              detail: {
+                variant: this.currentVariant,
+                sectionId: this.sectionId,
+              },
+            })
+          );
+        }
+      }
+    );
+  }
+{% endjavascript %}

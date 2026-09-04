@@ -1,0 +1,250 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    .seriesPage4_Box img {
+        width: 100%;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .seriesPage4All{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}} .seriesPage4All{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+    }
+    .seriesPage_container {
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+    @media (min-width:1000px) {
+        .seriesPage4_title {
+            text-align: center;
+            font-weight: 500;
+            line-height: 100%;
+            margin-bottom: 60px;
+        }
+        .seriesPage4_Box {
+            display: block;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .seriesPage4_boxText {
+            padding: 18px;
+            text-align: center;
+            line-height: 120%;
+        }
+    }
+
+    @media (max-width:999px) {
+        .seriesPage4All .row.full-width-row,.seriesPage4All .row .columns{
+            padding: 0;
+        }
+        .seriesPage4_title {
+            text-align: center;
+            font-weight: 500;
+            line-height: 100%;
+            margin-bottom: 30px;
+        }
+        .seriesPage4_box {
+            display: grid;
+            gap: 6px;
+            grid-template-columns: repeat(2,1fr);
+        }
+        .seriesPage4_Box {
+            border-radius: 13px;
+            overflow: hidden;
+        }
+        .seriesPage4_boxText {
+            padding: 13px;
+            text-align: center;
+            line-height: 120%;
+        }
+ 
+    } 
+</style>
+<div class="seriesPage4All">
+    <div class="row full-width-row">
+        <div class="columns">
+            <div class="seriesPage_container">
+                {% if section.settings.title !=blank %}
+                    <h2 class="seriesPage4_title my_h_34 my_m_18">
+                        {{section.settings.title}}
+                    </h2>
+                {% endif %}
+                <div class="pad_pc">
+                    <div class="seriesPage4_box">
+                        <div class="swiper seriesPage4Swiper">
+                            <div class="swiper-wrapper">
+                                {% for block in section.blocks %}
+                                    <div class="swiper-slide">
+                                        <a href="{%- if block.settings.link !=blank -%}{{block.settings.link}} {%- else -%} javascript:void(0){%- endif -%}" class="seriesPage4_Box" style="background-color: {{ block.settings.bg_color}}; color: {{ block.settings.text_color}}">
+                                            <div class="seriesPage4_boxImg img_hover">
+                                                <img src="{{ block.settings.img | img_url: 'master' }}" class="hover_img" alt="{{block.settings.img.alt}}">
+                                            </div>
+                                            {% if block.settings.text !=blank %}
+                                                <div class="seriesPage4_boxText my_h_18 my_m_14">
+                                                    {{block.settings.text}}
+                                                </div>
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pad_mobile">
+                    <div class="seriesPage4_box">
+                        {% for block in section.blocks %}
+                        <a href="{%- if block.settings.link !=blank -%}{{block.settings.link}} {%- else -%} javascript:void(0){%- endif -%}" class="seriesPage4_Box" style="background-color: {{ block.settings.bg_color}}; color: {{ block.settings.text_color}}">
+                            <div class="seriesPage4_boxImg img_hover">
+                                <img src="{{ block.settings.img | img_url: 'master' }}" class="hover_img" alt="{{block.settings.img.alt}}">
+                            </div>
+                            {% if block.settings.text !=blank %}
+                                <div class="seriesPage4_boxText my_h_18 my_m_14">
+                                    {{block.settings.text}}
+                                </div>
+                            {% endif %}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const swiper4 = new Swiper('#shopify-section-{{ section.id }} .seriesPage4Swiper', {
+        observer: true,  //开启动态检查器，监测swiper和slide
+        observeParents: true,  //监测Swiper 的祖/父元素  
+        slidesPerView: 5, 
+        spaceBetween: 15,
+        mousewheel: {
+            forceToAxis: true,
+        }
+    });
+});
+</script>
+{% schema %} 
+  {
+    "name": "Series Page4",
+    "settings":[
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+    "blocks":[
+        {
+            "type": "text",
+            "name": "text",
+            "settings": [
+               
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "img"
+                },
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "text"
+                },
+                {
+                    "type": "color",
+                    "id": "bg_color",
+                    "label": "background color"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "text color"
+                },
+                {
+                  "type": "url",
+                  "id": "link",
+                  "label": "link"
+                }
+            ]
+        }
+
+    ],
+    "presets": [
+        {
+            "name": "Series Page4"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

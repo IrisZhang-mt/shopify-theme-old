@@ -1,0 +1,171 @@
+<style>
+  .collapsible__content:has(.custom-product-content) {
+    margin-top: 6px;
+  }
+  .custom-product-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .custom-product-content ul {
+    margin-bottom: 0;
+  }
+  .custom-product-content img {
+    object-position: top;
+    object-fit: contain;
+  }
+  .custom-product-content-small-title {
+    margin-bottom: 10px;
+    display: block;
+  }
+</style>
+{%- case block.settings.custom_product_data -%}
+  {%- when 'size_fit' -%}
+    <div class="custom-product-content">
+      {%- if product.metafields.custom.size_fit != blank -%}
+        <div>
+          <strong class="custom-product-content-small-title">Fitting information</strong>
+          {{ product.metafields.custom.size_fit | metafield_tag }}
+        </div>
+      {%- endif -%}
+      {%- if product.metafields.custom.size_fit_img.value.size > 0 -%}
+        {%- for size_fit_img_item in product.metafields.custom.size_fit_img.value -%}
+          {{ size_fit_img_item | image_url: width: 1200 | image_tag: alt: size_fit_img_item.alt, class: 'size_fit_img' }}
+        {% endfor %}
+      {% endif %}
+      {%- if product.metafields.custom.size_fit_model_measurement.value.size > 0 -%}
+        <div>
+          <p>
+            <strong> Model Measurement </strong>
+          </p>
+          {%- assign measurement_offset = 0 -%}
+          {%- for model_img in product.metafields.custom.size_fit_model_images.value -%}
+            <div class="model-card">
+              {% if model_img.src != blank %}
+                {{ model_img | image_url: width: 300 | image_tag: alt: model_img.alt, class: 'model-image' }}
+              {% endif %}
+              <div class="size-fit-key-value-grid">
+                {%- for v in product.metafields.custom.size_fit_model_measurement.value limit: 3 offset: measurement_offset -%}
+                  {%- assign key = v | split: ' - ' | first -%}
+                  {%- assign value = v | split: ' - ' | last -%}
+                  <div>{{ key }}</div>
+                  <div>{{ value }}</div>
+                {%- endfor -%}
+                {%- assign measurement_offset = measurement_offset | plus: 3 -%}
+              </div>
+            </div>  
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div style="display: flex;">
+        {{ settings.size_fit_text }}
+        {% if block.settings.show_size_fit %}
+          <button
+            type="button"
+            class="size-fit-link"
+          >
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5896 5.19669L12.3574 6.96446M4.69708 11.0892L2.10435 13.682C1.90909 13.8772 1.90907 14.1938 2.10435 14.3891L6.11129 18.396C6.30655 18.5913 6.62314 18.5913 6.8184 18.396L17.8964 7.31801C18.0917 7.12273 18.0917 6.80617 17.8964 6.61091L13.8895 2.60397C13.6942 2.40869 13.3776 2.40869 13.1824 2.60397L10.5896 5.19669L4.69708 11.0892ZM4.69708 11.0892L6.46484 12.857L4.69708 11.0892ZM4.69708 11.0892L7.64335 8.14297L4.69708 11.0892ZM7.64335 8.14297L9.41112 9.91074L7.64335 8.14297ZM7.64335 8.14297L10.5896 5.19669L7.64335 8.14297Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Size Chart
+          </button>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              document.querySelector('.size-fit-link').addEventListener('click', function () {
+                document.querySelector('[data-handle="size"] [aria-haspopup="dialog"]').click();
+              });
+            });
+          </script>  
+        {% endif %}
+      </div>
+    </div>
+  {%- when 'materials' -%}
+    <style>
+      .materials-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .materials-care{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .materials-list-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 48%;
+      }
+    </style>
+    <div
+      class="custom-product-content"
+    >
+      {%- if product.metafields.custom.materials_text != blank -%}
+        <div>
+          <strong class="custom-product-content-small-title">Materials</strong>
+          {{ product.metafields.custom.materials_text | metafield_tag }}
+          {%- if product.metafields.custom.materials_img != blank -%}
+            {{ product.metafields.custom.materials_img | image_url: width: 1200 | image_tag: alt: product.metafields.custom.materials_img.alt, class: 'materials_img' }}
+          {% endif %}
+        </div>
+      {%- endif -%}
+      {%- if product.metafields.custom.care_list.value.size > 0 -%}
+        <div class="materials-list">
+          <div>
+            <strong>Care</strong>
+          </div>
+          <div class="materials-care">
+          {%- for v in product.metafields.custom.care_list.value -%}
+            <div class="materials-list-item">
+              {%- case v -%}
+                {%- when 'Machine Wash Cold' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 5L20.0455 17.3135C19.8913 18.2849 19.0538 19 18.0702 19H5.92981C4.94628 19 4.10872 18.2849 3.95454 17.3135L2 5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 11C19 11 16.5 8 16.5 8C16.5 8 14.3513 11 12 11C9.64873 11 7.5 8 7.5 8C7.5 8 5 11 3 11" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- when 'Do Not Bleach' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2007_22885)">
+                    <path d="M12 3.1084L21.5263 19.6084H2.47372L12 3.1084Z" stroke="black" stroke-linejoin="round"/>
+                    <path d="M1 8.1084L23 15.1084" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23 8.1084L1 15.1084" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_2007_22885">
+                    <rect width="24" height="24" fill="white"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+                {%- when 'Tumble Dry Low' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.9999 3.99999L21 20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V4C3 2.89543 3.89543 2 5 2H18.9999C20.1045 2 20.9999 2.89543 20.9999 3.99999Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 5.01001L18.01 4.9989" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 19C15.3137 19 18 16.3137 18 13C18 9.68629 15.3137 7 12 7C8.68629 7 6 9.68629 6 13C6 16.3137 8.68629 19 12 19Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 16C10.3431 16 9 14.6569 9 13" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- when 'Do Not Iron' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 10.5567H13.5517C7.72417 10.5567 3 15.2808 3 21.1084V21.1084H21V4.1084H9" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 11.1084L22 20.1084" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 11.1084L2 20.1084" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- when 'Do Not Dry Clean' -%}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 1.1084L22 22.1084" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 1.1084L2 22.1084" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="11.1084" r="8.5" stroke="black"/>
+                  </svg>
+              {%- endcase -%}
+              {{ v }}
+            </div>
+          {%- endfor -%}
+          </div>
+        </div>
+        {%- if product.metafields.custom.care_img != blank -%}
+          {{ product.metafields.custom.care_img | image_url: width: 1200 | image_tag: alt: product.metafields.custom.care_img.alt, class: 'care_img' }}
+        {% endif %}
+      {%- endif -%}
+    </div>
+{%- endcase -%}

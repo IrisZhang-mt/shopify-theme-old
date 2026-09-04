@@ -1,0 +1,16 @@
+{%- assign level_2_name = parent_title | strip_html | downcase | escape -%}
+
+{%- if level_2_name contains 'color'
+  or level_2_name contains 'colors'
+  or level_2_name contains 'colour'
+  or level_2_name contains 'couleur'
+  or level_2_name contains 'farbe'
+-%}
+  {%- if enable_color_circle -%}
+    {%- render 'level-3-color-icon', value: value -%}
+  {%- endif -%}
+{%- elsif level_2_name contains 'activities' or level_2_name contains 'back to school' or level_2_name contains 'occasions' -%}
+  {%- if enable_icon -%}
+    {%- render 'level-3-custom-icon', value: value -%}
+  {%- endif -%}
+{%- endif -%}

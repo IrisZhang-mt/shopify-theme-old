@@ -1,0 +1,203 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_image": false,
+        "show_collection_description": true,
+        "show_subcollections": true,
+        "make_heading_uppercase": false,
+        "heading_size": "h2",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40
+      }
+    },
+    "collection_menu_fJaMWX": {
+      "type": "collection-menu",
+      "blocks": {
+        "image_text_aX6P4b": {
+          "type": "image_text",
+          "settings": {
+            "link": "",
+            "image": "shopify://shop_images/AirSupplyPants-Midnight5.jpg",
+            "title": "Pants",
+            "icon_1": "shopify://shop_images/Everyday.webp",
+            "description_1": "Test Description1 Test Description1",
+            "icon_2": "shopify://shop_images/Silhouette.webp",
+            "description_2": "Test Description2 Test Description2",
+            "icon_3": "shopify://shop_images/Size.webp",
+            "description_3": "Test Description3 Test Description3"
+          }
+        },
+        "image_text_dhz3Lh": {
+          "type": "image_text",
+          "settings": {
+            "link": "",
+            "image": "shopify://shop_images/AirSupplyPants-Midnight5.jpg",
+            "title": "Pants22",
+            "icon_1": "shopify://shop_images/Everyday.webp",
+            "description_1": "Test Description 1Test Description122",
+            "icon_2": "shopify://shop_images/Silhouette.webp",
+            "description_2": "Test Description 2Test Description22",
+            "icon_3": "shopify://shop_images/Size.webp",
+            "description_3": "Test Description 3Test Description32"
+          }
+        },
+        "image_text_6ex9qD": {
+          "type": "image_text",
+          "settings": {
+            "link": "",
+            "image": "shopify://shop_images/AirSupplyPants-Midnight5.jpg",
+            "title": "Pants333",
+            "icon_1": "shopify://shop_images/Everyday.webp",
+            "description_1": "Test Description 1Test De3",
+            "icon_2": "shopify://shop_images/Silhouette.webp",
+            "description_2": "Test Description2 Test Description233",
+            "icon_3": "shopify://shop_images/Size.webp",
+            "description_3": "Test Description3 Test De3"
+          }
+        },
+        "image_text_YX7FB3": {
+          "type": "image_text",
+          "settings": {
+            "link": "",
+            "image": "shopify://shop_images/AirSupplyPants-Midnight5.jpg",
+            "title": "Pants44",
+            "icon_1": "shopify://shop_images/Everyday.webp",
+            "description_1": "Test Description1 Test Description144",
+            "icon_2": "shopify://shop_images/Silhouette.webp",
+            "description_2": "Test Description2 Test Description24",
+            "icon_3": "shopify://shop_images/Size.webp",
+            "description_3": "Test Description3 Test Description34"
+          }
+        },
+        "image_text_k9mKzb": {
+          "type": "image_text",
+          "settings": {
+            "link": "",
+            "image": "shopify://shop_images/AirSupplyPants-Midnight5.jpg",
+            "title": "Pants55",
+            "icon_1": "shopify://shop_images/Everyday.webp",
+            "description_1": "Test Description1 Test Description155",
+            "icon_2": "shopify://shop_images/Silhouette.webp",
+            "description_2": "Test Description2 Test Descriptio55",
+            "icon_3": "shopify://shop_images/Size.webp",
+            "description_3": "Test Description3 Test Descriptio55"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_aX6P4b",
+        "image_text_dhz3Lh",
+        "image_text_6ex9qD",
+        "image_text_YX7FB3",
+        "image_text_k9mKzb"
+      ],
+      "name": "Collection Menu",
+      "settings": {
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "columns_desktop": 5
+      }
+    },
+    "index_collection_UQtHW8": {
+      "type": "index-collection",
+      "blocks": {
+        "text_nEF9fY": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1200_588.jpg",
+            "text": "30% Off 5 Pieces",
+            "link": "shopify://collections/30-off-5-pieces",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_mJQHCq": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1200_588_eb284cbf-c601-4e02-8ed8-37062fae144d.jpg",
+            "text": "20% Off Every Piece",
+            "link": "shopify://collections/black-friday-2024",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_3HEfmT": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1200_588_2_1.jpg",
+            "text": "Free Gifts $299+",
+            "link": "shopify://collections/all",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_C8exYj": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1200_588_3.jpg",
+            "text": "Leggings",
+            "link": "shopify://collections/holiday-best-selling-leggings",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_nEF9fY",
+        "text_mJQHCq",
+        "text_3HEfmT",
+        "text_C8exYj"
+      ],
+      "settings": {
+        "img": "shopify://shop_images/pc111_74504e2f-0533-4ffd-9718-4f83eea98db7.jpg",
+        "img_mobile": "shopify://shop_images/mb111.jpg",
+        "title": "Black Friday Deals",
+        "text": "Up to 50% Off Storewide.",
+        "button": "Details",
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 80,
+        "Mobile_paddingTop": 50,
+        "Desktop_bottom": 50,
+        "Mobile_bottom": 40,
+        "Desktop_paddingBottom": 80,
+        "Mobile_paddingBottom": 50,
+        "text_color": "#ffffff"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "full_width": true,
+        "products_per_page": 20,
+        "columns_desktop": 4,
+        "pagination_type": "paginated",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_counts": false,
+        "filter_color_swatches": true,
+        "facets_desktop": "drawer"
+      }
+    }
+  },
+  "order": [
+    "main-collection-banner",
+    "collection_menu_fJaMWX",
+    "index_collection_UQtHW8",
+    "product-grid"
+  ]
+}

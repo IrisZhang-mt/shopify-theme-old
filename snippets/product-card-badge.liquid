@@ -1,0 +1,59 @@
+{%- liquid
+	assign badge_position = settings.badge_position
+	assign product_card_badge_limit = product_card_badge_limit | default: 0 | plus: 0
+	assign product_card_badge_count = 0
+-%}
+
+    <div class="collection_badge {{ badge_position }}">
+	{%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+		{%- unless product_card_product.available -%}
+    	<span class=" badge_1 out-of-stock {{ badge_position }}">{{ 'products.product.sold_out' | t }}</span>
+			{%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+    {%- endunless -%}
+	{%- endif -%}
+    
+	{%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+    {%- if product_card_product.metafields.theme.preorder and product_card_product.available -%}
+    <span class=" badge_1 pre-order {{ badge_position }}">
+    	{{ 'products.product.pre_order' | t }}
+    </span>
+			{%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+    {%- endif -%}
+	{%- endif -%}
+  
+	{%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+	{%- if product_card_product.compare_at_price > product_card_product.price and product_card_product.available -%}
+		{%- if settings.sale_badge_type == 'save_amount' -%}
+			{%- capture saved_amount -%}{{ product_card_product.compare_at_price | minus: product_card_product.price | money }}{%- endcapture -%}
+		{%- elsif settings.sale_badge_type == 'save_percentage' -%}
+			{%- capture saved_amount -%}{{ product_card_product.compare_at_price | minus: product_card_product.price | times: 100.0 | divided_by: product_card_product.compare_at_price | round }}%{%- endcapture -%}
+		{%- endif -%}
+		<div class="onsale onsale_a badge badge_1">
+			{%- if settings.sale_badge_type == 'sale' -%}
+			{{ 'products.product.on_sale' | t }}
+			{%- else -%}
+			{{ 'products.product.save_html' | t: saved_amount: saved_amount }}
+			{%- endif -%}
+		</div>
+		{%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+	{%- endif -%}
+	{%- endif -%}
+
+	{%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+	{% if product_card_product.metafields.custom.product_badges !=blank %}
+		<div class=" badge_1" style="color:{{settings.tag_1}}; background:{{settings.tag_bg1}}">
+			{{ product_card_product.metafields.custom.product_badges.value }}
+		</div>
+		{%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+	{% endif %}
+	{%- endif -%}
+	{%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+	{% if product_card_product.metafields.custom.product_badges2 !=blank %}
+	<div class=" badge_1" style="color:{{settings.tag_2}}; background:{{settings.tag_bg2}}">
+		{{ product_card_product.metafields.custom.product_badges2.value }}
+	</div>
+	{%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+	{% endif %}
+	{%- endif -%}
+
+</div>

@@ -1,0 +1,103 @@
+<!-- Ptengine Tag -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function(){
+    var s = document.createElement('script');
+    s.src = "https://js.ptengine.com/5984s0mw.js";
+    s.async = true;
+    document.body.appendChild(s);
+  }, 2000);
+});
+</script>
+<!-- End Ptengine Tag -->
+<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"136026162"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+ <meta name="p:domain_verify" content="7890c24dbe3d32c2e06bab9ead7e0d1b"/>
+<meta name="facebook-domain-verification" content="wx6tsxnep9mdlcv3b8lltfgcpm3aaf" />
+<meta name="facebook-domain-verification" content="xmxgbtl6m63zfa3mrtwo30d1re9s3y" />
+<meta name="google-site-verification" content="cJDnvyrGkUqH__eHUYvcUgqT8X7FhOgaNf5pp7j903k" />
+
+{% render 'kiwiSizing' %}
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5FZZVPR45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L5FZZVPR45');
+</script>
+<!-- Hotjar Tracking Code for https://moodytiger.com/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:4937249,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<!-- RedRetarget App Hook start -->
+<link rel="dns-prefetch" href="https://trackifyx.redretarget.com">
+
+
+<!-- HOOK JS-->
+{% if template contains "product" %}
+<meta name="tfx:tags" content="{% for tag in product.tags %} {{ tag | strip_html }}, {% endfor %}">
+<meta name="tfx:collections" content="{% for collection in product.collections %}{{ collection.title }}, {% endfor %}">
+{% endif %}
+
+{% if template contains "cart" %}
+<meta name="tfx:tags" content="{% for line_item in cart.items %}{% for tag in line_item.product.tags %}{{ tag | strip_html }}, {% endfor %}{% endfor %}">
+<meta name="tfx:collections" content="{% for line_item in cart.items %}{% for collection in line_item.product.collections %}{{ collection.title }}, {% endfor %}{% endfor %}">
+{% endif %}
+
+{% if template contains "collection" %}
+<meta name="tfx:collections" content="{{ collection.title }}">
+{% endif %}
+{% if cart %}
+<script id="tfx-cart">
+    {% assign carttData = cart | json %}
+    window.tfxCart = {{ carttData }}
+</script>
+{% endif %}
+
+{% if product %}
+<script id="tfx-product">
+    {% assign productData = product | json %}
+    window.tfxProduct = {{ productData }}
+</script>
+{% endif %}
+<script type="text/javascript">
+    /* ----- TFX Theme hook start ----- */
+    (function (t, r, k, f, y, x) {
+        if (t.tkfy != undefined) return true;
+        t.tkfy = true;
+        y = r.createElement(k); y.src = f; y.async = true;
+        x = r.getElementsByTagName(k)[0]; x.parentNode.insertBefore(y, x);
+    })(window, document, 'script', 'https://trackifyx.redretarget.com/pull/moody-tiger-athletics.myshopify.com/hook.js');
+    /* ----- TFX theme hook end ----- */
+</script>
+<!-- RedRetarget App Hook end -->
+ <!-- Global site tag (gtag.js) - Google Ads: 328304465 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-328304465"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-328304465', {'allow_enhanced_conversions': true});
+</script>
+{%- comment -%} 性能优化：移除 HSO(Hello GA) 基础标签 render，它仅给已废弃的 GA4 G-PD6ND47KE5 上报，非保留属性。保留中的 G-3BYSEPC9BK 由 Shopify 原生集成上报，不受影响。如需彻底清理，建议同时在 Shopify 后台卸载 HSO App。 {%- endcomment -%}
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-T8D7KC2');</script>
+	<!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8D7KC2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{%- comment -%} 性能优化：移除 HSO(Hello GA) 电商事件 render（view_item/add_to_cart 等），同上仅喂非保留属性 G-PD6ND47KE5。 {%- endcomment -%}

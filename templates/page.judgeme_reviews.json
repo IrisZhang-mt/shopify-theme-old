@@ -1,0 +1,327 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "16618629918566dc27": {
+      "type": "rich-text",
+      "blocks": {
+        "1661862991ee6f499c-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Reviews",
+            "size": "h2"
+          }
+        },
+        "1661862991ee6f499c-2": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>If you have any further questions that are not addressed in the FAQ section, please feel free to contact us.</p>",
+            "custom_liquid": "",
+            "size": "text-size-small"
+          }
+        },
+        "button_A93ryz": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "link_label": "Contact Us",
+            "link": "shopify://pages/contact-us",
+            "button_outline": false
+          }
+        }
+      },
+      "block_order": [
+        "1661862991ee6f499c-1",
+        "1661862991ee6f499c-2",
+        "button_A93ryz"
+      ],
+      "settings": {
+        "section_width": "grid",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "color_bg": "rgba(0,0,0,0)",
+        "color_text": "#151515",
+        "color_links": "#000000",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "166186303682d7c655": {
+      "type": "spacer",
+      "disabled": true,
+      "settings": {
+        "spacer_mobile": 40,
+        "spacer_desktop": 80,
+        "border_separator": true,
+        "border_separator_full": true
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "a82c71ab-5eef-4ac6-8278-42c4bf4565d6": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What shipping methods are available, and how's the cost?",
+            "open": false,
+            "content": "<p>We can offer standard and expedite shipping currently. For the cost, you can enjoy FREE STANDARD SHIPPING on orders over <strong>US$79</strong>. Otherwise, a shipping fee will be charged. The exact cost depends on the destination country. You can check our <a href=\"https://moodytiger.com/pages/shipping\" title=\"Shipping Policy\">shipping policy </a>for details.</p>",
+            "page": ""
+          }
+        },
+        "aa70895f-8889-4293-8c7d-ff7bc2b81c57": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Do you ship worldwide?",
+            "open": false,
+            "content": "<p>Yes! We currently ship to most countries in the world. You can double-check on the shipping policy page. If you can't find your country on the shipping page, kindly email us at <a href=\"mailto:order@moodytiger.com\" target=\"_blank\" title=\"mailto:order@moodytiger.com\">order@moodytiger.com</a> and we'll do our best to get you covered.</p>",
+            "page": ""
+          }
+        },
+        "72f09ca5-4337-4a0b-bcd2-0a7af9183034": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How can I track my order?",
+            "open": false,
+            "content": "<p>A shipping confirmation email with tracking number will be sent to you as soon as the order is shipped out. If you didn't get the confirmation email, please check your junk/spam folder. If it still doesn't show up, please email us at <a href=\"mailto:order@moodytiger.com\">order@moodytiger.com</a>.</p>",
+            "page": ""
+          }
+        },
+        "d8b3ed5d-d5cf-4b20-9bed-893f2be8497f": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How long will it take to get my order?",
+            "open": false,
+            "content": "<p>The processing time of in-stock items typically takes 1-2 business days to process after the order is placed. Shipping time can also vary from region to region, but delivery will occur within approximately 6-15 business days. For detailed information, please visit our <a href=\"https://moodytiger.com/pages/shipping\" title=\"Shipping Policy\">shipping policy</a>.</p>",
+            "page": ""
+          }
+        },
+        "5f34dba8-15e0-4aac-91f7-5a103657361d": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How do I change my address once an order has been placed?",
+            "open": false,
+            "content": "<p>Please contact our customer service at <a href=\"mailto:order@moodytiger.com\">order@moodytiger.com </a>immediately to change your address before the shipment. Once the order is shipped, the address cannot be changed.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "a82c71ab-5eef-4ac6-8278-42c4bf4565d6",
+        "aa70895f-8889-4293-8c7d-ff7bc2b81c57",
+        "72f09ca5-4337-4a0b-bcd2-0a7af9183034",
+        "d8b3ed5d-d5cf-4b20-9bed-893f2be8497f",
+        "5f34dba8-15e0-4aac-91f7-5a103657361d"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Shipping",
+        "description": "",
+        "uppercase_heading": false,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "collapsible_content_b4ggTY": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_tab_ATV3z6": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Can I cancel or change my order?",
+            "open": false,
+            "content": "<p>To cancel or change the order, please contact our customer service at <a href=\"mailto:order@moodytiger.com\">order@moodytiger.com</a> within 24 hours. If the product has been shipped or you have received a shipping confirmation email, the order status cannot be modified.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_afD3QJ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Is it safe to purchase items on moodytiger.com?",
+            "open": false,
+            "content": "<p>To cancel or change the order, please contact our customer service at <a href=\"mailto:order@moodytiger.com\">order@moodytiger.com</a> within 24 hours. If the product has been shipped or you have received a shipping confirmation email, the order status cannot be modified.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_hDtEVp": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How do I know when the item I'm looking for is back in stock?",
+            "open": false,
+            "content": "<p>You can click \"Notify me when available\" on the product page, select color and size, enter your email address, and you will receive an email notification when the item is back in stock.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_ATV3z6",
+        "collapsible_tab_afD3QJ",
+        "collapsible_tab_hDtEVp"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Order",
+        "description": "",
+        "uppercase_heading": false,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "collapsible_content_7tFkVw": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_tab_kxQyr4": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How to choose the size properly?",
+            "open": false,
+            "content": "<p>If you are hesitant about sizing, please check our Size Chart on the product page right beside the size selector, or on the footer menu for details. If you still have problems with sizing after checking the Size Chart, please feel free to drop us an email at <a href=\"mailto:order@moodytiger.com\">order@moodytiger.com</a>. We are more than happy to assist.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_kxQyr4"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Size Guide",
+        "description": "",
+        "uppercase_heading": false,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "collapsible_content_Ec774R": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_tab_GBYnKd": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How do I return an item?",
+            "open": false,
+            "content": "<p>To start a return, you can contact us at <a href=\"mailto:order@moodytiger.com\">order@moodytiger.com</a>. If your return is accepted, we'll send you instructions on how and where to return your package.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_UtRHHr": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How long does a refund take to process?",
+            "open": false,
+            "content": "<p>We will notify you once we've received and inspected your return, and let you know if the refund was approved or not. If approved, you'll be automatically refunded on your original payment method. Please remember it will take some time for your bank or credit card company to process and post the refund, too.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_Pn8bDD": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Do you offer exchanges?",
+            "open": false,
+            "content": "<p>To exchange an item, please contact <a href=\"mailto:order@moodytiger.com\">order@moodytiger.com </a>with your order number and the items you need to exchange. Our customer service will send you the instructions to exchange.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_GBYnKd",
+        "collapsible_tab_UtRHHr",
+        "collapsible_tab_Pn8bDD"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Returns & Exchanges",
+        "description": "",
+        "uppercase_heading": false,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "collapsible_content_qP8dky": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_tab_JDa8an": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Collapsible row",
+            "open": false,
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_cxN3HT": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What are the benefits of having a moodytiger account?",
+            "open": false,
+            "content": "<ol><li>Easily edit your personal and payment information;</li><li>View your order history;</li><li>Follow up the status of your recent orders;</li><li>Enjoy exclusive discounts and promotions if you have signed up to our newletters.</li></ol>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_hnUefM": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How do I register?",
+            "open": false,
+            "content": "<p>Firstly, click the account icon on the right side of the home navigation bar, click the \"Create account\" link and fill in your name, email address, and password as required. Then, click the \"CREATE\" button. Finally, you will receive a verification email to activate the account.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_iHUMyq": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "I forgot my password, what should I do?",
+            "open": false,
+            "content": "<p>Click the account icon on the right side of the navigation bar, then click the \"Forgot password?\" link and fill in the registration email address, click the submit button. Finally, you will get an email to reset your password.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_JDa8an",
+        "collapsible_tab_cxN3HT",
+        "collapsible_tab_hnUefM",
+        "collapsible_tab_iHUMyq"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Account",
+        "description": "",
+        "uppercase_heading": false,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "173734426623999348": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_all_reviews_page_jYybUk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_all_reviews_page_jYybUk"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "16618629918566dc27",
+    "166186303682d7c655",
+    "faq",
+    "collapsible_content_b4ggTY",
+    "collapsible_content_7tFkVw",
+    "collapsible_content_Ec774R",
+    "collapsible_content_qP8dky",
+    "173734426623999348"
+  ]
+}

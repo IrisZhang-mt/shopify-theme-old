@@ -1,0 +1,391 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .seriesPage2All{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}} .seriesPage2All{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+    }
+    .seriesPage_container {
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+    @media (min-width:1000px) {
+        .seriesPage2_top {
+            display: flex;
+            gap: 60px;
+            row-gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .seriesPage2_text {
+            font-weight: 500;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .seriesPage2_text span {
+            width: 8px;
+            height: 8px;
+            background-color: #151515;
+            border-radius: 50%;
+        }
+        .seriesPage2_box {
+            display: grid;
+            height: 150px;
+            grid-template-columns: repeat(4,1fr);
+            border-radius: 30px;
+        }
+        .seriesPage2_Box {
+            cursor: pointer;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            padding: 18px;
+        }
+        .seriesPage2_boxText {
+            text-align: center;
+            line-height: 120%;
+        }
+        .seriesPage2_Box::after {
+            position: absolute;
+            right: 0;
+            display: block;
+            content: '';
+            background-color: #151515;
+            width: 1px;
+            height: 38px;
+        }
+        .seriesPage2_Box:last-child::after {
+            content: unset;
+        }
+        .seriesPage2_boxImg img {
+            max-height: 89px;
+        }
+        .seriesPage2_Box:hover .seriesPage2_boxPosition{
+            opacity: 1;
+            visibility: visible;
+        }
+        .seriesPage2_Box:hover .seriesPage2_boxImg {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .seriesPage2_boxImg {
+            transition: all 0.5s;
+        }
+        .seriesPage2_boxPosition {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+            display: flex;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            right: 0;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .seriesPage2_boxTitle {
+            font-weight: 500;
+        }
+        .seriesPage2_boxText {
+            margin-top: 4px;
+        }
+    }
+
+    @media (max-width:999px) {
+        .seriesPage2All .row.full-width-row,.seriesPage2All .row .columns{
+            padding: 0;
+        }
+        
+        .seriesPage2_top {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        .seriesPage2_text {
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-direction: column-reverse;
+        }
+        .seriesPage2_text span {
+            width: 8px;
+            height: 8px;
+            background-color: #151515;
+            border-radius: 50%;
+        }
+        .seriesPage2_box {
+            overflow: hidden;
+            border-radius: 13px;
+            padding: 26px 26px;
+        }
+        .seriesPage2_boxTitle {
+            font-weight: 500;
+        }
+        .seriesPage2_boxText {
+            line-height: 120%;
+            margin-top: 2px;
+        }
+        .seriesPage2_boxImg img {
+            max-height: 56px;
+        }
+        .seriesPage2Swiper {
+            overflow: unset !important;
+        }
+        .seriesPage2_Box {
+            text-align: center;
+        }
+        .seriesPage2_boxPosition {
+            margin-top: 10px;
+        }
+        .seriesPage2_Box {
+            max-width: 130px;
+            width: auto !important;
+        }
+    }
+</style>
+<div class="seriesPage2All">
+    <div class="row full-width-row">
+        <div class="columns">
+            <div class="seriesPage_container">
+                {% if section.settings.text ==blank and section.settings.text2 ==blank and section.settings.text3 ==blank %}
+                {% else %}
+                    <div class="seriesPage2_top">
+                        {% if section.settings.text !=blank %}
+                            <div class="seriesPage2_text my_h_20 my_m_14">
+                                <span></span>
+                                {{section.settings.text}}
+                            </div>
+                        {% endif %}
+                        {% if section.settings.text2 !=blank %}
+                            <div class="seriesPage2_text my_h_20 my_m_14">
+                                <span></span>
+                                {{section.settings.text2}}
+                            </div>
+                        {% endif %}
+                        {% if section.settings.text3 !=blank %}
+                            <div class="seriesPage2_text my_h_20 my_m_14">
+                                <span></span>
+                                {{section.settings.text3}}
+                            </div> 
+                        {% endif %} 
+                    </div>        
+                {% endif %}
+                <div class="pad_pc">
+                    <div class="seriesPage2_box" style="background-color: {{ section.settings.bg_color}}; ">
+                        {% for block in section.blocks %}
+                        <div class="seriesPage2_Box">
+                            <div class="seriesPage2_boxImg">
+                                <img src="{{ block.settings.img | img_url: 'master' }}" alt="{{block.settings.img.alt}}">
+                            </div>
+                            {% if block.settings.year ==blank and block.settings.text ==blank %}
+                            {% else %}
+                                    
+                            <div class="seriesPage2_boxPosition">
+                                {% if block.settings.year !=blank %}
+                                    <div class="seriesPage2_boxTitle my_h_22 my_m_14">
+                                        {{block.settings.year}}
+                                    </div>
+                                {% endif %}  
+                                {% if block.settings.text !=blank %}
+                                    <div class="seriesPage2_boxText my_h_16 my_m_12">
+                                        {{block.settings.text}}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="pad_mobile">
+                    <div class="seriesPage2_box" style="background-color: {{ section.settings.bg_color}};">
+                        <div class="swiper seriesPage2Swiper">
+                            <div class="swiper-wrapper">
+                                {% for block in section.blocks %}
+                                <div class="seriesPage2_Box swiper-slide">
+                                    <div class="seriesPage2_boxImg">
+                                        <img src="{{ block.settings.img | img_url: 'master' }}" alt="{{block.settings.img.alt}}">
+                                    </div>
+                                    {% if block.settings.year ==blank and block.settings.text ==blank %}
+                                    {% else %}
+                                            
+                                    <div class="seriesPage2_boxPosition">
+                                        {% if block.settings.year !=blank %}
+                                            <div class="seriesPage2_boxTitle my_h_22 my_m_14">
+                                                {{block.settings.year}}
+                                            </div>
+                                        {% endif %}  
+                                        {% if block.settings.text !=blank %}
+                                            <div class="seriesPage2_boxText my_h_16 my_m_12">
+                                                {{block.settings.text}}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('#shopify-section-{{ section.id }} .seriesPage2Swiper', {
+        observer: true,  //开启动态检查器，监测swiper和slide
+        observeParents: true,  //监测Swiper 的祖/父元素  
+        slidesPerView: 'auto', 
+        spaceBetween: 14,
+        mousewheel: {
+            forceToAxis: true,
+        }
+    });
+});
+</script>
+{% schema %} 
+  {
+    "name": "Series Page2",
+    "max_blocks": 4,
+    "settings":[
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "textarea",
+            "id": "text2",
+            "label": "text2"
+        },
+        {
+            "type": "textarea",
+            "id": "text3",
+            "label": "text3"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "background color"
+        }
+    ],
+    "blocks":[
+        {
+            "type": "text",
+            "name": "text",
+            "settings": [
+               
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "img"
+                },
+                {
+                    "type": "textarea",
+                    "id": "year",
+                    "label": "year"
+                },
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "text"
+                }
+            ]
+        }
+
+    ],
+    "presets": [
+        {
+            "name": "Series Page2"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

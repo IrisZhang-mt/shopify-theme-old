@@ -1,0 +1,343 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    .index_ScenarioDescriptionAll .swiper-pagination-bullet {
+        border-radius: unset !important;
+    }
+    .index_ScenarioDescription_positionTitle {
+        margin: 0;
+    }
+    .index_ScenarioDescriptionBottomBox_img img{
+        width: 100%;
+    }
+    .index_ScenarioDescriptionBottomBox {
+        display: block;
+    }
+    .index_ScenarioDescription_positionText {
+        max-width: 80%;
+        line-height: 140%;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}}.index_ScenarioDescriptionAll{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}}.index_ScenarioDescriptionAll{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+    }
+    .index_ScenarioDescription_positionTitle {
+        line-height: 120%;
+    }
+    @media (min-width:1000px) {
+        .pad_mobile{
+            display: none;
+        }
+        .index_ScenarioDescriptionAll .my_h_20 {
+            font-size: 20px;
+        }
+        .index_ScenarioDescriptionTitle{
+            text-align: center;
+            margin: 0;
+            margin-bottom: 80px;
+        }
+        .index_ScenarioDescriptionBottomBox {
+            position: relative;
+        }
+        .index_ScenarioDescription_position {
+            display: flex;
+            align-items: flex-start;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            flex-direction: column;
+            justify-content: flex-end;  
+        }
+        .index_ScenarioDescription_positionTitle {
+            font-weight: 500;
+        }
+        .index_ScenarioDescription_positionText {
+            margin-top: 10px;
+        }
+        .index_ScenarioDescription_positionButton {
+            margin-top: 10px;
+        }
+    }
+
+    @media (max-width:999px) {
+        .pad_pc{
+            display: none;
+        }
+        .index_ScenarioDescriptionTitle {
+            text-align: center;
+            line-height: 120%;
+            margin-bottom: 20px;
+        }
+        .index_ScenarioDescriptionBottomBox {
+            position: relative;
+        }
+        .index_ScenarioDescription_position {
+            display: flex;
+            align-items: flex-start;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            flex-direction: column;
+            justify-content: flex-end;  
+        }
+        .index_ScenarioDescription_positionTitle {
+            font-weight: 500;
+        }
+        .index_ScenarioDescription_positionText {
+            margin-top: 10px;
+            max-width: 80%;
+        }
+        .index_ScenarioDescription_positionButton {
+            margin-top: 12px;
+        }
+        .my_m_25 {
+            font-size: 25px;
+        }
+        .my_m_16 {
+            font-size: 16px;
+        }
+        .my_m_14 {
+            font-size: 14px;
+        }
+        .my_m_12{
+            font-size: 12px;
+        }
+        .index_ScenarioDescriptionAll .swiper-pagination {
+            position: static;
+            margin-top: 0px;
+            line-height: 1;
+        }
+        .index_ScenarioDescriptionAll .swiper-pagination-bullet {
+            width: 34px;
+            height: 1px;
+            margin: 0 5px !important;
+            opacity: 1;
+            background-color: #e3e3e3;
+        }
+        .index_ScenarioDescriptionAll .swiper-pagination-bullet-active {
+            background-color: #000;
+        }
+
+    }
+</style>
+<div class="index_ScenarioDescriptionAll" id="shopify-section-{{section.id}}">
+    <div class="{% if section.settings.full_width %} {%- else -%} row full-width-row{% endif %}">
+        <div class="columns">
+            {% if section.settings.title !=blank %}
+                <h2 class="index_ScenarioDescriptionTitle h3 my_m_25">
+                    {{section.settings.title}}
+                </h2>
+            {% endif %}
+            <div class="index_ScenarioDescriptionBottom">
+                <div class="swiper ScenarioDescriptionSwiper">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <a href="{{ block.settings.link }}" class="swiper-slide index_ScenarioDescriptionBottomBox">
+                                <div class="index_ScenarioDescriptionBottomBox_img">
+                                    <img src="{{ block.settings.img | img_url: '1000x' }}" class="pad_pc" alt="{{block.settings.img.alt}}">
+                                    <img src="{{ block.settings.img_mobile | img_url: '750x' }}" class="pad_mobile" alt="{{block.settings.img.alt}}">
+                                </div>
+                                <div class="index_ScenarioDescription_position">
+                                    {% if block.settings.title !=blank %}
+                                        <h5 class="index_ScenarioDescription_positionTitle my_h_20 my_m_25" style="color: {{block.settings.text_color}};">
+                                            {{block.settings.title}}
+                                        </h5>
+                                    {% endif %}
+                                    {% if block.settings.text !=blank %}
+                                        <div class="index_ScenarioDescription_positionText my_m_12" style="color: {{block.settings.text_color}};">
+                                            {{block.settings.text}}
+                                        </div>
+                                    {% endif %}
+                                    {% if block.settings.button !=blank %}
+                                        <div class="index_ScenarioDescription_positionButton button white">
+                                           <span> {{block.settings.button}}</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="pad_mobile">
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('#shopify-section-{{ section.id }} .ScenarioDescriptionSwiper', {
+        observer: true,  //开启动态检查器，监测swiper和slide
+        observeParents: true,  //监测Swiper 的祖/父元素  
+        mousewheel: {
+            forceToAxis: true,
+        },
+        breakpoints: {
+            300: {
+                slidesPerView: 1, 
+                spaceBetween: 5
+            },
+            768: {
+                slidesPerView: 3, 
+                spaceBetween: 5
+            },
+            1200: {
+                slidesPerView: 4, 
+                spaceBetween: 5
+            }
+        },
+        pagination: {
+            el: '#shopify-section-{{section.id}} .swiper-pagination',
+            clickable: true,
+        }
+    });
+});
+</script>
+  {% schema %} 
+  {
+    "name": "Scenario Description",
+    "class": "ScenarioDescription",
+    "settings":[
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+    "blocks":[
+        {
+            "type": "text",
+            "name": "text",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "img"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "img_mobile",
+                    "label": "img mobile"
+                },
+                {
+                    "type": "textarea",
+                    "id": "title",
+                    "label": "title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "text"
+                },
+                {
+                    "type": "textarea",
+                    "id": "button",
+                    "label": "button"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "link"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "text color",
+                    "default" : "#fff"
+                }
+            ]
+        }
+
+    ],
+    "presets": [
+        {
+            "name": "Scenario Description"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

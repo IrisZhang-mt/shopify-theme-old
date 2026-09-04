@@ -1,0 +1,281 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "section_our_story_HETCfJ": {
+      "type": "section-OurStory",
+      "name": "Section Our Story",
+      "settings": {
+        "img": "shopify://shop_images/1_9b2b7c3a-8bc7-4edc-a425-0d1d06abb8de.jpg",
+        "img_mobile": "shopify://shop_images/11.29moodytiger6176.jpg",
+        "title": "Our Story",
+        "text_color": "#ffffff",
+        "text_top": 158,
+        "text_topMobile": 62,
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "section_our_story2_cMjhbT": {
+      "type": "section-OurStory2",
+      "blocks": {
+        "item_Nmy9Y6": {
+          "type": "Item",
+          "settings": {
+            "img": "shopify://shop_images/2018_ec28b674-64ba-400e-a7df-067ed0edf737.jpg",
+            "number": "2018",
+            "text": "<ul><li>Brand founded in Hong Kong, with official website launched</li></ul>"
+          }
+        },
+        "item_QwAkm4": {
+          "type": "Item",
+          "settings": {
+            "img": "shopify://shop_images/2019_207541ae-1dc5-4b43-a2f9-238566913d2e.jpg",
+            "number": "2019",
+            "text": "<ul><li>Brand founded in Hong Kong, with official website launched</li></ul>"
+          }
+        },
+        "item_7Ewad4": {
+          "type": "Item",
+          "settings": {
+            "img": "shopify://shop_images/2020_633bff38-9622-4894-9bbd-449b8b6f0880.jpg",
+            "number": "2020",
+            "text": "<ul><li>Brand founded in Hong Kong, with official website launched</li><li>Brand founded in Hong Kong, with official website launched</li><li>Brand founded in Hong Kong, with official website launched</li></ul>"
+          }
+        },
+        "item_eCmNFR": {
+          "type": "Item",
+          "settings": {
+            "img": "shopify://shop_images/2021_4d118897-9f19-421e-a292-f4d20ea64c40.jpg",
+            "number": "2021",
+            "text": "<ul><li>Brand founded in Hong Kong, with official website launched</li></ul>"
+          }
+        },
+        "item_bHrQY3": {
+          "type": "Item",
+          "disabled": true,
+          "settings": {
+            "number": "",
+            "text": ""
+          }
+        },
+        "item_e6e3W9": {
+          "type": "Item",
+          "settings": {
+            "img": "shopify://shop_images/20251024-151801.jpg",
+            "number": "2022",
+            "text": "<ul><li>Expanded into kids’ performance footwear</li><li>Entered Hong Kong lFC mall as the only childrenswear brand</li><li>Released signature products like the Seamless Breezy Jacket and Air Supply® Collection</li></ul>"
+          }
+        },
+        "item_EjqcGe": {
+          "type": "Item",
+          "settings": {
+            "img": "shopify://shop_images/2024_7f6a99aa-545c-43f9-ba78-677e61a53e81.jpg",
+            "number": "2023",
+            "text": "<ul><li>Brand founded in Hong Kong, with official website launched</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "item_Nmy9Y6",
+        "item_QwAkm4",
+        "item_7Ewad4",
+        "item_eCmNFR",
+        "item_bHrQY3",
+        "item_e6e3W9",
+        "item_EjqcGe"
+      ],
+      "name": "Section Our Story2",
+      "settings": {
+        "title": "<p>Play On <br/>The Move</p>",
+        "text": "<p>We believe that children deserve the boundless freedom to explore the world and unleash their full potential through unrestrained movement.</p>",
+        "time_pc": 8,
+        "time_mobile": 5,
+        "number_color": "#ffffff",
+        "text_color": "",
+        "Desktop_top": 120,
+        "Mobile_top": 35,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "section_our_story3_cizGYN": {
+      "type": "section-OurStory3",
+      "blocks": {
+        "item_6g4w7R": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/3_1.jpg",
+            "img_mobile": "shopify://shop_images/3_1.jpg",
+            "title": "Who We are",
+            "text": "<p>Founded in 2018, moodytiger is a global children’s sports lifestyle brand committed to creating high-performance, stylish apparel made just for kids.<br/><br/>From tennis and swimming to skiing, skating, and beyond, our collections are built to support every move. Our signature leggings have remained bestsellers for years — loved by kids and trusted by parents.<br/><br/>Engineered with comfort, sustainability, and freedom in mind, our designs feature lightweight fabrics, no-restriction fits, and eco-conscious materials — empowering children aged 4–16 to explore the world confidently and joyfully.</p>"
+          }
+        },
+        "item_9V8mYt": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/3_2_a38f3229-d93c-4009-8a8d-d50a70c15df1.jpg",
+            "img_mobile": "shopify://shop_images/3_2_a38f3229-d93c-4009-8a8d-d50a70c15df1.jpg",
+            "title": "Why moodytiger?",
+            "text": "<p>\"Moody\" embodies emotional versatility and the courage to stay true to ourselves. \"Tiger\", as a majestic and energetic creature, represents bravery and self-confidence. Combined together, \"moody\" and \"tiger\" encapsulate what we perceive as the essence of the \"new generation\". <br/><br/>From our perspective, the new generation could be... <br/>Optimists unbothered by gains or losses; Intrepid adventurers who enjoy exploring all kinds of newness driven by curiosity; Enthusiastic go-getters who go boldly to pursue their passions, treating the world as their playground. <br/><br/>They are a group of children with boundless potential, capable of achieving even greater things than adults. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_6g4w7R",
+        "item_9V8mYt"
+      ],
+      "name": "Section Our Story3",
+      "settings": {
+        "bg_color": "#fafafa",
+        "Desktop_top": 120,
+        "Mobile_top": 35,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "section_our_story4_f7Rf3c": {
+      "type": "section-OurStory4",
+      "blocks": {
+        "item_TjgDkc": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/pc2_87219915-bff0-4770-be76-37d1a62b594e.png",
+            "img_mobile": "shopify://shop_images/pc2_87219915-bff0-4770-be76-37d1a62b594e.png",
+            "title": "Light and burden-free",
+            "text": "<p>Light, skin-intimate wearing experience enabled by our distinctive fabric and craftmanship. Make it easy for kids to explore and for parents to carry<br/><br/></p>"
+          }
+        },
+        "item_xqAHPN": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "text": ""
+          }
+        },
+        "item_ckBpmj": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/pc1_7bbfd77e-ad32-4331-a28b-7abbda786cfb.png",
+            "img_mobile": "shopify://shop_images/pc1_7bbfd77e-ad32-4331-a28b-7abbda786cfb.png",
+            "title": "Highest safety standards  worldwide",
+            "text": "<p>Bluesign® certified, meeting the highest safety and environmental requirements. Safe to wear, giving parents the ultimate peace of mind.</p>"
+          }
+        },
+        "item_B4ipqx": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/pc3_f4ee91d4-343c-4502-9c6e-b50dab4c655b.png",
+            "img_mobile": "shopify://shop_images/pc3_f4ee91d4-343c-4502-9c6e-b50dab4c655b.png",
+            "title": "Zero constraints",
+            "text": "<p>Elastic fabric and wrapping customized to kids’ body silhouette to enable children to explore with comfort and freedom of movement<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_TjgDkc",
+        "item_xqAHPN",
+        "item_ckBpmj",
+        "item_B4ipqx"
+      ],
+      "name": "Section Our Story4",
+      "settings": {
+        "Desktop_top": 120,
+        "Mobile_top": 35,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 0,
+        "Mobile_bottom": 0,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "section_our_story5_GJb9zW": {
+      "type": "section-OurStory5",
+      "blocks": {
+        "item_wy9trE": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/D_1.jpg",
+            "title": "Our Fabric",
+            "link": "shopify://pages/our-fabric"
+          }
+        },
+        "item_RhihMF": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/D_2.jpg",
+            "title": "Sustainability",
+            "link": "shopify://pages/bluesign-system-partner"
+          }
+        },
+        "item_GmabFG": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/D_3.jpg",
+            "title": "Find Our Store",
+            "link": "shopify://pages/find-our-stores"
+          }
+        }
+      },
+      "block_order": [
+        "item_wy9trE",
+        "item_RhihMF",
+        "item_GmabFG"
+      ],
+      "name": "Section Our Story5",
+      "settings": {
+        "text_color": "#ffffff",
+        "Desktop_top": 120,
+        "Mobile_top": 35,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 120,
+        "Mobile_bottom": 35,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_our_story_HETCfJ",
+    "section_our_story2_cMjhbT",
+    "section_our_story3_cizGYN",
+    "section_our_story4_f7Rf3c",
+    "section_our_story5_GJb9zW"
+  ]
+}

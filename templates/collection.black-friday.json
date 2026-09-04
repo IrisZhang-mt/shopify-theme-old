@@ -1,0 +1,108 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "index_collection_ghNyyM": {
+      "type": "index-collection",
+      "blocks": {
+        "text_z6TGNi": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1020_500_306c28a1-4b4a-4ec5-a325-e2c76abf3f6b.jpg",
+            "text": "Leggings",
+            "link": "shopify://collections/holiday-best-selling-leggings",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_DkKP4C": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1020_500_306c28a1-4b4a-4ec5-a325-e2c76abf3f6b.jpg",
+            "text": "Jackets",
+            "link": "shopify://collections/jackets",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_xQADi4": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1020_500_306c28a1-4b4a-4ec5-a325-e2c76abf3f6b.jpg",
+            "text": "Shoes",
+            "link": "shopify://collections/2024-holiday-shoes",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_wb6YDG": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/1020_500_306c28a1-4b4a-4ec5-a325-e2c76abf3f6b.jpg",
+            "text": "Free gifts $399+",
+            "link": "shopify://collections/all-products",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_z6TGNi",
+        "text_DkKP4C",
+        "text_xQADi4",
+        "text_wb6YDG"
+      ],
+      "settings": {
+        "img": "shopify://shop_images/pc_450b8510-7e61-40e1-8210-28b8dcb7dc22.jpg",
+        "img_mobile": "shopify://shop_images/mb_df953153-28d8-4548-a991-d75744402729.jpg",
+        "title": "Cheers To Holidays",
+        "text": "20% Off 3 Pieces Storewide",
+        "button": "Details",
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 80,
+        "Mobile_paddingTop": 50,
+        "Desktop_bottom": 50,
+        "Mobile_bottom": 40,
+        "Desktop_paddingBottom": 80,
+        "Mobile_paddingBottom": 50,
+        "text_color": "#ffffff"
+      }
+    },
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_image": false,
+        "show_collection_description": false,
+        "show_subcollections": false,
+        "make_heading_uppercase": false,
+        "heading_size": "h2",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "full_width": true,
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "pagination_type": "paginated",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_counts": false,
+        "filter_color_swatches": true,
+        "facets_desktop": "drawer"
+      }
+    }
+  },
+  "order": [
+    "index_collection_ghNyyM",
+    "main-collection-banner",
+    "product-grid"
+  ]
+}

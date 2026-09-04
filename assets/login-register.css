@@ -1,0 +1,166 @@
+
+
+
+.thb-login-page-wrapper {
+  display: flex;
+  flex-direction: column; }
+  .thb-login-page-wrapper > img {
+    width: 100%; }
+  @media only screen and (min-width: 768px) {
+    .thb-login-page-wrapper {
+      flex-direction: row;
+      align-items: center; }
+      .thb-login-page-wrapper > * {
+        flex-basis: 50%;
+        width: 50%; } }
+
+.thb-form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0; }
+  @media only screen and (min-width: 768px) {
+    .thb-form-container {
+      padding: 70px 0; } }
+  @media only screen and (min-width: 1068px) {
+    .thb-form-container {
+      padding: 100px 0; } }
+  @media only screen and (min-width: 768px) {
+    .thb-form-container {
+      flex-direction: row;
+      justify-content: space-around; } }
+  .thb-form-container #recover {
+    display: none; }
+    .thb-form-container #recover:target {
+      display: block; }
+      .thb-form-container #recover:target + #login {
+        display: none; }
+  .thb-form-container .thb-login-form,
+  .thb-form-container .thb-register-form {
+    width: 100%;
+    flex: 1;
+    max-width: 640px;
+    margin: 0 auto; }
+    @media only screen and (min-width: 768px) {
+      .thb-form-container .thb-login-form,
+      .thb-form-container .thb-register-form {
+        padding: 0 30px; } }
+    @media only screen and (min-width: 1068px) {
+      .thb-form-container .thb-login-form,
+      .thb-form-container .thb-register-form {
+        padding: 0 58px; } }
+    .thb-form-container .thb-login-form .form-notification,
+    .thb-form-container .thb-register-form .form-notification {
+      margin-bottom: 15px; }
+  .thb-form-container .thb-login-form + .thb-register-form {
+    margin-top: 60px; }
+    @media only screen and (min-width: 768px) {
+      .thb-form-container .thb-login-form + .thb-register-form {
+        margin-top: 0;
+        border-left: 1px solid var(--color-border); } }
+  .thb-form-container h4 {
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase; }
+  .thb-form-container p {
+    font-size: 14px;
+    margin-bottom: 48px;
+    text-align: center; }
+  .thb-form-container input {
+    margin-bottom: 16px; }
+  .thb-form-container .button {
+    margin-top: 10px; }
+  .thb-form-container .switch-login-section {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.75;
+    margin-top: 15px; }
+    .thb-form-container .switch-login-section .text-button {
+      display: inline;
+      font-size: inherit;
+      margin-right: 0; }
+    .thb-form-container .switch-login-section div {
+      margin-top: 10px; }
+
+.account-activate-buttons {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px; }
+  .account-activate-buttons .button {
+    width: 100%; }
+  @media only screen and (min-width: 768px) {
+    .account-activate-buttons {
+      flex-direction: row; } }
+
+/* add css */
+#login h4,#recover h4,.thb-register-form h4{
+  margin-bottom: 32px;
+}
+.thb-register-form .fields {
+  grid-column-gap: 16px;
+}
+#login .switch-login-section,#recover .switch-login-section{
+  margin-top: 24px;
+}
+.field_text {
+  margin-top: 8px;
+}
+.button {
+  font-size: 14px;
+}
+.thb-register-form .button ,.thb-register-form .switch-login-section {
+  margin-top: 32px;
+}
+@media (max-width:768px) {
+  .thb-login-page-wrapper>img {
+    display: none;
+  }
+  #login h4,#recover h4,.thb-register-form h4{
+    margin-bottom: 16px;
+  }
+  .thb-form-container p {
+    margin-bottom: 32px;
+  }
+  .thb-form-container {
+    padding-top: 52px;
+    padding-bottom: 64px;
+  }
+  .section-customer-login .row {
+    width: 100%;
+  }
+  .thb-register-form .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 16px;
+  }
+}
+input:focus {
+  outline: none;
+  border-color: #FF8300 !important;
+}
+.checkbox {
+  margin: 0;
+  -webkit-appearance: none;
+  border: 1px solid #C0C4CC !important;
+}
+.checkbox:focus {
+  border-color: #C0C4CC !important;
+}
+.checkbox:checked {
+  border-color: #C0C4CC;
+  background-color: #fff;
+  background-image: url(https://cdn.shopify.com/s/files/1/0475/6920/7457/files/Frame_2.svg?v=1742189096);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
+}
+.checkbox_inputBox {
+  cursor: pointer;
+  display: flex;
+  margin-top: 24px;
+  align-items: center;
+}
+.checkbox_inputBox input {
+  margin-bottom: 0;
+}
+
+ 

@@ -1,0 +1,1135 @@
+{% comment %}
+  Activity Tabs Countdown
+  Time format: YYYY-MM-DD HH:mm:ss
+{% endcomment %}
+
+<style>
+  #ActivityTabsCountdown-{{ section.id }} {
+    --atc-bg: {{ section.settings.background_color }};
+    --atc-text: {{ section.settings.text_color }};
+    --atc-muted: {{ section.settings.muted_color }};
+    --atc-active: {{ section.settings.active_color }};
+    --atc-card-bg: {{ section.settings.card_background }};
+    --atc-disabled-bg: {{ section.settings.disabled_background }};
+
+    background: var(--atc-bg);
+    color: var(--atc-text);
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__inner {
+    width: min(100% - 24px, {{ section.settings.max_width }}px);
+    margin: 0 auto;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tabs {
+    display: grid;
+    grid-template-columns: repeat({{ section.blocks.size }}, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab {
+    min-height: 94px;
+    padding: 13px 12px 12px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: var(--atc-disabled-bg);
+    color: var(--atc-muted);
+    text-decoration: none;
+    text-align: center;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-sizing: border-box;
+    transition: border-color .2s ease, background-color .2s ease, color .2s ease;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab.is-active {
+    background: var(--atc-card-bg);
+    border-color: var(--atc-card-bg);
+    color: var(--atc-text);
+    cursor: pointer;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab.is-selected {
+    border-color: var(--atc-card-bg);
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__status {
+    min-height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--atc-muted);
+    font-size: 14px;
+    line-height: 1.15;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab.is-active .activity-tabs-countdown__status {
+    color: var(--atc-active);
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__status-icon {
+    width: 13px;
+    height: 13px;
+    display: inline-flex;
+    color: currentColor;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__status-icon svg {
+    width: 13px;
+    height: 13px;
+    display: block;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__status-icon--dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__status-icon--dot,
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab.is-active .activity-tabs-countdown__status-icon--lock {
+    display: none;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab.is-active .activity-tabs-countdown__status-icon--dot {
+    display: inline-flex;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__title {
+    color: inherit;
+    font-size: 18px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: 0;
+    word-break: break-word;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__bottom {
+    min-height: 17px;
+    color: var(--atc-muted);
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab.is-active .activity-tabs-countdown__bottom {
+    color: #5f5f5f;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__products-wrap {
+    display: none;
+    margin-top: 20px;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }}[data-disable-all-links="true"] .activity-tabs-countdown__products-wrap.is-visible {
+    display: block;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__products {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.products_columns_desktop }}, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product {
+    min-width: 0;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-link {
+    color: var(--atc-text);
+    text-decoration: none;
+    display: block;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5f5f5;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform .25s ease;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-link:hover .activity-tabs-countdown__product-image img {
+    transform: scale(1.04);
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-info {
+    margin: 0;
+    overflow: hidden;
+    padding-top: 10px;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-title {
+    margin: 0;
+    color: var(--atc-text);
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 500;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+    text-overflow: ellipsis;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-price {
+    margin-top: 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-price-current {
+    color: #140f0f;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-price-compare {
+    color: var(--atc-muted);
+    font-size: 13px;
+    line-height: 1.2;
+    text-decoration: line-through;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatches {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-left: 5px;
+    min-height: 24px;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatches::-webkit-scrollbar {
+    display: none;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatch {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, .16);
+    border-radius: 999px;
+    background-color: #ddd;
+    background-color: var(--swatch-color, #ddd);
+    background-image: var(--swatch-image);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    flex: 0 0 auto;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatch.is-active,
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatch:hover,
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatch:focus-visible {
+    outline: 0;
+    border-color: #393939;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #393939;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__empty {
+    color: var(--atc-muted);
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  @media screen and (min-width: 749px) {
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatches {
+      min-height: 34px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    {% if section.settings.mobile_tabs_layout == 'grid' %}
+      #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab {
+        min-height: 86px;
+        padding: 10px 8px;
+      }
+    {% else %}
+      #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__inner {
+        width: 100%;
+      }
+
+      #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tabs {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 50%;
+        scroll-padding-right: 50%;
+        padding: 0 12px 6px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab {
+        flex: 0 0 min(72vw, 220px);
+        width: min(72vw, 220px);
+        min-height: 86px;
+        padding: 10px 8px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+
+      #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__products-wrap {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    {% endif %}
+
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__status,
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__bottom {
+      font-size: 12px;
+    }
+
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__title {
+      font-size: 16px;
+    }
+
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__products {
+      grid-template-columns: repeat({{ section.settings.products_columns_mobile }}, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__swatch {
+      width: 14px;
+      height: 14px;
+    }
+  }
+  #ActivityTabsCountdown-{{ section.id }}[data-disable-all-links="true"] .activity-tabs-countdown__tab.is-upcoming,
+  #ActivityTabsCountdown-{{ section.id }}[data-disable-all-links="true"] .activity-tabs-countdown__tab.is-active {
+    cursor: pointer;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__tab.is-ended {
+    cursor: default;
+  }
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-badges {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    pointer-events: none;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #ffffff;
+    background: #111111;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 600;
+    word-break: break-word;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-badge--sold-out {
+    background: #777777;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-badge--preorder {
+    background: #2f6fed;
+  }
+
+  #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-badge--sale {
+    background: #fff;
+    color: #000;
+  }
+
+  @media screen and (max-width: 749px) {
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-badges {
+      top: 6px;
+      left: 6px;
+      gap: 4px;
+    }
+
+    #ActivityTabsCountdown-{{ section.id }} .activity-tabs-countdown__product-badge {
+      padding: 3px 6px;
+      font-size: 10px;
+    }
+  }
+</style>
+
+<section
+  class="activity-tabs-countdown"
+  id="ActivityTabsCountdown-{{ section.id }}"
+  data-ended-bottom-text="{{ section.settings.ended_bottom_text | escape }}"
+  data-disable-all-links="{{ section.settings.disable_all_links }}"
+  data-mobile-tabs-layout="{{ section.settings.mobile_tabs_layout }}"
+>
+  <div class="activity-tabs-countdown__inner">
+    <div class="activity-tabs-countdown__tabs" role="tablist" data-tabs-scroller>
+      {% for block in section.blocks %}
+        <a
+          class="activity-tabs-countdown__tab"
+          href="{{ block.settings.link | default: '#' }}"
+          data-activity-tab
+          data-tab-index="{{ forloop.index0 }}"
+          data-start-time="{{ block.settings.start_time | escape }}"
+          data-end-time="{{ block.settings.end_time | escape }}"
+          data-active-status="{{ block.settings.active_status_text | escape }}"
+          data-upcoming-status="{{ block.settings.upcoming_status_text | escape }}"
+          data-ended-status="{{ block.settings.ended_status_text | escape }}"
+          data-bottom-text="{{ block.settings.bottom_text | escape }}"
+          {{ block.shopify_attributes }}
+        >
+          <span class="activity-tabs-countdown__status">
+            <span class="activity-tabs-countdown__status-icon activity-tabs-countdown__status-icon--dot"></span>
+            <span class="activity-tabs-countdown__status-icon activity-tabs-countdown__status-icon--lock">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M5 7V5.4C5 3.7 6.3 2.5 8 2.5C9.7 2.5 11 3.7 11 5.4V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M4.4 7H11.6C12.2 7 12.7 7.5 12.7 8.1V12.4C12.7 13 12.2 13.5 11.6 13.5H4.4C3.8 13.5 3.3 13 3.3 12.4V8.1C3.3 7.5 3.8 7 4.4 7Z" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+            </span>
+            <span data-status>{{ block.settings.upcoming_status_text }}</span>
+          </span>
+
+          <span class="activity-tabs-countdown__title">
+            {{ block.settings.title }}
+          </span>
+
+          <span class="activity-tabs-countdown__bottom" data-tab-bottom>
+            {{ block.settings.bottom_text }}
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+
+    {% for block in section.blocks %}
+      <div
+        class="activity-tabs-countdown__products-wrap"
+        data-products-panel
+        data-panel-index="{{ forloop.index0 }}"
+      >
+        {% assign selected_collection = block.settings.collection %}
+
+        {% if selected_collection != blank and selected_collection.products_count > 0 %}
+          <div class="activity-tabs-countdown__products">
+            {% for product in selected_collection.products limit: section.settings.products_limit %}
+              {% assign main_image = product.featured_image %}
+              {% assign color_option = blank %}
+
+              {% for option in product.options_with_values %}
+                {% assign option_name = option.name | downcase | escape %}
+                {% if option_name contains 'color'
+                  or option_name contains 'colour'
+                  or option_name contains 'couleur'
+                  or option_name contains 'farbe'
+                  or option_name contains '颜色'
+                  or option_name contains '色'
+                %}
+                  {% assign color_option = option %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              <div class="activity-tabs-countdown__product" data-product-card>
+                <a class="activity-tabs-countdown__product-link" href="{{ product.url }}">
+                  <div class="activity-tabs-countdown__product-image">
+                    {%- liquid
+                      assign product_card_badge_limit = section.settings.product_badge_limit | default: 0 | plus: 0
+                      assign product_card_badge_count = 0
+                    -%}
+
+                    <div class="activity-tabs-countdown__product-badges">
+                      {%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+                        {%- unless product.available -%}
+                          <span class="activity-tabs-countdown__product-badge activity-tabs-countdown__product-badge--sold-out">
+                            {{ 'products.product.sold_out' | t }}
+                          </span>
+                          {%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+                        {%- endunless -%}
+                      {%- endif -%}
+
+                      {%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+                        {%- if product.metafields.theme.preorder and product.available -%}
+                          <span class="activity-tabs-countdown__product-badge activity-tabs-countdown__product-badge--preorder">
+                            {{ 'products.product.pre_order' | t }}
+                          </span>
+                          {%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endif -%}
+
+                      {%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+                        {%- if product.compare_at_price > product.price and product.available -%}
+                          {%- if settings.sale_badge_type == 'save_amount' -%}
+                            {%- capture saved_amount -%}{{ product.compare_at_price | minus: product.price | money }}{%- endcapture -%}
+                          {%- elsif settings.sale_badge_type == 'save_percentage' -%}
+                            {%- capture saved_amount -%}{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}%{%- endcapture -%}
+                          {%- endif -%}
+
+                          <span class="activity-tabs-countdown__product-badge activity-tabs-countdown__product-badge--sale">
+                            {%- if settings.sale_badge_type == 'sale' -%}
+                              {{ 'products.product.on_sale' | t }}
+                            {%- else -%}
+                              {{ 'products.product.save_html' | t: saved_amount: saved_amount }}
+                            {%- endif -%}
+                          </span>
+                          {%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endif -%}
+
+                      {%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+                        {% if product.metafields.custom.product_badges != blank %}
+                          <span
+                            class="activity-tabs-countdown__product-badge"
+                            style="color: {{ settings.tag_1 }}; background: {{ settings.tag_bg1 }};"
+                          >
+                            {{ product.metafields.custom.product_badges.value }}
+                          </span>
+                          {%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+                        {% endif %}
+                      {%- endif -%}
+
+                      {%- if product_card_badge_limit == 0 or product_card_badge_count < product_card_badge_limit -%}
+                        {% if product.metafields.custom.product_badges2 != blank %}
+                          <span
+                            class="activity-tabs-countdown__product-badge"
+                            style="color: {{ settings.tag_2 }}; background: {{ settings.tag_bg2 }};"
+                          >
+                            {{ product.metafields.custom.product_badges2.value }}
+                          </span>
+                          {%- assign product_card_badge_count = product_card_badge_count | plus: 1 -%}
+                        {% endif %}
+                      {%- endif -%}
+                    </div>
+
+                    {% if main_image != blank %}
+                      <img
+                        src="{{ main_image | image_url: width: 700 }}"
+                        srcset="
+                          {{ main_image | image_url: width: 240 }} 240w,
+                          {{ main_image | image_url: width: 360 }} 360w,
+                          {{ main_image | image_url: width: 480 }} 480w,
+                          {{ main_image | image_url: width: 700 }} 700w
+                        "
+                        sizes="(max-width: 749px) 50vw, 25vw"
+                        alt="{{ main_image.alt | default: product.title | escape }}"
+                        loading="lazy"
+                        data-product-main-image
+                      >
+                    {% endif %}
+                  </div>
+
+                  <div class="activity-tabs-countdown__product-info">
+                    <p class="activity-tabs-countdown__product-title">
+                      {{ product.title }}
+                    </p>
+
+                    <div class="activity-tabs-countdown__product-price">
+                      <span class="activity-tabs-countdown__product-price-current">
+                        {{ product.price | money }}
+                      </span>
+
+                      {% if product.compare_at_price > product.price %}
+                        <span class="activity-tabs-countdown__product-price-compare">
+                          {{ product.compare_at_price | money }}
+                        </span>
+                      {% endif %}
+                    </div>
+                  </div>
+                </a>
+
+                {% if color_option != blank and color_option.values.size > 0 %}
+                  {%- liquid
+                    assign custom_colors = settings.color_swatches | newline_to_br | split: '<br />'
+                    assign key_array = ''
+                    assign val_array = ''
+
+                    for color in custom_colors
+                      assign key = color | split: ':' | first | rstrip
+                      assign mapped_value = color | split: ':' | last | lstrip
+                      assign key_array = key_array | append: ',' | append: key
+                      assign val_array = val_array | append: ',' | append: mapped_value
+                    endfor
+
+                    assign key_array = key_array | remove_first: ',' | strip_newlines | downcase | split: ','
+                    assign val_array = val_array | remove_first: ',' | split: ','
+                  -%}
+
+                  <div class="activity-tabs-countdown__swatches" aria-label="{{ color_option.name | escape }}">
+                    {% for value in color_option.values %}
+                      {% assign variant_image = blank %}
+                      {% assign matched_variant = blank %}
+
+                      {% for variant in product.variants %}
+                        {% assign variant_option_value = '' %}
+
+                        {% case color_option.position %}
+                          {% when 1 %}
+                            {% assign variant_option_value = variant.option1 %}
+                          {% when 2 %}
+                            {% assign variant_option_value = variant.option2 %}
+                          {% when 3 %}
+                            {% assign variant_option_value = variant.option3 %}
+                        {% endcase %}
+
+                        {% if variant_option_value == value %}
+                          {% assign matched_variant = variant %}
+
+                          {% if variant.image != blank %}
+                            {% assign variant_image = variant.image %}
+                          {% endif %}
+
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+
+                      {%- liquid
+                        assign color_value = value | downcase | escape
+                        assign swatch_color = color_value
+                        assign swatch_image = blank
+
+                        for custom_color in key_array
+                          if custom_color == color_value
+                            assign swatch_color = val_array[forloop.index0]
+                            break
+                          endif
+                        endfor
+
+                        if swatch_color contains '.'
+                          assign swatch_image = swatch_color | file_url
+                          assign swatch_color = 'var(--bg-body)'
+                        endif
+
+                        if value.swatch.image
+                          assign swatch_image = value.swatch.image | image_url: width: 80
+                        elsif value.swatch.color
+                          assign swatch_color = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                        endif
+                      -%}
+
+                      <button
+                        type="button"
+                        class="activity-tabs-countdown__swatch{% if variant_image != blank and main_image != blank and variant_image.id == main_image.id %} is-active{% endif %}"
+                        style="--swatch-color: {{ swatch_color | downcase | escape }};{% if swatch_image != blank %} --swatch-image: url('{{ swatch_image | escape }}');{% endif %}"
+                        data-product-swatch
+                        {% if variant_image != blank %}
+                          data-image-src="{{ variant_image | image_url: width: 700 }}"
+                          data-image-srcset="{{ variant_image | image_url: width: 240 }} 240w, {{ variant_image | image_url: width: 360 }} 360w, {{ variant_image | image_url: width: 480 }} 480w, {{ variant_image | image_url: width: 700 }} 700w"
+                          data-image-alt="{{ variant_image.alt | default: product.title | escape }}"
+                        {% endif %}
+                        {% if matched_variant != blank %}
+                          data-variant-url="{{ matched_variant.url }}"
+                        {% endif %}
+                        aria-label="{{ value | escape }}"
+                      >
+                        <span class="visually-hidden">{{ value }}</span>
+                      </button>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="activity-tabs-countdown__empty">
+            {{ section.settings.empty_collection_text }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  (() => {
+    const root = document.getElementById('ActivityTabsCountdown-{{ section.id }}');
+    if (!root) return;
+    const tabs = Array.from(root.querySelectorAll('[data-activity-tab]'));
+    const panels = Array.from(root.querySelectorAll('[data-products-panel]'));
+    const swatches = Array.from(root.querySelectorAll('[data-product-swatch]'));
+    const SECOND = 1000;
+    const MINUTE = 60 * SECOND;
+    const HOUR = 60 * MINUTE;
+    const DAY = 24 * HOUR;
+    let selectedPanelIndex = null;
+    let hasAutoSelectedInitialPanel = false;
+    function isDisableLinksMode() {
+      return root.dataset.disableAllLinks === 'true';
+    }
+    function isMobileSlider() {
+      return window.matchMedia('(max-width: 749px)').matches && root.dataset.mobileTabsLayout === 'slider';
+    }
+    function centerMobileTab(tab, behavior = 'smooth') {
+      if (!tab || !isMobileSlider()) return;
+      tab.scrollIntoView({
+        behavior,
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
+    function setSelectedTab(index) {
+      tabs.forEach((tab) => {
+        tab.classList.toggle('is-selected', tab.dataset.tabIndex === String(index));
+      });
+    }
+    function parseLocalTime(value) {
+      if (!value) return null;
+      const match = value
+        .trim()
+        .replace('T', ' ')
+        .match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:\s+(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/);
+      if (!match) return null;
+      return new Date(
+        Number(match[1]),
+        Number(match[2]) - 1,
+        Number(match[3]),
+        Number(match[4] || 0),
+        Number(match[5] || 0),
+        Number(match[6] || 0)
+      );
+    }
+    function pad(number) {
+      return String(number).padStart(2, '0');
+    }
+    function getState(now, start, end) {
+      if (!start || !end) return 'upcoming';
+      if (now < start) return 'upcoming';
+      if (now >= end) return 'ended';
+      return 'active';
+    }
+    function getTabState(tab, now) {
+      const start = parseLocalTime(tab.dataset.startTime);
+      const end = parseLocalTime(tab.dataset.endTime);
+      return getState(now, start, end);
+    }
+    function formatUpcoming(diff) {
+      if (diff <= 0) return 'Opening soon';
+      if (diff > DAY) {
+        return `${Math.ceil(diff / DAY)} days`;
+      }
+      return `${Math.max(1, Math.ceil(diff / HOUR))} hours`;
+    }
+    function formatActive(diff) {
+      if (diff <= 0) return root.dataset.endedBottomText || 'Event ended';
+      const hours = Math.floor(diff / HOUR);
+      const minutes = Math.floor((diff % HOUR) / MINUTE);
+      const seconds = Math.floor((diff % MINUTE) / SECOND);
+      return `Ends in ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+    function canShowProductsByState(state) {
+      return state === 'active' || state === 'upcoming';
+    }
+    function hidePanels() {
+      panels.forEach((panel) => {
+        panel.classList.remove('is-visible');
+      });
+      setSelectedTab(null);
+    }
+    function showPanel(index) {
+      panels.forEach((panel) => {
+        panel.classList.toggle('is-visible', panel.dataset.panelIndex === String(index));
+      });
+      setSelectedTab(index);
+    }
+    function updateItem(tab, now) {
+      const start = parseLocalTime(tab.dataset.startTime);
+      const end = parseLocalTime(tab.dataset.endTime);
+      const status = tab.querySelector('[data-status]');
+      const bottom = tab.querySelector('[data-tab-bottom]');
+      const state = getState(now, start, end);
+      const endedBottomText = root.dataset.endedBottomText || 'Event ended';
+      tab.classList.remove('is-upcoming', 'is-active', 'is-ended');
+      tab.classList.add(`is-${state}`);
+      tab.dataset.activityState = state;
+      if (state === 'upcoming') {
+        if (status) status.textContent = tab.dataset.upcomingStatus || 'Opens soon';
+        if (bottom) {
+          bottom.textContent = start ? formatUpcoming(start - now) : tab.dataset.bottomText;
+        }
+      }
+      if (state === 'active') {
+        if (status) status.textContent = tab.dataset.activeStatus || 'LIVE NOW';
+
+        if (bottom) {
+          bottom.textContent = formatActive(end - now);
+        }
+      }
+      if (state === 'ended') {
+        if (status) status.textContent = tab.dataset.endedStatus || 'Ended';
+        if (bottom) {
+          bottom.textContent = endedBottomText;
+        }
+      }
+      return state;
+    }
+    function findDefaultPanelIndex(now) {
+      let firstActiveIndex = null;
+      let firstUpcomingIndex = null;
+      tabs.forEach((tab) => {
+        const tabIndex = Number(tab.dataset.tabIndex);
+        const state = getTabState(tab, now);
+        if (state === 'active' && firstActiveIndex === null) {
+          firstActiveIndex = tabIndex;
+        }
+        if (state === 'upcoming' && firstUpcomingIndex === null) {
+          firstUpcomingIndex = tabIndex;
+        }
+      });
+      if (firstActiveIndex !== null) return firstActiveIndex;
+      if (firstUpcomingIndex !== null) return firstUpcomingIndex;
+      return null;
+    }
+    function autoSelectInitialPanel(now) {
+      if (hasAutoSelectedInitialPanel) return;
+      if (!isDisableLinksMode()) return;
+      const defaultIndex = findDefaultPanelIndex(now);
+      if (defaultIndex === null) return;
+      selectedPanelIndex = defaultIndex;
+      showPanel(defaultIndex);
+      const selectedTab = tabs[defaultIndex];
+      requestAnimationFrame(() => {
+        centerMobileTab(selectedTab, 'auto');
+      });
+      hasAutoSelectedInitialPanel = true;
+    }
+    function validateSelectedPanel(now) {
+      if (!isDisableLinksMode()) {
+        selectedPanelIndex = null;
+        hidePanels();
+        return;
+      }
+      if (selectedPanelIndex === null) return;
+      const selectedTab = tabs[selectedPanelIndex];
+      if (!selectedTab) {
+        selectedPanelIndex = null;
+        hidePanels();
+        return;
+      }
+      const selectedState = getTabState(selectedTab, now);
+      // 当前选中的活动如果结束了，就自动切换到第一个进行中；
+      // 没有进行中的话，再切换到第一个未开始。
+      if (!canShowProductsByState(selectedState)) {
+        const nextIndex = findDefaultPanelIndex(now);
+        if (nextIndex === null) {
+          selectedPanelIndex = null;
+          hidePanels();
+          return;
+        }
+        selectedPanelIndex = nextIndex;
+        showPanel(nextIndex);
+        centerMobileTab(tabs[nextIndex], 'smooth');
+      }
+    }
+    function tick() {
+      const now = new Date();
+      tabs.forEach((tab) => {
+        updateItem(tab, now);
+      });
+      autoSelectInitialPanel(now);
+      validateSelectedPanel(now);
+    }
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (event) => {
+        const now = new Date();
+        const state = getTabState(tab, now);
+        const tabIndex = Number(tab.dataset.tabIndex);
+        if (isDisableLinksMode()) {
+          event.preventDefault();
+          // 已结束不展示产品；进行中和未开始都可以展示产品
+          if (!canShowProductsByState(state)) {
+            return;
+          }
+          selectedPanelIndex = tabIndex;
+          showPanel(tabIndex);
+          centerMobileTab(tab);
+          return;
+        }
+        // 没有开启产品展示模式时，保持原逻辑：
+        // 只有进行中的活动可以跳转
+        if (state !== 'active') {
+          event.preventDefault();
+          return;
+        }
+        centerMobileTab(tab);
+        const link = tab.getAttribute('href');
+        if (!link || link === '#') {
+          event.preventDefault();
+        }
+      });
+    });
+    swatches.forEach((swatch) => {
+      function updateProductImage() {
+        const card = swatch.closest('[data-product-card]');
+        if (!card || !swatch.dataset.imageSrc) return;
+        const image = card.querySelector('[data-product-main-image]');
+        const productLink = card.querySelector('.activity-tabs-countdown__product-link');
+        if (image) {
+          image.src = swatch.dataset.imageSrc;
+          if (swatch.dataset.imageSrcset) {
+            image.srcset = swatch.dataset.imageSrcset;
+          }
+          if (swatch.dataset.imageAlt) {
+            image.alt = swatch.dataset.imageAlt;
+          }
+        }
+        if (productLink && swatch.dataset.variantUrl) {
+          productLink.href = swatch.dataset.variantUrl;
+        }
+        card.querySelectorAll('[data-product-swatch]').forEach((item) => {
+          item.classList.toggle('is-active', item === swatch);
+        });
+      }
+      swatch.addEventListener('mouseenter', updateProductImage);
+      swatch.addEventListener('focus', updateProductImage);
+      swatch.addEventListener('click', updateProductImage);
+    });
+    hidePanels();
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "活动 Tab 倒计时",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "内容最大宽度",
+      "min": 720,
+      "max": 1600,
+      "step": 20,
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "进行中卡片背景",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "disabled_background",
+      "label": "未开始/已结束卡片背景",
+      "default": "#f1f0ec"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "主文字颜色",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "灰色文字颜色",
+      "default": "#a6a6a6"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "进行中高亮颜色",
+      "default": "#ff7900"
+    },
+    {
+      "type": "range",
+      "id": "product_badge_limit",
+      "label": "产品标签最多展示数量",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "ended_bottom_text",
+      "label": "已结束底部文案",
+      "default": "Event ended"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_all_links",
+      "label": "禁用 Tab 跳转，点击进行中活动展示产品",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "mobile_tabs_layout",
+      "label": "手机端 Tab 样式",
+      "options": [
+        {
+          "value": "grid",
+          "label": "两列平铺"
+        },
+        {
+          "value": "slider",
+          "label": "横向滑动"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "最多展示产品数量",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "products_columns_desktop",
+      "label": "桌面端每行产品数量",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "products_columns_mobile",
+      "label": "移动端每行产品数量",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "empty_collection_text",
+      "label": "未选择产品系列提示文案",
+      "default": "No products selected"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上边距",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下边距",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "activity",
+      "name": "活动 Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "active_status_text",
+          "label": "进行中状态文案",
+          "default": "LIVE NOW"
+        },
+        {
+          "type": "text",
+          "id": "upcoming_status_text",
+          "label": "未开始状态文案",
+          "default": "Opens 10:00"
+        },
+        {
+          "type": "text",
+          "id": "ended_status_text",
+          "label": "已结束状态文案",
+          "default": "Last call"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab 主标题",
+          "default": "Jul 7-8"
+        },
+        {
+          "type": "text",
+          "id": "bottom_text",
+          "label": "底部文案",
+          "default": "7 styles"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "跳转链接"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "产品系列"
+        },
+        {
+          "type": "text",
+          "id": "start_time",
+          "label": "开始时间",
+          "info": "格式：YYYY-MM-DD HH:mm:ss，例如 2026-07-20 10:00:00",
+          "default": "2026-07-20 10:00:00"
+        },
+        {
+          "type": "text",
+          "id": "end_time",
+          "label": "结束时间",
+          "info": "格式：YYYY-MM-DD HH:mm:ss，例如 2026-07-21 10:00:00",
+          "default": "2026-07-21 10:00:00"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "活动 Tab 倒计时",
+      "blocks": [{ "type": "activity" }, { "type": "activity" }, { "type": "activity" }, { "type": "activity" }]
+    }
+  ]
+}
+{% endschema %}

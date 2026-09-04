@@ -1,0 +1,425 @@
+{%- liquid
+	if sticky
+		assign appended = '--sticky'
+	endif
+
+	assign handle = option.name | replace: ' ', '-' | downcase | escape
+-%}
+{%- case option_type -%}
+{%- when 'dropdown' -%}
+	<fieldset class="product-form__input product-form__input--dropdown" data-index="option{{ forloop.index }}" data-handle="{{ handle }}">
+		<div class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}{{ appended }}">
+		  {{ option.name }}{{ sizing_link }}
+		</div>
+		<div class="select">
+		  <select
+				id="Option-{{ section.id }}-{{ forloop.index0 }}{{ appended }}"
+				name="options[{{ option.name | escape | append: appended }}]"
+				form="{{ product_form_id }}"
+			>
+		    {%- for value in option.values -%}
+		      <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+		        {{ value }}
+		      </option>
+		    {%- endfor -%}
+		  </select>
+			<div class="select-arrow">{%- render 'svg-icons' with 'thb-select' -%}</div>
+		</div>
+	</fieldset>
+{%- when 'button' -%}
+	<fieldset class="product-form__input product-form__input--block" data-index="option{{ forloop.index }}" data-handle="{{ handle }}">
+		<div class="form__label">
+			{{ option.name }} 
+			<span class="form__label__value">
+				{{ option.selected_value }}
+			</span>
+				{{ sizing_link }}
+				{% assign option_name0620 = option.name | handleize %}
+				{% if option_name0620 == 'size' %}
+					<span
+						class="size_chart_0620"
+						role="button"
+						tabindex="0"
+						hidden
+					>Size Chart</span>
+					<script>
+						(function() {
+							if (window.__moodyKiwiSizeChartBridge) return;
+							window.__moodyKiwiSizeChartBridge = true;
+
+							const openKiwiSizeChart = function() {
+								const link = document.querySelector('.ks-chart-modal-link');
+								if (!link) return;
+
+								if (typeof link.click === 'function') {
+									link.click();
+									return;
+								}
+
+								const event = document.createEvent('MouseEvents');
+								event.initEvent('click', true, true);
+								link.dispatchEvent(event);
+							};
+							window.click_ks_chart0620 = openKiwiSizeChart;
+
+							const syncKiwiSizeChartLinks = function() {
+								const kiwiLink = document.querySelector('.ks-chart-modal-link');
+								const triggers = document.querySelectorAll('.size_chart_0620');
+								triggers.forEach(function(trigger, index) {
+									trigger.hidden = !kiwiLink || index > 0;
+								});
+								if (!kiwiLink || !triggers.length) return;
+
+								const primaryTrigger = triggers[0];
+								if (!primaryTrigger.contains(kiwiLink)) {
+									primaryTrigger.replaceChildren(kiwiLink);
+								}
+								kiwiLink.setAttribute('role', 'button');
+								kiwiLink.setAttribute('tabindex', '0');
+							};
+
+							if (document.readyState === 'loading') {
+								document.addEventListener('DOMContentLoaded', syncKiwiSizeChartLinks);
+							} else {
+								syncKiwiSizeChartLinks();
+							}
+
+							new MutationObserver(syncKiwiSizeChartLinks).observe(document.documentElement, {
+								childList: true,
+								subtree: true
+							});
+						})();
+					</script>
+				{% endif %}
+			</div>
+		{%- for value in option.values -%}
+			
+			<input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}"
+						name="{{ option.name | append: appended }}"
+						value="{{ value | escape }}"
+						form="{{ product_form_id }}"
+						{% if option.selected_value == value %}checked{% endif %}
+			>
+			<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}">
+				<span>{{ value }}</span>
+			</label>
+			
+		{%- endfor -%}
+	</fieldset>
+{%- when 'color' -%}
+	{%- liquid
+		assign custom_colors = settings.color_swatches | newline_to_br | split: '<br />'
+		assign key_array = ''
+		assign val_array = ''
+
+		for color in custom_colors
+			assign key = color | split: ':' | first | rstrip
+			assign value = color | split: ':' | last | lstrip
+			assign key_array = key_array | append: ',' | append: key
+			assign val_array = val_array | append: ',' | append: value
+		endfor
+
+		assign key_array = key_array | remove_first: ',' | strip_newlines | downcase | split: ','
+		assign val_array = val_array | remove_first: ',' | split: ','
+
+		assign variant_image_size = '40'
+		case color_picker_size
+			when 'large'
+				assign variant_image_size = '72'
+			when 'xlarge'
+				assign variant_image_size = '104'
+		endcase
+	-%}
+	<style>
+		.matching_items,.non_matching_items {
+			width: 100%;
+		}
+		.matching_itemsBox{
+			width: 100%;
+			display: flex;
+			/* gap: 10px; */
+			flex-wrap: wrap;
+		}
+
+		.non_matching_items {
+			margin-top: 20px;
+		}
+		.matching_items_label .form_label_value{
+			font-weight: 400;
+			text-transform: none;
+			text-transform: capitalize;
+			margin-left: 3px;
+			margin-right: 20px;
+			padding-left: 2px;
+			color: #97999b;
+		}
+	</style>
+	{%- comment -%}
+		色卡映射（基准英文色名 -> 背景）。前端 product.js 用选项值的固定序号反查基准色名，
+		再用这里的映射给色块上色，从而在中文/意语/西语下都能显示色块，无需为每种语言维护 key。
+	{%- endcomment -%}
+	<script type="application/json+swatch-map" data-swatch-map>{
+	{%- for custom_color in key_array -%}
+		{%- assign sw_val = val_array[forloop.index0] | strip -%}
+		{%- if sw_val contains '.' -%}
+			{{ custom_color | json }}: { "image": {{ sw_val | file_url | json }} }
+		{%- else -%}
+			{{ custom_color | json }}: { "color": {{ sw_val | json }} }
+		{%- endif -%}
+		{%- unless forloop.last -%},{%- endunless -%}
+	{%- endfor -%}
+	}</script>
+	<fieldset class="product-form__input product-form__input--color product-form__input--color--{{ color_picker_size }}" data-use-images="{{ color_picker_use_variants }}" data-index="option{{ forloop.index }}" data-handle="{{ handle }}">	
+		{% comment %} 处理颜色 {% endcomment %}
+		{% if product.metafields.custom.main_color_promotion.value !=blank %}
+			<div class="matching_items matching_Coloritems">
+				<div class="matching_items_label">
+					<div class="form__label">
+						{{ product.metafields.custom.main_color_promotion_title.value }}
+							<span class="form_label_value">
+						{% for value in option.values %}
+						{% assign is_matching = false %}
+						{% for item in product.metafields.custom.main_color_promotion.value %}
+							{% if value == item or value contains item %}
+							{% assign is_matching = true %}
+							{% break %}
+							{% endif %}
+						{% endfor %}
+						{% if is_matching and option.selected_value == value %}
+							{{ value }}
+							{% break %}
+						{% endif %}
+						{% endfor %}
+					</span>
+					</div>
+				</div>
+				<div class="matching_itemsBox">
+					{% for value in option.values %}
+					{% assign is_matching = false %}
+					{% for item in product.metafields.custom.main_color_promotion.value %}
+						{% if value == item or value contains item %}
+						{% assign is_matching = true %}
+						{% break %}
+						{% endif %}
+					{% endfor %}
+					{% if is_matching %}
+
+
+						<div class="item">
+						<input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}"
+								name="{{ option.name | append: appended }}"
+								value="{{ value | escape }}"
+								form="{{ product_form_id }}"
+								{% if option.selected_value == value %}checked{% endif %}>
+						{%- liquid
+						assign color_value = value | downcase | escape
+
+						for custom_color in key_array
+							if custom_color == color_value
+							assign color_value = val_array[forloop.index0]
+							endif
+						endfor
+
+						assign bg_value = empty
+						if color_value contains '.'
+							assign bg_value = color_value | file_url
+							assign color_value = 'var(--bg-body)'
+						endif
+
+						if color_picker_use_variants
+							assign variant_image = blank
+
+							for variant in product.variants
+							if variant.title contains value
+								if variant.image
+								assign bg_value = variant.image | image_url: width: variant_image_size
+								break
+								endif
+							endif
+							endfor
+						endif
+
+						if value.swatch.image
+							assign bg_value = value.swatch.image | image_url: width: variant_image_size
+							assign swatch_focal_point = value.swatch.image.presentation.focal_point
+						elsif value.swatch.color
+							assign color_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+						endif
+						-%}
+						<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}" style="--option-color: {{ color_value | downcase | escape }}; {%- if bg_value -%} --option-color-image: url('{{ bg_value | escape }}');{%- endif -%}">
+							{{ value }}
+						</label>
+						</div>
+
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="non_matching_items matching_Coloritems">
+				<div class="matching_items_label">
+					<div class="form__label">
+						{{ option.name }}
+							<span class="form_label_value">
+						{% for value in option.values %}
+						{% assign is_matching = false %}
+						{% for item in product.metafields.custom.main_color_promotion.value %}
+							{% if value == item or value contains item %}
+							{% assign is_matching = true %}
+							{% break %}
+							{% endif %}
+						{% endfor %}
+						{% unless is_matching %}
+							{% if option.selected_value == value %}
+							{{ value }}
+							{% break %}
+							{% endif %}
+						{% endunless %}
+						{% endfor %}
+					</span>
+					</div>
+				</div>
+				<div class="matching_itemsBox">
+					{% for value in option.values %}
+					{% assign is_matching = false %}
+					{% for item in product.metafields.custom.main_color_promotion.value %}
+						{% if value == item or value contains item %}
+						{% assign is_matching = true %}
+						{% break %}
+						{% endif %}
+					{% endfor %}
+					{% unless is_matching %}
+
+			
+						<div class="item">
+							<input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}"
+									name="{{ option.name | append: appended }}"
+									value="{{ value | escape }}"
+									form="{{ product_form_id }}"
+									{% if option.selected_value == value %}checked{% endif %}>
+							{%- liquid
+							assign color_value = value | downcase | escape
+
+							for custom_color in key_array
+								if custom_color == color_value
+								assign color_value = val_array[forloop.index0]
+								endif
+							endfor
+
+							assign bg_value = empty
+							if color_value contains '.'
+								assign bg_value = color_value | file_url
+								assign color_value = 'var(--bg-body)'
+							endif
+
+							if color_picker_use_variants
+								assign variant_image = blank
+
+								for variant in product.variants
+								if variant.title contains value
+									if variant.image
+									assign bg_value = variant.image | image_url: width: variant_image_size
+									break
+									endif
+								endif
+								endfor
+							endif
+
+							if value.swatch.image
+								assign bg_value = value.swatch.image | image_url: width: variant_image_size
+								assign swatch_focal_point = value.swatch.image.presentation.focal_point
+							elsif value.swatch.color
+								assign color_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+							endif
+							-%}
+							<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}" style="--option-color: {{ color_value | downcase | escape }}; {%- if bg_value -%} --option-color-image: url('{{ bg_value | escape }}');{%- endif -%}">
+								{{ value }}
+							</label>
+						</div>
+						
+					{% endunless %}
+					{% endfor %}
+				</div>
+			</div>
+		{% else %}
+			<div class="form__label">{{ option.name }} <span class="form__label__value">{{ option.selected_value }}</span></div>
+			{% comment %} 默认的 {% endcomment %}
+			{%- for value in option.values -%}
+
+	
+
+				<input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}"
+							name="{{ option.name | append: appended }}"
+							value="{{ value | escape }}"
+							form="{{ product_form_id }}"
+							{% if option.selected_value == value %}checked{% endif %}
+				>
+				{%- liquid
+					assign color_value = value | downcase | escape
+
+					for custom_color in key_array
+						if custom_color == color_value
+							assign color_value = val_array[forloop.index0]
+						endif
+					endfor
+
+					assign bg_value = empty
+					if color_value contains '.'
+						assign bg_value = color_value | file_url
+						assign color_value = 'var(--bg-body)'
+					endif
+
+					if color_picker_use_variants
+						assign variant_image = blank
+
+						for variant in product.variants
+							if variant.title contains value
+								if variant.image
+									assign bg_value = variant.image | image_url: width: variant_image_size
+									break
+								endif
+							endif 
+						endfor
+					endif 
+
+					if value.swatch.image
+						assign bg_value = value.swatch.image | image_url: width: variant_image_size
+						assign swatch_focal_point = value.swatch.image.presentation.focal_point
+					elsif value.swatch.color
+						assign color_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+					endif
+				-%}
+				<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ appended }}" style="--option-color: {{ color_value | downcase | escape }}; {%- if bg_value -%} --option-color-image: url('{{ bg_value | escape }}');{%- endif -%}">
+					{{ value }}
+				</label>
+				
+			{%- endfor -%} 
+		{% endif %}
+	</fieldset>
+{%- endcase -%}
+<script>
+// Select all radio inputs inside .item
+document.querySelectorAll(".matching_itemsBox .item input").forEach(function (input) {
+  input.addEventListener("click", function () {
+    // Get the selected value
+    var value = this.value;
+    console.log(value, "selected value");
+
+    // Clear all other .form_label_value spans
+    document.querySelectorAll(".matching_Coloritems .form_label_value").forEach(function (label) {
+      label.textContent = ""; // Clear the label
+    });
+
+    // Find the parent container (either matching or non-matching items)
+    var parentBox = this.closest(".matching_Coloritems");
+
+    if (parentBox) {
+      // Find the label inside the parent container
+      var matchingLabel = parentBox.querySelector(".form_label_value");
+      if (matchingLabel) {
+        matchingLabel.textContent = value; // Update the label with the selected value
+      }
+    }
+  });
+});
+</script>

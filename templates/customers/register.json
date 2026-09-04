@@ -1,0 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-register": {
+      "type": "main-register",
+      "settings": {
+        "section_image": "shopify://shop_images/moodytiger-banner-horizontal-07_8c5d6516-550b-4a7a-b994-99d71149b529.png",
+        "subscribe_text": "I agree to receiving marketing emails and special deals"
+      }
+    }
+  },
+  "order": [
+    "main-register"
+  ]
+}

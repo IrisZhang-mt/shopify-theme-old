@@ -1,0 +1,23 @@
+<collapsible-row
+  class="
+    accordion
+    {% if hidden_without_show_all %}
+      hidden-without-show-all
+    {% endif %}
+  "
+>
+  <details
+    id="Details-{{ block.id }}-{{ section.id }}"
+    {% if open %}
+      open
+    {% endif %}
+  >
+    <summary>
+      {{ block.settings.title }}
+      <span></span>
+    </summary>
+    <div class="collapsible__content accordion__content rte" id="Accordion-{{ block.id }}-{{ section.id }}">
+      {{ block.settings.description }}
+    </div>
+  </details>
+</collapsible-row>

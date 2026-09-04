@@ -1,0 +1,818 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {}
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "sku_ANLacx": {
+          "type": "sku",
+          "settings": {
+            "sku_style": "style_vendor"
+          }
+        },
+        "judge_me_reviews_preview_badge_JkaCht": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "uppercase": false,
+            "show_products_rating": false
+          }
+        },
+        "product_icon_heM8JP": {
+          "type": "product_icon",
+          "settings": {}
+        },
+        "custom_liquid_dfdm3R": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Exclusive Offer</title>\n    <style>\n        .exclusive-offer {\n            color: orange; /* 设置文本颜色为橙色 */\n            font-weight: bold; /* 设置为粗体 */\n            font-size: 16px; /* 字体大小为16px */\n        }\n    </style>\n</head>\n<body>\n    <div class=\"exclusive-offer\">30% Off 5 Items, automatically applied at cart.</div>\n</body>\n</html>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "color_picker": true,
+            "color_picker_size": "regular",
+            "color_picker_use_variants": false,
+            "variant_is_disabled": true,
+            "sizing_guide_variant": "Size",
+            "sizing_guide_text": "",
+            "sizing_guide_icon": "none",
+            "sizing_guide_page": "size-chart-leggings"
+          }
+        },
+        "kiwi_size_chart_recommender_kiwi_sizing_NpbHRm": {
+          "type": "shopify://apps/kiwi-size-chart-recommender/blocks/kiwiSizing/b7369922-bf15-44ce-a121-a22a8fcbc4b0",
+          "settings": {}
+        },
+        "95b7e00a-0453-4eb0-9cf0-1dae84d8b822": {
+          "type": "side_panel",
+          "settings": {
+            "side_panel_1_label": "Free shipping on $79+",
+            "side_panel_1_icon": "box",
+            "side_panel_1_content": "<p>All orders are processed within 1-2 business days from the day of purchase. However, processing times may vary depending on the availability of the products ordered.Free shipping on orders over $79.</p><p>Usually, the delivery will take around 6-10 days to arrive. Express shipping will take 3-5 business days to arrive.</p>",
+            "side_panel_1_page": "",
+            "side_panel_2_label": "30-day free returns",
+            "side_panel_2_icon": "return",
+            "side_panel_2_content": "<p>Shop with confidence with our <a href=\"/pages/returns-policy\" target=\"_blank\" title=\"Return Policy\">30-day free returns policy</a>.</p><p>Pre-paid return labels are offered to customers shipping from a USA address .(*No returns or exchanges for final sale items).</p><p><strong>Please note:Clearance items discounted by 50% or more cannot be returned or exchanged.</strong></p>",
+            "side_panel_2_page": "",
+            "side_panel_3_label": "",
+            "side_panel_3_icon": "bottle",
+            "side_panel_3_content": "",
+            "side_panel_3_page": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "0b3e272b-c86a-4dba-946c-c6912251371c": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_HeAfn6": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Material & care",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": "",
+            "custom_product_data": "materials",
+            "show_size_fit": true
+          }
+        },
+        "collapsible_tab_xWnVNK": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Size & fit",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": "",
+            "custom_product_data": "size_fit",
+            "show_size_fit": false
+          }
+        },
+        "collapsible_tab_jFcGTb": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Sustainability",
+            "open": false,
+            "content": "<p>@bluesign bluesign®</p><p>As a bluesign® system partner, we continuously improve our environmental performance and are focused on a sustainable future.Substances posing risks to people and the environment are eliminated from the very beginning. On-site inspections verify the proper application of such chemical products and raw materials in controlled processes and ensure the responsible use of resources.</p>",
+            "page": "",
+            "custom_liquid": "",
+            "custom_product_data": "none",
+            "show_size_fit": true
+          }
+        },
+        "complementary_q9MXz6": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Pairs well with",
+            "product_list_limit": 4
+          }
+        },
+        "text_zCMmXe": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "",
+            "text_style": "style_body"
+          }
+        }
+      },
+      "block_order": [
+        "sku_ANLacx",
+        "judge_me_reviews_preview_badge_JkaCht",
+        "title",
+        "product_icon_heM8JP",
+        "custom_liquid_dfdm3R",
+        "variant_picker",
+        "kiwi_size_chart_recommender_kiwi_sizing_NpbHRm",
+        "95b7e00a-0453-4eb0-9cf0-1dae84d8b822",
+        "buy_buttons",
+        "0b3e272b-c86a-4dba-946c-c6912251371c",
+        "collapsible_tab_HeAfn6",
+        "collapsible_tab_xWnVNK",
+        "collapsible_tab_jFcGTb",
+        "complementary_q9MXz6",
+        "text_zCMmXe"
+      ],
+      "settings": {
+        "collapsable_title_highlight_color": "#ff8300",
+        "full_width": true,
+        "enable_sticky_info": true,
+        "enable_sticky_add_to_cart": true,
+        "show_taxes_included": false,
+        "media_layout": "grid",
+        "display_slider_pagination": true,
+        "media_aspect_ratio": "adapt",
+        "display_captions": false,
+        "hide_variants": false,
+        "lightbox": true,
+        "enable_video_looping": false
+      }
+    },
+    "spacer_6DJzDC": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 50,
+        "spacer_desktop": 100,
+        "border_separator": false,
+        "border_separator_full": false
+      }
+    },
+    "countdown_banner_ebPaRN": {
+      "type": "countdown-banner",
+      "disabled": true,
+      "settings": {
+        "section_width": "full-width-row-full",
+        "section_layout": "horizontal",
+        "desktop_height": "desktop-height-auto",
+        "mobile_height": "mobile-height-350",
+        "subheading": "",
+        "heading": "Back to School Sale",
+        "heading_size": "h2",
+        "content": "Up to 50% off,don't miss out the biggest sale of the year!",
+        "content_size": "medium",
+        "button_text": "Shop Now",
+        "button_link": "",
+        "timer_year": 2024,
+        "timer_month": "08",
+        "timer_day": "15",
+        "timer_hour": "16",
+        "timer_minute": "00",
+        "color_bg": "#ff8300",
+        "color_text": "#151515",
+        "overlay_color": "#000000",
+        "overlay_opacity": 10,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "spacer_ALA6t9": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 0,
+        "spacer_desktop": 0,
+        "border_separator": true,
+        "border_separator_full": true
+      }
+    },
+    "image_with_text_EAURFF": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_HdWBaX": {
+          "type": "heading",
+          "settings": {
+            "text": "Experience the Ultimate Coolness and Breathability",
+            "heading_size": "h3"
+          }
+        },
+        "text_Ur9eFe": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HdWBaX",
+        "text_Ur9eFe"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Frame_259.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "large",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "text_first",
+        "content_position": "text-left",
+        "color_bg": "rgba(0,0,0,0)",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "cust_image_with_text_progress_bar_NkfiwJ": {
+      "type": "cust_image-with-text-progress-bar",
+      "blocks": {
+        "heading_R3d7EV": {
+          "type": "heading",
+          "settings": {
+            "text": "Experience the Ultimate Coolness and Breathability",
+            "heading_size": "h3"
+          }
+        },
+        "text_VtnqFA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        },
+        "progress_kNGiTi": {
+          "type": "progress",
+          "settings": {
+            "color": "#ff8300",
+            "icon": "shopify://shop_images/Frame_4.png",
+            "progress": "{{ product.metafields.custom.weight_for_progress_bar.value }}",
+            "label_left": "Light",
+            "label_right": "Heavy",
+            "mt": 30,
+            "mb": 24
+          }
+        },
+        "progress_cnVLV3": {
+          "type": "progress",
+          "settings": {
+            "color": "#ff8300",
+            "icon": "shopify://shop_images/Frame_148.png",
+            "progress": "{{ product.metafields.custom.temperature_for_progress_bar.value }}",
+            "label_left": "Cool",
+            "label_right": "Warm",
+            "mt": 0,
+            "mb": 24
+          }
+        },
+        "progress_TeQK4d": {
+          "type": "progress",
+          "settings": {
+            "color": "#ff8300",
+            "icon": "shopify://shop_images/Frame_149.png",
+            "progress": "{{ product.metafields.custom.tightness_for_progress_bar.value }}",
+            "label_left": "Loose",
+            "label_right": "Tight",
+            "mt": 0,
+            "mb": 24
+          }
+        }
+      },
+      "block_order": [
+        "heading_R3d7EV",
+        "text_VtnqFA",
+        "progress_kNGiTi",
+        "progress_cnVLV3",
+        "progress_TeQK4d"
+      ],
+      "disabled": true,
+      "settings": {
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "section_width": "grid",
+        "layout": "text_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    },
+    "image_with_text_eeUatc": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_7wgpJp": {
+          "type": "heading",
+          "settings": {
+            "text": "Why Breezy Leggings?",
+            "heading_size": "h3"
+          }
+        },
+        "collapsible_tab_7yFjtM": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Cool-feeling & Breathable",
+            "open": true,
+            "content": "<p>Constructed with special designed yarns and advanced sewing technology, Brizi® keeps the hot air outside and cool down your body.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_kdCL4V": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Super Stretchy & Ultra Lightweight",
+            "open": false,
+            "content": "<p>High performance four-way stretch structure gives our breezy leggings excellent shape retention, while the innovative fabric enables our breezy leggings to be super lightweight.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_rPLwPJ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "UPF50+, Ultimate Sun Protector",
+            "open": false,
+            "content": "<p>Equipped with special dying technology, our breezy legging can effectively block out more than 98% of the sun’s harmful rays.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_7wgpJp",
+        "collapsible_tab_7yFjtM",
+        "collapsible_tab_kdCL4V",
+        "collapsible_tab_rPLwPJ"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/breezy-legging-09.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "large",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#fdf6ee",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "cust_image_with_text_interactive_tabs_RrwTUp": {
+      "type": "cust_image-with-text-interactive-tabs",
+      "blocks": {
+        "collapsible_tab_cri7Wf": {
+          "type": "collapsible_tab",
+          "settings": {
+            "image": "shopify://shop_images/breezy-legging-09.png",
+            "heading": "Cool-feeling & Breathable",
+            "open": false,
+            "content": "<p>Constructed with special designed yarns and advanced sewing technology, Brizi® keeps the hot air outside and cool down your body.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_74Rbet": {
+          "type": "collapsible_tab",
+          "settings": {
+            "image": "shopify://shop_images/Frame_156.png",
+            "heading": "Super Stretchy & Ultra Lightweight",
+            "open": false,
+            "content": "<p>High performance four-way stretch structure gives our breezy leggings excellent shape retention, while the innovative fabric enables our breezy leggings to be super lightweight.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_HYDfLj": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "UPF50+, Ultimate Sun Protector",
+            "open": false,
+            "content": "<p>Equipped with special dying technology, our breezy legging can effectively block out more than 98% of the sun’s harmful rays.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_cri7Wf",
+        "collapsible_tab_74Rbet",
+        "collapsible_tab_HYDfLj"
+      ],
+      "disabled": true,
+      "settings": {
+        "use_product_metafield": true,
+        "text": "Image with text",
+        "heading_size": "h3",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#fdf6ee",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "cust_image_with_text_interactive_tabs_Hc8TyY": {
+      "type": "cust_image-with-text-interactive-tabs",
+      "blocks": {
+        "collapsible_tab_JTPT9t": {
+          "type": "collapsible_tab",
+          "settings": {
+            "image": "shopify://shop_images/breezy-legging-09.png",
+            "heading": "Cool-feeling & Breathable",
+            "open": false,
+            "content": "<p>Constructed with special designed yarns and advanced sewing technology, Brizi® keeps the hot air outside and cool down your body.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_kz4YjH": {
+          "type": "collapsible_tab",
+          "settings": {
+            "image": "shopify://shop_images/Frame_156.png",
+            "heading": "Super Stretchy & Ultra Lightweight",
+            "open": false,
+            "content": "<p>High performance four-way stretch structure gives our breezy leggings excellent shape retention, while the innovative fabric enables our breezy leggings to be super lightweight.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_zdmcqm": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "UPF50+, Ultimate Sun Protector",
+            "open": false,
+            "content": "<p>Equipped with special dying technology, our breezy legging can effectively block out more than 98% of the sun’s harmful rays.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_tab_JTPT9t",
+        "collapsible_tab_kz4YjH",
+        "collapsible_tab_zdmcqm"
+      ],
+      "settings": {
+        "use_product_metafield": true,
+        "text": "Image with text",
+        "heading_size": "h3",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#fdf6ee",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "image_with_text_g9ebEe": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_UDVbmf": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_size": "h3"
+          }
+        },
+        "text_9VDmXD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UDVbmf",
+        "text_9VDmXD"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Ellipse_70.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "section_width": "grid",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "image_with_text_WegbcB": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_LMCbam": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_size": "h3"
+          }
+        },
+        "text_Hzzeaa": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LMCbam",
+        "text_Hzzeaa"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Ellipse_72.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "section_width": "grid",
+        "layout": "text_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "image_with_text_pKVKGE": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_3AzGEg": {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text",
+            "heading_size": "h3"
+          }
+        },
+        "text_kVwi4e": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3AzGEg",
+        "text_kVwi4e"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Ellipse_73.png",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "section_width": "grid",
+        "layout": "image_first",
+        "content_position": "text-left",
+        "color_bg": "#ffffff",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "spacer_MxYtLY": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 50,
+        "spacer_desktop": 100,
+        "border_separator": false,
+        "border_separator_full": false
+      }
+    },
+    "17229970527ee0822f": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_XzaWfb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "maxwidth": 1080
+          }
+        },
+        "judge_me_reviews_review_widget_pKcTUH": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_XzaWfb",
+        "judge_me_reviews_review_widget_pKcTUH"
+      ],
+      "settings": {}
+    },
+    "1663667029efc274af": {
+      "type": "collapsible-content",
+      "blocks": {
+        "1663667029f86d6497-0": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What payment methods can I use?",
+            "open": false,
+            "content": "<p>We offer 35 different payment methods including major providers like Mastercard, Visa, PayPal, American Express and Diners as well as many different local payment methods including Klarna, iDEAL, AliPay, Sofort, giropay, and many more.</p>",
+            "page": ""
+          }
+        },
+        "1663667029f86d6497-1": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Can I purchase items with another currency?",
+            "open": false,
+            "content": "<p>Yes, you may select a currency based on your personal preference. When you select the currency on the upper right of the website,all prices on the online store and checkout are automatically converted to that currency.</p>",
+            "page": ""
+          }
+        },
+        "1663667029f86d6497-2": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Can I make changes to my order after it’s been placed?",
+            "open": false,
+            "content": "<p>We do everything we can to fulfill orders quickly and unfortunately cannot make updates after an order has been placed. These changes include removing or adding products and/or changing the delivery address. If a mistake has been made with your order information, it’s quickest to create a new order with the correct information and then let our Customer Service know at <a href=\"mailto:order@moodytiger.com\" target=\"_blank\" title=\"mailto:order@moodytiger.com\">order@moodytiger.com</a> .</p>",
+            "page": ""
+          }
+        },
+        "1663667029f86d6497-3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Do you offer e-gift cards for international customers?",
+            "open": false,
+            "content": "<p>Yes,you can purchase e-gift cards online.</p>",
+            "page": ""
+          }
+        },
+        "68288bd2-3db2-455d-a841-5aa19d752abb": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "How Do I Set Up A Subscription Order?",
+            "open": false,
+            "content": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team at <a href=\"mailto:order@moodytiger.com\" target=\"_blank\" title=\"mailto:order@moodytiger.com\">order@moodytiger.com</a> if your delivery has not been received within the dates described.</p>",
+            "page": ""
+          }
+        },
+        "de9966d6-0cd0-4b0f-9810-aa062aff88ce": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How To Return My Items?",
+            "open": false,
+            "content": "<p>At moodytiger, if you're not happy with your purchase for any reason, please <a href=\"https://360.postco.co/moodytiger_return\" title=\"moodytiger return portal\"><strong>Click this link</strong></a> to request submit the return request, and we will offer you solutions according to your case.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_CerQJt": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Will you ship to a P.O box address?",
+            "open": false,
+            "content": "<p>At this time, we are unable to ship to P.O. box addresses.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_fja7kW": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Can all items be shipped in one package?",
+            "open": false,
+            "content": "<p>If your order includes both shoes and clothing, or if the package is too large, items may be shipped in separate packages.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_QghiRE": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Package not received",
+            "open": false,
+            "content": "<p>We highly recommend that you reach out to your local logistic company directly to verify the situation and initiate a proof of claim process. Once you provide the necessary documentation for us, we will be able to process a further solution.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "1663667029f86d6497-0",
+        "1663667029f86d6497-1",
+        "1663667029f86d6497-2",
+        "1663667029f86d6497-3",
+        "68288bd2-3db2-455d-a841-5aa19d752abb",
+        "de9966d6-0cd0-4b0f-9810-aa062aff88ce",
+        "collapsible_tab_CerQJt",
+        "collapsible_tab_fja7kW",
+        "collapsible_tab_QghiRE"
+      ],
+      "settings": {
+        "heading": "FAQ",
+        "description": "",
+        "uppercase_heading": false,
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": true
+      }
+    },
+    "16623877721f33fb14": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 35,
+        "spacer_desktop": 90,
+        "border_separator": true,
+        "border_separator_full": true
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_left": false,
+        "description": "",
+        "full_width": true,
+        "mobile_swipe": true,
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-product",
+    "spacer_6DJzDC",
+    "countdown_banner_ebPaRN",
+    "spacer_ALA6t9",
+    "image_with_text_EAURFF",
+    "cust_image_with_text_progress_bar_NkfiwJ",
+    "image_with_text_eeUatc",
+    "cust_image_with_text_interactive_tabs_RrwTUp",
+    "cust_image_with_text_interactive_tabs_Hc8TyY",
+    "image_with_text_g9ebEe",
+    "image_with_text_WegbcB",
+    "image_with_text_pKVKGE",
+    "spacer_MxYtLY",
+    "17229970527ee0822f",
+    "1663667029efc274af",
+    "16623877721f33fb14",
+    "product-recommendations"
+  ]
+}

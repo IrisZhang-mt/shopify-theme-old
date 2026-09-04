@@ -1,0 +1,192 @@
+<style>
+    #shopify-section-{{section.id}} .section_OurStoryAll{
+        margin-top: {{section.settings.Desktop_top}}px;
+        margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+        padding-top:{{section.settings.Desktop_paddingTop}}px;
+        padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .section_OurStoryAll{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    .section_OurStory_box img {
+        width: 100%;
+    }
+    .section_OurStory_box {
+      position: relative;
+    }
+    .section_OurStory_position {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .section_OurStory_positionTitle {
+      line-height: 110%;
+    }
+    #shopify-section-{{section.id}} .section_OurStory_positionTitle {
+      color: {{section.settings.text_color}};
+    }
+    .section_OurStoryAll .container {
+      max-width: 1590px;
+      margin: 0 auto;
+    }
+    @media (min-width: 1000px) {
+      .section_OurStoryAll .container {
+        padding: 0 30px;
+      }
+       #shopify-section-{{section.id}} .section_OurStory_positionTitle {
+         padding-top: {{section.settings.text_top}}px;
+       }
+      .section_OurStory_positionTitle {
+        font-size: 68px;
+        text-align: right;
+        padding: 0 80px;
+      }
+    
+        
+    }
+    @media (max-width: 999px) {
+      .section_OurStoryAll .container {
+        padding: 0 15px;
+      }
+      #shopify-section-{{section.id}} .section_OurStory_positionTitle {
+        padding-top: {{section.settings.text_topMobile}}px;
+      }
+      .section_OurStory_positionTitle {
+        text-align: left;
+        padding: 0 15px;
+        font-size: 32px;
+      }
+ 
+    }
+</style>
+
+<div class="section_OurStoryAll">
+  <div class="">
+    <div class="section_OurStory_box">
+        <img loading="lazy" src="{{ section.settings.img | img_url:'master' }}" alt="{{ section.settings.img.alt }}" class="pad_pc">
+        <img loading="lazy" src="{{ section.settings.img_mobile | img_url:'master' }}" alt="{{ section.settings.img_mobile.alt }}" class="pad_mobile">
+        {% if section.settings.title != blank %}
+        <div class="section_OurStory_position">
+            <div class="container">
+              <h2 class="section_OurStory_positionTitle">
+                {{ section.settings.title }}
+              </h2>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section Our Story",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "img"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_mobile",
+      "label": "img mobile"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "title"
+    },
+    {
+        "type": "color",
+        "id": "text_color",
+        "label": "text color",
+        "default": "#fff"
+    },
+    {
+      "type": "number",
+      "id": "text_top",
+      "label": "text Top",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "text_topMobile",
+      "label": "text top mobile",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Spacing Top:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_top",
+      "label": "Desktop Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_top",
+      "label": "Mobile Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingTop",
+      "label": "Desktop Padding Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingTop",
+      "label": "Mobile Padding Top",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Bottom:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_bottom",
+      "label": "Desktop Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_bottom",
+      "label": "Mobile Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingBottom",
+      "label": "Mobile Padding Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Our Story"
+    }
+  ]
+}
+{% endschema %}

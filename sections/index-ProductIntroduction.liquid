@@ -1,0 +1,594 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+    .index_ProductIntroductionAll .swiper-pagination-bullet {
+        border-radius: unset !important;
+    }
+    .index_ProductIntroductionBanner_leftText,.index_ProductIntroductionBottom_boxText_rightText  {
+        line-height: 140%;
+    }
+    .index_ProductIntroductionBottom_box{
+        height: auto !important;
+        background-color: #f8f8f8;
+    }
+    .index_ProductIntroductionBottom_boxImg img,.index_ProductIntroductionBanner_rightImg img{
+        width: 100%;
+    }
+    .index_ProductIntroductionBanner_leftTitle,.index_ProductIntroductionBottom_boxText_rightTitle {
+        margin: 0;
+        line-height: 120%;
+    }
+   .shopify-section-{{section.id}} .index_ProductIntroductionBanner_rightLinkBox{
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right;
+        /* background-image: url('https://cdn.shopify.com/s/files/1/0475/6920/7457/files/60db2c953b6a1c075a47a89597edd368.png?v=1739250543'); */
+        background-image: url({{section.settings.bg_img | img_url: 'master' }});
+    }
+    @media(max-width:999px) {
+        .shopify-section-{{section.id}}.index_ProductIntroductionAll{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+        .index_ProductIntroductionBanner_right {
+            position: relative;
+        }
+        .index_ProductIntroductionBanner_rightLink {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+        }
+        .index_ProductIntroductionBanner_rightLinkBox {
+            padding: 6px 15px;
+            padding-right: 38px;
+            height: 30px;
+            display: inline-block;
+        }
+        .index_ProductIntroductionBottom_boxText_left{
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            min-height: 60px;
+        }
+        .index_ProductIntroductionBottom_boxText_left img{
+            width: 100%;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        .shopify-section-{{section.id}}.index_ProductIntroductionAll{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+        .index_ProductIntroductionBanner_right {
+            position: relative;
+        }
+        .index_ProductIntroductionBanner_rightLink {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+        }
+        .index_ProductIntroductionBanner_rightLinkBox {
+            padding: 8px 20px;
+            padding-right: 54px;
+            height: 44px;
+            display: inline-block;
+        }
+
+        .index_ProductIntroductionBottom_boxText_left{
+            width: 68px;
+            height: 68px;
+            min-width: 68px;
+            min-height: 68px;
+        }
+        .index_ProductIntroductionBottom_boxText_left img{
+            width: 100%;
+        }
+    }
+    @media (min-width:1000px) {
+        .pad_mobile{
+            display: none;
+        }
+        .index_ProductIntroductionAll .my_h_20 {
+            font-size: 20px;
+        }
+        .index_ProductIntroductionBanner_leftBox {
+            max-width: 698px;
+        }
+        .index_ProductIntroductionBanner_leftLabel {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .index_ProductIntroductionBanner_leftText {
+            margin-top: 10px;
+        }
+        .ProductIntroductionBanner_leftPerfect_text {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .ProductIntroductionBanner_leftPerfect_textBox {
+            border: 1px solid #151515;
+            display: flex;
+            width: 24%;
+            font-weight: 500;
+            min-width: 148px;
+            height: 46px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+        }
+        .ProductIntroductionBanner_leftPerfect {
+            margin-top: 30px;
+        }
+        .ProductIntroductionBanner_leftFeel_img {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .index_ProductIntroductionBottom {
+            margin-top: 5px;
+        }
+        .index_ProductIntroductionBottom_boxText {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 34px 68px;
+        }
+        .index_ProductIntroductionBottom_boxText_rightTitle {
+            font-weight: 500;
+            line-height: 120%;
+        }
+        .index_ProductIntroductionBottom_boxText_rightText {
+            margin-top: 5px;
+        }
+        .ProductIntroductionBanner_leftFeel {
+            margin-top: 30px;
+        }
+        .index_ProductIntroductionBanner {
+            display: flex;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+        .index_ProductIntroductionBanner_left {
+            width: 50%;
+            padding: 40px 68px;
+        }
+        .index_ProductIntroductionBanner_right {
+            width: 50%;
+        }
+    }
+  
+    @media (max-width:999px) {
+        .pad_pc{
+            display: none;
+        }
+        .index_ProductIntroductionAll .my_m_25 {
+            font-size: 25px;
+        }
+        .index_ProductIntroductionAll .my_m_16 {
+            font-size: 16px;
+        }
+        .index_ProductIntroductionAll .my_m_14 {
+            font-size: 14px;
+        }
+        .index_ProductIntroductionAll .my_m_12 {
+            font-size: 12px;
+        }
+        .index_ProductIntroductionBanner {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .index_ProductIntroductionBanner_leftBox {
+            max-width: 698px;
+        }
+        .index_ProductIntroductionBanner_leftLabel {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .index_ProductIntroductionBanner_leftText {
+            margin-top: 10px;
+        }
+        .ProductIntroductionBanner_leftPerfect_text {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            /* display: grid;
+            gap: 5px;
+            grid-template-columns: repeat(4,1fr); */
+            margin-top: 10px;
+        }
+        .ProductIntroductionBanner_leftPerfect_textBox {
+            width: max-content;
+            min-width: 70px;
+            padding: 0 4px;
+        }
+        .ProductIntroductionBanner_leftPerfect_textBox {
+            border: 1px solid #151515;
+            display: flex;
+            /* width: 100%; */
+            font-weight: 500;
+            min-width: 70px;
+            height: 25px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+        }
+        .ProductIntroductionBanner_leftPerfect {
+            margin-top: 20px;
+        }
+        .ProductIntroductionBanner_leftFeel_img {
+            margin-top: 10px;
+        }
+        .index_ProductIntroductionBottom {
+            margin-top: 5px;
+        }
+        .index_ProductIntroductionBottom_boxText {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 19px 34px;
+        }
+        .index_ProductIntroductionBottom_boxText_rightTitle {
+            font-weight: 500;
+            line-height: 120%;
+        }
+        
+        .index_ProductIntroductionBottom_boxText_rightText {
+            margin-top: 5px;
+        }
+        .ProductIntroductionBanner_leftFeel {
+            margin-top: 20px;
+        }
+        .index_ProductIntroductionBanner {
+            background-color: #f8f8f8;
+        }
+        .index_ProductIntroductionBanner_left {
+            padding: 30px 17px;
+        }
+        .index_ProductIntroductionBanner_right {
+        }
+        
+        .index_ProductIntroductionAll .swiper-pagination {
+            position: static;
+            margin-top: 0px;
+            line-height: 1;
+        }
+        .index_ProductIntroductionAll .swiper-pagination-bullet {
+            width: 34px;
+            height: 1px;
+            margin: 0 5px !important;
+            opacity: 1;
+            background-color: #e3e3e3;
+        }
+        .index_ProductIntroductionAll .swiper-pagination-bullet-active {
+            background-color: #000;
+        }
+
+    }
+</style> 
+<div class="index_ProductIntroductionAll shopify-section-{{section.id}}" data-tab="{{section.settings.tab_id}}">
+    <div class="{% if section.settings.full_width %} {%- else -%} row full-width-row{% endif %}">
+        <div class="columns">
+            <div class="index_ProductIntroductionBanner">
+                <div class="index_ProductIntroductionBanner_left">
+                    <div class="index_ProductIntroductionBanner_leftBox">
+                        {% if section.settings.label !=blank %}
+                            <div class="index_ProductIntroductionBanner_leftLabel my_h_20 my_m_14">
+                                {{section.settings.label}}
+                            </div>
+                        {% endif %}
+                        {% if section.settings.title !=blank %}
+                            <h1 class="index_ProductIntroductionBanner_leftTitle my_m_25">
+                                {{section.settings.title}}
+                            </h1>
+                        {% endif %}
+                        {% if section.settings.text !=blank %}
+                            <div class="index_ProductIntroductionBanner_leftText my_m_12">
+                                {{section.settings.text}}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="ProductIntroductionBanner_leftPerfect">
+                            {% if section.settings.perfect_for !=blank %}
+                                <div class="ProductIntroductionBanner_leftPerfect_title my_h_20 my_m_14">
+                                    {{section.settings.perfect_for}}
+                                </div>
+                            {% endif %}
+                            <div class="ProductIntroductionBanner_leftPerfect_text">
+                                {% for block in section.blocks %}
+                                    {%- case block.type -%}
+                                        {%- when 'text' -%}
+                                            {% if block.settings.text !=blank %}
+                                                <div class="ProductIntroductionBanner_leftPerfect_textBox my_m_12">
+                                                    {{block.settings.text}}
+                                                </div>
+                                            {% endif %}
+                                        {%- endcase -%}
+                                    {% endfor %}
+                            </div>
+                        </div>
+                        <div class="ProductIntroductionBanner_leftFeel">
+                            {% if section.settings.feel !=blank %}
+                                <div class="ProductIntroductionBanner_leftFeel_title my_h_20 my_m_14">
+                                    {{section.settings.feel}}
+                                </div>
+                            {% endif %}
+                            {% if section.settings.feel_img !=blank %}
+                            <div class="ProductIntroductionBanner_leftFeel_img">
+                                <img src="{{ section.settings.feel_img | img_url: '1000x' }}" class="" alt="{{section.settings.feel_img.alt}}">
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{{section.settings.link}}" class="index_ProductIntroductionBanner_right">
+                    <div class="index_ProductIntroductionBanner_rightImg">
+                        <img src="{{ section.settings.img | img_url: '1000x' }}" class="pad_pc" alt="{{section.settings.img.alt}}">
+                        <img src="{{ section.settings.img_mobile | img_url: '750x' }}" class="pad_mobile" alt="{{section.settings.img_mobile.alt}}">
+                    </div>
+                    {% if section.settings.button !=blank %}
+                        <div class="index_ProductIntroductionBanner_rightLink">
+                            <div class="index_ProductIntroductionBanner_rightLinkBox my_h_16 my_m_12">
+                                {{section.settings.button}}
+                            </div>
+                        </div>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="index_ProductIntroductionBottom">
+                <div class="swiper ProductIntroductionSwiper">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            {%- case block.type -%}
+                                {%- when 'bottom_img' -%}
+                                <div class="swiper-slide index_ProductIntroductionBottom_box">
+                                    <div class="index_ProductIntroductionBottom_boxImg">
+                                        <img src="{{ block.settings.img | img_url: '1000x' }}" class="pad_pc" alt="{{block.settings.img.alt}}">
+                                        <img src="{{ block.settings.img_mobile | img_url: '750x' }}" class="pad_mobile" alt="{{block.settings.img_mobile.alt}}">
+                                    </div>
+                                    <div class="index_ProductIntroductionBottom_boxText">
+                                        {% if block.settings.svg !=blank %}
+                                        <div class="index_ProductIntroductionBottom_boxText_left">
+                                            <img src="{{ block.settings.svg | img_url: '200x' }}" alt="{{block.settings.svg.alt}}">
+                                        </div>
+                                        {% endif %}
+                                        <div class="index_ProductIntroductionBottom_boxText_right">
+                                            {% if block.settings.title !=blank %}
+                                                <h5 class="index_ProductIntroductionBottom_boxText_rightTitle my_h_20 my_m_16">
+                                                    {{block.settings.title}}
+                                                </h5>
+                                            {% endif %}
+                                            {% if block.settings.text !=blank %}
+                                                <div class="index_ProductIntroductionBottom_boxText_rightText my_m_12">
+                                                    {{block.settings.text}}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {%- endcase -%}
+                        {% endfor %}
+                    </div>  
+                    <div class="pad_mobile">
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('#shopify-section-{{ section.id }} .ProductIntroductionSwiper', {
+        observer: true,  //开启动态检查器，监测swiper和slide
+        observeParents: true,  //监测Swiper 的祖/父元素  
+        mousewheel: {
+            forceToAxis: true,
+        },
+        breakpoints: {
+            300: {
+                slidesPerView: 1, 
+                spaceBetween: 5
+            },
+            768: {
+                slidesPerView: 2, 
+                spaceBetween: 5
+            },
+            1200: {
+                slidesPerView: 3, 
+                spaceBetween: 5
+            }
+        },
+        pagination: {
+            el: '.shopify-section-{{section.id}} .swiper-pagination',
+            clickable: true,
+        }
+    });
+});
+</script>
+  {% schema %} 
+  {
+    "name": "Product Introduction",
+    "class": "ProductIntroduction",
+    "settings":[
+        {
+            "type": "textarea",
+            "id": "tab_id",
+            "label": "tab"
+        },
+        {
+            "type": "textarea",
+            "id": "label",
+            "label": "label"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "textarea",
+            "id": "perfect_for",
+            "label": "Perfect for:"
+        },
+        {
+            "type": "textarea",
+            "id": "feel",
+            "label": "Feel"
+        },
+        {
+            "type": "image_picker",
+            "id": "feel_img",
+            "label": "feel img"
+        },
+        {
+            "type": "image_picker",
+            "id": "img",
+            "label": "img"
+        },
+        {
+            "type": "image_picker",
+            "id": "img_mobile",
+            "label": "img mobile"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "button"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "link"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "background img icon"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+    "blocks":[
+        {
+            "type": "text",
+            "name": "text",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "text"
+                }
+            ]
+        },
+        {
+            "type": "bottom_img",
+            "name": "bottom img",
+            "limit": 3,
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "img"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "img_mobile",
+                    "label": "img mobile"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "svg",
+                    "label": "svg"
+                },
+                {
+                    "type": "textarea",
+                    "id": "title",
+                    "label": "title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "text"
+                }
+            ]
+        }
+
+    ],
+    "presets": [
+        {
+            "name": "Product Introduction"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

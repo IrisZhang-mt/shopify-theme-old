@@ -1,0 +1,642 @@
+<style>
+  #shopify-section-{{ section.id }} .infinite-image-marquee[data-iim-link] {
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee {
+    margin-top: var(--iim-margin-top);
+    margin-bottom: var(--iim-margin-bottom);
+    padding-top: var(--iim-padding-top);
+    padding-bottom: var(--iim-padding-bottom);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__header {
+    margin-bottom: 32px;
+    text-align: left;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__title {
+    margin: 0;
+    color: inherit;
+    letter-spacing: 0;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__full {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__viewport {
+    box-sizing: border-box;
+    padding-left: var(--iim-side-spacing);
+    padding-right: var(--iim-side-spacing);
+    width: 100%;
+    overflow: hidden;
+    cursor: grab;
+    touch-action: pan-y;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__viewport.is-dragging {
+    cursor: grabbing;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__track {
+    display: flex;
+    width: max-content;
+    gap: var(--iim-gap);
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    user-select: none;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__item {
+    flex: 0 0 calc((100vw - (var(--iim-side-spacing) * 2) - (var(--iim-gap) * (var(--iim-slides-per-view) - 1))) / var(--iim-slides-per-view));
+    max-width: 360px;
+    min-width: 0;
+    user-select: none;
+  }
+
+  #shopify-section-{{ section.id }} .row .infinite-image-marquee__item {
+    flex-basis: calc((100vw - (var(--iim-side-spacing) * 2) - (var(--iim-gap) * (var(--iim-slides-per-view) - 1))) / var(--iim-slides-per-view));
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__image-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: rgba(104, 103, 103, 0.08);
+    transform: translateZ(0);
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    backface-visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  #shopify-section-{{ section.id }} .infinite-image-marquee__text {
+    margin-top: var(--iim-text-margin-top);
+    font-size: var(--iim-text-size);
+    font-weight: {% if section.settings.text_bold %}600{% else %}400{% endif %};
+    line-height: 1.4;
+    text-align: var(--iim-text-align);
+  }
+
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} .infinite-image-marquee {
+      padding: 30px 0 20px;
+      margin: 0;
+    }
+
+    #shopify-section-{{ section.id }} .infinite-image-marquee__header {
+      margin-bottom: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .infinite-image-marquee__item,
+    #shopify-section-{{ section.id }} .row .infinite-image-marquee__item {
+      flex-basis: min(72vw, 280px);
+    }
+
+    #shopify-section-{{ section.id }} .infinite-image-marquee__title {
+      font-size: 28px;
+      line-height: 32px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .row .infinite-image-marquee__header,
+    #shopify-section-{{ section.id }} .row .infinite-image-marquee__viewport {
+      margin-left: calc(50% - 50vw);
+      width: 100vw;
+    }
+
+    #shopify-section-{{ section.id }} .infinite-image-marquee__header {
+      padding-left: 35px;
+      padding-right: 35px;
+    }
+
+    #shopify-section-{{ section.id }} .infinite-image-marquee__title {
+      font-size: 64px;
+      line-height: 64px;
+    }
+  }
+</style>
+
+{%- liquid
+  assign title = section.settings.title
+  assign link = section.settings.link
+  assign show_container = section.settings.show_container
+  assign slides_per_view = section.settings.slides_per_view | default: 4
+  assign speed = section.settings.speed | default: 8500
+  assign effective_speed = speed | times: 3 | round
+  assign space_between = section.settings.space_between | default: 40
+  assign side_spacing = section.settings.side_spacing | default: 40
+  assign text_margin_top = section.settings.text_margin_top | default: 12
+  assign text_size = section.settings.text_size | default: 14
+  assign text_align = section.settings.text_align | default: 'center'
+  assign margin_top = section.settings.margin_top | default: 0
+  assign margin_bottom = section.settings.margin_bottom | default: 0
+  assign padding_top = section.settings.padding_top | default: 40
+  assign padding_bottom = section.settings.padding_bottom | default: 40
+-%}
+
+{%- if section.blocks.size > 0 -%}
+  <div
+    class="infinite-image-marquee"
+    {% if link != blank %}
+      data-iim-link="{{ link | escape }}"
+      role="link"
+      tabindex="0"
+    {% endif %}
+    style="
+      --iim-slides-per-view: {{ slides_per_view }};
+      --iim-speed: {{ effective_speed }}ms;
+      --iim-gap: {{ space_between }}px;
+      --iim-side-spacing: {{ side_spacing }}px;
+      --iim-text-margin-top: {{ text_margin_top }}px;
+      --iim-text-size: {{ text_size }}px;
+      --iim-text-align: {{ text_align }};
+      --iim-margin-top: {{ margin_top }}px;
+      --iim-margin-bottom: {{ margin_bottom }}px;
+      --iim-padding-top: {{ padding_top }}px;
+      --iim-padding-bottom: {{ padding_bottom }}px;
+    "
+  >
+    <div class="{% if show_container %}row{% else %}infinite-image-marquee__full{% endif %}">
+      <div class="{% if show_container %}small-12 columns{% endif %}">
+        {%- if title != blank -%}
+          <div class="infinite-image-marquee__header">
+            {%- if link != blank -%}
+              <a class="infinite-image-marquee__title" href="{{ link }}">{{ title }}</a>
+            {%- else -%}
+              <h2 class="infinite-image-marquee__title">{{ title }}</h2>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div class="infinite-image-marquee__viewport">
+          <div class="infinite-image-marquee__track">
+            {%- for repeat_index in (1..2) -%}
+              {%- for block in section.blocks -%}
+                <div class="infinite-image-marquee__item" {{ block.shopify_attributes }}>
+                  {%- if block.settings.image != blank -%}
+                    <div class="infinite-image-marquee__image-wrap">
+                      {%- liquid
+                        assign image_loading = 'lazy'
+                        assign image_fetchpriority = 'auto'
+
+                        if repeat_index == 1
+                          assign image_loading = 'eager'
+                          assign image_fetchpriority = 'high'
+                        endif
+                      -%}
+
+                      {{
+                        block.settings.image
+                        | image_url: width: 900
+                        | image_tag:
+                          loading: image_loading,
+                          fetchpriority: image_fetchpriority,
+                          decoding: 'async',
+                          widths: '240, 360, 540, 720, 900',
+                          sizes: '(min-width: 1068px) 25vw, (min-width: 768px) 33vw, 70vw',
+                          class: 'infinite-image-marquee__image'
+                      }}
+                    </div>
+                  {%- endif -%}
+
+                  {%- if block.settings.text != blank -%}
+                    <div class="infinite-image-marquee__text">{{ block.settings.text }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<script>
+  (function () {
+    function initInfiniteImageMarquee() {
+      var section = document.getElementById('shopify-section-{{ section.id }}');
+      if (!section) return;
+
+      var marquee = section.querySelector('.infinite-image-marquee');
+      var viewport = section.querySelector('.infinite-image-marquee__viewport');
+      var track = section.querySelector('.infinite-image-marquee__track');
+
+      if (!marquee || !viewport || !track) return;
+      if (marquee.dataset.iimBound === 'true') return;
+
+      marquee.dataset.iimBound = 'true';
+
+      var url = marquee.getAttribute('data-iim-link');
+      var duration = parseFloat(getComputedStyle(marquee).getPropertyValue('--iim-speed')) || 25000;
+
+      var progress = 0;
+      var loopDistance = 0;
+      var autoSpeed = 0;
+      var lastTime = null;
+      var rafId = null;
+
+      var isDragging = false;
+      var hasDragged = false;
+      var suppressClick = false;
+      var startX = 0;
+      var startProgress = 0;
+      var pointerId = null;
+
+      function getGap() {
+        var style = getComputedStyle(track);
+        var gap = parseFloat(style.columnGap || style.gap || 0);
+        return isNaN(gap) ? 0 : gap;
+      }
+
+      function normalize(value) {
+        if (!loopDistance) return 0;
+
+        value = value % loopDistance;
+
+        if (value < 0) {
+          value += loopDistance;
+        }
+
+        return value;
+      }
+
+      function setTransform() {
+        track.style.transform = 'translate3d(' + (-progress) + 'px, 0, 0)';
+      }
+
+      function updateMeasure() {
+        var gap = getGap();
+
+        /**
+         * 当前 Liquid 输出了两组相同内容。
+         * 移动一半距离后回到同样画面，实现无缝循环。
+         */
+        loopDistance = track.scrollWidth / 2 + gap / 2;
+
+        if (!loopDistance || loopDistance <= 0) {
+          loopDistance = track.scrollWidth / 2;
+        }
+
+        if (!loopDistance || loopDistance <= 0) return;
+
+        autoSpeed = loopDistance / duration;
+        progress = normalize(progress);
+        setTransform();
+      }
+
+      function animate(time) {
+        if (lastTime === null) {
+          lastTime = time;
+        }
+
+        var delta = time - lastTime;
+        lastTime = time;
+
+        if (!isDragging && loopDistance > 0) {
+          progress = normalize(progress + delta * autoSpeed);
+          setTransform();
+        }
+
+        rafId = requestAnimationFrame(animate);
+      }
+
+      function onPointerDown(event) {
+        if (event.button !== undefined && event.button !== 0) return;
+
+        isDragging = true;
+        hasDragged = false;
+        suppressClick = false;
+        startX = event.clientX;
+        startProgress = progress;
+        pointerId = event.pointerId;
+
+        viewport.classList.add('is-dragging');
+
+        if (viewport.setPointerCapture && pointerId !== null) {
+          try {
+            viewport.setPointerCapture(pointerId);
+          } catch (e) {}
+        }
+      }
+
+      function onPointerMove(event) {
+        if (!isDragging) return;
+
+        var diffX = event.clientX - startX;
+
+        if (Math.abs(diffX) > 6) {
+          hasDragged = true;
+        }
+
+        progress = normalize(startProgress - diffX);
+        setTransform();
+      }
+
+      function onPointerUp() {
+        if (!isDragging) return;
+
+        isDragging = false;
+        viewport.classList.remove('is-dragging');
+
+        if (viewport.releasePointerCapture && pointerId !== null) {
+          try {
+            viewport.releasePointerCapture(pointerId);
+          } catch (e) {}
+        }
+
+        pointerId = null;
+
+        if (hasDragged) {
+          suppressClick = true;
+
+          setTimeout(function () {
+            suppressClick = false;
+          }, 120);
+        }
+      }
+
+      function onClick(event) {
+        if (suppressClick || hasDragged) {
+          event.preventDefault();
+          event.stopPropagation();
+          hasDragged = false;
+          return;
+        }
+
+        if (!url) return;
+        if (event.target.closest('a, button, input, textarea, select')) return;
+
+        window.location.assign(url);
+      }
+
+      function onKeydown(event) {
+        if (!url) return;
+
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          window.location.assign(url);
+        }
+      }
+
+      function bindImageLoadEvents() {
+        var images = track.querySelectorAll('img');
+
+        images.forEach(function (image) {
+          if (image.complete) return;
+
+          image.addEventListener(
+            'load',
+            function () {
+              updateMeasure();
+            },
+            { once: true }
+          );
+
+          image.addEventListener(
+            'error',
+            function () {
+              updateMeasure();
+            },
+            { once: true }
+          );
+        });
+      }
+
+      viewport.addEventListener('pointerdown', onPointerDown);
+      viewport.addEventListener('pointermove', onPointerMove);
+      viewport.addEventListener('pointerup', onPointerUp);
+      viewport.addEventListener('pointercancel', onPointerUp);
+      viewport.addEventListener('lostpointercapture', onPointerUp);
+
+      marquee.addEventListener('click', onClick);
+      marquee.addEventListener('keydown', onKeydown);
+
+      bindImageLoadEvents();
+      updateMeasure();
+
+      requestAnimationFrame(function () {
+        updateMeasure();
+      });
+
+      setTimeout(function () {
+        updateMeasure();
+      }, 300);
+
+      if ('ResizeObserver' in window) {
+        var resizeObserver = new ResizeObserver(function () {
+          updateMeasure();
+        });
+
+        resizeObserver.observe(track);
+        resizeObserver.observe(viewport);
+      } else {
+        window.addEventListener('resize', updateMeasure);
+      }
+
+      rafId = requestAnimationFrame(animate);
+
+      document.addEventListener('shopify:section:unload', function (event) {
+        if (!event || !event.detail || event.detail.sectionId !== '{{ section.id }}') return;
+
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initInfiniteImageMarquee);
+    } else {
+      initInfiniteImageMarquee();
+    }
+
+    document.addEventListener('shopify:section:load', initInfiniteImageMarquee);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Infinite image marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find Our Store"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Title link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_container",
+      "label": "Use page width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view",
+      "label": "Slides per view",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Animation speed",
+      "min": 3000,
+      "max": 9500,
+      "step": 500,
+      "unit": "ms",
+      "default": 8500
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "label": "Space between",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "side_spacing",
+      "label": "Side spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "text_margin_top",
+      "label": "Text margin top",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "text_bold",
+      "label": "Bold text",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Infinite image marquee"
+    }
+  ]
+}
+{% endschema %}

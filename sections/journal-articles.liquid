@@ -1,0 +1,249 @@
+{{ 'journal.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mode = section.settings.content_source | default: 'demo'
+  # blog to pull articles from; fall back to the current blog page
+  assign jblog = blogs[section.settings.blog]
+  unless jblog
+    assign jblog = blog
+  endunless
+  assign per = section.settings.posts_per_page | default: 12
+-%}
+
+<div class="mt-journal" id="journal-{{ section.id }}">
+  <div class="mt-wrap mt-journal-body">
+
+    <div class="mt-head">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p>{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Top category tabs (all screens, laid out flat like lululemon) {%- endcomment -%}
+    {%- if section.settings.show_sidebar -%}
+      <nav class="mt-tabs" aria-label="Categories">
+        {%- if mode == 'blog' -%}
+          <a href="#" class="mt-filter active" data-cat="">{{ section.settings.nav1 }}</a>
+          {%- for i in (2..8) -%}
+            {%- assign key = 'nav' | append: i -%}
+            {%- assign tag = section.settings[key] -%}
+            {%- if tag != blank -%}
+              <a href="#" class="mt-filter" data-cat="{{ tag | escape }}">{{ tag }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          <a href="#" class="active">All Posts</a>
+          <a href="#">Activewear Guides</a>
+          <a href="#">Bluesign &amp; Innovation</a>
+          <a href="#">Kids Sports Style</a>
+          <a href="#">Outdoor Adventures</a>
+          <a href="#">Parenting Tips</a>
+          <a href="#">Product Care</a>
+          <a href="#">News &amp; Events</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+
+    {%- if mode == 'blog' -%}
+      {%- comment -%} ===== LIVE: render all articles; tabs filter them on the client ===== {%- endcomment -%}
+      {%- if jblog.articles.size > 0 -%}
+        <div class="mt-posts" data-journal-posts data-per="{{ per }}">
+          {%- for article in jblog.articles limit: 50 -%}
+            {%- assign cat = article.tags | first -%}
+            <article class="mt-post" data-tags="{{ article.tags | join: '|' | escape }}">
+              <a class="mt-thumb" href="{{ article.url }}" aria-label="{{ article.title | escape }}">
+                {%- if article.image -%}
+                  {{ article.image | image_url: width: 800 | image_tag:
+                     loading: 'lazy', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                     widths: '400, 800, 1200' }}
+                {%- else -%}
+                  <div class="mt-ph-fill" style="background:linear-gradient(135deg,#EAE1D2,#C9BCA6)"></div>
+                {%- endif -%}
+              </a>
+              <div class="mt-meta">
+                <span class="mt-tag">{{ cat | default: jblog.title }}</span>
+                <span class="mt-date">{{ article.published_at | date: '%b %d, %Y' }}</span>
+              </div>
+              <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+              <a class="mt-read" href="{{ article.url }}">Read More &rarr;</a>
+            </article>
+          {%- endfor -%}
+        </div>
+        <p class="mt-empty" data-journal-empty hidden>No posts in this category yet.</p>
+        <nav class="mt-pager" data-journal-pager aria-label="Pagination"></nav>
+      {%- else -%}
+        <p style="color:#818A7D">No published posts in this blog yet.</p>
+      {%- endif -%}
+
+    {%- else -%}
+      {%- comment -%} ===== DEMO: placeholder cards (matches the design) ===== {%- endcomment -%}
+      <div class="mt-posts">
+        <article class="mt-post">
+          <a class="mt-thumb" href="#"><div class="mt-ph-fill" style="background:linear-gradient(135deg,#EAE1D2,#C9BCA6)"></div></a>
+          <div class="mt-meta"><span class="mt-tag">Activewear Guide</span><span class="mt-date">Jun 12, 2026</span></div>
+          <h3><a href="#">5 Easy Activewear Outfits for School and Play</a></h3>
+          <a class="mt-read" href="#">Read More &rarr;</a>
+        </article>
+        <article class="mt-post">
+          <a class="mt-thumb" href="#"><div class="mt-ph-fill" style="background:linear-gradient(135deg,#818A7D,#1D1D1D)"></div></a>
+          <div class="mt-meta"><span class="mt-tag">Fabric Guide</span><span class="mt-date">Jun 08, 2026</span></div>
+          <h3><a href="#">Why Quick-Dry Fabrics Matter for Active Kids</a></h3>
+          <a class="mt-read" href="#">Read More &rarr;</a>
+        </article>
+        <article class="mt-post">
+          <a class="mt-thumb" href="#"><div class="mt-ph-fill" style="background:linear-gradient(135deg,#F1EADD,#C9C6BC)"></div></a>
+          <div class="mt-meta"><span class="mt-tag">Parenting Tips</span><span class="mt-date">May 30, 2026</span></div>
+          <h3><a href="#">How to Build a Kids Sportswear Wardrobe</a></h3>
+          <a class="mt-read" href="#">Read More &rarr;</a>
+        </article>
+        <article class="mt-post">
+          <a class="mt-thumb" href="#"><div class="mt-ph-fill" style="background:linear-gradient(135deg,#EAE1D2,#A7ADA0)"></div></a>
+          <div class="mt-meta"><span class="mt-tag">Parenting Tips</span><span class="mt-date">May 22, 2026</span></div>
+          <h3><a href="#">A Parent's Guide to Choosing Kids Activewear That Lasts</a></h3>
+          <a class="mt-read" href="#">Read More &rarr;</a>
+        </article>
+        <article class="mt-post">
+          <a class="mt-thumb" href="#"><div class="mt-ph-fill" style="background:linear-gradient(135deg,#BEDA6E,#6E7A4E)"></div></a>
+          <div class="mt-meta"><span class="mt-tag">Outdoor Adventures</span><span class="mt-date">May 14, 2026</span></div>
+          <h3><a href="#">What Kids Should Wear for Outdoor Adventures</a></h3>
+          <a class="mt-read" href="#">Read More &rarr;</a>
+        </article>
+        <article class="mt-post">
+          <a class="mt-thumb" href="#"><div class="mt-ph-fill" style="background:linear-gradient(135deg,#F8F4EE,#D8CFBF)"></div></a>
+          <div class="mt-meta"><span class="mt-tag">Product Care</span><span class="mt-date">Apr 28, 2026</span></div>
+          <h3><a href="#">How to Care for Performance Wear So It Looks New Longer</a></h3>
+          <a class="mt-read" href="#">Read More &rarr;</a>
+        </article>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{%- if mode == 'blog' -%}
+<script>
+  (function () {
+    var root = document.getElementById('journal-{{ section.id }}');
+    if (!root) return;
+    var wrap = root.querySelector('[data-journal-posts]');
+    var posts = Array.prototype.slice.call(root.querySelectorAll('[data-journal-posts] .mt-post'));
+    var empty = root.querySelector('[data-journal-empty]');
+    var pager = root.querySelector('[data-journal-pager]');
+    var filters = root.querySelectorAll('.mt-filter');
+    var per = parseInt(wrap && wrap.getAttribute('data-per'), 10) || 12;
+    var cat = '', page = 1;
+
+    function matches(p) {
+      if (!cat) return true;
+      return (p.getAttribute('data-tags') || '').split('|').indexOf(cat) !== -1;
+    }
+    function chevron(dir) {
+      var pts = dir === 'prev' ? '15 18 9 12 15 6' : '9 18 15 12 9 6';
+      return '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="' + pts + '"/></svg>';
+    }
+    function buildPager(pages) {
+      if (!pager) return;
+      if (pages <= 1) { pager.innerHTML = ''; return; }
+      var h = '';
+      h += page > 1
+        ? '<a class="mt-nav-link" href="#" data-page="' + (page - 1) + '">' + chevron('prev') + ' Previous</a>'
+        : '<span class="mt-nav-link mt-disabled">' + chevron('prev') + ' Previous</span>';
+      var nums = '';
+      for (var i = 1; i <= pages; i++) {
+        nums += i === page
+          ? '<span class="mt-num active">' + i + '</span>'
+          : '<a class="mt-num" href="#" data-page="' + i + '">' + i + '</a>';
+      }
+      h += '<span class="mt-pages">' + nums + '</span>';
+      h += page < pages
+        ? '<a class="mt-nav-link" href="#" data-page="' + (page + 1) + '">Next ' + chevron('next') + '</a>'
+        : '<span class="mt-nav-link mt-disabled">Next ' + chevron('next') + '</span>';
+      pager.innerHTML = h;
+      pager.querySelectorAll('[data-page]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          page = parseInt(el.getAttribute('data-page'), 10) || 1;
+          render();
+          var tabs = root.querySelector('.mt-tabs') || wrap;
+          if (tabs) tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+    function render() {
+      var filtered = posts.filter(matches);
+      var pages = Math.max(1, Math.ceil(filtered.length / per));
+      if (page > pages) page = pages;
+      posts.forEach(function (p) { p.style.display = 'none'; });
+      var start = (page - 1) * per;
+      filtered.slice(start, start + per).forEach(function (p) { p.style.display = ''; });
+      if (empty) empty.hidden = filtered.length !== 0;
+      buildPager(pages);
+    }
+    filters.forEach(function (f) {
+      f.addEventListener('click', function (e) {
+        e.preventDefault();
+        cat = f.getAttribute('data-cat') || '';
+        page = 1;
+        filters.forEach(function (x) {
+          x.classList.toggle('active', (x.getAttribute('data-cat') || '') === cat);
+        });
+        render();
+      });
+    });
+    render();
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Journal articles",
+  "tag": "section",
+  "class": "mt-journal-articles-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_source",
+      "label": "Content source",
+      "options": [
+        { "value": "demo", "label": "Demo (placeholder cards)" },
+        { "value": "blog", "label": "Live blog articles" }
+      ],
+      "default": "demo",
+      "info": "Use Demo while the real blog content is still being written. Switch to Live when ready."
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Journal" },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro text",
+      "default": "Explore kids activewear guides, children's sportswear tips, breathable fabric insights, outdoor adventure outfit ideas, and product care stories designed to keep kids comfortable, confident, and fully in the play."
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog (Live mode)",
+      "info": "Pick the blog to pull articles from. Leave blank to use the current blog page automatically."
+    },
+    { "type": "range", "id": "posts_per_page", "label": "Posts per page (Live mode)", "min": 6, "max": 24, "step": 3, "default": 12 },
+    { "type": "checkbox", "id": "show_sidebar", "label": "Show category tabs", "default": true },
+    {
+      "type": "header",
+      "content": "Categories",
+      "info": "Category 1 = All Posts. Categories 2–8 must match the article Tags exactly. Tabs show at the top; clicking one filters the articles."
+    },
+    { "type": "text", "id": "nav1", "label": "Category 1", "default": "All Posts" },
+    { "type": "text", "id": "nav2", "label": "Category 2", "default": "Activewear Guides" },
+    { "type": "text", "id": "nav3", "label": "Category 3", "default": "Bluesign & Innovation" },
+    { "type": "text", "id": "nav4", "label": "Category 4", "default": "Kids Sports Style" },
+    { "type": "text", "id": "nav5", "label": "Category 5", "default": "Outdoor Adventures" },
+    { "type": "text", "id": "nav6", "label": "Category 6", "default": "Parenting Tips" },
+    { "type": "text", "id": "nav7", "label": "Category 7", "default": "Product Care" },
+    { "type": "text", "id": "nav8", "label": "Category 8", "default": "News & Events" }
+  ],
+  "presets": [{ "name": "Journal articles" }]
+}
+{% endschema %}

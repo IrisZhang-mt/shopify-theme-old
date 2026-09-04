@@ -1,0 +1,661 @@
+{% doc %}
+  @prompt
+    I need a horizontal layout divided into five columns to showcase different user benefits, and it should allow me to insert icons representing each benefit., Need a  section title, I need a horizontal layout divided into five columns to showcase different user benefits, and it should allow me to insert icons representing each benefit,also with a big title
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-benefits-showcase-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-benefits-showcase-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-benefits-showcase-title-{{ ai_gen_id }} {
+    text-align: {{ block.settings.title_alignment }};
+    margin-bottom: {{ block.settings.title_bottom_spacing }}px;
+  }
+
+  .ai-benefits-showcase-heading-{{ ai_gen_id }} {
+    font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    font-weight: {{ settings.heading_font.weight }};
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .ai-benefits-showcase-subtitle-{{ ai_gen_id }} {
+    font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: {{ block.settings.subtitle_top_spacing }}px 0 0;
+    line-height: 1.5;
+  }
+
+  .ai-benefits-showcase-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: {{ block.settings.column_gap }}px;
+    margin-top: {{ block.settings.content_top_spacing }}px;
+  }
+
+  .ai-benefits-showcase-column-{{ ai_gen_id }} {
+    text-align: {{ block.settings.content_alignment }};
+    padding: {{ block.settings.column_padding }}px;
+    background-color: {{ block.settings.column_background_color }};
+    border-radius: {{ block.settings.column_border_radius }}px;
+    border: {{ block.settings.column_border_width }}px solid {{ block.settings.column_border_color }};
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-benefits-showcase-column-{{ ai_gen_id }}:hover {
+    transform: translateY(-{{ block.settings.hover_lift }}px);
+    box-shadow: 0 {{ block.settings.hover_shadow }}px {{ block.settings.hover_shadow | times: 2 }}px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-benefits-showcase-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto {{ block.settings.icon_bottom_spacing }}px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .ai-benefits-showcase-icon-placeholder-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto {{ block.settings.icon_bottom_spacing }}px;
+    background-color: {{ block.settings.icon_placeholder_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ block.settings.icon_placeholder_text_color }};
+    font-size: {{ block.settings.icon_size | divided_by: 2 }}px;
+  }
+
+  .ai-benefits-showcase-benefit-title-{{ ai_gen_id }} {
+    font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    font-weight: {{ settings.heading_font.weight }};
+    font-size: {{ block.settings.benefit_title_size }}px;
+    color: {{ block.settings.benefit_title_color }};
+    margin: 0 0 {{ block.settings.benefit_title_bottom_spacing }}px;
+    line-height: 1.3;
+  }
+
+  .ai-benefits-showcase-benefit-description-{{ ai_gen_id }} {
+    font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    font-size: {{ block.settings.benefit_description_size }}px;
+    color: {{ block.settings.benefit_description_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 990px) {
+    .ai-benefits-showcase-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+      gap: {{ block.settings.column_gap | times: 0.8 }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-benefits-showcase-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.column_gap | times: 0.6 }}px;
+    }
+
+    .ai-benefits-showcase-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-benefits-showcase-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.9 }}px;
+    }
+
+    .ai-benefits-showcase-column-{{ ai_gen_id }} {
+      padding: {{ block.settings.column_padding | times: 0.7 }}px;
+    }
+
+    .ai-benefits-showcase-icon-{{ ai_gen_id }},
+    .ai-benefits-showcase-icon-placeholder-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size | times: 0.8 }}px;
+      height: {{ block.settings.icon_size | times: 0.8 }}px;
+    }
+
+    .ai-benefits-showcase-icon-placeholder-{{ ai_gen_id }} {
+      font-size: {{ block.settings.icon_size | times: 0.8 | divided_by: 2 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-benefits-showcase-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-benefits-showcase-container-{{ ai_gen_id }}">
+    {% if block.settings.main_title != blank or block.settings.main_subtitle != blank %}
+      <div class="ai-benefits-showcase-title-{{ ai_gen_id }}">
+        {% if block.settings.main_title != blank %}
+          <h2 class="ai-benefits-showcase-heading-{{ ai_gen_id }}">{{ block.settings.main_title }}</h2>
+        {% endif %}
+        {% if block.settings.main_subtitle != blank %}
+          <p class="ai-benefits-showcase-subtitle-{{ ai_gen_id }}">{{ block.settings.main_subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-benefits-showcase-grid-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% liquid
+          assign benefit_icon_key = 'benefit_' | append: i | append: '_icon'
+          assign benefit_title_key = 'benefit_' | append: i | append: '_title'
+          assign benefit_description_key = 'benefit_' | append: i | append: '_description'
+
+          assign benefit_icon = block.settings[benefit_icon_key]
+          assign benefit_title = block.settings[benefit_title_key]
+          assign benefit_description = block.settings[benefit_description_key]
+        %}
+
+        <div class="ai-benefits-showcase-column-{{ ai_gen_id }}">
+          {% if benefit_icon %}
+            <img
+              src="{{ benefit_icon | image_url: width: block.settings.icon_size | times: 2 }}"
+              alt="{{ benefit_title | escape }}"
+              class="ai-benefits-showcase-icon-{{ ai_gen_id }}"
+              loading="lazy"
+              width="{{ block.settings.icon_size }}"
+              height="{{ block.settings.icon_size }}"
+            >
+          {% else %}
+            <div class="ai-benefits-showcase-icon-placeholder-{{ ai_gen_id }}">
+              {{ i }}
+            </div>
+          {% endif %}
+
+          {% if benefit_title != blank %}
+            <h3 class="ai-benefits-showcase-benefit-title-{{ ai_gen_id }}">{{ benefit_title }}</h3>
+          {% endif %}
+
+          {% if benefit_description != blank %}
+            <p class="ai-benefits-showcase-benefit-description-{{ ai_gen_id }}">{{ benefit_description }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefits showcase",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main title"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main title",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "textarea",
+      "id": "main_subtitle",
+      "label": "Subtitle",
+      "default": "Discover the benefits that set us apart from the competition"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Benefit 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_1_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Title",
+      "default": "Fast Shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_1_description",
+      "label": "Description",
+      "default": "Quick and reliable delivery to your doorstep"
+    },
+    {
+      "type": "header",
+      "content": "Benefit 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_2_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Title",
+      "default": "Quality Products"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_2_description",
+      "label": "Description",
+      "default": "Premium materials and craftsmanship in every item"
+    },
+    {
+      "type": "header",
+      "content": "Benefit 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_3_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Title",
+      "default": "24/7 Support"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_3_description",
+      "label": "Description",
+      "default": "Round-the-clock customer service assistance"
+    },
+    {
+      "type": "header",
+      "content": "Benefit 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_4_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_title",
+      "label": "Title",
+      "default": "Easy Returns"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_4_description",
+      "label": "Description",
+      "default": "Hassle-free return policy for your peace of mind"
+    },
+    {
+      "type": "header",
+      "content": "Benefit 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_5_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "benefit_5_title",
+      "label": "Title",
+      "default": "Secure Payment"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_5_description",
+      "label": "Description",
+      "default": "Safe and encrypted payment processing"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "label": "Columns on tablet",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "Title style"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_top_spacing",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Subtitle top spacing",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "title_bottom_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Title bottom spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "icon_bottom_spacing",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon bottom spacing",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Benefit content style"
+    },
+    {
+      "type": "range",
+      "id": "benefit_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "benefit_description_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "benefit_title_bottom_spacing",
+      "min": 5,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "label": "Title bottom spacing",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Column style"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "column_padding",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Column padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "column_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Column border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "column_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Column border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "content_top_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Content top spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Hover effects"
+    },
+    {
+      "type": "range",
+      "id": "hover_lift",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Hover lift",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "hover_shadow",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Hover shadow",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "column_background_color",
+      "label": "Column background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "column_border_color",
+      "label": "Column border",
+      "default": "#eaeaea"
+    },
+    {
+      "type": "color",
+      "id": "benefit_title_color",
+      "label": "Benefit title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "benefit_description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "icon_placeholder_color",
+      "label": "Icon placeholder background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "icon_placeholder_text_color",
+      "label": "Icon placeholder text",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits showcase"
+    }
+  ]
+}
+{% endschema %}

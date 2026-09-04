@@ -1,0 +1,267 @@
+{{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}}
+<style>
+  #shopify-section-{{section.id}} .section_OurStory4All{
+      margin-top: {{section.settings.Desktop_top}}px;
+      margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+      padding-top:{{section.settings.Desktop_paddingTop}}px;
+      padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+  }
+  @media(max-width:999px) {
+      #shopify-section-{{section.id}} .section_OurStory4All{
+          margin-top: {{section.settings.Mobile_top}}px;
+          margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+          padding-top:{{section.settings.Mobile_paddingTop}}px;
+          padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+      }
+  }
+
+  .section_OurStory4_Box img {
+      width: 100%;
+  }
+  .section_OurStory4All .container {
+    max-width: 1590px;
+    margin: 0 auto;
+  }
+  .section_OurStory4_BoxPosition_title {
+    font-weight: 500;
+    line-height: 130%;
+  }
+  .section_OurStory4_BoxPosition_text p:last-child {
+    margin-bottom: 0;
+  }
+  .section_OurStory4All .swiper-scrollbar {
+    border-radius: 10px;
+  }
+  .section_OurStory4All .swiper-scrollbar-drag {
+      background-color: #000;
+  }
+  @media (min-width: 1000px) {
+    .section_OurStory4All .container {
+      padding: 0 30px;
+    }
+    .section_OurStory4_Box {
+      display: flex !important;
+    }
+
+    .section_OurStory4_BoxLeft {
+      width: 50%;
+      padding: 40px;
+    }
+    .section_OurStory4_BoxRightBox {
+      display: flex;
+      max-width: 576px;
+      margin: 0 auto;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .section_OurStory4_BoxRight {
+      width: 50%;
+    }
+    .section_OurStory4All .swiper-scrollbar {
+        max-width: 675px;
+        margin: 0 auto;
+        height: 3px;
+        background-color: #f0f0f0;
+        position: static !important;
+        margin-top: 60px;
+    }
+    .section_OurStory4_BoxPosition_title {
+      font-size: 34px;
+    }
+
+  }
+  @media (max-width: 999px) {
+    .section_OurStory4All .container {
+      padding: 0 15px;
+    }
+    .section_OurStory4_Box {
+      display: flex;
+      flex-direction: column;
+    }
+    .section_OurStory4_BoxRight {
+      text-align: center;
+      padding-top: 30px;
+    }
+     .section_OurStory4All .swiper-scrollbar {
+        max-width: 300px;
+        margin: 0 auto;
+        height: 2px;
+        background-color: #f0f0f0;
+        position: static !important;
+        margin-top: 60px;
+    }
+    .section_OurStory4_BoxPosition_title {
+      font-size: 22px;
+    }
+    .section_OurStory4_BoxPosition_text {
+      margin-top: 22px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="section_OurStory4All">
+  <div class="container">
+    <div class="section_OurStory4_box">
+      <div class="section_OurStory4Swiper swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="section_OurStory4_Box swiper-slide">
+              <div class="section_OurStory4_BoxLeft">
+                <img
+                  loading="lazy"
+                  src="{{ block.settings.img | img_url:'master' }}"
+                  alt="{{ block.settings.img.alt }}"
+                  class="pad_pc"
+                >
+                <img
+                  loading="lazy"
+                  src="{{ block.settings.img_mobile | img_url:'master' }}"
+                  alt="{{ block.settings.img_mobile.alt }}"
+                  class="pad_mobile"
+                >
+                
+              </div>
+              <div class="section_OurStory4_BoxRight">
+                <div class="section_OurStory4_BoxRightBox">
+                  {% if block.settings.title != blank %}
+                    <h3 class="section_OurStory4_BoxPosition_title">
+                      {{ block.settings.title }}
+                    </h3>
+                  {% endif %}
+                  {% if block.settings.text != blank %}
+                    <div class="section_OurStory4_BoxPosition_text">
+                      {{ block.settings.text }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-scrollbar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script>
+  document.addEventListener( 'DOMContentLoaded', function () {
+    var swiper = new Swiper(`#shopify-section-{{section.id}} .section_OurStory4Swiper`, {
+      observer: true,
+      observeParents: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
+      speed: 500,
+      scrollbar: {
+        el: '#shopify-section-{{section.id}} .swiper-scrollbar',
+        draggable: true, // 必须
+      },
+      navigation: {
+        nextEl: `#shopify-section-{{section.id}} .section_OurStory4Swiper .swiper-button-next`,
+        prevEl: `#shopify-section-{{section.id}} .section_OurStory4Swiper .swiper-button-prev`,
+      },
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Section Our Story4",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Spacing Top:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_top",
+      "label": "Desktop Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_top",
+      "label": "Mobile Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingTop",
+      "label": "Desktop Padding Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingTop",
+      "label": "Mobile Padding Top",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Bottom:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_bottom",
+      "label": "Desktop Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_bottom",
+      "label": "Mobile Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingBottom",
+      "label": "Mobile Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "img"
+        },
+        {
+          "type": "image_picker",
+          "id": "img_mobile",
+          "label": "img mobile"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Our Story4"
+    }
+  ]
+}
+{% endschema %}

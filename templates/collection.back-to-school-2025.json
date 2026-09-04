@@ -1,0 +1,232 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection_top_E6HDME": {
+      "type": "collection-top",
+      "blocks": {
+        "text_KmFDTe": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/pc_c360b473-a6e7-47b6-8254-fb3b93e80bb3.jpg",
+            "img_mobile": "shopify://shop_images/mb_109fee26-099b-4b6e-bddf-06fed523ac1f.jpg",
+            "link": "shopify://collections/back-to-school-sale-buy-4-get-1-free",
+            "text": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_rHVTD6": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/pc-1_34000ebf-c591-4f6f-8a6d-72d667b49673.jpg",
+            "img_mobile": "shopify://shop_images/mb-1_5a0f5bcd-0b13-4978-9648-0354dde0d0bf.jpg",
+            "link": "shopify://collections/back-to-school-sale-10-off-1",
+            "text": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_YMzqYf": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "img": "shopify://shop_images/pc-2.jpg",
+            "img_mobile": "shopify://shop_images/mb-2.jpg",
+            "link": "shopify://collections/solar-leggings",
+            "text": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_KmFDTe",
+        "text_rHVTD6",
+        "text_YMzqYf"
+      ],
+      "name": "Collection Top",
+      "settings": {
+        "mobile_text": true,
+        "grid_number": "2",
+        "Desktop_top": 20,
+        "Mobile_top": 25,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 40,
+        "Mobile_bottom": 20,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0
+      }
+    },
+    "index_collection_ghNyyM": {
+      "type": "index-collection",
+      "blocks": {
+        "text_z6TGNi": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "30% Off 5 Pieces",
+            "link": "shopify://collections/new-arrival",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_DkKP4C": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "20% Off Every Piece",
+            "link": "shopify://collections/season-send-off-sale",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_xQADi4": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "Free Gifts $299+",
+            "link": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "text_wb6YDG": {
+          "type": "text",
+          "settings": {
+            "img": "shopify://shop_images/0805EDM_03.jpg",
+            "text": "Leggings",
+            "link": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text_z6TGNi",
+        "text_DkKP4C",
+        "text_xQADi4",
+        "text_wb6YDG"
+      ],
+      "disabled": true,
+      "settings": {
+        "img": "shopify://shop_images/peach-whip.png",
+        "img_mobile": "shopify://shop_images/peach-whip.png",
+        "title": "BLACK FRIDAY DEALS",
+        "text": "Up to 50% Off.",
+        "button": "Details",
+        "Desktop_top": 0,
+        "Mobile_top": 0,
+        "Desktop_paddingTop": 0,
+        "Mobile_paddingTop": 0,
+        "Desktop_bottom": 50,
+        "Mobile_bottom": 40,
+        "Desktop_paddingBottom": 0,
+        "Mobile_paddingBottom": 0,
+        "text_color": "#000000"
+      }
+    },
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_image": false,
+        "show_collection_description": true,
+        "show_subcollections": true,
+        "make_heading_uppercase": false,
+        "heading_size": "h2",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "2eb8e6da-98ad-442c-b31e-fcc9bc0532b9": {
+          "type": "promotion",
+          "disabled": true,
+          "settings": {
+            "render_on_first_page": true,
+            "promotion_collection": "",
+            "promotion_position": 1,
+            "promotion_width": "1",
+            "image": "shopify://shop_images/leggings-set.jpg",
+            "title": "New Year Bundle",
+            "text": "",
+            "link_label": "Shop Now",
+            "link": "",
+            "use_text_button": true,
+            "block_link": "shopify://products/breezy-leggings-designed-in-la-473",
+            "overlay_color": "#000000",
+            "overlay_opacity": 5
+          }
+        },
+        "cust_promotion_94ziBw": {
+          "type": "cust_promotion",
+          "disabled": true,
+          "settings": {
+            "render_on_first_page": true,
+            "content_position": "bottom-left",
+            "promotion_collection": "",
+            "promotion_position": 1,
+            "promotion_width": "2",
+            "promotion_width_mobile": "1",
+            "image": "shopify://shop_images/11_b8a223d7-3606-4b80-a665-49107cd1fdc5.jpg",
+            "title": "Back to School Sale",
+            "text": "Step into the new school year with style and comfort!",
+            "link_label": "Explore",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 21
+          }
+        },
+        "cust_promotion_cWLtiW": {
+          "type": "cust_promotion",
+          "disabled": true,
+          "settings": {
+            "render_on_first_page": false,
+            "content_position": "middle-center",
+            "promotion_collection": "",
+            "promotion_position": 5,
+            "promotion_width": "1",
+            "promotion_width_mobile": "1",
+            "image": "shopify://shop_images/moodytiger-banner-horizontal-07_31be1ce9-e2ea-48df-a222-f5d9f7624d90.png",
+            "title": "Promotion",
+            "text": "Advertise a promotion or a sale",
+            "link_label": "Explore",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 70
+          }
+        }
+      },
+      "block_order": [
+        "2eb8e6da-98ad-442c-b31e-fcc9bc0532b9",
+        "cust_promotion_94ziBw",
+        "cust_promotion_cWLtiW"
+      ],
+      "settings": {
+        "full_width": true,
+        "products_per_page": 11,
+        "columns_desktop": 4,
+        "pagination_type": "infinite",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_counts": false,
+        "filter_color_swatches": true,
+        "facets_desktop": "sidebar"
+      }
+    }
+  },
+  "order": [
+    "collection_top_E6HDME",
+    "index_collection_ghNyyM",
+    "main-collection-banner",
+    "product-grid"
+  ]
+}

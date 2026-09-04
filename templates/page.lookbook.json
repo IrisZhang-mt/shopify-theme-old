@@ -1,0 +1,364 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true,
+        "heading_size": "dafault-heading-size",
+        "heading_alignment": "left",
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    },
+    "image_with_text_VYi9pQ": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_rzFM9m": {
+          "type": "subheading",
+          "settings": {
+            "text": "Lookbook"
+          }
+        },
+        "heading_7q9rwB": {
+          "type": "heading",
+          "settings": {
+            "text": "Summer special: Discover the wonders of nature in a comfy style.",
+            "heading_size": "h3"
+          }
+        },
+        "text_ibL9iK": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "description_size": "medium"
+          }
+        },
+        "button_7bRMh4": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop Collection",
+            "button_link": "shopify://collections/new-arrival"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_rzFM9m",
+        "heading_7q9rwB",
+        "text_ibL9iK",
+        "button_7bRMh4"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/1340.jpg",
+        "use_video": false,
+        "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": true,
+        "video_controls": true,
+        "height": "large",
+        "desktop_image_width": "medium",
+        "section_width": "full-width-row-full",
+        "layout": "text_first",
+        "content_position": "text-left",
+        "color_bg": "#fdf6ee",
+        "color_text": "#151515",
+        "color_border": "#e2e2e2",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "shop_the_look_UmKmhD": {
+      "type": "shop-the-look",
+      "blocks": {
+        "product_nMpTKG": {
+          "type": "product",
+          "settings": {
+            "product_handle": "",
+            "x_position": 61,
+            "y_position": 37,
+            "x_position_mobile": 20,
+            "y_position_mobile": 20
+          }
+        },
+        "product_b7eLAA": {
+          "type": "product",
+          "settings": {
+            "product_handle": "",
+            "x_position": 35,
+            "y_position": 76,
+            "x_position_mobile": 20,
+            "y_position_mobile": 20
+          }
+        },
+        "product_mqQ4rT": {
+          "type": "product",
+          "settings": {
+            "product_handle": "",
+            "x_position": 65,
+            "y_position": 58,
+            "x_position_mobile": 20,
+            "y_position_mobile": 20
+          }
+        }
+      },
+      "block_order": [
+        "product_nMpTKG",
+        "product_b7eLAA",
+        "product_mqQ4rT"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/2880_13db451e-12c8-4f43-b8ca-b3ef4ba16617.jpg",
+        "image_mobile": "shopify://shop_images/1340_b99777e8-fcb6-4b91-b1c3-b7b70f6246dd.jpg",
+        "section_width": "full-width-row-full",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "gallery_jAiVLy": {
+      "type": "gallery",
+      "blocks": {
+        "image_zGznNk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1340-1.jpg",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "smaller_gap": false,
+            "product_list": []
+          }
+        },
+        "image_4QKA4E": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1340-2.jpg",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "smaller_gap": false,
+            "product_list": []
+          }
+        }
+      },
+      "block_order": [
+        "image_zGznNk",
+        "image_4QKA4E"
+      ],
+      "settings": {
+        "columns_desktop": 2,
+        "section_width": "full-width-row-full",
+        "mobile_swipe": false,
+        "image_ratio": "square",
+        "content_position": "bottom-left",
+        "text_alignment": "left",
+        "column_spacing": "none",
+        "heading_size": "h2",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "scrolling_text_pAMY6M": {
+      "type": "scrolling-text",
+      "blocks": {
+        "text_LrpBMX": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/icon-shape_02_8edb5d14-2aff-4661-a937-70af712b6702.svg",
+            "text": "Summer special",
+            "link": "",
+            "outline_text": false
+          }
+        },
+        "text_TQR4QE": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/icon-shape_01_4b3d2c2f-f562-42b4-8004-df78e8e88ecb.svg",
+            "text": "Summer special",
+            "link": "",
+            "outline_text": false
+          }
+        },
+        "text_DGbfH4": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/icon-shape_03_b3e73c76-9e02-4efb-bf2e-a195bd116f1c.svg",
+            "text": "Summer special",
+            "link": "",
+            "outline_text": false
+          }
+        }
+      },
+      "block_order": [
+        "text_LrpBMX",
+        "text_TQR4QE",
+        "text_DGbfH4"
+      ],
+      "settings": {
+        "height": "height-auto",
+        "full_width": true,
+        "direction": "left",
+        "speed": "20s",
+        "text_size": 24,
+        "text_uppercase": false,
+        "image_size": "small",
+        "color_bg": "#fdf6ee",
+        "color_text": "#e3d6c3",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "shop_the_look_BrhecH": {
+      "type": "shop-the-look",
+      "blocks": {
+        "product_g9cXJt": {
+          "type": "product",
+          "settings": {
+            "product_handle": "",
+            "x_position": 52,
+            "y_position": 41,
+            "x_position_mobile": 49,
+            "y_position_mobile": 14
+          }
+        },
+        "product_a8Eg3p": {
+          "type": "product",
+          "settings": {
+            "product_handle": "",
+            "x_position": 50,
+            "y_position": 62,
+            "x_position_mobile": 55,
+            "y_position_mobile": 51
+          }
+        }
+      },
+      "block_order": [
+        "product_g9cXJt",
+        "product_a8Eg3p"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/2880_6985c9ff-4fe3-4abf-a4b6-abce4714d873.jpg",
+        "image_mobile": "shopify://shop_images/1340_2.jpg",
+        "section_width": "full-width-row-full",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "gallery_JfMXjc": {
+      "type": "gallery",
+      "blocks": {
+        "image_hgrfTD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/900.jpg",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "smaller_gap": false,
+            "product_list": []
+          }
+        },
+        "image_Xefceb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/900_274c4e7c-f90c-48f6-bd60-1d63485da10a.jpg",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "smaller_gap": false,
+            "product_list": []
+          }
+        },
+        "image_DycNxz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/900_2.jpg",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "smaller_gap": false,
+            "product_list": []
+          }
+        }
+      },
+      "block_order": [
+        "image_hgrfTD",
+        "image_Xefceb",
+        "image_DycNxz"
+      ],
+      "settings": {
+        "columns_desktop": 3,
+        "section_width": "full-width-row-full",
+        "mobile_swipe": true,
+        "image_ratio": "portrait",
+        "content_position": "bottom-left",
+        "text_alignment": "left",
+        "column_spacing": "none",
+        "heading_size": "h2",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "featured_collection_Pdf6KD": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "View Full Collection",
+        "heading_left": false,
+        "description": "<p>Describe your featured collection here</p>",
+        "full_width": true,
+        "collection": "new-arrival",
+        "display_type": "carousel",
+        "product_limit": 12,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "mobile_swipe": true,
+        "show_progress_bar": false,
+        "disable_top_spacing": false,
+        "disable_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_VYi9pQ",
+    "shop_the_look_UmKmhD",
+    "gallery_jAiVLy",
+    "scrolling_text_pAMY6M",
+    "shop_the_look_BrhecH",
+    "gallery_JfMXjc",
+    "featured_collection_Pdf6KD"
+  ]
+}

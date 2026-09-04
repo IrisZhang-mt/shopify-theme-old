@@ -1,0 +1,198 @@
+{% assign color_label_list = 'color,colour,couleur,颜色,색상,لون' | split: ',' %}
+{% assign size_label_list = 'size,尺寸,尺码,사이즈,مقاس' | split: ',' %}
+{%- liquid
+  assign custom_colors = settings.color_swatches | newline_to_br | split: '<br />'
+  assign key_array = ''
+  assign val_array = ''
+
+  for color in custom_colors
+    assign key = color | split: ':' | first | rstrip
+    assign value = color | split: ':' | last | lstrip
+    assign key_array = key_array | append: ',' | append: key
+    assign val_array = val_array | append: ',' | append: value
+  endfor
+
+  assign key_array = key_array | remove_first: ',' | strip_newlines | downcase | split: ','
+  assign val_array = val_array | remove_first: ',' | split: ','
+-%}
+
+{% assign default_variant = product.selected_or_first_available_variant %}
+<div class="bundling-a-product" data-product-id="{{ product.id }}">
+  <!-- 图片 -->
+  <a href="{{ product.url }}" class="bundling-a-variant-image product-cart-item-image">
+    <img
+      class="lazyautosizes ls-is-cached lazyloaded"
+      src="{{ default_variant.image.src | img_url: 'master' }}"
+      alt="{{ default_variant.image.src.alt }}"
+    >
+  </a>
+
+  <div class="bundling-a-options">
+    <a href="{{ product.url }}" class="bundling-a-title">{{ product.title }}</a>
+    <div class="bundling-a-price-wrapper">
+      {% if default_variant.compare_at_price > default_variant.price %}
+        <s class="bundling-a-compare-at-price">{{ default_variant.compare_at_price | money }}</s>
+      {% endif %}
+      <span class="bundling-a-price {% if default_variant.compare_at_price > default_variant.price %}bundling-a-price2{% endif %}">
+        {{ default_variant.price | money }}
+      </span>
+    </div>
+
+    {% if product.metafields.custom.product_discount_text != blank %}
+      <div class="bundling-a-discount">
+        {{ product.metafields.custom.product_discount_text }}
+      </div>
+    {% endif %}
+
+    {% for option in product.options_with_values %}
+      {% assign option_index = forloop.index0 %}
+      {% assign option_name = option.name | downcase %}
+      {% assign is_color_option = false %}
+      {% assign is_size_option = false %}
+
+      {% for color_label in color_label_list %}
+        {% if option_name contains color_label %}
+          {% assign is_color_option = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% for size_label in size_label_list %}
+        {% if option_name contains size_label %}
+          {% assign is_size_option = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="bundling-a-option" data-option-index="{{ option_index }}">
+        <div class="bundling-a-option-header">
+          <div class="bundling-a-option-name">{{ option.name }}:</div>
+          <div class="selected-value-display" data-option-display="{{ option_index }}">
+            {{ default_variant.options[option_index] }}
+          </div>
+        </div>
+
+        {% assign pc_value_limit = 5 %}
+        {% assign mobile_value_limit = 4 %}
+        {% assign total_values = option.values | size %}
+        {% assign value_index = 0 %}
+
+        <div class="bundling-a-option-values option-values-wrapper">
+          {% for value in option.values %}
+            {% assign is_disabled = true %}
+            {% assign is_hidden_pc = false %}
+            {% assign is_hidden_mobile = false %}
+
+            {% if value_index >= pc_value_limit %}
+              {% assign is_hidden_pc = true %}
+            {% endif %}
+            {% if value_index >= mobile_value_limit %}
+              {% assign is_hidden_mobile = true %}
+            {% endif %}
+
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                {% assign match = true %}
+                {% for i in (0..variant.options.size) %}
+                  {% if i == option_index %}
+                    {% if variant.options[i] != value %}
+                      {% assign match = false %}
+                      {% break %}
+                    {% endif %}
+                  {% else %}
+                    {% if variant.options[i] != default_variant.options[i] %}
+                      {% assign match = false %}
+                      {% break %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                {% if match %}
+                  {% assign is_disabled = false %}
+                  {% break %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+
+            <button
+              type="button"
+              class="
+                bundling-a-option-btn
+                {% if is_disabled %}is_disabled{% endif %}
+                {% if is_color_option %}bundling-a-color-swatch{% endif %}
+                {% if is_size_option %}bundling-a-size-option{% endif %}
+                {% if default_variant.options[option_index] == value %}active{% endif %}
+                {% if is_hidden_pc %}is-hidden-pc{% endif %}
+                {% if is_hidden_mobile %}is-hidden-mobile{% endif %}
+              "
+              data-option-index="{{ option_index }}"
+              data-option-value="{{ value | escape }}"
+              data-index="{{ value_index }}"
+            >
+              {% if is_color_option %}
+                {%- liquid
+                  assign color_value = value | downcase | escape
+
+                  for custom_color in key_array
+                    if custom_color == color_value
+                      assign color_value = val_array[forloop.index0]
+                    endif
+                  endfor
+
+                  assign bg_value = ''
+                  if color_value contains '.'
+                    assign bg_value = color_value | file_url
+                    assign color_value = 'var(--bg-body)'
+                  endif
+
+                  if color_picker_use_variants
+                    for variant in product.variants
+                      if variant.title contains value and variant.image
+                        assign bg_value = variant.image | image_url: width: variant_image_size
+                        break
+                      endif
+                    endfor
+                  endif
+
+                  if value.swatch.image
+                    assign bg_value = value.swatch.image | image_url: width: variant_image_size
+                  elsif value.swatch.color
+                    assign color_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                  endif
+                -%}
+                <span
+                  class="swatch-color"
+                  style="--option-color: {{ color_value | downcase | escape }}; --option-color-image: url('{{ bg_value | escape }}');"
+                ></span>
+              {% else %}
+                {{ value }}
+              {% endif %}
+            </button>
+
+            {% assign value_index = value_index | plus: 1 %}
+          {% endfor %}
+
+          {% if total_values > pc_value_limit or total_values > mobile_value_limit %}
+            <div class="bundling-toggle-btn" onclick="toggleOptionList(this)">+ See More</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+
+    <div class="bundling-a-stock-status">
+      <div class="bundling-a-stock-statusBox">
+        {% if default_variant.available %}
+          <button class="button bundling-a-add-to-cart">
+            <span class="single-add-to-cart-button--text">Add to Cart</span>
+          </button>
+        {% else %}
+          <button class="button bundling-a-sold-out" disabled>Sold Out</button>
+        {% endif %}
+      </div>
+      <div class="loading-overlay">
+        {% render 'svg-icons' with 'thb-loading' %}
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" class="bundling-a-selected-variant-id" value="{{ default_variant.id }}">
+</div>

@@ -1,0 +1,166 @@
+<full-menu class="full-menu">
+  <ul class="thb-full-menu" role="menubar">
+    {%- for link in menu.links -%}
+      {%- liquid
+        assign has_sub_menu = false
+        assign has_mega_menu = false
+        assign mega_menu_block_index = false
+
+        if link.links.size > 0
+          assign has_sub_menu = true
+        endif
+        for block in blocks
+          assign block_menu_title = block.settings.menu_title | strip | downcase
+          assign link_title = link.title | strip | downcase
+
+          if block_menu_title == link_title
+            assign has_mega_menu = true
+            assign mega_menu_block_index = forloop.index0
+            break
+          endif
+        endfor
+      -%}
+      <li
+        role="menuitem"
+        class="{% if has_sub_menu or has_mega_menu %}menu-item-has-children{% endif %}{% if has_mega_menu %} menu-item-has-megamenu{% endif %}{% if link.active %} active{% endif %}"
+        {% if has_sub_menu %}
+          data-item-title="{{ link.title | escape }}"
+        {% endif %}
+      >
+        <a
+          href="{{ link.url }}"
+          data-mt-track="navigation_click"
+          data-mt-label="{{ link.title | escape }}"
+          data-mt-params='{"level":1}'
+          {%- if link.active %}
+            aria-current="page"
+          {% endif -%}
+        >
+          {{- link.title -}}
+          {%- if has_sub_menu or has_mega_menu -%}{%- render 'svg-icons' with 'thb-dropdown-bottom' -%}{%- endif -%}
+        </a>
+        {%- if has_sub_menu == true and has_mega_menu == false -%}
+          <ul class="sub-menu" tabindex="-1">
+            {%- for l in link.links -%}
+              {%- liquid
+                assign has_sub_menu = false
+                assign has_mega_menu = false
+                if l.links.size > 0
+                  assign has_sub_menu = true
+                endif
+              -%}
+              <li
+                class="{%- if l.active %}active{% endif %}{% if has_sub_menu %} menu-item-has-children{%- endif -%}"
+                role="none"
+                {% if has_sub_menu %}
+                  data-item-title="{{ l.title | escape }}"
+                {% endif %}
+              >
+                <a href="{{ l.url }}" role="menuitem" data-mt-track="navigation_click" data-mt-label="{{ l.title | escape }}" data-mt-params='{"level":2}'>
+                  {{- l.title | downcase | capitalize -}}
+                  {%- if has_sub_menu -%}{%- render 'svg-icons' with 'thb-dropdown-right' -%}{%- endif -%}
+                </a>
+                {%- if has_sub_menu -%}
+                  <ul class="sub-menu" role="menu">
+                    {%- for sub_link in l.links -%}
+                      <li class="{%- if sub_link.active %} active{% endif %}" role="none">
+                        <a href="{{ sub_link.url }}" role="menuitem">{{- sub_link.title | downcase | capitalize -}}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- elsif has_sub_menu == true or has_mega_menu == true -%}
+          {%- liquid
+            assign mega_menu_block = blocks[mega_menu_block_index]
+            assign mega_menu_heading_font_size = mega_menu_block.settings.mega_menu_heading_font_size | default: '16px'
+            assign mega_menu_link_font_size = mega_menu_block.settings.mega_menu_link_font_size | default: '16px'
+            assign mega_menu_link_vertical_spacing = mega_menu_block.settings.mega_menu_link_vertical_spacing | default: '12px'
+            assign mega_menu_promotion_bottom_spacing = mega_menu_block.settings.promo_bottom_spacing | default: 20
+          -%}
+          <div
+            class="sub-menu mega-menu-container"
+            tabindex="-1"
+            style="--mega-menu-heading-font-size: {{ mega_menu_heading_font_size }}; --mega-menu-link-font-size: {{ mega_menu_link_font_size }}; --mega-menu-link-vertical-spacing: {{ mega_menu_link_vertical_spacing }}; --mega-menu-promotion-bottom-spacing: {{ mega_menu_promotion_bottom_spacing }}px;"
+          >
+            {%- if has_sub_menu -%}
+              <ul
+                class="mega-menu-columns"
+                tabindex="-1"
+                {% if mega_menu_block.settings.vertical_links %}
+                  style="display: flex; flex-direction: column;"
+                {% endif %}
+              >
+                {%- for l in link.links -%}
+                  <li class="{% if l.active %} active{% endif %}" role="none">
+                    <a
+                      href="{{ l.url }}"
+                      class="mega-menu-columns__heading mega-menu-columns__heading_GDF"
+                      role="menuitem"
+                      data-mega-promo-trigger="{{ l.title | escape }}"
+                      data-mt-track="navigation_click"
+                      data-mt-label="{{ l.title | escape }}"
+                      data-mt-params='{"level":2,"mega":true}'
+                    >
+                      {%- render 'header-menu-icon',
+                        parent_title: link.title,
+                        value: l.title,
+                        enable_color_circle: header_settings.enable_color_circle,
+                        enable_icon: header_settings.enable_icon
+                      -%}
+                      {{ l.title }}
+                    </a>
+                    {%- if l.links.size > 0 -%}
+                      <ul role="menu">
+                        {%- for sub_link in l.links -%}
+                          <li class="{% if sub_link.active %} active{% endif %}" role="none">
+                            <a href="{{ sub_link.url }}" role="menuitem" data-mega-promo-trigger="{{ sub_link.title | escape }}">
+                              {%- render 'header-menu-icon',
+                                parent_title: l.title,
+                                value: sub_link.title,
+                                enable_color_circle: header_settings.enable_color_circle,
+                                enable_icon: header_settings.enable_icon
+                              -%}
+                              {{ sub_link.title | downcase | capitalize -}}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+            {% if has_mega_menu %}
+              {%- if mega_menu_block.settings.promo_1_image -%}
+                {% render 'header-full-menu-promotion',
+                  promotion_image: mega_menu_block.settings.promo_1_image,
+                  promotion_link: mega_menu_block.settings.promo_1_link,
+                  promotion_heading: mega_menu_block.settings.promo_1_heading,
+                  promotion_description: mega_menu_block.settings.promo_1_description,
+                  promotion_link_label: mega_menu_block.settings.promo_1_link_label,
+                  layout: 'card'
+                %}
+                {%- for index in (1..25) -%}
+                  {%- liquid
+                    assign hover_title_id = 'hover_promo_' | append: index | append: '_title'
+                    assign hover_image_id = 'hover_promo_' | append: index | append: '_image'
+                    assign hover_title = mega_menu_block.settings[hover_title_id]
+                    assign hover_image = mega_menu_block.settings[hover_image_id]
+                  -%}
+                  {%- if hover_title != blank and hover_image != blank -%}
+                    <template data-mega-hover-promotion data-mega-hover-title="{{ hover_title | escape }}">
+                      {%- render 'responsive-image', image: hover_image, sizes: '720x0', priority: 'low' -%}
+                    </template>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</full-menu>

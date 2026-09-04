@@ -1,0 +1,250 @@
+<style>
+    #shopify-section-{{section.id}} .section_OurStory5All{
+        margin-top: {{section.settings.Desktop_top}}px;
+        margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+        padding-top:{{section.settings.Desktop_paddingTop}}px;
+        padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .section_OurStory5All{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    .section_OurStory5_BoxPosition_title {
+      margin: 0;
+    }
+    .section_OurStory5_Box img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+    }
+    .section_OurStory5_Box {
+        text-decoration: unset;
+        position: relative;
+        overflow: hidden;
+    }
+    #shopify-section-{{section.id}} .section_OurStory5_BoxPosition_title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: {{section.settings.text_color}};
+    }
+    .section_OurStory5_BoxPosition_button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .section_OurStory5All .container {
+        max-width: 1590px;
+        margin: 0 auto;
+        padding: 0 30px;
+    }
+    .section_OurStory5_BoxPosition_buttonBox {
+      display: flex;
+    }
+    @media (min-width: 1000px) {
+      
+        .section_OurStory5_box {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 16px;
+        }
+
+        .section_OurStory5_Box img {
+            transition: transform 0.5s ease;
+            transform: translateZ(0);
+        }
+        .section_OurStory5_Box:hover img {
+            transform: scale(1.03);
+        }
+        .section_OurStory5_BoxPosition_title {
+          font-size: 34px;
+          line-height: 120%;
+          font-weight: 500;
+          padding: 30px;
+        }
+        .section_OurStory5_BoxPosition_button {
+          padding: 23px;
+        }
+        #shopify-section-{{section.id}} .section_OurStory5_BoxPosition_buttonBox svg {
+          width: 75px;
+          height: 75px;
+        }
+        .section_OurStory5_Box {
+          border-radius: 15px;
+        }
+        
+    }
+    @media (max-width: 999px) {
+        .section_OurStory5All .container {
+            padding: 0 15px;
+        }
+        .section_OurStory5_box {
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            gap: 10px;
+        }
+        .section_OurStory5_BoxPosition_title {
+          font-size: 22px;
+          line-height: 120%;
+          font-weight: 500;
+          padding: 20px;
+        }
+        .section_OurStory5_BoxPosition_buttonBox svg {
+          width: 52px;
+          height: 52px;
+        }
+        .section_OurStory5_BoxPosition_button {
+          padding: 20px;
+        }
+        
+        .section_OurStory5_Box {
+          border-radius: 6px;
+        }
+    }
+</style>
+
+<div class="section_OurStory5All">
+  <div class="container">
+    <div class="section_OurStory5_box">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="section_OurStory5_Box">
+          <img loading="lazy" src="{{ block.settings.img | img_url:'master' }}" alt="{{ block.settings.img.alt }}">
+          {% if block.settings.title != blank %}
+            <h3 class="section_OurStory5_BoxPosition_title">
+              {{ block.settings.title }}
+            </h3>
+          {% endif %}
+
+          <div class="section_OurStory5_BoxPosition_button">
+            <div class="section_OurStory5_BoxPosition_buttonBox"> 
+              <svg id="ctr" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: #fff;
+                    }
+
+                    .cls-2 {
+                      fill: #151515;
+                      fill-rule: evenodd;
+                    }
+                  </style>
+                </defs>
+                <circle id="椭圆_3" data-name="椭圆 3" class="cls-1" cx="50" cy="50" r="50"/>
+                <path id="矩形_17" data-name="矩形 17" class="cls-2" d="M2211,6412.72l28.28,28.28-2.82,2.83-28.29-28.29Z" transform="translate(-2170 -6391)"/>
+                <path id="矩形_17_拷贝" data-name="矩形 17 拷贝" class="cls-2" d="M2208.17,6466.46l28.29-28.29,2.82,2.83L2211,6469.28Z" transform="translate(-2170 -6391)"/>
+              </svg>
+
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section Our Story5",
+  "tag": "section",
+  "settings": [
+    {
+        "type": "color",
+        "id": "text_color",
+        "label": "text color",
+        "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Top:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_top",
+      "label": "Desktop Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_top",
+      "label": "Mobile Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingTop",
+      "label": "Desktop Padding Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingTop",
+      "label": "Mobile Padding Top",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Bottom:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_bottom",
+      "label": "Desktop Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_bottom",
+      "label": "Mobile Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingBottom",
+      "label": "Mobile Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "img"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Our Story5"
+    }
+  ]
+}
+{% endschema %}

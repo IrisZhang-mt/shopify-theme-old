@@ -1,0 +1,247 @@
+{{- 'facets.css' | asset_url | stylesheet_tag -}}
+{{- 'product-grid.css' | asset_url | stylesheet_tag -}}
+{{- 'cust-product-grid.css' | asset_url | stylesheet_tag -}}
+
+{%- liquid
+  assign full_width = section.settings.full_width
+  assign enable_filtering = section.settings.enable_filtering
+  assign enable_sorting = section.settings.enable_sorting
+  assign show_counts = section.settings.show_counts
+  assign filter_color_swatches = section.settings.filter_color_swatches
+  assign pagination_type = section.settings.pagination_type
+  assign products_per_page = section.settings.products_per_page
+  assign columns_desktop = section.settings.columns_desktop
+  assign facets_desktop = section.settings.facets_desktop
+  assign show_filters_by_default = section.settings.show_filters_by_default
+
+  unless enable_filtering
+    assign facets_desktop = 'drawer'
+  endunless
+-%}
+
+{%- if request.page_type == 'collection' and collection != blank -%}
+  {%- if enable_filtering and facets_desktop == 'sidebar' -%}
+    <script>
+      document.body.classList.toggle('cust-product-grid-filters-hidden', {% if show_filters_by_default %}false{% else %}true{% endif %});
+    </script>
+  {%- endif -%}
+
+  {%- for filter in collection.filters limit: 1 -%}
+  {%- endfor -%}
+  {%- comment -%} Keep Shopify admin from showing the unsupported filters message. {%- endcomment -%}
+
+  {%- render 'facets-mobile',
+    results: collection,
+    enable_filtering: enable_filtering,
+    enable_sorting: enable_sorting,
+    show_counts: show_counts,
+    filter_color_swatches: filter_color_swatches
+  -%}
+
+  <div class="cust-product-grid row {% if full_width %}full-width-row{% endif %}">
+    <div class="small-12 columns">
+      {%- paginate collection.products by products_per_page -%}
+        <div class="collection-container section-spacing-bottom">
+          <div
+            id="ProductGridContainer"
+            class="cust-product-grid__container"
+            data-cust-product-grid-container
+            data-filters-initially-hidden="{% if enable_filtering and facets_desktop == 'sidebar' and show_filters_by_default != true %}true{% else %}false{% endif %}"
+          >
+            {%- render 'cust-facets-bar',
+              results: collection,
+              enable_filtering: enable_filtering,
+              enable_sorting: enable_sorting,
+              facets_desktop: facets_desktop,
+              filter_color_swatches: filter_color_swatches
+            -%}
+
+            <div
+              class="sidebar-container cust-product-grid__layout facets--{{ facets_desktop }} results--{{ collection.products.size }}"
+              data-cust-product-grid-layout
+            >
+              {%- if facets_desktop == 'sidebar' -%}
+                {%- render 'cust-facets-desktop',
+                  results: collection,
+                  enable_filtering: enable_filtering,
+                  enable_sorting: enable_sorting,
+                  show_counts: show_counts,
+                  filter_color_swatches: filter_color_swatches
+                -%}
+              {%- endif -%}
+
+              <div class="cust-product-grid__main">
+                {%- if collection.products.size == 0 -%}
+                  <div class="collection-empty collection" id="product-grid" data-id="{{ section.id }}">
+                    {% render 'svg-icons' with 'thb-no-products' %}
+                    <p>
+                      {{ 'sections.collection_template.empty' | t -}}
+                      <br>
+                      {%- if collection.terms -%}
+                        {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url }}
+                      {%- endif -%}
+                    </p>
+                  </div>
+                {%- else -%}
+                  <ul
+                    id="product-grid"
+                    data-id="{{ section.id }}"
+                    class="products collection row small-up-2 medium-up-{{ columns_desktop }} pagination--{{ pagination_type }}"
+                    style="--columns-desktop: {{ columns_desktop }};"
+                  >
+                    {% assign handles = collection.sort_by | split: ',' %}
+                    {% if paginate.current_page == 1 %}
+                      {% for handle in handles %}
+                        {% assign topProduct = all_products[handle] %}
+                        {% if topProduct != empty %}
+                          <li class="column">
+                            {%- render 'product-card',
+                              product_card_product: topProduct,
+                              product_card_hide_from_price_label: true
+                            -%}
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+
+                    {%- for product in collection.products -%}
+                      {%- comment -%} 置顶去重：跳过已在 sort_by（置顶列表）里的产品，避免同一产品既被置顶、又在其原始位置出现一次（重复）。对标准排序无副作用：那时 handles 是排序关键字，不会等于任何产品 handle。 {%- endcomment -%}
+                      {%- unless handles contains product.handle -%}
+                        <li class="column">
+                          {%- render 'product-card',
+                            product_card_product: product,
+                            product_card_hide_from_price_label: true
+                          -%}
+                        </li>
+                      {%- endunless -%}
+                    {%- endfor -%}
+                  </ul>
+                  {% render 'pagination', paginate: paginate, pagination_type: pagination_type, id: section.id %}
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endpaginate -%}
+    </div>
+  </div>
+
+  {%- if enable_filtering or enable_sorting -%}
+    {%- if enable_filtering -%}
+      {{ 'nouislider.js' | asset_url | script_tag }}
+    {%- endif -%}
+    <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cust-facets.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cust Product grid",
+  "class": "section-cust-main-collection-product-grid",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "Make section full width"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 2,
+      "max": 48,
+      "step": 1,
+      "label": "Number of products",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Number of columns on desktop",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "pagination_type",
+      "options": [
+        {
+          "value": "paginated",
+          "label": "Paginated"
+        },
+        {
+          "value": "loadmore",
+          "label": "Click to load"
+        },
+        {
+          "value": "infinite",
+          "label": "Infinite"
+        }
+      ],
+      "default": "paginated",
+      "label": "Pagination"
+    },
+    {
+      "type": "header",
+      "content": "Filtering and sorting"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "Enable filtering"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "Enable sorting"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_counts",
+      "default": true,
+      "label": "Show filter values count"
+    },
+    {
+      "type": "checkbox",
+      "id": "filter_color_swatches",
+      "default": true,
+      "label": "Show color swatches"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters_by_default",
+      "default": false,
+      "label": "Show filters by default"
+    },
+    {
+      "type": "select",
+      "id": "facets_desktop",
+      "options": [
+        {
+          "value": "sidebar",
+          "label": "Sidebar"
+        },
+        {
+          "value": "drawer",
+          "label": "Drawer"
+        }
+      ],
+      "default": "sidebar",
+      "label": "Desktop position"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cust Product grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,330 @@
+
+<style>
+    .subscription_page1Box_title,.subscription_page1Box p  {
+        margin: 0;
+    }
+    .subscription_page1Box_title {
+        line-height: 100%;
+        font-weight: 700;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .subscription_page1{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+        }
+        #shopify-section-{{section.id}} .subscription_page1Box {
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+         
+        #shopify-section-{{section.id}} .subscription_page1{ 
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+          
+        } 
+        #shopify-section-{{section.id}} .subscription_page1Box {
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }  
+    }
+    #shopify-section-{{section.id}}  .subscription_page1Box2 {
+      
+        background-color: {{section.settings.bg_color}};
+    }
+    #shopify-section-{{section.id}}  .subscription_page1Box,#shopify-section-{{section.id}} .subscription_page1Box_title,#shopify-section-{{section.id}} .subscription_page1Box_see_details {
+        color: {{section.settings.text_color}};
+    }
+    #shopify-section-{{section.id}} .subscription_page1Box_buttonBox1  {
+        color: {{section.settings.button_color}};
+        background-color: {{section.settings.button_Bgcolor}};
+    }
+    #shopify-section-{{section.id}} .subscription_page1Box_buttonBox2 {
+        color: {{section.settings.button2_color}};
+        background-color: {{section.settings.button2_Bgcolor}};
+    }
+    @media (min-width:1000px) { 
+        .subscription_page1Box {
+            max-width: 1376px;
+            text-align: center;
+            margin: 0 auto; 
+        }
+        .subscription_page1Box2 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .subscription_page1Box_icon {
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .subscription_page1Box_icon img{
+            height: 100%;
+        } 
+        .subscription_page1Box_text {
+            margin-top: 15px;
+        }
+        .subscription_page1Box_button {
+            margin-top: 15px;
+            display: inline-flex;
+        }   
+        .subscription_page1Box_buttonBox {
+            padding: 12px 12px;
+            font-weight: 700;
+            line-height: 1;
+            margin: 0 4px;
+            min-width: 138px;
+            align-items: center; 
+            justify-content: center;
+            border-radius: 50px;
+        }
+        .subscription_page1Box_see_details {
+            display: block;
+            margin-top: 30px;
+            text-decoration: underline;
+        }
+    }
+ 
+    @media (max-width:999px) {
+        .subscription_page1Box {
+            max-width: 1376px;
+            text-align: center; 
+            margin: 0 auto;
+        }
+        .subscription_page1Box2 {
+            padding-left: 14px; 
+            padding-right: 14px;
+        }
+        .subscription_page1Box_icon {
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .subscription_page1Box_icon img{
+            height: 100%;
+        } 
+        .subscription_page1Box_text {
+            margin-top: 15px;
+        }
+        .subscription_page1Box_button {
+            margin-top: 15px;
+            display: inline-flex;
+        }   
+        .subscription_page1Box_buttonBox {
+            padding: 12px 12px;
+            font-weight: 700;
+            line-height: 1; 
+            margin: 0 4px;
+            min-width: 138px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+        }
+        .subscription_page1Box_see_details {
+            display: block;
+            margin-top: 30px;
+            text-decoration: underline;
+        }
+    }
+</style>
+
+<div class="subscription_page1">
+    <div class="row full-width-row">
+        <div class="columns">
+            <div class="subscription_page1Box {% if section.settings.bg_color !=blank %} subscription_page1Box2{% endif %}">
+                {% if section.settings.icon_svg !=blank%}
+                    <div class="subscription_page1Box_icon">
+                        {{section.settings.icon_svg}}
+                    </div>
+                {%- else -%}
+                    {% if section.settings.icon_png !=blank %}
+                        <div class="subscription_page1Box_icon">
+                            <img src="{{section.settings.icon_png |  img_url: '200x'}}" alt="">
+                        </div>
+                    {% endif %} 
+                {% endif %} 
+
+                {% if section.settings.title !=blank %}
+                    <h3 class="subscription_page1Box_title my_h_28 my_m_25">  
+                        {{section.settings.title}}
+                    </h3>  
+                {% endif %}
+
+                {% if section.settings.text !=blank %}
+                    <div class="subscription_page1Box_text my_h_14 my_m_14"> 
+                        {{section.settings.text}}
+                    </div>
+                {% endif %}
+
+                <div class="subscription_page1Box_button">
+                    {% if section.settings.button !=blank %}
+                        <a href="{{section.settings.button_link}}" class="subscription_page1Box_buttonBox subscription_page1Box_buttonBox1 my_h_14 my_m_14"> 
+                            {{section.settings.button}}
+                        </a>
+                    {% endif %}
+                    {% if section.settings.button2 !=blank %}
+                        <a href="{{section.settings.button_link2}}" class="subscription_page1Box_buttonBox subscription_page1Box_buttonBox2 my_h_14 my_m_14"> 
+                            {{section.settings.button2}}
+                        </a>
+                    {% endif %}
+                </div>
+                {% if section.settings.see_details !=blank %}
+                    <a href="{{section.settings.see_details_link}}" class="subscription_page1Box_see_details my_h_14 my_m_14"> 
+                        {{section.settings.see_details}}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %} 
+  { 
+    "name": "subscription 1",
+    "settings":[
+        {
+            "type": "textarea",
+            "id": "icon_svg",
+            "label": "icon svg"
+        },
+        {
+            "type": "image_picker",
+            "id": "icon_png",
+            "label": "icon png"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "button"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "butto link"
+        },
+        {
+            "type": "text",
+            "id": "button2",
+            "label": "button2"
+        },
+        {
+            "type": "url",
+            "id": "button_link2",
+            "label": "butto link2"
+        },
+        {
+            "type": "text",
+            "id": "see_details",
+            "label": "See Details"
+        },
+        {
+            "type": "url",
+            "id": "see_details_link",
+            "label": "See Details link"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "text color"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "background color"
+        },
+        {
+            "type": "color",
+            "id": "button_color",
+            "label": "button text color"
+        },
+        {
+            "type": "color",
+            "id": "button_Bgcolor",
+            "label": "background button color"
+        },
+        {
+            "type": "color",
+            "id": "button_color2",
+            "label": "button2 text color"
+        },
+        {
+            "type": "color",
+            "id": "button2_Bgcolor",
+            "label": "background button2 color"
+        }
+    ],
+   
+    "presets": [
+        {
+            "name": "subscription 1"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

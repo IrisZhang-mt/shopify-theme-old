@@ -1,0 +1,35 @@
+{%- comment -%}
+  moodytiger 基础漏斗埋点 —— 运行期配置（Liquid 注入）
+  ------------------------------------------------------------------
+  埋点逻辑分两处：
+    1) 主题侧 DOM 交互（商品曝光/点击、Buy Now、购物车 Checkout 点击）
+       -> assets/mt-analytics.js
+    2) 标准漏斗事件（page_view / view_item / add_to_cart / view_cart /
+       begin_checkout / add_payment_info / purchase）
+       -> Admin Custom Pixel（源码版本留存在 assets/mt-analytics-pixel.js）
+  本片段把「页面上下文 + 前端配置」暴露给主题侧脚本。
+  说明：本店 Web Pixel 沙箱不可靠投递「自定义事件」，故主题侧交互事件改为
+  直连数据端点上报（endpoint/token 见下）；标准事件仍由 Custom Pixel 上报。
+  注：token 客户端可见（与 Pixel 里 AUTH_HEADER 一样只是软门槛）。
+{%- endcomment -%}
+<script>
+  window.MT_ANALYTICS = window.MT_ANALYTICS || {};
+  window.MT_ANALYTICS.config = {
+    /* 主题侧事件直连的数据端点 + 鉴权头（与后端 MT_INGEST_TOKEN 一致）*/
+    endpoint: "https://show.moodytiger.work/collect",
+    token: "Bearer Hlyy3qRHh-rrxNp7ifDqbkTSK9xR17L9sGo9n6mpz28",
+    /* 调试：主题编辑器内或 URL 带 ?mt_debug=1 时打印 console 日志 */
+    debug: {% if request.design_mode %}true{% else %}false{% endif %},
+    /* 曝光判定：卡片可见比例阈值 + 停留毫秒，避免快速滚动误报 */
+    impression: { ratio: 0.5, dwell: 300 },
+    context: {
+      shop: {{ shop.permanent_domain | json }},
+      country: {{ localization.country.iso_code | json }},
+      locale: {{ request.locale.iso_code | json }},
+      currency: {{ cart.currency.iso_code | json }},
+      page_type: {{ request.page_type | json }},
+      template: {{ template.name | json }}{% if collection %},
+      collection: {{ collection.handle | json }}{% endif %}
+    }
+  };
+</script>

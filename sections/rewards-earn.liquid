@@ -1,0 +1,207 @@
+<style>
+    .RewardsEarn_boxLeftBoxTitle {
+        margin: 0;
+    }
+
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}}.RewardsEarn_all{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}}.RewardsEarn_all{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px; 
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+
+
+    }
+    @media(min-width:1000px) {   
+        .RewardsEarn_boxLeftBoxTitle {
+            text-align: center;
+        }
+        .RewardsEarn_bottom {
+            margin-top: 48px;
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(4,1fr);
+        }
+        .RewardsEarn_bottomBox {
+            text-align: center;
+            padding: 16px 62px;
+            border: 1px solid #99989B;
+        }
+        .RewardsEarn_bottomBox_title {
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .RewardsEarn_bottomBox_text {
+            margin-top: 16px;
+        }
+
+    }
+    @media(max-width:999px) {   
+        .RewardsEarn_boxLeftBoxTitle {
+            text-align: center;
+        }
+        .RewardsEarn_bottom {
+            margin-top: 24px;
+            display: grid;
+            gap: 8px;
+            grid-template-columns: repeat(2,1fr);
+        }
+        .RewardsEarn_bottomBox {
+            text-align: center;
+            padding: 28px 10px;
+            border: 1px solid #99989B;
+        }
+        .RewardsEarn_bottomBox_title {
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .RewardsEarn_bottomBox_text {
+            margin-top: 4px;
+        }
+    }
+</style>
+<div class="RewardsEarn_all" id="shopify-section-{{section.id}}"> 
+    <div class="my_container">  
+        <div class="RewardsEarn_box">
+            {% if section.settings.title !=blank %}
+                <h2 class="RewardsEarn_boxLeftBoxTitle my_h_32 my_m_28">
+                    {{section.settings.title}}
+                </h2>
+            {% endif %}
+            <div class="RewardsEarn_bottom">
+                {% for block in section.blocks %}
+                    <div class="RewardsEarn_bottomBox">
+                        {% if block.settings.svg !=blank %}
+                            {{block.settings.svg}}
+                        {% endif %}
+                        {% if block.settings.title !=blank %}
+                        <div class="RewardsEarn_bottomBox_title my_h_20 my_m_18">
+                            {{block.settings.title}}
+                        </div>
+                        {% endif %}
+                        {% if block.settings.text !=blank %}
+                            <div class="RewardsEarn_bottomBox_text my_h_14 my_m_14">
+                                {{block.settings.text}}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>  
+</div>
+
+{% schema %}
+  {
+    "name": "Rewards Earn",
+    "class": "RewardsEarn",
+    "settings":[
+       
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        }
+    ],
+"blocks":[
+    {
+        "type": "text",
+        "name": "text",
+        "settings": [
+           
+            {
+                "type": "textarea",
+                "id": "svg",
+                "label": "svg"
+            },
+            {
+                "type": "textarea",
+                "id": "title",
+                "label": "title"
+            },
+            {
+                "type": "textarea",
+                "id": "text",
+                "label": "text"
+            }
+        ]
+    }
+    ],
+    "presets": [
+        {
+            "name": "Rewards Earn"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

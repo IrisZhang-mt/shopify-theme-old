@@ -1,0 +1,103 @@
+.cust-collection-banner {
+  --cust-collection-banner-bg: #fff;
+  --cust-collection-banner-text: #140f0f;
+  --cust-collection-banner-desktop-ratio: 1440 / 280;
+  --cust-collection-banner-mobile-ratio: 390 / 280;
+  --cust-collection-banner-top-spacing: 56px;
+  --cust-collection-banner-bottom-spacing: 0px;
+  background: var(--cust-collection-banner-bg);
+  color: var(--cust-collection-banner-text);
+  margin-bottom: var(--cust-collection-banner-bottom-spacing);
+}
+
+.cust-collection-banner__header {
+  padding: var(--cust-collection-banner-top-spacing) 40px 20px 60px;
+}
+
+.cust-collection-banner__content {
+  max-width: 1360px;
+}
+
+.cust-collection-banner__heading {
+  color: inherit;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.cust-collection-banner__description {
+  color: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+  margin-top: 12px;
+  max-width: 760px;
+}
+
+.cust-collection-banner__description p {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+.cust-collection-banner__media {
+  aspect-ratio: var(--cust-collection-banner-desktop-ratio);
+  margin-top: 28px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cust-collection-banner__media--mobile {
+  display: none;
+}
+
+.cust-collection-banner__media img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+  .cust-collection-banner__header {
+    padding: 20px 20px 0;
+  }
+
+  .cust-collection-banner .breadcrumbs {
+    font-size: 14px;
+    letter-spacing: 0.18px;
+    line-height: 25.2px;
+    padding: 12px 20px 0;
+  }
+
+  .cust-collection-banner__heading {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+  }
+
+  .cust-collection-banner__description {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 8px;
+  }
+
+  .cust-collection-banner__media {
+    aspect-ratio: var(--cust-collection-banner-mobile-ratio);
+    margin: 20px 20px 0;
+    width: auto;
+  }
+
+  .cust-collection-banner__media--desktop {
+    display: none;
+  }
+
+  .cust-collection-banner__media--mobile {
+    display: block;
+  }
+}

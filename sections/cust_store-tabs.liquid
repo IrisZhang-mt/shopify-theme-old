@@ -1,0 +1,134 @@
+<style>
+  .cust-store-tabs-btn {
+    padding: 8px 12px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #97999b;
+    transition: all 0.3s;
+  }
+  .cust-store-tabs-btn--active {
+    color: #000;
+  }
+  .cust-store-tabs h2 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .cust-store-tabs-list {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+  @media (min-width: 768px) {
+    .cust-store-tabs-list {
+      padding-top: 32px;
+      padding-bottom: 48px;
+    }
+  }
+</style>
+<div
+  class="cust-store-tabs"
+  style="border-bottom: 1px solid var(--color-border);"
+>
+  <div class="row full-width-row">
+    <div class="small-12 columns">
+      {%- if section.settings.title != blank -%}
+        <h2 class="h2">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      <div class="cust-store-tabs-list">
+        {%- for block in section.blocks -%}
+          <button
+            class="
+              cust-store-tabs-btn
+              {% if forloop.first %}
+                cust-store-tabs-btn--active
+              {% endif %}
+            "
+            data-title="{{ block.settings.title | escape }}"
+            type="button"
+          >
+            {{ block.settings.title }}
+          </button>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.cust-store-tabs-btn');
+    const tabsArray = Array.from(tabs);
+    let activeTitle = tabsArray[0].getAttribute('data-title');
+
+    function updateDisplay(activeLocation) {
+      // find all [data-belong-to-location] in the store
+      // compare it with the current tab's data-title, hide or show the element:
+      const belongToLocations = document.querySelectorAll('[data-belong-to-location]');
+      belongToLocations.forEach((location) => {
+        if (location.getAttribute('data-belong-to-location') === activeLocation) {
+          location.classList.add('cust-store-location--active');
+        } else {
+          location.classList.remove('cust-store-location--active');
+        }
+      });
+    }
+
+    tabsArray.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        tabsArray.forEach((tab) => {
+          tab.classList.remove('cust-store-tabs-btn--active');
+        });
+        tab.classList.add('cust-store-tabs-btn--active');
+        activeTitle = tab.getAttribute('data-title');
+        updateDisplay(activeTitle);
+      });
+    });
+
+    // init:
+    updateDisplay(activeTitle);
+    // listen for shopify section load:
+    document.addEventListener('shopify:section:load', function (event) {
+      updateDisplay(activeTitle);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Cust Store Tabs",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Discover Out Retail Stores"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Location",
+      "type": "location",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Location Title",
+          "default": "China"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cust Store Tabs",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

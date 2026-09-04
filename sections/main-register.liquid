@@ -1,0 +1,151 @@
+{{ 'login-register.css' | asset_url | stylesheet_tag }}
+{%- liquid
+	assign section_image = section.settings.section_image
+-%}
+{%- if section_image -%}
+	<div class="thb-login-page-wrapper">
+		{%- liquid
+			assign master_width = section_image.src.width | append: 'x' | append: section_image.src.height
+
+			render 'responsive-image', image: section_image, sizes: master_width
+		 -%}
+{%- endif -%}
+<div class="row">
+	<div class="small-12 columns">
+    <div class="thb-form-container">
+      <div class="thb-register-form">
+        {% form 'create_customer', novalidate: 'novalidate' %}
+          <!-- <input name="return_to" type="hidden" value="/account"> -->
+					<h4 class="my_h_40 my_m_28">{{ 'customer.login_page.create_account' | t }}</h4>
+					<p class="my_h_14 my_m_14">{{ 'customer.login_page.create_account_description' | t }}</p>
+					{% if form.errors %}
+					<div class="form-notification error">
+						{% render 'svg-icons' with 'thb-error' %} {{ form.errors | default_errors }}
+					</div>
+					{% endif %}
+					<div class="fields">
+            <div class="field">
+              <input type="text" name="customer[first_name]" class="full" value="{% if form.first_name %}{{ form.first_name }}{% endif %}" placeholder="{{ 'customer.login_page.first_name' | t }}" />
+	            <label for="first_name">{{ 'customer.login_page.first_name' | t }}</label>
+            </div>
+            <div class="field">
+              <input type="text" name="customer[last_name]" class="full" value="{% if form.last_name %}{{ form.last_name }}{% endif %}" placeholder="{{ 'customer.login_page.last_name' | t }}" />
+	            <label for="last_name">{{ 'customer.login_page.last_name' | t }}</label>
+            </div>
+					</div>
+          <div class="field">
+            <input type="email" name="customer[email]" class="full {% if form.errors contains 'email' %}invalid{% endif %}" value="" placeholder="{{ 'customer.login_page.email' | t }}" />
+            <label for="email">{{ 'customer.login_page.email' | t }}</label>
+          </div>
+
+          <div class="field">
+            
+
+            <input
+          id="facts.birth_date"
+          type="date"
+              class="full" 
+          name="customer[note][facts.birth_date]"
+          placeholder="Birth date" 
+        >
+        <label for="facts.birth_date">Birth date</label>
+            </div>
+            <div class="field">
+                      <input
+                        class="full"
+          id="phone"
+          type="tel"
+          name="customer[note][*amplius.phone.number]"
+          placeholder="Phone"
+        >
+        <label for="phone">Phone</label>
+            </div>
+              
+          <div class="field">
+            <input type="password" name="customer[password]" id="pwd" class="full" value="" placeholder="{{ 'customer.login_page.password' | t }}" />
+            <label for="password">{{ 'customer.login_page.password' | t }}</label>
+          </div>
+          <div class="field field_text my_h_14 my_m_14">
+             By checking this box you agree to receive emails and messaging from moodytiger. 
+              You can view our <a style="text-decoration: underline;" href="/policies/privacy-policy">Privacy Policy</a>, and you may unsubscribe at any time. 
+          </div>
+          {% if section.settings.subscribe_text !=blank %} 
+            <div class="checkbox_inputBox my_h_14 my_m_14">
+              <div class="amplius-input amplius-boolean">
+                <input type="hidden" name="customer[accepts_marketing]" value="false">
+                <input id="Email marketing consent" type="checkbox" class="checkbox" checked name="customer[accepts_marketing]">
+              </div>
+              <label for="Email marketing consent"> {{section.settings.subscribe_text}}</label>
+        
+            </div>
+          {% endif %}
+         
+          <button type="submit" class="button full" data-mt-track="sign_up" data-mt-label="email"><span>{{ 'customer.login_page.submit_register' | t }}</span></button>
+        {% endform %}
+				<div class="switch-login-section">
+					{{ 'customer.login_page.already_have_an_account' | t }} <a href="{{ routes.account_login_url }}" class="text-button">{{ 'customer.login_page.login' | t }}</a>
+				</div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- if section_image -%}
+	</div>
+{%- endif -%}
+
+<script>
+// document.addEventListener("DOMContentLoaded", function () {
+//   const form = document.querySelector('form[action="/account"]'); // 选择你的注册表单
+//   form.addEventListener("submit", function (event) {
+//     let isValid = true;
+
+//     // 验证出生日期
+//     const birthDate = document.getElementById("facts.birth_date");
+//     if (!birthDate.value) {
+//       alert("Birth date is required");
+//       isValid = false;
+//     }
+
+//     // 验证电话号码
+//     const phone = document.getElementById("phone");
+//     if (!phone.value) {
+//       alert("Phone number is required");
+//       isValid = false;
+//     }
+//     const pwd = document.getElementById("pwd");
+//     if (!pwd.value) {
+//       alert("Password is required");
+//       isValid = false;
+//     }else if(pwd.value.length < 5){
+//       alert("Password is too short (minimum is 5 characters)")
+//       isValid = false;
+//     }
+
+//     // 如果验证失败，阻止表单提交
+//     if (!isValid) {
+//       event.preventDefault();
+//             event.stopImmediatePropagation();
+//     }
+//   });
+// });
+</script>
+{% schema %}
+{
+  "name": "Register",
+  "tag": "section",
+  "class": "section-customer-register",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "section_image",
+			"label": "Main image"
+		},
+  	{
+			"type": "textarea",
+			"id": "subscribe_text",
+			"label": "subscribe text",
+      "default": "Agree to subscribe to user push"
+		}
+	]
+}
+{% endschema %}

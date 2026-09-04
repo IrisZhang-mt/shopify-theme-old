@@ -1,0 +1,269 @@
+<style>
+    .seriesPage1All img {
+        width: 100%;
+    }
+    @media(max-width:999px) {
+        #shopify-section-{{section.id}} .seriesPage1All{
+            margin-top: {{section.settings.Mobile_top}}px;
+            margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+            padding-top:{{section.settings.Mobile_paddingTop}}px;
+            padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+        }
+    }
+    @media(min-width:1000px) {
+        
+        #shopify-section-{{section.id}} .seriesPage1All{
+            margin-top: {{section.settings.Desktop_top}}px;
+            margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+            padding-top:{{section.settings.Desktop_paddingTop}}px;
+            padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+        }
+    }
+    #shopify-section-{{section.id}} .seriesPage1_box {
+        color: {{section.settings.text_color}};
+    }
+    #shopify-section-{{section.id}} .seriesPage1_boxButton {
+        border: 1px solid {{section.settings.text_color}};
+        color: {{section.settings.text_color}};
+    }
+    .seriesPage1_boxTitle {
+        line-height: 120%;
+    }
+    @media (min-width:1000px) {
+        .seriesPage1_box {
+            position: relative;
+            border-radius: 0px 0px 30px 30px;
+            overflow: hidden;
+        }
+        .seriesPage1_boxPosition {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 80px;
+            display: flex;
+            align-items: center;
+        }
+        .seriesPage1_boxPosition_box {
+            max-width: 560px;
+        }
+        .seriesPage1_boxButton {
+            position: absolute;
+            height: 36px;
+            right: 0; 
+            bottom: 10px;
+            padding: 0 20px;
+            width: max-content;
+            display: inline-block;
+            align-items: center;
+            border-radius: 100px; 
+            line-height: 36px;
+        }
+        .seriesPage1_boxTitle {
+            font-weight: 500;
+            position: relative;
+        }
+        .seriesPage1_boxText {
+            margin-top: 20px;
+        }
+        .seriesPage3_boxTop_img:hover .seriesPage3_boxTop_small{
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0%);
+        }
+        .seriesPage3_boxTop_small {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+            transform: translateY(calc(100% + 44px));
+        }
+    }
+
+    @media (max-width:999px) {
+        .seriesPage1All .row.full-width-row,.seriesPage1All .row .columns{
+            padding: 0;
+        }
+        
+        .seriesPage1_box {
+            position: relative;
+            border-radius: 0px 0px 13px 13px;
+            overflow: hidden;
+        }
+        .seriesPage1_boxPosition {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 32px;
+            display: flex; 
+            align-items: center;
+        }
+        .seriesPage1_boxPosition_box {
+            max-width: 328px;
+        }
+        .seriesPage1_boxButton {
+          
+            height: 24px;
+            margin-left: 10px;
+            padding: 0 20px;
+            width: max-content;
+            display: inline-block;
+            align-items: center;
+            border-radius: 100px;
+            line-height: 24px;
+            font-size: 12px;
+        }
+        .seriesPage1_boxTitle {
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .seriesPage1_boxText {
+            margin-top: 8px;
+        }
+    }
+</style>
+<div class="seriesPage1All">
+    <div class="row full-width-row">
+        <div class="columns">
+            <div class="seriesPage_container">
+                <div class="seriesPage1_box">
+                    <img src="{{ section.settings.img | img_url: 'master' }}" alt="{{section.settings.img.alt}}" class="pad_pc">
+                    <img src="{{ section.settings.img_mobile | img_url: 'master' }}" alt="{{section.settings.img_mobile.alt}}" class="pad_mobile">
+                    <div class="seriesPage1_boxPosition">
+                        <div class="seriesPage1_boxPosition_box">
+                            {% if section.settings.title !=blank %}
+                                <div class="seriesPage1_boxTitle my_h_45 my_m_28">
+                                    {{section.settings.title}}
+        
+                                    {% if section.settings.button !=blank %}
+                                        <a href="{{section.settings.button_link}}" class="seriesPage1_boxButton my_h_16 my_m_12">
+                                            {{section.settings.button}}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            {% if section.settings.text !=blank %}
+                                <div class="seriesPage1_boxText my_h_18 my_m_12">
+                                    {{section.settings.text}}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %} 
+  {
+    "name": "Series Page1",
+    "settings":[
+        {
+            "type": "image_picker",
+            "id": "img",
+            "label": "img"
+        },
+        {
+            "type": "image_picker",
+            "id": "img_mobile",
+            "label": "img mobile"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "title"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "button"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "button link"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "text"
+        },
+        {
+            "type": "header",
+            "content": "Spacing Top:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_top",
+            "label": "Desktop Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_top",
+            "label": "Mobile Margin Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Desktop_paddingTop",
+            "label": "Desktop Padding Top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingTop",
+            "label": "Mobile Padding Top",
+            "default": 0
+        },
+        
+        {
+            "type": "header",
+            "content": "Spacing Bottom:"
+        },
+        {
+            "type": "number",
+            "id": "Desktop_bottom",
+            "label": "Desktop Margin Bottom",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_bottom",
+            "label": "Mobile Margin Bottom",
+            "default": 0
+        },
+        {
+          "type": "number",
+          "id": "Desktop_paddingBottom",
+          "label": "Desktop Padding Bottom",
+          "default": 0
+        },
+        {
+            "type": "number",
+            "id": "Mobile_paddingBottom",
+            "label": "Mobile Padding Bottom",
+            "default": 0
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "text color"
+        }
+    ],
+
+    "presets": [
+        {
+            "name": "Series Page1"
+        }
+    ]
+  }
+  
+  
+{% endschema %}

@@ -1,0 +1,117 @@
+{%- if settings.custom_cursor -%}
+  <style>
+    #follower {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1000000000;
+      opacity: 0;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .no-touch-device * {
+        cursor: none !important;
+      }
+      .no-touch-device #follower {
+        display: block;
+      }
+      html.kiwi-sizing-modal-visible #follower {
+        display: none;
+      }
+      html.kiwi-sizing-modal-visible * {
+        cursor: auto !important;
+      }
+      .no-touch-device .cursor-visible {
+        cursor: auto !important;
+      }
+    }
+  </style>
+  <img id="follower" alt="Cursor follower" src="{{ 'cursor.png' | asset_url }}" width="30" height="30">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      class Cursor {
+        constructor() {
+          this._position = {
+            x: 0,
+            y: 0,
+          };
+          this._ease = 0.8;
+          this.follower = document.getElementById('follower');
+          this.cursorVisibleSelectors = [
+            '#tidio-chat-iframe',
+            '#smile-lite-launcher-frame',
+            '.smile-panel-frame',
+            '.privy-widget-popup-outer-container',
+            '#privy-widget',
+            '.cTIJOx',
+            '.sc-lfYzqA',
+            // These won't work somehow:
+            //'.pswp',
+            //'.pswp__bg',
+            //'.pswp__scroll-wrap',
+          ]; // Add your desired selectors here
+        }
+
+        init() {
+          this._setupComponent();
+          this._setupEventListeners();
+        }
+
+        _leader(prop) {
+          return prop === 'x' ? this._position.x : this._position.y;
+        }
+
+        _setupComponent() {
+          this._position = {
+            x: window.innerWidth * 0.5,
+            y: window.innerHeight * 0.5,
+          };
+        }
+
+        _setupEventListeners() {
+          window.addEventListener('mousemove', this._handleMouseMove.bind(this));
+          document.addEventListener('mouseover', this._handleMouseOver.bind(this));
+          document.addEventListener('mouseout', this._handleMouseOut.bind(this));
+        }
+
+        _handleMouseMove(e) {
+          this.follower.style.opacity = 1; // make sure only show it when js is running
+          this.follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        }
+
+        _handleMouseOver(e) {
+          if (this._shouldShowDefaultCursor(e.target)) {
+            this.follower.style.opacity = 0;
+            e.target.classList.add('cursor-visible');
+          }
+        }
+
+        _handleMouseOut(e) {
+          if (this._shouldShowDefaultCursor(e.target)) {
+            this.follower.style.opacity = 1;
+            e.target.classList.remove('cursor-visible');
+          }
+        }
+
+        _shouldShowDefaultCursor(element) {
+          return this.cursorVisibleSelectors.some((selector) => {
+            if (selector.startsWith('.')) {
+              return element.classList.contains(selector.slice(1));
+            } else if (selector.startsWith('#')) {
+              return element.id === selector.slice(1);
+            } else if (selector.startsWith('[')) {
+              return element.hasAttribute(selector.slice(1, -1).split('=')[0]);
+            } else {
+              return element.tagName.toLowerCase() === selector.toLowerCase();
+            }
+          });
+        }
+      }
+      const cursor = new Cursor();
+      cursor.init();
+    });
+  </script>
+{%- endif -%}

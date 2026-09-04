@@ -1,0 +1,803 @@
+{%- liquid
+  assign style = section.settings.style
+  assign sticky_header = section.settings.sticky_header
+  assign transparent_header = false
+  assign logo_height_range = section.settings.logo_height_range
+  assign logo_height_range_mobile = section.settings.logo_height_range_mobile
+  assign menu_alignment = section.settings.menu_alignment | default: 'center'
+  assign menu_left_gap = section.settings.menu_left_gap | default: 40
+  assign header_shadow = section.settings.header_shadow
+
+  if template == 'index'
+    assign transparent_header = section.settings.transparent_header
+  endif
+-%}
+<style>
+@media screen and (min-width: 768px) {
+  #header{
+    padding: {{ section.settings.padding_header }}px;
+  }
+  #header li a,#header .thb-secondary-area-item.thb-secondary-myaccount span{
+    font-size: {{ section.settings.size_header }}px;
+  }
+}
+</style>
+<header
+  id="header"
+  class="header {{ style }} {{ header_shadow }} header-menu-align--{{ menu_alignment }} transparent--{{ transparent_header }} {% if sticky_header %}header-sticky--active{%- endif -%}"
+>
+  <div class="row expanded">
+    <div class="small-12 columns header_GDF">
+      {%- case style -%}
+        {%- when 'style1' -%}
+          {% render 'header-style1', blocks: section.blocks, header_settings: section.settings %}
+        {%- when 'style2' -%}
+          {% render 'header-style2', blocks: section.blocks, header_settings: section.settings %}
+        {%- when 'style3' -%}
+          {% render 'header-style3', blocks: section.blocks, header_settings: section.settings %}
+        {%- when 'style4' -%}
+          {% render 'header-style4', blocks: section.blocks, header_settings: section.settings %}
+      {%- endcase -%}
+    </div>
+  </div>
+  {%- style -%}
+      :root {
+      	--logo-height: {{ logo_height_range | append: 'px' }};
+      	--logo-height-mobile: {{ logo_height_range_mobile | append: 'px' }};
+    }
+      #header {
+        --header-menu-left-gap: {{ menu_left_gap | append: 'px' }};
+      }
+      {% unless sticky_header %}
+      .header-section {
+      	position: static !important;
+      }
+      {%- endunless -%}
+  {%- endstyle -%}
+</header>
+
+{% comment %} ======== 香港 IP 跳转判定 ======== {% endcomment %}
+{% comment %} <script>
+(function() {
+  // 避免重复检查
+  if (sessionStorage.getItem('countryChecked')) {
+    return;
+  }
+
+  // 使用 Shopify 的 IP 检测 API
+  fetch('/browsing_context_suggestions.json')
+    .then(response => response.json())
+    .then(data => {
+      if (data.detected_values) {
+        const detectedCountry = data.detected_values.country.handle;
+        const currentDomain = window.location.hostname;
+        
+        // 香港站域名
+        const hkDomain = 'moodytiger.hk';
+        
+        // 只判断香港 IP
+        if (detectedCountry === 'HK' && currentDomain !== hkDomain) {
+          sessionStorage.setItem('countryChecked', 'true');
+          
+          // 构建目标 URL (保留当前路径和参数)
+          const targetUrl = window.location.protocol + '//' + hkDomain + '/';
+          {% comment %} const targetUrl = window.location.protocol + '//' + hkDomain + window.location.pathname + window.location.search; {% endcomment %}
+          
+          // 弹窗询问用户
+          {% comment %} if (confirm('我們檢測到您來自香港，是否跳轉到香港站點？\nWe detected you are from Hong Kong. Would you like to visit our HK site?')) {
+            window.location.href = targetUrl;
+          } {% endcomment %}
+          
+          // 如果要直接跳转不询问，用下面这行代替上面的 if 语句:
+          window.location.href = targetUrl;
+        } else {
+          // 非香港 IP 或已经在香港站，标记已检查
+          sessionStorage.setItem('countryChecked', 'true');
+        }
+      }
+    })
+    .catch(function(error) {
+      console.log('IP detection failed:', error);
+      sessionStorage.setItem('countryChecked', 'true');
+    });
+})();
+</script>  {% endcomment %}
+{% comment %} ======== 跳转代码结束 ======== {% endcomment %}
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if section.settings.logo %}
+      "logo": {{ section.settings.logo | image_url: width: section.settings.logo.width | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tiktok_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }},
+      {{ settings.social_linkedin_link | json }},
+      {{ settings.social_wechat_link | json }}
+    ],
+    "url": {{ shop.url | append: page.url | json }}
+  }
+</script>
+{%- if request.page_type == 'index' -%}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "style"
+    },
+    {
+      "type": "range",
+      "id": "padding_header",
+      "label": "内边距",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 30,
+      "info": "调整herder高度"
+    },
+    {
+      "type": "range",
+      "id": "size_header",
+      "label": "文字大小",
+      "min":8,
+      "max": 32,
+      "step": 1,
+      "default": 18,
+      "info": "调整herder文字大小"
+    },
+    {
+      "type": "header",
+      "content": "Custom settings"
+    },
+    {
+      "type": "text",
+      "id": "signup_cta_text",
+      "label": "Signup/login CTA text",
+      "default": "Sign Up For 15% Off",
+      "info": "Leave blank to use the default text."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_color_circle",
+      "label": "Enable color circle",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_icon",
+      "label": "Enable custom icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Header settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image",
+      "info": "400 x 68 px .png recommended."
+    },
+    {
+      "type": "range",
+      "id": "logo_height_range",
+      "min": 20,
+      "max": 120,
+      "step": 1,
+      "unit": "px",
+      "label": "Logo height",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "logo_height_range_mobile",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile logo height",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Desktop logo position",
+      "default": "style1",
+      "options": [
+        { "value": "style1", "label": "Logo left, menu center" },
+        { "value": "style2", "label": "Logo left, menu left" },
+        { "value": "style3", "label": "Logo center, menu left" },
+        { "value": "style4", "label": "Logo center, menu center" }
+      ],
+      "info": "Position is always center for mobile."
+    },
+    {
+      "type": "select",
+      "id": "menu_alignment",
+      "label": "Desktop menu alignment",
+      "default": "center",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "left", "label": "Left" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "menu_left_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop left menu gap",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "header_shadow",
+      "label": "Sticky header shadow",
+      "default": "header--shadow-small",
+      "options": [
+        { "value": "header--shadow-none", "label": "None" },
+        { "value": "header--shadow-small", "label": "Small" },
+        { "value": "header--shadow-medium", "label": "Medium" },
+        { "value": "header--shadow-large", "label": "Large" }
+      ]
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu",
+      "info": "Learn how to set up [mega menus](https://documentation.fuelthemes.net/kb/how-do-i-set-up-mega-menus-for-reformation-theme/)."
+    },
+    {
+      "type": "header",
+      "content": "Transparent header"
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_header",
+      "label": "Enable on homepage",
+      "default": true,
+      "info": "Ensure that you have a Slideshow, Video background, Image with text overlay section as the first section on your homepage."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_light",
+      "label": "Logo image",
+      "info": "Displayed when transparent header is enabled. Uses the dimensions set on your main logo."
+    },
+    {
+      "type": "header",
+      "content": "Language / country switcher"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_language_switcher",
+      "label": "Enable language switcher",
+      "default": false,
+      "info": "To add a language, go to your [language settings](/admin/settings/languages)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_switcher",
+      "label": "Enable currency switcher",
+      "default": true,
+      "info": "To add a country/region, go to your [payment settings](/admin/settings/payments)."
+    },
+    {
+      "type": "header",
+      "content": "Extra header icon"
+    },
+    {
+      "type": "url",
+      "id": "header_profile_link",
+      "label": "Profile icon link",
+      "info": "Shows a profile icon between the country selector and cart when configured."
+    },
+    {
+      "type": "header",
+      "content": "Mobile menu"
+    },
+    {
+      "type": "link_list",
+      "id": "mobile_secondary_menu",
+      "label": "Secondary menu",
+      "info": "Secondary menu is shown under the main menu."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "megamenu",
+      "name": "Mega menu",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu title (must match main menu)",
+          "default": "Menu title"
+        },
+        {
+          "type": "checkbox",
+          "id": "vertical_links",
+          "label": "Vertical links",
+          "default": false,
+          "info": "Best for menu without level 3 links."
+        },
+        {
+          "type": "select",
+          "id": "mega_menu_heading_font_size",
+          "label": "Mega menu heading font size",
+          "default": "16px",
+          "options": [
+            { "value": "12px", "label": "12px" },
+            { "value": "14px", "label": "14px" },
+            { "value": "16px", "label": "16px" },
+            { "value": "18px", "label": "18px" },
+            { "value": "20px", "label": "20px" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "mega_menu_link_font_size",
+          "label": "Mega menu child link font size",
+          "default": "16px",
+          "options": [
+            { "value": "12px", "label": "12px" },
+            { "value": "14px", "label": "14px" },
+            { "value": "16px", "label": "16px" },
+            { "value": "18px", "label": "18px" },
+            { "value": "20px", "label": "20px" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "mega_menu_link_vertical_spacing",
+          "label": "Mega menu child link vertical spacing",
+          "default": "12px",
+          "options": [
+            { "value": "8px", "label": "8px" },
+            { "value": "10px", "label": "10px" },
+            { "value": "12px", "label": "12px" },
+            { "value": "14px", "label": "14px" },
+            { "value": "16px", "label": "16px" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Promotion"
+        },
+        {
+          "type": "image_picker",
+          "id": "promo_1_image",
+          "label": "Image",
+          "info": "Use the UI-specified image ratio. Image size is fixed by the theme."
+        },
+        {
+          "type": "text",
+          "id": "promo_1_heading",
+          "default": "Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "promo_1_description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "promo_1_link_label",
+          "label": "Button label",
+          "default": "Learn More",
+          "info": "Leave the label blank to hide the text button."
+        },
+        {
+          "type": "url",
+          "id": "promo_1_link",
+          "label": "Button link"
+        },
+        {
+          "type": "range",
+          "id": "promo_bottom_spacing",
+          "min": 0,
+          "max": 80,
+          "step": 1,
+          "unit": "px",
+          "label": "Promotion bottom spacing",
+          "default": 20
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 1"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_1_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_1_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 2"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_2_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_2_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 3"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_3_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_3_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 4"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_4_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_4_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 5"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_5_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_5_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 6"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_6_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_6_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 7"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_7_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_7_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 8"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_8_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_8_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 9"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_9_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_9_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 10"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_10_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_10_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 11"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_11_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_11_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 12"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_12_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_12_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 13"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_13_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_13_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 14"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_14_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_14_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 15"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_15_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_15_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 16"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_16_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_16_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 17"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_17_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_17_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 18"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_18_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_18_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 19"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_19_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_19_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "header",
+          "content": "Hover promotion 20"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_20_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_20_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_21_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_21_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_22_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_22_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_23_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_23_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_24_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_24_image",
+          "label": "Hover image"
+        },
+        {
+          "type": "text",
+          "id": "hover_promo_25_title",
+          "label": "Hover menu title",
+          "info": "Must exactly match a first-level or child menu item title."
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_promo_25_image",
+          "label": "Hover image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

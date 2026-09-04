@@ -1,0 +1,377 @@
+<style>
+  #shopify-section-{{section.id}} .SectionOurStory2All{
+      margin-top: {{section.settings.Desktop_top}}px;
+      margin-bottom: {{section.settings.Desktop_bottom}}px;
+
+      padding-top:{{section.settings.Desktop_paddingTop}}px;
+      padding-bottom:{{section.settings.Desktop_paddingBottom}}px;
+  }
+  @media(max-width:999px) {
+      #shopify-section-{{section.id}} .SectionOurStory2All{
+          margin-top: {{section.settings.Mobile_top}}px;
+          margin-bottom: {{section.settings.Mobile_bottom}}px;
+
+          padding-top:{{section.settings.Mobile_paddingTop}}px;
+          padding-bottom:{{section.settings.Mobile_paddingBottom}}px;
+      }
+  }
+  .SectionOurStory2_listBox img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  #shopify-section-{{section.id}} .SectionOurStory2_number {
+    line-height: 1;
+    color: {{section.settings.number_color}};
+  }
+  #shopify-section-{{section.id}} .SectionOurStory2_listText {
+      color: {{section.settings.text_color}};
+  }
+  .SectionOurStory2_top{
+    max-width: 1590px;
+    padding: 0 30px;
+    margin: 0 auto;
+  }
+  .SectionOurStory2_top p {
+    margin: 0;
+  }
+  .SectionOurStory2_title {
+    font-weight: 500;
+    min-width:440px;
+    margin: 0;
+  }
+  .SectionOurStory2All {
+      overflow: hidden;
+    }
+  @media (min-width: 1000px) {
+  
+      .SectionOurStory2_box {
+        margin-top: 90px;
+      }
+      .SectionOurStory2_top {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+    
+      }
+      .SectionOurStory2_text {
+        max-width: 812px;
+      }
+      .SectionOurStory2_title,.SectionOurStory2_title p {
+        line-height: 110%;
+        font-size: 90px;
+      }
+      .SectionOurStory2_text {
+        padding-top: 10px;
+        font-size: 20px;
+      }
+      .SectionOurStory2_list .splide__slide  {
+        width: calc((100% / 4.2) - 16px) !important;
+      }
+      .SectionOurStory2_listImg {
+          border-radius: 16px;
+          overflow: hidden;
+          position: relative;
+      }
+      .SectionOurStory2_number {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          font-size: 75px;
+          padding: 20px;
+      }
+      .SectionOurStory2_listBox:nth-child(even) {
+        margin-top: 100px;
+      }
+      .SectionOurStory2_listText {
+        margin-top: 20px;
+        padding-left: 12px;
+      }
+      .SectionOurStory2_listText,.SectionOurStory2_listText p {
+        font-size: 18px;
+        line-height: 120%;
+      }
+      .SectionOurStory2_listText li:not(:first-child) {
+        padding-top: 8px;
+      }
+      .SectionOurStory2_listImg img {
+        max-height: 675px;
+      }
+  }
+  @media (max-width: 999px) {
+    .SectionOurStory2_box {
+      margin-top: 36px;
+    }
+    .SectionOurStory2_top {
+      padding: 0 15px;
+    }
+    .SectionOurStory2_title ,.SectionOurStory2_title p{
+      font-size: 45px;
+      line-height: 120%;
+    }
+    .SectionOurStory2_listText ul,.SectionOurStory2_listText ol {
+      margin-left: 12px;
+    }
+    .SectionOurStory2_text {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    .SectionOurStory2_list .splide__slide  {
+      width: calc((100% / 2.2) - 8px) !important;
+    }
+    .SectionOurStory2_listImg {
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .SectionOurStory2_number {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 36px;
+        padding: 14px;
+    }
+    .SectionOurStory2_listText {
+      margin-top: 12px;
+      padding-left: 4px;
+    }
+  
+    .SectionOurStory2_listText,.SectionOurStory2_listText p {
+      font-size: 12px;
+      line-height: 120%;
+    }
+    .SectionOurStory2_listText li:not(:first-child) {
+      padding-top: 4px;
+    }
+  }
+</style>
+<div class="SectionOurStory2All">
+  <div class="">
+    {%- if section.settings.title == blank and section.settings.text == blank -%}
+    {%- else -%}
+      <div class="SectionOurStory2_top container">
+        {% if section.settings.title != blank %}
+          <h2 class="SectionOurStory2_title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="SectionOurStory2_text">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+    {%- endif -%}
+    <div class="">
+      <div class="SectionOurStory2_box">
+        <div class="splide SectionOurStory2_list">
+          <div class="splide__track">
+            <div class="splide__list">
+              {% for block in section.blocks %}
+                <div class="splide__slide SectionOurStory2_listBox">
+                  <div class="SectionOurStory2_listImg">
+                    <img
+                      src="{{ block.settings.img | img_url: 'master'}}"
+                      alt="{{ block.settings.img.alt}}"
+                      class=""
+                    >
+                    {% if block.settings.number != blank %}
+                      <div class="SectionOurStory2_number">
+                        {{ block.settings.number }}
+                      </div>
+                    {% endif %}
+                  </div>
+                  {% if block.settings.text != blank %}
+                    <div class="SectionOurStory2_listText">
+                      {{ block.settings.text }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="https://cdn.shopify.com/s/files/1/0475/6920/7457/files/splide.css?v=1760448363">
+<script src="https://cdn.shopify.com/s/files/1/0475/6920/7457/files/splide.js?v=1760448429"></script>
+<script src="https://cdn.shopify.com/s/files/1/0475/6920/7457/files/splide-extension-auto-scroll.js?v=1760448363"></script>
+<script>
+  document.addEventListener( 'DOMContentLoaded', function () {
+      const splide = new Splide('#shopify-section-{{section.id}} .SectionOurStory2_list', {
+          type: 'loop',
+          drag: 'free',
+          focus: 'center',
+          gap: 16,
+
+          pagination: false,
+          arrows: false,
+          perPage: 4,
+          breakpoints: {
+              1280: {
+                perPage: 2,
+                autoScroll: {
+                    pauseOnHover: true,
+                    delay: 2000,
+                    speed: {{section.settings.time_pc}} * 0.1
+                }
+              },
+              768: {  // 添加中等宽度的适配
+                perPage: 2,
+                gap: 8,
+                autoScroll: {
+                    pauseOnHover: true,
+                    delay: 2000,
+                    speed: {{section.settings.time_mobile}} * 0.1
+                }
+
+              },
+              375: {
+                perPage: 2,
+                gap: 8,
+                autoScroll: {
+                    pauseOnHover: true,
+                    delay: 2000,
+                    speed: {{section.settings.time_mobile}} * 0.1
+                }
+              },
+          },
+
+      });
+
+      splide.mount({ AutoScroll: window.splide.Extensions.AutoScroll });
+  });
+</script>
+{% schema %}
+{
+  "name": "Section Our Story2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "title"
+    },
+      {
+      "type": "richtext",
+      "id": "text",
+      "label": "text"
+    },
+    {
+      "type": "range",
+      "id": "time_pc",
+      "label": "time pc",
+      "unit": "s",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "time_mobile",
+      "label": "time mobile",
+      "unit": "s",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "number color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "text color"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Top:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_top",
+      "label": "Desktop Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_top",
+      "label": "Mobile Margin Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingTop",
+      "label": "Desktop Padding Top",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingTop",
+      "label": "Mobile Padding Top",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Bottom:"
+    },
+    {
+      "type": "number",
+      "id": "Desktop_bottom",
+      "label": "Desktop Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_bottom",
+      "label": "Mobile Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Desktop_paddingBottom",
+      "label": "Desktop Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "Mobile_paddingBottom",
+      "label": "Mobile Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "img"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "number"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Our Story2"
+    }
+  ]
+}
+{% endschema %}
