@@ -1,0 +1,10 @@
+# Default store for this project. Applied automatically by the Shopify CLI
+# when no -e/--environment flag is passed, so `shopify theme dev` /
+# `shopify theme push` no longer need --store typed out each time.
+#
+# Deliberately no `theme = "..."` here: leaving it unset keeps
+# `shopify theme dev` creating an isolated temporary development theme by
+# default. Pass --theme 161244741878 explicitly when you want to preview
+# on the shared draft theme instead.
+[environments.default]
+store = "moody-tiger-athletics.myshopify.com"
