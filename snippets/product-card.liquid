@@ -42,6 +42,16 @@
     assign show_size_options = settings.show_size_options
     assign size_options_variant_name = settings.size_options_variant_name
     assign size_options_limit = settings.size_options_limit
+
+    # 首屏商品图优先加载：第 1 张走 eager（等同首页 slideshow 首图），
+    # 第一行其余卡片给 fetchpriority 提示，其余卡片保持原有懒加载不变。
+    assign primary_image_eager = false
+    assign primary_image_priority = nil
+    if card_index == 1
+      assign primary_image_eager = true
+    elsif card_index and columns_desktop and card_index <= columns_desktop
+      assign primary_image_priority = 'high'
+    endif
   -%}
   <product-card
     class="product-card product-card--price-{{ product_price_position_class }} text-{{ product_content_alignment }}"
@@ -89,7 +99,13 @@
           {%- endif -%}
         {%- endif -%}
         {%- if featured_media -%}
-          {%- render 'responsive-image', class: 'product-primary-image', image: featured_media, sizes: sizes -%}
+          {%- render 'responsive-image',
+            class: 'product-primary-image',
+            image: featured_media,
+            sizes: sizes,
+            eager: primary_image_eager,
+            priority: primary_image_priority
+          -%}
         {%- else -%}
           <div class="thb-placeholder">
             {{ 'product-1' | placeholder_svg_tag }}

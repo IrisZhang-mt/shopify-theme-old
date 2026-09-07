@@ -51,8 +51,9 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {%- if eager -%}
 	{%- comment -%}
-		性能优化(LCP)：调用方显式传入 eager:true 时（仅首页 slideshow 首屏第一张图），
-		让该图绕过 lazysizes 懒加载，直接输出真实 src/srcset + loading="eager" + fetchpriority="high"，
+		性能优化(LCP)：调用方显式传入 eager:true 时（每个页面的首屏第一张图，例如首页 slideshow
+		首图、collection/搜索网格第一张商品卡图），让该图绕过 lazysizes 懒加载，
+		直接输出真实 src/srcset + loading="eager" + fetchpriority="high"，
 		使浏览器预加载扫描器立即发现并下载，不再等待 JS 把 data-srcset 换成 srcset。
 		sizes 用 100vw（全屏 Banner，原生 eager 图不支持 sizes=auto）。
 		注意：必须用独立的 eager 参数而非 priority——因为 priority:'low' 在 Liquid 中也是真值，

@@ -1586,9 +1586,8 @@ if (typeof addIdToRecentlyViewed !== "undefined") {
   addIdToRecentlyViewed();
 }
 
-if (
-  !document.querySelector("product-slider").classList.contains("scroll-watcher")
-) {
+const productSliderEl = document.querySelector("product-slider");
+if (productSliderEl && !productSliderEl.classList.contains("scroll-watcher")) {
   // update the current index every 100ms:
   setInterval(() => {
     // find ..slider-counter--current
@@ -1614,5 +1613,5 @@ if (
       sliderCounterCurrent.textContent = newIndex + 1;
     }
   }, 100);
-  document.querySelector("product-slider").classList.add("scroll-watcher");
+  productSliderEl.classList.add("scroll-watcher");
 }

@@ -126,7 +126,7 @@
               });
             }).catch(function () {});
           } catch (e) { /* noop */ }
-        });
+        }).catch(function () {});
       }
       return pr;
     };

@@ -21,6 +21,7 @@
   assign products_per_page = section.settings.products_per_page
   assign columns_desktop = section.settings.columns_desktop
   assign facets_desktop = section.settings.facets_desktop
+  assign card_index = 0
 
   unless enable_filtering
     assign facets_desktop = 'drawer'
@@ -81,8 +82,9 @@
               {% for handle in handles %}
                 {% assign topProduct = all_products[handle] %}
                 {% if topProduct != empty %}
+                  {%- assign card_index = card_index | plus: 1 -%}
                   <li class="column">
-                      {%- render 'product-card', product_card_product: topProduct -%}
+                      {%- render 'product-card', product_card_product: topProduct, card_index: card_index, columns_desktop: columns_desktop -%}
                     </li>
                 {% endif %}
               {% endfor %}
@@ -138,8 +140,9 @@
                     {%- endfor -%}
                     {%- comment -%} 置顶去重：跳过已在 sort_by（置顶列表）里的产品，避免同一产品既被置顶、又在其原始位置重复出现。对标准排序无副作用。 {%- endcomment -%}
                     {%- unless handles contains product.handle -%}
+                      {%- assign card_index = card_index | plus: 1 -%}
                       <li class="column">
-                        {%- render 'product-card', product_card_product: product -%}
+                        {%- render 'product-card', product_card_product: product, card_index: card_index, columns_desktop: columns_desktop -%}
                       </li>
                     {%- endunless -%}
                   {%- endfor -%}

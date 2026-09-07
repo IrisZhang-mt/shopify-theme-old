@@ -10,10 +10,10 @@
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ dir }}">
 
   <head>
-{% render 'visually_io_sdk' %}
+{%- comment -%} 已确认 Visually.io (Loomi SDK) 账号已停用（服务端返回 402 Payment Required），已移除 render {%- endcomment -%}
 
-{% include 'limespot' %}
-  
+{%- comment -%} 已确认 LimeSpot app 已卸载（Shopify 渲染引擎确认该 snippet 不再输出内容），已移除 include {%- endcomment -%}
+
 	{% if settings.favicon != blank -%}
 		<link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
 	{%- endif %}
@@ -24,6 +24,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
 	<meta name="theme-color" content="{{ settings.color_body_bg }}">
+	{% render 'head-preload' %}
 	<link rel="canonical" href="{{ canonical_url }}">
 	<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,29 +100,6 @@
 	<noscript><link rel="stylesheet" href="{{ 'global.css' | asset_url }}"></noscript>
 	{% render 'head-variables' %}
 
-     <script type="text/javascript">
-    // Clarity 延迟到 load 后的浏览器空闲时再加载：clarity() 队列 API 立即可用，
-    // 早期调用会被缓存并在脚本就绪后回放，仅把脚本下载/执行移出首屏关键路径以降低 TBT。
-    // 行为分析（热图/录屏）会少录开头几秒，对数据价值影响可忽略。
-    (function(c,l,a,r,i){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        function loadClarity(){
-            var t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            var y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        }
-        window.addEventListener('load', function(){
-            if('requestIdleCallback' in window){
-                requestIdleCallback(loadClarity, {timeout:5000});
-            } else {
-                setTimeout(loadClarity, 3000);
-            }
-        });
-    })(window, document, "clarity", "script", "nje1e0f1tq");
-</script>
-<!-- 性能优化：移除 GTM 容器 GTM-WDJLXJCJ 的 script 块（线上v7的3个标签全部暂停、仅指向已废弃GA4 G-B7KLEHTVH3，空转）及前台冗余 Google Ads 基础标签 AW-16644920955（购买转化在checkout由Shopify插件注入，不依赖此前台标签）。noscript 在body后另行移除。发布后用 Tag Assistant 走结账验证购买转化照常。 -->
-	
- 
-
 	<script>
 		window.theme = window.theme || {};
 		theme = {
@@ -166,13 +144,13 @@
 
 </head>
 <body class="animations-{{ settings.animations }} button-uppercase-{{ settings.button_uppercase }} navigation-uppercase-{{ settings.navigation_uppercase }} product-title-uppercase-{{ settings.product_title_uppercase }}{% if customer %} customer-logged-in{% endif %} template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} template-{{ template | replace: '.', '-' | handle }}">
-	
+	<script src="{{ 'vendor.min.js' | asset_url }}" defer></script>
+
   <a class="screen-reader-shortcut" href="#main-content">{{ 'accessibility.skip_to_text' | t }}</a>
 	<div id="wrapper">
 		{% sections 'header-group' %}
 		<div role="main" id="main-content">
 			{{ content_for_layout }}
-<limespot></limespot>
 		</div>
 		{% sections 'footer-group' %}
 		{% render 'cart-drawer' %}
@@ -182,7 +160,6 @@
 		<div class="click-capture"></div>
 	</div>
 
-	<script src="{{ 'vendor.min.js' | asset_url }}" defer></script>
 	{% if settings.animations %}
 		<script src="{{ 'animations.min.js' | asset_url }}" defer></script>
 		<script>

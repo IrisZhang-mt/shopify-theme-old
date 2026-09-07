@@ -13,6 +13,7 @@
   assign columns_desktop = section.settings.columns_desktop
   assign facets_desktop = section.settings.facets_desktop
   assign show_filters_by_default = section.settings.show_filters_by_default
+  assign card_index = 0
 
   unless enable_filtering
     assign facets_desktop = 'drawer'
@@ -94,10 +95,13 @@
                       {% for handle in handles %}
                         {% assign topProduct = all_products[handle] %}
                         {% if topProduct != empty %}
+                          {%- assign card_index = card_index | plus: 1 -%}
                           <li class="column">
                             {%- render 'product-card',
                               product_card_product: topProduct,
-                              product_card_hide_from_price_label: true
+                              product_card_hide_from_price_label: true,
+                              card_index: card_index,
+                              columns_desktop: columns_desktop
                             -%}
                           </li>
                         {% endif %}
@@ -107,10 +111,13 @@
                     {%- for product in collection.products -%}
                       {%- comment -%} 置顶去重：跳过已在 sort_by（置顶列表）里的产品，避免同一产品既被置顶、又在其原始位置出现一次（重复）。对标准排序无副作用：那时 handles 是排序关键字，不会等于任何产品 handle。 {%- endcomment -%}
                       {%- unless handles contains product.handle -%}
+                        {%- assign card_index = card_index | plus: 1 -%}
                         <li class="column">
                           {%- render 'product-card',
                             product_card_product: product,
-                            product_card_hide_from_price_label: true
+                            product_card_hide_from_price_label: true,
+                            card_index: card_index,
+                            columns_desktop: columns_desktop
                           -%}
                         </li>
                       {%- endunless -%}
