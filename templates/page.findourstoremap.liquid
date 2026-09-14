@@ -1031,7 +1031,7 @@
         stores = storesData.map(store => ({
           id: store.id,
           name: (store.store_name_en || '').replace(/[\r\n]+/g, ' ').trim(),
-          address: (store.store_address || '').replace(/[\r\n]+/g, ' ').trim(),
+          address: (store.store_address_en || store.store_address || '').replace(/[\r\n]+/g, ' ').trim(),
           city: store.city_en,
           province: store.province_or_state_en,
           lat: parseFloat(store.latitude),
