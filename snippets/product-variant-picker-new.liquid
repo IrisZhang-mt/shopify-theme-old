@@ -592,11 +592,18 @@ media, URL, price blocks, pickup availability, and add-to-cart button.
           this.abortController = null;
           this.requestId = 0;
 
+          const colorIndex = this.getColorOptionIndex();
+          const variantBeforeLoadFix = this.currentVariant;
+          if (colorIndex > -1 && (!this.currentVariant || !this.currentVariant.available)) {
+            this.resolveVariantForColorChange(colorIndex);
+          }
+          const resolvedOnLoad = this.currentVariant !== variantBeforeLoadFix;
+
           this.addEventListener('click', this.onOptionClick.bind(this));
           this.addEventListener('change', this.onOptionChange.bind(this));
           this.applyLocalizedSwatchImages();
           this.updateAvailability();
-          this.commitState({ renderInfo: false });
+          this.commitState({ renderInfo: resolvedOnLoad });
           window.requestAnimationFrame(() => {
             this.updateMedia();
           });
@@ -610,6 +617,12 @@ media, URL, price blocks, pickup availability, and add-to-cart button.
           const optionIndex = Number(button.dataset.optionIndex);
           this.selectedOptions[optionIndex] = button.dataset.value;
           this.currentVariant = this.findVariant();
+
+          const colorIndex = this.getColorOptionIndex();
+          if (optionIndex === colorIndex && (!this.currentVariant || !this.currentVariant.available)) {
+            this.resolveVariantForColorChange(colorIndex);
+          }
+
           this.commitState({ renderInfo: true });
         }
 
@@ -620,6 +633,12 @@ media, URL, price blocks, pickup availability, and add-to-cart button.
           const optionIndex = Number(select.dataset.optionIndex);
           this.selectedOptions[optionIndex] = select.value;
           this.currentVariant = this.findVariant();
+
+          const colorIndex = this.getColorOptionIndex();
+          if (optionIndex === colorIndex && (!this.currentVariant || !this.currentVariant.available)) {
+            this.resolveVariantForColorChange(colorIndex);
+          }
+
           this.commitState({ renderInfo: true });
         }
 
@@ -636,6 +655,36 @@ media, URL, price blocks, pickup availability, and add-to-cart button.
           return this.variants.find((variant) => {
             return variant.options.every((option, index) => option === this.selectedOptions[index]);
           });
+        }
+
+        getColorOptionIndex() {
+          const fieldset = this.querySelector('[data-pdp-new-option].product-form__input--color');
+          return fieldset ? Number(fieldset.dataset.optionIndex) : -1;
+        }
+
+        // When the newly picked color has no available variant for the currently
+        // selected size, jump to the first available variant that exists for this
+        // color. If the whole color is sold out, keep the current size selection
+        // as-is and just force the unavailable state (this.currentVariant undefined).
+        resolveVariantForColorChange(colorIndex) {
+          const colorValue = this.selectedOptions[colorIndex];
+          if (colorValue === undefined) return;
+
+          const candidates = this.variants.filter((variant) => variant.options[colorIndex] === colorValue);
+          if (!candidates.length) return;
+
+          const availableVariant = candidates.find((variant) => variant.available);
+          if (!availableVariant) {
+            this.currentVariant = undefined;
+            return;
+          }
+          if (availableVariant === this.currentVariant) return;
+
+          availableVariant.options.forEach((value, index) => {
+            if (index === colorIndex) return;
+            this.selectedOptions[index] = value;
+          });
+          this.currentVariant = availableVariant;
         }
 
         commitState({ renderInfo }) {
