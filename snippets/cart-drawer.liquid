@@ -238,7 +238,7 @@
 	          {% endif %}
 						{%- if settings.cart_drawer_checkout_button -%}
 						<form action="{{ routes.cart_url }}" method="post" novalidate>
-							<button type="submit" class="button full checkout" name="checkout" title="{{ 'general.cart_drawer.checkout' | t | escape }}"><span>{{ 'general.cart_drawer.checkout' | t }} <b>•</b> {% if settings.currency_code_enabled %}{{ cart.total_price | money_with_currency }}{% else %}{{ cart.total_price | money }}{% endif %}</span></button>
+							<button type="submit" class="button full checkout" name="checkout" title="{{ 'general.cart_drawer.checkout' | t | escape }}"><span>{{ 'general.cart_drawer.checkout' | t }} <b>•</b> {% if cart.original_total_price > cart.total_price %}<s>{% if settings.currency_code_enabled %}{{ cart.original_total_price | money_with_currency }}{% else %}{{ cart.original_total_price | money }}{% endif %}</s> <b>•</b> {% endif %}<span style="color: #F37434; font-weight: bold;">{% if settings.currency_code_enabled %}{{ cart.total_price | money_with_currency }}{% else %}{{ cart.total_price | money }}{% endif %}</span></span></button>
 						</form>
 						{%- endif -%}
 						{%- if settings.cart_drawer_cart_button -%}
