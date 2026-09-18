@@ -33,7 +33,7 @@
           "disabled": true,
           "settings": {
             "link_label": "Contact Us",
-            "link": "shopify://pages/contact-us",
+            "link": "shopify://pages/contact-us-no",
             "button_outline": false
           }
         }
